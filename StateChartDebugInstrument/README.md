@@ -97,5 +97,7 @@ the capsule is being debugged.
 ### Standalone testing of the transformation scripts
 ### Refrences
 [1]http://media.steampowered.com/apps/valve/2014/Sergiy_Migdalskiy_Debugging_Techniques.pdf
-[2]
+
+[2]https://github.com/moji1/MDebugger/blob/master/FSE2017-Paper-182.pdf
+
 
