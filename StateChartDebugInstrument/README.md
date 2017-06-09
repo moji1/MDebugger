@@ -97,8 +97,18 @@ the capsule is being debugged.
 ### Standalone testing of the transformation scripts
 The transformations scripts are called by other project to perfrom the required transformation, however it is possible to modify and  execute this script in standalone mode. Execute the trasformation script inside the Eclipse IDE, follow the below instruction:
 - Righ click on the "UMLRTInstrumentv0.1.eol" and select Run as -> Run configuration 
-![alt text]()
-- 
+![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step1.png)
+- Create a new configuration under EOL program and make sure the source is set to "UMLRTInstrumentv0.1.eol"
+![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step2.png)
+- Select a Models tab in the dialog and add two model
+![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step3.png)
+- The DebugginAgent model always should have the following configuraion
+![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step4.png)
+- Configure the UMLRTModel to the model that you want to be transformed for debugging
+![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step5.png)
+
+- Finally, press the run and see the result in the eclipse console and result model.
+
 
 ### Refrences
 [1] http://media.steampowered.com/apps/valve/2014/Sergiy_Migdalskiy_Debugging_Techniques.pdf
