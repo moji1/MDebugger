@@ -95,6 +95,11 @@ the capsule is being debugged.
 
 
 ### Standalone testing of the transformation scripts
+The transformations scripts are called by other project to perfrom the required transformation, however it is possible to modify and  execute this script in standalone mode. Execute the trasformation script inside the Eclipse IDE, follow the below instruction:
+- Righ click on the "UMLRTInstrumentv0.1.eol" and select Run as -> Run configuration 
+![alt text]()
+- 
+
 ### Refrences
 [1] http://media.steampowered.com/apps/valve/2014/Sergiy_Migdalskiy_Debugging_Techniques.pdf
 
