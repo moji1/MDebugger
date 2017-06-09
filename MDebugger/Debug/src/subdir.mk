@@ -29,7 +29,7 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/Users/mojtababagherzadeh/git/MDebugger/RealTimeLibs/src" -I/Users/mojtababagherzadeh/papyrus-rt-master/git/org.eclipse.papyrus-rt/plugins/umlrt/runtime/rts/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I/home/osboxes/.p2/pool/plugins/org.eclipse.papyrusrt.rts_0.9.0.201706080437/umlrts/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
