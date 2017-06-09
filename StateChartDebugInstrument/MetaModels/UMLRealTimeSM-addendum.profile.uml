@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_KLcn0FDtEeOA4ecmvfqvaw" name="UMLRTStateMachines" URI="http://www.eclipse.org/papyrus/umlrt/statemachine" metaclassReference="_wVhWMFDtEeOA4ecmvfqvaw _CWExkFDuEeOA4ecmvfqvaw _CWExkVDuEeOA4ecmvfqvaw _CWExklDuEeOA4ecmvfqvaw _imhMgGfLEeO447LqwGjc0A _MItogJ3MEeW6VrvIZUJreg" metamodelReference="_KLcn0VDtEeOA4ecmvfqvaw">
+  <elementImport xmi:id="_wVhWMFDtEeOA4ecmvfqvaw" alias="StateMachine">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#StateMachine"/>
+  </elementImport>
+  <elementImport xmi:id="_CWExkFDuEeOA4ecmvfqvaw" alias="Pseudostate">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Pseudostate"/>
+  </elementImport>
+  <elementImport xmi:id="_CWExkVDuEeOA4ecmvfqvaw" alias="Region">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Region"/>
+  </elementImport>
+  <elementImport xmi:id="_CWExklDuEeOA4ecmvfqvaw" alias="State">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#State"/>
+  </elementImport>
+  <elementImport xmi:id="_imhMgGfLEeO447LqwGjc0A" alias="Operation">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+  </elementImport>
+  <elementImport xmi:id="_MItogJ3MEeW6VrvIZUJreg" alias="Constraint">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Constraint"/>
+  </elementImport>
+  <packageImport xmi:id="_KLcn0VDtEeOA4ecmvfqvaw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_KLcn0lDtEeOA4ecmvfqvaw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_xie4kFDtEeOA4ecmvfqvaw" name="RTStateMachine">
+    <ownedRule xmi:id="_7YHrgFDuEeOA4ecmvfqvaw" name="An RT state machine has exactly one region" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_PzHwEFDvEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>base_StateMachine.region->size() = 1</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_T5csQFDvEeOA4ecmvfqvaw" name="An RT state machine is never re-entrant" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_gzObEFDvEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>not base_StateMachine.isReentrant</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_6wToIFDvEeOA4ecmvfqvaw" name="RT state machines do not have parameters or parameter sets" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_aJvJIFDwEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>(base_StateMachine.ownedParameter->size()=0) and &#xD;
+(base_StateMachine.ownedParameterSet->size() = 0)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_IKB9EGe_EeO447LqwGjc0A" name="RT state machines must have a context and it must be a Class" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_Xs7DMGe_EeO447LqwGjc0A">
+        <language>OCL</language>
+        <body>(base_StateMachine.context->size()=1) &#xD;
+and (base_StateMachine.context.oclIsKindOf(Class))</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_ZzQdkGe_EeO447LqwGjc0A" name="Passive state machine are only allowed on passive data classes" constrainedElement="_xie4kFDtEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_v7hfwGfAEeO447LqwGjc0A">
+        <language>OCL</language>
+        <body>isPassive = not (base_StateMachine.context.oclAsType(Class).isActive) </body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_0bVVAFDtEeOA4ecmvfqvaw" name="base_StateMachine" association="_0bVVAVDtEeOA4ecmvfqvaw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#StateMachine"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="__J-uUGe9EeO447LqwGjc0A" name="isPassive" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AuCiEGe-EeO447LqwGjc0A" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AuDwMGe-EeO447LqwGjc0A" value="1"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_KGCMMGe-EeO447LqwGjc0A"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_0bVVAVDtEeOA4ecmvfqvaw" name="E_RTStateMachine_StateMachine1" memberEnd="_0bVVAlDtEeOA4ecmvfqvaw _0bVVAFDtEeOA4ecmvfqvaw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_0bVVAlDtEeOA4ecmvfqvaw" name="extension_RTStateMachine" type="_xie4kFDtEeOA4ecmvfqvaw" aggregation="composite" association="_0bVVAVDtEeOA4ecmvfqvaw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_H1bWMFDuEeOA4ecmvfqvaw" name="RTRegion">
+    <ownedAttribute xmi:id="_P_3BAFDuEeOA4ecmvfqvaw" name="base_Region" association="_P_3BAVDuEeOA4ecmvfqvaw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Region"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_KKLAAFDuEeOA4ecmvfqvaw" name="RTState">
+    <ownedRule xmi:id="_a-6ywFDyEeOA4ecmvfqvaw" name="A composite RT state has exactly one region" constrainedElement="_KKLAAFDuEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_-FbpgFDyEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>base_State.isComposite implies &#xD;
+           (base_State.region->size() = 1)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_b79CwFDyEeOA4ecmvfqvaw" name="RT does not support submachine states" constrainedElement="_KKLAAFDuEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_PFqQUFDzEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>not base_State.isSubmachineState</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_dXOG4FDyEeOA4ecmvfqvaw" name="RT state machines do not support &quot;do&quot; activities" constrainedElement="_KKLAAFDuEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_gXHxEFDzEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>base_State.doActivity->size() = 0</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_eTI8kFDyEeOA4ecmvfqvaw" name="RT state machines cannot have any deferred triggers " constrainedElement="_KLcn0FDtEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_1bPEEFDzEeOA4ecmvfqvaw">
+        <language>OCL</language>
+        <body>base_State.deferrableTrigger->size() = 0</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="_fRL5MFDyEeOA4ecmvfqvaw" name="Constraint5" constrainedElement="_KKLAAFDuEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:LiteralString" xmi:id="_fRL5MVDyEeOA4ecmvfqvaw" name="constraintSpec"/>
+    </ownedRule>
+    <ownedAttribute xmi:id="_UsH70FDuEeOA4ecmvfqvaw" name="base_State" association="_UsH70VDuEeOA4ecmvfqvaw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#State"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_NHLjsFDuEeOA4ecmvfqvaw" name="RTPseudostate">
+    <ownedRule xmi:id="_C1PjYFD6EeOMYqaaVdNqwA" name="Concurrency, shallow history and terminate pseudostates not supported" constrainedElement="_NHLjsFDuEeOA4ecmvfqvaw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_bx6cUFD6EeOMYqaaVdNqwA" name="">
+        <language>OCL</language>
+        <body>let knd = base_Pseudostate.kind in &#xD;
+   (knd &lt;> UML::PseudostateKind::shallowHistory) and&#xD;
+   (knd &lt;> UML::PseudostateKind::fork) and&#xD;
+   (knd &lt;> UML::PseudostateKind::join) and&#xD;
+   (knd &lt;> UML::PseudostateKind::terminate)</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_WoF5QFDuEeOA4ecmvfqvaw" name="base_Pseudostate" association="_WoF5QVDuEeOA4ecmvfqvaw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Pseudostate"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_P_3BAVDuEeOA4ecmvfqvaw" name="E_RTRegion_Region1" memberEnd="_P_3BAlDuEeOA4ecmvfqvaw _P_3BAFDuEeOA4ecmvfqvaw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_P_3BAlDuEeOA4ecmvfqvaw" name="extension_RTRegion" type="_H1bWMFDuEeOA4ecmvfqvaw" aggregation="composite" association="_P_3BAVDuEeOA4ecmvfqvaw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_UsH70VDuEeOA4ecmvfqvaw" name="E_RTState_State1" memberEnd="_UsH70lDuEeOA4ecmvfqvaw _UsH70FDuEeOA4ecmvfqvaw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_UsH70lDuEeOA4ecmvfqvaw" name="extension_RTState" type="_KKLAAFDuEeOA4ecmvfqvaw" aggregation="composite" association="_UsH70VDuEeOA4ecmvfqvaw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WoF5QVDuEeOA4ecmvfqvaw" name="E_RTPseudostate_Pseudostate1" memberEnd="_WoF5QlDuEeOA4ecmvfqvaw _WoF5QFDuEeOA4ecmvfqvaw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WoF5QlDuEeOA4ecmvfqvaw" name="extension_RTPseudostate" type="_NHLjsFDuEeOA4ecmvfqvaw" aggregation="composite" association="_WoF5QVDuEeOA4ecmvfqvaw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_j4X18GfLEeO447LqwGjc0A" name="RTTrigger">
+    <ownedAttribute xmi:id="_lXb08GfLEeO447LqwGjc0A" name="base_Operation" association="_lXccAGfLEeO447LqwGjc0A">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_lXccAGfLEeO447LqwGjc0A" name="E_RTTrigger_Operation1" memberEnd="_lXccAWfLEeO447LqwGjc0A _lXb08GfLEeO447LqwGjc0A">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_lXccAWfLEeO447LqwGjc0A" name="extension_RTTrigger" type="_j4X18GfLEeO447LqwGjc0A" aggregation="composite" association="_lXccAGfLEeO447LqwGjc0A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_V-IOcJ3MEeW6VrvIZUJreg" name="RTGuard">
+    <ownedAttribute xmi:id="_ZfyXUJ3MEeW6VrvIZUJreg" name="base_Constraint" association="_Zfv7EJ3MEeW6VrvIZUJreg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Constraint"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Zfv7EJ3MEeW6VrvIZUJreg" name="E_RTGuard_Constraint1" memberEnd="_ZfxwQJ3MEeW6VrvIZUJreg _ZfyXUJ3MEeW6VrvIZUJreg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ZfxwQJ3MEeW6VrvIZUJreg" name="extension_RTGuard" type="_V-IOcJ3MEeW6VrvIZUJreg" aggregation="composite" association="_Zfv7EJ3MEeW6VrvIZUJreg"/>
+  </packagedElement>
+</uml:Profile>

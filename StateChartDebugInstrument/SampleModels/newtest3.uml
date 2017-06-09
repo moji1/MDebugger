@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_xk05MOapEeaPRPaukPiTYw" name="RootElement">
+    <eAnnotations xmi:id="_R8398NrKEeahI77Vg4Dl9Q" source="UMLRT_Default_top">
+      <details xmi:id="_R84lANrKEeahI77Vg4Dl9Q" key="top_name" value="__Debug__Top"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2f99gOapEeaPRPaukPiTYw" name="Capsule1" classifierBehavior="_4YovUOapEeaPRPaukPiTYw" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_POVrYOcQEeaPRPaukPiTYw" name="timing" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_9KN7QOlXEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9KPJYOlXEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_9KQXgOlXEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_Y0QfwOlgEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Y0SU8OlgEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_Y0S8AOlgEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_bWJ0wOlgEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bWLC4OlgEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_bWLp8OlgEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_hGHoQOlgEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hGJdcOlgEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_hGKEgOlgEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_xHgoQOlgEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xHh2YOlgEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_xHidcOlgEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_0Gb3gOlgEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0GdFoOlgEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_0GdssOlgEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_Orj8AOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OrlKIOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_OrlxMOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_RF2NIOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RF53gOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_RF6ekOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_U33GMOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_U33tQOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_U34UUOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_WwkUQOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WwliYOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_WwmJcOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_u9DtcOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u9FioOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_u9GJsOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_2Vq5wOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2VsH4OlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_2Vsu8OlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_4aAJAOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4aAwEOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_4aBXIOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_-S7EMOlhEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-S7rQOlhEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_-S8SUOlhEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_CHYNQOliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CHZbYOliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_CHaCcOliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_FalqcOliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Fam4kOliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_Fam4keliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_I1nm4OliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I1oN8OliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_I1o1AOliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_LIdzQOliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LIfBYOliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_LIgPgOliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_URQjwOliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_URRx4OliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_URTAAOliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_Zpo9sOliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZpqL0OliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_ZprZ8OliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_bYeeEOliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bYfFIOliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_bYfsMOliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_uzuV0OliEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uzvj8OliEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_uzwLAOliEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_CVOxIOlkEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CVP_QOlkEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_CVQmUOlkEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_LBfWoOlkEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LBgkwOlkEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_LBgkwelkEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_ewi7MOlkEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ewkJUOlkEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_ewkJUelkEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_ps8XUOlkEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ps9lcOlkEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_ps-MgOlkEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_2wr6cOlkEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2wtIkOlkEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_2wuWsOlkEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_FNW_YOllEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FNZboOllEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_FNapwOllEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_WYkHIOllEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYlVQOllEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_WYl8UOllEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_eeS4IOllEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eeUtUOllEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_eeV7cOllEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_k_X_gOllEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k_Z0sOllEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_k_bp4OllEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_tYip4OllEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tYkfEOllEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_tf85cOllEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_zkkuUOllEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zkl8cOllEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_zkmjgOllEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_MhI5kOlmEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MhKuwOlmEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_MhLV0OlmEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_dvKr0OlmEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d3Ht8OlmEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_d3I8EOlmEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_piO0wOlnEeaHEaGqmsO7GQ" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_piQp8OlnEeaHEaGqmsO7GQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_piRRAOlnEeaHEaGqmsO7GQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_xWOVgOlnEeaHEaGqmsO7GQ" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xWO8kOlnEeaHEaGqmsO7GQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_xWO8kelnEeaHEaGqmsO7GQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_zqMjQOlnEeaHEaGqmsO7GQ" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zqNKUOlnEeaHEaGqmsO7GQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_zqNKUelnEeaHEaGqmsO7GQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_2w8RwOlnEeaHEaGqmsO7GQ" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2w9f4OlnEeaHEaGqmsO7GQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_2w9f4elnEeaHEaGqmsO7GQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_7Vdl0OlnEeaHEaGqmsO7GQ" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7VeM4OlnEeaHEaGqmsO7GQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_7Vez8OlnEeaHEaGqmsO7GQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_QothAOloEeaKJ9Meq6miRA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qov9QOloEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_QowkUOloEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_URV0kOloEeaKJ9Meq6miRA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_URWboOloEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_URXpwOloEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_dAPeYOloEeaKJ9Meq6miRA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dAQFcOloEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_dAQFceloEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_kdAx8OloEeaKJ9Meq6miRA" name="__Debug__Port" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kdAx8eloEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_kdAx8uloEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_5iIxkOloEeaKJ9Meq6miRA" name="__Debug__Port" isBehavior="true" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5iJYoOloEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_5iJ_sOloEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_GiJj4OlsEeaKJ9Meq6miRA" name="__Debug__Port"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_QvbQMOlsEeaKJ9Meq6miRA" name="__Debug__Port" isBehavior="true" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QxMKwOlsEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_QxMKwelsEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_bvlyAOlsEeaKJ9Meq6miRA" name="__Debug__Port" isBehavior="true" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bxVecelsEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_bxWFgOlsEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_nE_kAOlsEeaKJ9Meq6miRA" name="__Debug__Port" isBehavior="true" isConjugated="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="../../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nGpw4elsEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_nGpw4ulsEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_4YovUOapEeaPRPaukPiTYw" name="StateMachine1">
+        <region xmi:id="_4odUAOapEeaPRPaukPiTYw" name="Region1">
+          <transition xmi:id="_65JkQOapEeaPRPaukPiTYw" name="Initial1__State1__1" source="_atNHUOdQEeaOPvujQN7Vrg" target="_6CPKYOapEeaPRPaukPiTYw"/>
+          <transition xmi:id="_ZKhCAOdPEeaOPvujQN7Vrg" name="State1__State1__2" source="_atW4UOdQEeaOPvujQN7Vrg" target="_6CPKYOapEeaPRPaukPiTYw"/>
+          <transition xmi:id="_atPjkOdQEeaOPvujQN7Vrg" name="__Debug__Initial1__State1__1" source="_5TqNIOapEeaPRPaukPiTYw" target="_atNHUOdQEeaOPvujQN7Vrg"/>
+          <transition xmi:id="_atQKoOdQEeaOPvujQN7Vrg" name="__Debug__Initial1__State1__1__S" source="_atNHUOdQEeaOPvujQN7Vrg" target="_atO8gOdQEeaOPvujQN7Vrg"/>
+          <transition xmi:id="_atQxsOdQEeaOPvujQN7Vrg" name="__Debug__Initial1__State1__1__E" source="_atO8gedQEeaOPvujQN7Vrg" target="_6CPKYOapEeaPRPaukPiTYw"/>
+          <transition xmi:id="_atRYwOdQEeaOPvujQN7Vrg" name="__Debug__Initial1__State1__1__dbg" source="_atOVcOdQEeaOPvujQN7Vrg" target="_atOVcOdQEeaOPvujQN7Vrg"/>
+          <transition xmi:id="_atZUkOdQEeaOPvujQN7Vrg" name="__Debug__State1__State1__2" source="_6CPKYOapEeaPRPaukPiTYw" target="_atW4UOdQEeaOPvujQN7Vrg">
+            <trigger xmi:id="_iCH74OdPEeaOPvujQN7Vrg" port="_POVrYOcQEeaPRPaukPiTYw">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_atbJwOdQEeaOPvujQN7Vrg" name="__Debug__State1__State1__2__S" source="_atW4UOdQEeaOPvujQN7Vrg" target="_atXfYudQEeaOPvujQN7Vrg"/>
+          <transition xmi:id="_atbw0OdQEeaOPvujQN7Vrg" name="__Debug__State1__State1__2__E" source="_atYGcOdQEeaOPvujQN7Vrg" target="_6CPKYOapEeaPRPaukPiTYw"/>
+          <transition xmi:id="_atbw0edQEeaOPvujQN7Vrg" name="__Debug__State1__State1__2__dbg" source="_atXfYOdQEeaOPvujQN7Vrg" target="_atXfYOdQEeaOPvujQN7Vrg"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_5TqNIOapEeaPRPaukPiTYw" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_6CPKYOapEeaPRPaukPiTYw" name="State1"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_atNHUOdQEeaOPvujQN7Vrg" name="__Debug__Path__Initial1__State1__1" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="_atOVcOdQEeaOPvujQN7Vrg" name="__Debug__C__Initial1__State1__1">
+            <connectionPoint xmi:id="_atO8gOdQEeaOPvujQN7Vrg" name="en" kind="entryPoint"/>
+            <connectionPoint xmi:id="_atO8gedQEeaOPvujQN7Vrg" name="ex" kind="exitPoint"/>
+            <region xmi:id="_atOVcedQEeaOPvujQN7Vrg" name="Region1">
+              <transition xmi:id="_atSm4edQEeaOPvujQN7Vrg" name="__Debug__init__trans__Initial1__State1__1" source="_atRYwedQEeaOPvujQN7Vrg" target="_atR_0OdQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_atSm4udQEeaOPvujQN7Vrg" name="__Debug__Ex__Initial1__State1__1" source="_atR_0OdQEeaOPvujQN7Vrg" target="_atR_0edQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_atTN8OdQEeaOPvujQN7Vrg" name="__Debug__En__Initial1__State1__1" source="_atR_0edQEeaOPvujQN7Vrg" target="_atSm4OdQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_atTN8edQEeaOPvujQN7Vrg" name="__Debug__end__trans__Initial1__State1__1" source="_atSm4OdQEeaOPvujQN7Vrg" target="_atO8gedQEeaOPvujQN7Vrg"/>
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_atRYwedQEeaOPvujQN7Vrg" name="init__state__Initial1__State1__1"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atR_0OdQEeaOPvujQN7Vrg" name="__Debug__B__Ac__Initial1__State1__1"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atR_0edQEeaOPvujQN7Vrg" name="__Debug__A__Ac__Initial1__State1__1"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atSm4OdQEeaOPvujQN7Vrg" name="__Debug__A__En__Initial1__State1__1"/>
+            </region>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_atW4UOdQEeaOPvujQN7Vrg" name="__Debug__Path__State1__State1__2" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="_atXfYOdQEeaOPvujQN7Vrg" name="__Debug__C__State1__State1__2">
+            <connectionPoint xmi:id="_atXfYudQEeaOPvujQN7Vrg" name="en" kind="entryPoint"/>
+            <connectionPoint xmi:id="_atYGcOdQEeaOPvujQN7Vrg" name="ex" kind="exitPoint"/>
+            <region xmi:id="_atXfYedQEeaOPvujQN7Vrg" name="Region1">
+              <transition xmi:id="_atc-8-dQEeaOPvujQN7Vrg" name="__Debug__init__trans__State1__State1__2" source="_atcX4OdQEeaOPvujQN7Vrg" target="_atcX4edQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_atdmAOdQEeaOPvujQN7Vrg" name="__Debug__Ex__State1__State1__2" source="_atcX4edQEeaOPvujQN7Vrg" target="_atc-8OdQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_atdmAedQEeaOPvujQN7Vrg" name="__Debug__AC__State1__State1__2" source="_atc-8OdQEeaOPvujQN7Vrg" target="_atc-8edQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_atdmAudQEeaOPvujQN7Vrg" name="__Debug__En__State1__State1__2" source="_atc-8edQEeaOPvujQN7Vrg" target="_atc-8udQEeaOPvujQN7Vrg"/>
+              <transition xmi:id="_ateNEOdQEeaOPvujQN7Vrg" name="__Debug__end__trans__State1__State1__2" source="_atc-8udQEeaOPvujQN7Vrg" target="_atYGcOdQEeaOPvujQN7Vrg"/>
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_atcX4OdQEeaOPvujQN7Vrg" name="init__state__State1__State1__2"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atcX4edQEeaOPvujQN7Vrg" name="__Debug__B__Ex__State1__State1__2"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atc-8OdQEeaOPvujQN7Vrg" name="__Debug__B__Ac__State1__State1__2"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atc-8edQEeaOPvujQN7Vrg" name="__Debug__A__Ac__State1__State1__2"/>
+              <subvertex xmi:type="uml:State" xmi:id="_atc-8udQEeaOPvujQN7Vrg" name="__Debug__A__En__State1__State1__2"/>
+            </region>
+          </subvertex>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cgmu8OkOEea4rcs9HfOmsA" name="top_capsule1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_g42PoOkQEea4rcs9HfOmsA" name="top_capsule1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oYcNsOkQEea4rcs9HfOmsA" name="top_capsule1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tB0MkOkQEea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zfLRkOkQEea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3qHA8OkQEea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CL6LwOkREea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QYniEOkREea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VNqI8OkSEea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4G-4QOkSEea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TvPNsOkTEea4rcs9HfOmsA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VFZIUOkTEea4rcs9HfOmsA" name="__Debug__Top">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_VFkugOkTEea4rcs9HfOmsA" name="__Debug__Gateway">
+        <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VFl8oOkTEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZEZ7kOkTEea4rcs9HfOmsA" name="__Debug__Top">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_ZEkToOkTEea4rcs9HfOmsA" name="__Debug__Gateway">
+        <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZElhwOkTEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_F5H9AOkUEea4rcs9HfOmsA" name="__Debug__Top">
+      <ownedAttribute xmi:id="_F5XNkOkUEea4rcs9HfOmsA" name="__Debug__Gateway">
+        <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_F5YbsOkUEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_F5YbsekUEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NzRToOkVEea4rcs9HfOmsA" name="__Debug__Top">
+      <ownedAttribute xmi:id="_NzadkOkVEea4rcs9HfOmsA" name="__Debug__Gateway">
+        <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NzbEoOkVEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_NzbEoekVEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_NzhLQOkVEea4rcs9HfOmsA" name="__Debug____Debug__Top" type="_TvPNsOkTEea4rcs9HfOmsA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NzhLQekVEea4rcs9HfOmsA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_NzhLQukVEea4rcs9HfOmsA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_bxeBUOlsEeaKJ9Meq6miRA" name="__Debug__Top"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_nGyTwOlsEeaKJ9Meq6miRA" name="__Debug__Top">
+      <ownedAttribute xmi:id="_nG8EwOlsEeaKJ9Meq6miRA" name="__Debug__Gateway">
+        <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nHCLYOlsEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_nHCLYelsEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nHEnoOlsEeaKJ9Meq6miRA" name="__Debug____Debug__Top" type="_QYniEOkREea4rcs9HfOmsA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nHKuQelsEeaKJ9Meq6miRA" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_nHKuQulsEeaKJ9Meq6miRA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:id="_xlj5AOapEeaPRPaukPiTYw">
+      <eAnnotations xmi:id="_xlpYkOapEeaPRPaukPiTYw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLRealTime:Capsule xmi:id="_2j7QcOapEeaPRPaukPiTYw" base_Class="_2f99gOapEeaPRPaukPiTYw"/>
+  <UMLRealTime:RTPort xmi:id="_POZVwOcQEeaPRPaukPiTYw" isWired="false" base_Port="_POVrYOcQEeaPRPaukPiTYw"/>
+  <uml:Class xmi:id="_LszbkOkDEeaOPvujQN7Vrg" name="capsule1"/>
+  <uml:Class xmi:id="_hcqaQOkDEeaOPvujQN7Vrg" name="capsule1"/>
+  <UMLRealTime:Capsule xmi:id="_hEA-0OkFEeaOPvujQN7Vrg"/>
+  <UMLRealTime:Capsule xmi:id="__87MsOkFEeaOPvujQN7Vrg"/>
+  <UMLRealTime:Capsule xmi:id="_U6MQ0OkGEeaOPvujQN7Vrg"/>
+  <UMLRealTime:Capsule xmi:id="_hb9vUOkGEeaOPvujQN7Vrg"/>
+  <UMLRealTime:Capsule xmi:id="_z_8A0OkGEeaOPvujQN7Vrg"/>
+  <UMLRealTime:Capsule xmi:id="_sA_-4OkHEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_w1g2wOkHEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_6QQS4OkHEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_ugWZYOkLEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_xEw24OkLEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_0hs30OkLEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_7o4V4OkLEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_CHdi4OkMEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_HnO-QOkMEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_cy0yQOkMEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_jclUgOkMEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_qV1EQOkMEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_DSJ-8OkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_MWoQIOkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_O75pQOkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_vI58QOkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_x1v9AOkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_0SBLIOkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_9b0BMOkNEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_Bc-JgOkOEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_HkTUIOkOEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_M9mUEOkOEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_RUPkMOkOEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_ciQUwOkOEea4rcs9HfOmsA" base_Class="_cgmu8OkOEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_g4-ygOkQEea4rcs9HfOmsA" base_Class="_g42PoOkQEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_oYmlwOkQEea4rcs9HfOmsA" base_Class="_oYcNsOkQEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_tB6TMOkQEea4rcs9HfOmsA" base_Class="_tB0MkOkQEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_zfRYMOkQEea4rcs9HfOmsA" base_Class="_zfLRkOkQEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_3qNHkOkQEea4rcs9HfOmsA" base_Class="_3qHA8OkQEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_CMCHkOkREea4rcs9HfOmsA" base_Class="_CL6LwOkREea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_CMDVsOkREea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_QYtBoOkREea4rcs9HfOmsA" base_Class="_QYniEOkREea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_QYu20OkREea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:Capsule xmi:id="_VNwPkOkSEea4rcs9HfOmsA" base_Class="_VNqI8OkSEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_VNyEwOkSEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <uml:Port xmi:id="_VN4ycOkSEea4rcs9HfOmsA" name="__Debug__Gateway"/>
+  <UMLRealTime:Capsule xmi:id="_4HE-4OkSEea4rcs9HfOmsA" base_Class="_4G-4QOkSEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_4HICMOkSEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <uml:Port xmi:id="_4HKecOkSEea4rcs9HfOmsA" name="__Debug__Gateway">
+    <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+  </uml:Port>
+  <UMLRealTime:Capsule xmi:id="_TvWicOkTEea4rcs9HfOmsA" base_Class="_TvPNsOkTEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_TvY-sOkTEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <uml:Port xmi:id="_Tvba8OkTEea4rcs9HfOmsA" name="__Debug__Gateway">
+    <type xmi:type="uml:Class" href="../../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
+  </uml:Port>
+  <UMLRealTime:Capsule xmi:id="_VFgdEOkTEea4rcs9HfOmsA" base_Class="_VFZIUOkTEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_VFiSQOkTEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:CapsulePart xmi:id="_VFw7wOkTEea4rcs9HfOmsA" base_Property="_VFkugOkTEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_ZEgCMOkTEea4rcs9HfOmsA" base_Class="_ZEZ7kOkTEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_ZEh3YOkTEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:CapsulePart xmi:id="_ZEpzMOkTEea4rcs9HfOmsA" base_Property="_ZEkToOkTEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_F5Qf4OkUEea4rcs9HfOmsA" base_Class="_F5H9AOkUEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_F5TjMOkUEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:CapsulePart xmi:id="_F5g-kOkUEea4rcs9HfOmsA" base_Property="_F5XNkOkUEea4rcs9HfOmsA"/>
+  <UMLRealTime:Capsule xmi:id="_NzWMIOkVEea4rcs9HfOmsA" base_Class="_NzRToOkVEea4rcs9HfOmsA"/>
+  <uml:PackageImport xmi:id="_NzYBUOkVEea4rcs9HfOmsA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:CapsulePart xmi:id="_NzevAOkVEea4rcs9HfOmsA" base_Property="_NzadkOkVEea4rcs9HfOmsA"/>
+  <UMLRealTime:CapsulePart xmi:id="_NzkOkOkVEea4rcs9HfOmsA" base_Property="_NzhLQOkVEea4rcs9HfOmsA"/>
+  <uml:Port xmi:id="_VvTskOlWEea4rcs9HfOmsA" name="__Debug__Port"/>
+  <uml:Port xmi:id="_GXUZcOlXEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true"/>
+  <uml:Port xmi:id="_OLm1IOlXEea4rcs9HfOmsA" name="__Debug__Port" isConjugated="true"/>
+  <UMLRealTime:RTPort xmi:id="_9KWeIOlXEea4rcs9HfOmsA" base_Port="_9KN7QOlXEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_Y0YbkOlgEea4rcs9HfOmsA" base_Port="_Y0QfwOlgEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_bWP7YOlgEea4rcs9HfOmsA" base_Port="_bWJ0wOlgEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_hGO9AOlgEea4rcs9HfOmsA" base_Port="_hGHoQOlgEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_xHn9AOlgEea4rcs9HfOmsA" base_Port="_xHgoQOlgEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_0GhXEOlgEea4rcs9HfOmsA" base_Port="_0Gb3gOlgEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_OrqpsOlhEea4rcs9HfOmsA" base_Port="_Orj8AOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_RF_XEOlhEea4rcs9HfOmsA" base_Port="_RF2NIOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_U37XoOlhEea4rcs9HfOmsA" base_Port="_U33GMOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_Wwpz0OlhEea4rcs9HfOmsA" base_Port="_WwkUQOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_u9LCMOlhEea4rcs9HfOmsA" base_Port="_u9DtcOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_2VxncOlhEea4rcs9HfOmsA" base_Port="_2Vq5wOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_4aFBgOlhEea4rcs9HfOmsA" base_Port="_4aAJAOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_-S_8sOlhEea4rcs9HfOmsA" base_Port="_-S7EMOlhEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_CHdFwOliEea4rcs9HfOmsA" base_Port="_CHYNQOliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_Faqi8OliEea4rcs9HfOmsA" base_Port="_FalqcOliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_I1r4UOliEea4rcs9HfOmsA" base_Port="_I1nm4OliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_LIlvEOliEea4rcs9HfOmsA" base_Port="_LIdzQOliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_URZGoOliEea4rcs9HfOmsA" base_Port="_URQjwOliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_ZpvrYOliEea4rcs9HfOmsA" base_Port="_Zpo9sOliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_bYivgOliEea4rcs9HfOmsA" base_Port="_bYeeEOliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_uz0ccOliEea4rcs9HfOmsA" base_Port="_uzuV0OliEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_CVXUAOlkEea4rcs9HfOmsA" base_Port="_CVOxIOlkEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_LIZ28OlkEea4rcs9HfOmsA" base_Port="_LBfWoOlkEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_ewqP8OlkEea4rcs9HfOmsA" base_Port="_ewi7MOlkEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_ptB24OlkEea4rcs9HfOmsA" base_Port="_ps8XUOlkEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_2wyoIOlkEea4rcs9HfOmsA" base_Port="_2wr6cOlkEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_FNgJUOllEea4rcs9HfOmsA" base_Port="_FNW_YOllEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_WYrb4OllEea4rcs9HfOmsA" base_Port="_WYkHIOllEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_eeaz8OllEea4rcs9HfOmsA" base_Port="_eeS4IOllEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_lGNnUOllEea4rcs9HfOmsA" base_Port="_k_X_gOllEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_tf_8wOllEea4rcs9HfOmsA" base_Port="_tYip4OllEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_zrsqAOllEea4rcs9HfOmsA" base_Port="_zkkuUOllEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_MrKYQOlmEea4rcs9HfOmsA" base_Port="_MhI5kOlmEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_eSieoOlmEea4rcs9HfOmsA" base_Port="_dvKr0OlmEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_pnsjkOlnEeaHEaGqmsO7GQ" base_Port="_piO0wOlnEeaHEaGqmsO7GQ"/>
+  <UMLRealTime:RTPort xmi:id="_xYqlgOlnEeaHEaGqmsO7GQ" base_Port="_xWOVgOlnEeaHEaGqmsO7GQ"/>
+  <UMLRealTime:RTPort xmi:id="_ztdSoOlnEeaHEaGqmsO7GQ" base_Port="_zqMjQOlnEeaHEaGqmsO7GQ"/>
+  <UMLRealTime:RTPort xmi:id="_2ytzYOlnEeaHEaGqmsO7GQ" base_Port="_2w8RwOlnEeaHEaGqmsO7GQ"/>
+  <UMLRealTime:RTPort xmi:id="_7XYRYOlnEeaHEaGqmsO7GQ" base_Port="_7Vdl0OlnEeaHEaGqmsO7GQ"/>
+  <UMLRealTime:RTPort xmi:id="_Qs1MAOloEeaKJ9Meq6miRA" base_Port="_QothAOloEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_UUOwgOloEeaKJ9Meq6miRA" base_Port="_URV0kOloEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_dCUiAOloEeaKJ9Meq6miRA" isWired="false" base_Port="_dAPeYOloEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_kfEncOloEeaKJ9Meq6miRA" isWired="false" base_Port="_kdAx8OloEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_5kfiAOloEeaKJ9Meq6miRA" isWired="false" base_Port="_5iIxkOloEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_GkJH8OlsEeaKJ9Meq6miRA" base_Port="_GiJj4OlsEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_QxLjsOlsEeaKJ9Meq6miRA" isWired="false" base_Port="_QvbQMOlsEeaKJ9Meq6miRA"/>
+  <UMLRealTime:RTPort xmi:id="_bxVecOlsEeaKJ9Meq6miRA" isWired="false" base_Port="_bvlyAOlsEeaKJ9Meq6miRA"/>
+  <UMLRealTime:Capsule xmi:id="_bxlWEOlsEeaKJ9Meq6miRA" base_Class="_bxeBUOlsEeaKJ9Meq6miRA"/>
+  <uml:PackageImport xmi:id="_byCpEOlsEeaKJ9Meq6miRA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:RTPort xmi:id="_nGpw4OlsEeaKJ9Meq6miRA" isWired="false" base_Port="_nE_kAOlsEeaKJ9Meq6miRA"/>
+  <UMLRealTime:Capsule xmi:id="_nG4aYOlsEeaKJ9Meq6miRA" base_Class="_nGyTwOlsEeaKJ9Meq6miRA"/>
+  <uml:PackageImport xmi:id="_nG5ogOlsEeaKJ9Meq6miRA">
+    <importedPackage xmi:type="uml:Model" href="../../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
+  </uml:PackageImport>
+  <UMLRealTime:CapsulePart xmi:id="_nHBkUOlsEeaKJ9Meq6miRA" base_Property="_nG8EwOlsEeaKJ9Meq6miRA"/>
+  <UMLRealTime:CapsulePart xmi:id="_nHKuQOlsEeaKJ9Meq6miRA" base_Property="_nHEnoOlsEeaKJ9Meq6miRA"/>
+</xmi:XMI>

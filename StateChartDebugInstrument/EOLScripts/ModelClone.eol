@@ -1,0 +1,44 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+///some test code to try to clone model, it is not waoking as expected.
+
+import "UMLRTQuery.eol";
+
+var modelroot=UMLRTModel!Package.all.select(c|c.type.name="Model").first();
+modelroot.println();
+var packages=modelroot.getAllNestedPackage().println();
+var classes=modelroot.getAllOwnedClasses();
+var refinedModelRoot=RefinedUMLRTModel!Package.all.select(c|c.type.name="Model").first();
+
+for (e in modelroot.packagedElement){
+	e.println();
+	var e1=new RefinedUMLRTModel!Class;
+	e1=e;
+	}
+
+/*for (p in packages){
+	p.println();
+	var p1=new RefinedUMLRTModel!Package;
+	p1=p;
+	//refinedModelRoot.packagedElement.add(p1);
+	}
+for (c in classes){
+	c.println();
+	}*/
+
+var refinedModelRoot=RefinedUMLRTModel!Package.all.select(c|c.type.name="Model").first();
+refinedModelRoot.println();
+packages=refinedModelRoot.getAllNestedPackage().println();
+refinedModelRoot.getAllOwnedClasses().println();
+
+for (p in packages){
+	p.println();
+	var p1=new RefinedUMLRTModel!Package;
+	p1=p;
+	modelroot.packagedElement.add(p1);
+	}

@@ -1,0 +1,367 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+/////add gaurd to transition
+operation UMLRTModel!Transition addGuard(name:String,condition:String){
+	var g:UMLRTModel!OpaqueExpression= new UMLRTModel!OpaqueExpression; // transition to guard
+	var constraintG:UMLRTModel!Constraint= new UMLRTModel!Constraint;
+	constraintG.name=name;
+	g.language.add("C++");
+	g.body.add(condition);
+	g.name=name;
+	constraintG.specification=g;
+	self.ownedRule.add(constraintG);
+	self.guard=constraintG;
+}
+
+/// deep copy for effect
+operation UMLRTModel!OpaqueBehavior valueCopy() : UMLRTModel!OpaqueBehavior {
+	var effect:UMLRTModel!OpaqueBehavior=  new UMLRTModel!OpaqueBehavior;
+	effect.name=self.name;
+	effect.visibility=self.visibility;
+	effect.isAbstract=self.isAbstract;
+	effect.isFinalSpecialization=self.isFinalSpecialization;
+	effect.isActive=self.isActive;
+	effect.isReentrant=self.isReentrant;
+	effect.body=self.body;
+	effect.language=self.language;
+	return effect;
+}
+/// deep value copy for trigger
+operation UMLRTModel!Trigger valueCopy() : UMLRTModel!Trigger{
+	var trigger:UMLRTModel!Trigger = new UMLRTModel!Trigger;
+	trigger.name=self.name;
+	trigger.port=self.port;
+	trigger.event=self.event;
+	return trigger;
+}
+/// deep value copy for junction point
+operation  UMLRTModel!Pseudostate valueCopy() : UMLRTModel!Pseudostate{
+	var cPoint : UMLRTModel!Pseudostate = new UMLRTModel!Pseudostate;
+	cPoint.name=self.name;
+	cPoint.kind=self.kind;
+	return cPoint;
+}
+/// deep value copy for state
+operation UMLRTModel!State valueCopy() : UMLRTModel!State{
+	var state:UMLRTModel!State= new UMLRTModel!State;
+	state.name=self.name;
+	for (c in self.connectionPoint)
+		state.connectionPoint.add(c.valueCopy());
+	for (entry in self.entry)
+		if (entry.isDefined())
+			state.entry=entry.valueCopy();
+	for (exit in self.exit)
+		if (exit.isDefined())
+			state.exit=exit.valueCopy();
+	if (state.region.isDefined())
+		for (r in self.region)
+			state.region.add(r.valueCopy());
+	return state;
+}
+/// deep value copy for Transition
+operation UMLRTModel!Transition valueCopy(region:UMLRTModel!Region) : UMLRTModel!Transition{
+	var trans:UMLRTModel!Transition= new UMLRTModel!Transition;
+	trans.name=self.name;
+	//self.println();
+	var i : Integer = 0;
+	for (s in region.subvertex)
+			if (i=2)
+				break;
+			else if (s.name=self.source.name){
+				trans.source=s;
+				i=i+1;
+				continue;
+			}
+			else if (s.name=self.target.name){
+				trans.target=s;
+				i=i+1;
+				continue;
+			}
+	
+	if (i<>2){
+		if (not trans.target.isDefined()){ /// search in junction points
+			for (s in region.subvertex)
+			if (s.type.name="State")
+				for (c in s.connectionPoint)
+					if (c.name=self.target.name)
+						trans.target=c;
+		}
+	}
+	//// add check for slef tranistion
+	if (self.source=self.target) 
+		trans.target=trans.source;
+	/// copy triggers
+	for (t in self.trigger)
+		if (t.isDefined())
+			trans.trigger.add(t.valueCopy());	
+    /// copy event
+	for (e in self.effect)
+		if (e.isDefined())
+			trans.effect=e.valueCopy();	
+	return trans;
+}
+/// deep value copy for region
+operation UMLRTModel!Region valueCopy() : UMLRTModel!Region{
+	var region:UMLRTModel!Region= new UMLRTModel!Region;
+	region.name=self.name;
+	for (s in self.subvertex)
+		region.subvertex.add(s.valueCopy());
+	for (t in self.transition)
+		region.transition.add(t.valueCopy(region));
+	return region;
+}
+//// deep value copy for Pseudostate
+operation UMLRTModel!Pseudostate valueCopy () : UMLRTModel!Pseudostate {
+	var pseudostate:UMLRTModel!Pseudostate= new UMLRTModel!Pseudostate;
+	pseudostate.name=self.name;
+	return pseudostate;
+	
+}
+/////
+//// create triggers to defer messages
+operation UMLRTModel!Transition createDeferTriggers(){
+	for (port in activePorts)
+		for (p in port)
+			self.createTrigger(instrumentPrefix.concat("MSG"), p, anyEvent);
+}
+
+//// create trigger 
+operation  UMLRTModel!Transition createTrigger(name:String,port:Any,event:Any) : UMLRTModel!Trigger {
+	var t:UMLRTModel!Trigger= new UMLRTModel!Trigger();
+	t.name=name;
+	//port.println();
+	t.port.add(port);
+	t.event=event;
+	self.trigger.add(t);
+	return t;
+}
+
+/// set port kind
+operation  UMLRTModel!Port setPortKind(kind:String){ // any should be set of capsules
+	if (kind=="SAP"){
+			self.isService=false;
+			//self.println("Port name is:");
+			//(self.getUMLRTStereotypeDetail()).println("streotype rerurned");
+			(self.getUMLRTStereotypeDetail()).isWired=false;
+			//self.wired=false;
+			self.isBehavior=true;
+			self.getUMLRTStereotypeDetail().isNotification=true;
+			}
+	else if (kind=="SPP"){
+			self.isService=true;
+			self.wired=false;
+			self.getUMLRTStereotypeDetail().isPublish=true;
+			self.isBehavior=true;
+			}
+		//case "Relay": // for relay port, not requiered for now
+		//case "Ext": // external behaviour, not requiered for now
+		//case "Int": // internal behaviour, not requiered for now
+}
+
+/// add port to set of capsule
+operation  UMLRTModel!Class addPortToCapsules(name:String,portType:Any,conj:Boolean,lower:Integer,upper:Integer,kind:String){ // any should be set of capsules
+		var p:UMLRTModel!Port=self.createPort(name, conj, lower, upper, portType);
+		self.ownedAttributes.add(p);
+		//self.println("adding debugging port to capsule :");
+		p.applyUMLRTStereotype();
+		p.setPortKind(kind);
+}
+
+/// create composite  state 
+operation   createCompositeState(name:String,addEntryPoint:Boolean,addExitPoint:Boolean,entryName:String,exitName:String) : UMLRTModel!State {
+	var s:UMLRTModel!State= new UMLRTModel!State;
+	//s.applyUMLRTState();
+	var r:UMLRTModel!Region= new UMLRTModel!Region;
+	s.region.add(r);
+	//r.applyUMLRTRegion();
+	s.name=name;
+	r.name="Region1";
+	if (addEntryPoint){
+		var entry:UMLRTModel!Pseudostate=createPseudostate(entryName,UMLRTModel!PseudostateKind#`entryPoint`);
+		s.connectionPoint.add(entry);
+		//entry.applyUMLRTPseudostate();
+	}
+	if (addExitPoint){
+		var exit:UMLRTModel!Pseudostate=createPseudostate(exitName,UMLRTModel!PseudostateKind#`exitPoint`);
+		s.connectionPoint.add(exit);
+		//exit.applyUMLRTPseudostate();
+	}
+	//s.connectionPoint.println();
+	return s;
+}
+
+//create a state 
+operation   createState(name:String) : UMLRTModel!State {
+	var s:UMLRTModel!State= new UMLRTModel!State;
+	//s.applyUMLRTState();
+	s.name=name;
+	return s;
+}
+/// create psudostate 
+operation    createPseudostate(name:String,kind:Any) : UMLRTModel!Pseudostate {
+	var p:UMLRTModel!Pseudostate=new UMLRTModel!Pseudostate;
+	//p.applyUMLRTPseudostate();
+	p.kind=kind;
+	p.name=name;
+	return p;
+}
+/// create a transition, sourec or target can be Pseudostate or state
+operation    createTransition(name:String,source:Any,target:Any,type:String) : UMLRTModel!Transition {
+	var t:UMLRTModel!Transition=new UMLRTModel!Transition;
+	t.name=name;
+	t.source=source;
+	t.target=target;
+	if (type=="internal")
+		t.kind=TransitionKind#internal;
+	return t;
+
+}
+///// create parametr
+operation  UMLRTModel!Operation addParametr (name:String, type:String, direction:Any,type2:String )  {
+	var param:UMLRTModel!Parameter= new UMLRTModel!Parameter();
+	param.name=name;
+	param.direction=direction;
+	//UMLPrimitiveTypes.packagedElement.selectOne(t|t.name=type).println("Type=");
+	param.type=UMLPrimitiveTypes.packagedElement.selectOne(t|t.name=type);
+	self.ownedParameter.add(param);
+	if (type2<>""){
+		param.applyUMLRTStereotype();
+		param.getUMLRTStereotypeDetail().type=type2;
+	}
+	
+}
+
+///// create attribute
+
+operation  createattribute (name:String, type:String,type2:String ) : UMLRTModel!Parametr {
+	
+	}
+
+/// add artifact to the package
+
+operation  UMLRTModel!Package addArtifact (name:String) : UMLRTModel!Artifact{
+	var artifact:UMLRTModel!Artifact= new UMLRTModel!Artifact();
+	artifact.name=name;
+	self.packagedElement.add(artifact);
+	return artifact;	
+}
+
+
+//// import model
+operation  UMLRTModel!Package importPackage (m:Any) : UMLRTModel!PackageImport{
+	var t:UMLRTModel!PackageImport= new UMLRTModel!PackageImport() ;	
+	t.importedPackage=m;
+	self.packageImport.add(t);
+	return t;	
+}
+
+//// add capsule
+operation  createCapsule(name:String) : UMLRTModel!Class {
+	var c:UMLRTModel!Class= new UMLRTModel!Class;
+	c.name=name;
+	//c.applyUMLRTStereotype();
+	return c;
+}
+/// add port
+operation UMLRTModel!Class createPort(name:String,conj:Boolean,lowerValue:Integer,upperValue:Integer,type:Any): UMLRTModel!Port {
+	var p:UMLRTModel!Port= new UMLRTModel!Port;
+	p.name=name;
+	self.ownedAttributes.add(p);
+	p.applyUMLRTStereotype();
+	p.isConjugated=conj;
+	p.type=type;
+	//p.visibility.println();
+	p.visibility=VisibilityKind#protected; // protected otherwise it will not work properly
+	p.lowerValue=new UMLRTModel!LiteralInteger;
+	p.lowerValue.value=lowerValue;
+	p.upperValue=new UMLRTModel!LiteralInteger;
+	p.upperValue.value=upperValue;
+	return p;
+}
+/// create part property
+operation UMLRTModel!Class createProperty(name:String,lowerValue:Integer,upperValue:Integer,type:Any): UMLRTModel!Property {
+	var p:UMLRTModel!Property= new UMLRTModel!Property;
+	p.name=name;
+	self.ownedAttributes.add(p);
+	p.applyUMLRTStereotypePart();
+	p.type=type;
+	p.lowerValue=new UMLRTModel!LiteralInteger;
+	p.lowerValue.value=lowerValue;
+	//p.kind=1; // means fixed
+	p.upperValue=new UMLRTModel!LiteralInteger;
+	p.upperValue.value=upperValue;
+	return p;
+}
+
+operation UMLRTModel!Package setTopCapsule(value:String):Boolean {
+	var e=modelroot.eAnnotations.selectOne(e|e.source="UMLRT_Default_top");
+	if (e.isDefined()){
+		// e.details.println();
+		 //e.details.first().value.println();
+		 e.details.first().value=value;
+		 //modelroot.eAnnotations.first().details.first().value="t3";
+		 return true;
+		 }
+	else
+		return false;
+}
+operation UMLRTModel!Package setModelLanguage(value:String):Boolean {
+	var e=modelroot.eAnnotations.selectOne(e|e.source="http://www.eclipse.org/papyrus-rt/language/1.0.0");
+	if (e.isDefined()){
+		 e.details.first().value=value;
+		 return true;
+		 }
+	else{
+		 var annotation:UMLRTModel!EAnnotation=new UMLRTModel!EAnnotation();
+		 annotation.source="http://www.eclipse.org/papyrus-rt/language/1.0.0";
+		 annotation.details.put("language",value);
+		 self.eAnnotations.add(annotation);
+		 return true;
+		}
+
+}
+//// create  method
+operation createMethod(name:String,language:String): UMLRTModel!OpaqueBehavior{
+	var method:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	method.name=name;
+	method.language.add("C++");
+	return method;
+}
+
+//// add debug connection state to manage the debugging
+operation UMLRTModel!Transition addDebugConnectionState(SM:UMLRTModel!StateMachine){
+	var debugInitState=createState(instrumentPrefix.concat("InitState"));
+	self.owner.subvertex.add(debugInitState);
+	debugInitState.applyUMLRTState();
+	var mainInitState=self.source;
+	var mainInitTransTarget=self.target;
+	self.source=debugInitState;
+	var debugInitTrans=createTransition(instrumentPrefix.concat("InitDebug"), mainInitState, debugInitState,"");
+	self.owner.transition.add(debugInitTrans);
+    //...
+    var initDebugMethod:UMLRTModel!OpaqueBehavior= createMethod("DebugCheck","C++");
+	initDebugMethod.body.add(generateAskForConfig(instrumentPrefix.concat("flag")));
+	debugInitTrans.effect=initDebugMethod;
+	//debugInitTrans.effect=initDebugMethod;	
+    //// create effect for transtion from connection state to main model(main init model)
+    //dbgExecEvent.println();
+    //anyEvent.println();
+    var dbgPort=self.owner.owner.owner.ownedAttributes.selectOne(p|p.name=debugPortName);
+    self.createTrigger("ConnectionEstablished",dbgPort,rtBound);
+    self.effect.body.clear();
+    var body:String="";
+    body=body.concat("if (this->").concat(instrumentPrefix).concat("SRO.getExecMode()==Stepping){").concat(endLine);
+	//body=body.concat("if (").concat(instrumentPrefix).concat("flag").concat("){").concat(endLine);
+	body=body.concat(generateDebugIntializationCode(transitionsData));
+	body=body.concat(generateConnDebugger()).concat("}").concat(endLine);
+    self.effect.body.add(body);
+    //if (self) -- add  body to init
+    ///
+
+   
+}

@@ -1,0 +1,374 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+
+var modelroot=Package.all.select(c|c.type.name="Model");
+modelroot.rootElement();
+//modelroot.getAllNestedPackage().println();
+//modelroot.getAllNestedPackage().size().println();
+var allClasses:Set = modelroot.getAllOwnedClasses();
+//allClasses.println();
+//allClasses.size().println();
+//allClasses.println();
+//modelroot.getAllStateMachines().println();
+
+var allRegion:Set=modelroot.getAllStateMachines().getAllRegions();
+allRegion.println();
+allRegion.size().println();
+allRegion.getAllStates().println();
+allRegion.getAllStates().size().println();
+allRegion.getAllTransitions().println();
+allRegion.getAllTransitions().size().println();
+//for (t in allRegion.getAllTransitions())
+//	t.printAllTrigger();
+/// test  get main region
+for (s in modelroot.getAllStateMachines()){
+	s.println();
+	s.getMainRegion().println();
+	s.getIntialState().println();
+	//s.getIntialTransition().source.println();
+	//s.getIntialTransition().target.println();
+	}
+	
+//// 
+
+"test for owned class".println();
+var allClass:Set= modelroot.getAllOwnedClasses();
+allClasses.println();
+allClasses.first().getPrimitiveAttributes().println();
+
+
+
+/// 	getting model root element
+operation UMLRTModel rootElement () : UMLRTModel!Package {
+	//Package.all.println();
+	return Package.all.select(c|c.type.name="Model").first;
+}
+
+//// event(t) return the events and protocol for a  transition
+operation UMLRTModel!Transition  events() : Set {
+ 	var allEvents:Set=Set{};
+ 	for (trig in self.trigger)
+ 		for (e in trig.event)
+ 			if (e.name<>"*")
+ 				allEvents.add(Sequence{e.owner.name,e.`operation`.name});
+ 			else 
+ 				allEvents.add(Sequence{e.owner.name,"*"});
+ 		
+ 	return allEvents;
+}
+
+//// action return the  exit  code of state s
+operation  UMLRTModel!State exit() : String{
+	if (self.exit.isDefined())
+			self.exit.body.first();
+	else 
+		return "None";
+}
+//// action return the entry code of state s
+operation  UMLRTModel!State entry() : String{
+	if (self.entry.isDefined())
+			self.entry.body.first();
+	else 
+		return "None";
+}
+//// action return the entry code of psudostate s
+operation  UMLRTModel!Pseudostate entry() : String{
+		return "None";
+}
+//// action return the exit code of psudostate s
+operation  UMLRTModel!Pseudostate exit() : String{
+		return "None";
+}
+//// action return the action code for transtion t 
+operation  UMLRTModel!Transition action() : String{
+	if (self.effect.isDefined())
+		return self.effect.body.first();
+	else 
+		return "None";
+}
+//// stateType()  function
+operation  UMLRTModel!State stateType() : String{
+	if (self.type.name="State"){
+		if (self.getRegions().size()>0) // composite state
+			return "Composite";
+		else
+			return "State";
+		}
+		
+}
+///
+operation UMLRTModel!Pseudostate stateType() : String{
+	return "Pseudo";
+}
+//// add transType() function
+operation  UMLRTModel!Transition transType() : String{
+	//self.println();
+	//self.source.println();
+	var sourceType=self.source.stateType();
+	var targetType=self.target.stateType();
+	return sourceType.characterAt(0).concat("to").concat(targetType.characterAt(0));		
+}
+
+
+
+//// add attributeQuery
+operation UMLRTModel!Class getPrimitiveAttributes() : Set {
+	var attr:Set;
+	for (a in self.ownedAttribute){
+		if (a.type.isDefined())
+		switch (a.type.name){
+		case "Real" :
+			if (a.upper=1)
+				attr.add(a);
+		case "Integer": 
+			if (a.upper=1)
+				attr.add(a);
+		case "Boolean": 
+			if (a.upper=1)
+				attr.add(a);
+		case "String":
+			if (a.upper=1)
+				attr.add(a);
+		}
+	}
+	return attr;
+}
+/// return the attributes that are subclass and their definition is exist in the model
+operation UMLRTModel!Class getSubclassAttributes() : Set {
+	var attr:Set;
+	//allClasses.println();
+	for (a in self.ownedAttribute)
+		if (a.type.isDefined()){
+			if (allClasses.selectOne(c|c.name=a.type.name).isDefined())
+				attr.add(a);
+			}
+	return attr;
+}
+
+//// set time attribute 
+operation UMLRTModel!Class getTimerAttributes() : Set {
+	var attr:Set;
+	//allClasses.println();
+	for (a in self.ownedAttribute)
+		if (a.type.isDefined() and a.type.name="Timing"){
+				attr.add(a);
+				//a.type.println();
+			}
+	return attr;
+}
+	
+
+
+//// find the main region of the state machine that contain intial state	
+operation UMLRTModel!StateMachine getMainRegion() : UMLRTModel!Region{
+	
+	for (r in self.region)
+		for (s in r.subvertex)
+			if (s.type.name="Pseudostate" and not (r.transition.exists(t|t.target=s))  
+			and (r.transition.exists(t|t.source=s))
+			and  s.kind<>"choice" and s.kind<>"entryPoint" and s.kind<>"exitPoint")
+				return r;
+	self.err("The state doesn't have the region that includes the intial state");			
+}
+//// get main region for composite state
+//// find the main region of the state machine that contain intial state	
+operation UMLRTModel!State getMainRegion() : UMLRTModel!Region{
+	/// later make it more correct
+	for (r in self.region)
+		return r;
+	self.err("The state doesn't have the region that includes the intial state");			
+}
+//// get intail state
+operation UMLRTModel!StateMachine getIntialState() : UMLRTModel!Pseudostate{
+	for (r in self.region)
+		for (s in r.subvertex)
+			if (s.type.name="Pseudostate" and s.kind=UMLRTModel!PseudostateKind#`initial` and r.transition.exists(t|t.source=s))
+				return s;
+	self.err("No Intail state for state machine= ");			
+}
+
+//// get intail transition
+operation UMLRTModel!StateMachine getIntialTransition() : UMLRTModel!Transition{
+	for (r in self.region)
+		for (t in r.transition)
+			if (t.source=self.getIntialState())
+				return t;
+	self.err("No Intail Transition ----");			
+}
+/// get all transitions
+
+operation UMLRTModel!Transition printAllTrigger() : Set {
+	for (t in self.trigger){
+		t.println();
+		t.port.name.println();
+		/// event
+		for (ev in t.event)
+			ev.println();
+		//// efect
+	}
+	for (ef in self.effect)
+			ef.println();
+	
+}
+///// get all active ports for a set of  transitions
+operation Any  getActivePorts() : Set {
+	var ports:Set;
+	for (trans in self)
+		for (trig in trans.trigger)
+			for (p in trig.port )
+				if (p.type.name<>"Timing"){
+					ports.add(p);
+					//p.type.println();
+				}
+	return ports;
+}
+
+//// /// get all transitions for a set of regions
+operation Any getAllTransitions() : Set {
+	var allTransitions : Set ;
+	for (r in self){
+		if (r.subvertex.isDefined())
+			allTransitions.addAll(r.transition);	
+	}
+	return allTransitions;
+}
+////
+/// get all state include intail and normal state
+operation Any getAllStates() : Set {
+	var allStates : Set ;
+	for (r in self){
+		if (r.subvertex.isDefined())
+			allStates.addAll(r.subvertex);	
+	}
+	return allStates;
+}
+/// get All regions for model, the input can be set of statemachine or a statemachine for model
+operation Any getAllRegions() : Set {
+	var allRegions:Set;
+	for (sm in self)
+		allRegions.addAll(sm.getRegions());
+	return allRegions;
+}
+/// all region for StateMachine and State
+operation Any getRegions() : Set {
+	var allRegion:Set;
+	allRegion.addAll(self.region);
+	var tempAllRegion:Set;
+	for (r in allRegion)
+		{
+			// check if there is any substatemachine
+			for (s in r.subvertex)
+			{
+				if (s.type.name="State")
+				{
+				//s.println("vertext is State");
+				var tempRegion:Set=s.getRegions();
+				if (tempRegion.isDefined())
+					tempAllRegion.addAll(tempRegion);
+				}
+			}
+		}
+	if (tempAllRegion.isDefined())
+		allRegion.addAll(tempAllRegion);
+	return allRegion;
+}
+
+//// get all statemachines in the package and nested packages
+//@cached
+operation UMLRTModel!Package getAllStateMachines() :Set{
+	var tempAllStateMachine:Set;
+	//self.getAllOwnedClasses().println();
+	var childs : Set =self.getAllOwnedClasses(); 
+	for (c in childs){
+		//c.println();
+		var tempStateMachine:UMLRTModel!StateMachine=c.getStateMachine();
+		if (tempStateMachine.isDefined())
+			tempAllStateMachine.add(tempStateMachine);
+	}
+	return tempAllStateMachine;
+}
+//// get statemachine for class
+//@cached
+operation   UMLRTModel!Class getStateMachine() : UMLRTModel!StateMachine {
+
+    for (b in self.ownedBehavior)
+    	if (b.type.name="StateMachine") // make sure to filter the operation from state machine// also assume that each capsule has one main state machine
+    		return b;
+
+}
+//// get all classes of the model inludes all child from nested packages
+//@cached
+operation   UMLRTModel!Package getAllOwnedClasses ()  :Set{
+	var childs : Set =self.packagedElement.select(e|e.type.name="Class");
+	for (p in self.getAllNestedPackage())
+		childs.addAll(p.getAllOwnedClasses());
+	return childs;
+}
+//// get all nested package of model root 
+//@cached 
+operation   UMLRTModel!Package getAllNestedPackage ()  :Set{
+	var firstNestedPackage : Set = self.packagedElement.select(e|e.type.name="Package");
+	var allNestedPackage: Set;
+	for (p in firstNestedPackage)
+	{
+		 var tempResult : Set = p.getAllNestedPackage();
+		 if (tempResult.isDefined())
+		 	allNestedPackage.addAll(tempResult);
+	}
+	allNestedPackage.addAll(firstNestedPackage);
+	return allNestedPackage;
+}
+
+/// get defined artifacts
+operation UMLRTModel!Package getAtrificats(name:String):UMLRTModel!Artifact {
+	return  self.packagedElement.select(e|e.type.name="Artifact" and e.name=name).first;
+}
+
+/// get to class name of the UMLRT model
+operation UMLRTModel!Package getTopCapsule():String {
+	var e=modelroot.eAnnotations.select(e|e.source="UMLRT_Default_top");
+	if (e.isDefined() and e.size()>0){
+		return  e.details.first().value.first();
+		}
+	else
+		return "";
+}
+
+operation UMLRTModel!Transition transData() : Set {
+	var tempTransData:Set;
+	if (self.source.stateType()=="Pseudo"){
+		var tempTranData:Sequence;
+		tempTranData.add(self.source.name);
+		tempTranData.add(self.name);
+		tempTranData.add(self.target.name);
+		tempTranData.add("");
+		tempTranData.add("");
+		tempTransData.add(tempTranData);
+	}
+	else if (self.trigger.isDefined())
+			for (t in self.trigger){
+				for (p in t.port){
+					var tempTranData:Sequence;
+					//p.type.name.println();
+					tempTranData.add(self.source.name);
+					tempTranData.add(self.name);
+					tempTranData.add(self.target.name);
+					//t.event.println("event  is ");
+					//t.event.`operation`.name.println("event name is ");
+					if (t.event.name=="*")
+						tempTranData.add("*");
+					else
+						tempTranData.add(t.event.`operation`.name);
+					tempTranData.add(p.type.name);
+					tempTransData.add(tempTranData);
+					}
+				}
+	return tempTransData;
+}
+
+

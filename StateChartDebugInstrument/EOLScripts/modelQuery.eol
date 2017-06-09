@@ -1,0 +1,77 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+// get the root element
+"Model Query Test is started".println();
+//// extract the model root
+var modelroot=testUML!Package.all.select(c|c.name="Model");
+modelroot.name.println();
+//modelroot::all.size().println("The size of root element= ");
+
+//read all package;
+"---------------------------Package information-------------------".println();
+for (package in Package.all) {
+	package.name.println();
+	//package.ownedElement.println();
+	//package.ownedElement.println();
+	//package.ownedMember.println();
+	package.packagedElement.println();
+	
+}
+
+/// read all classes 
+"---------------------------Class information-------------------".println();
+for (class in testUML!Class.all) {
+	class.println();
+	class.namespace.asString().println();
+	//class.namespace.println();
+	if (class.owner.isDefined())
+		"Owner".println();
+}
+
+"---------------------------StateMachine-------------------".println();
+
+for (element in StateMachine.all) {
+	element.println();
+	element.region.println();
+	element.namespace.println();
+}
+
+"---------------------------Regions-------------------".println();
+
+for (region in Region.all) {
+	region.println("Region= ");
+	region.subvertex.println("Sates= ");
+	region.transition.println("Transitions= ");
+	region.transition.source.println("Transition Source=");
+	region.transition.target.println("Transition Target=");
+	//region.namespace.println();
+}
+
+"---------------------------State-------------------".println();
+
+for (state in State.all) {
+	state.println();
+
+}
+
+"---------------------------Vertex (All states include intail)-------------------".println();
+
+for (vertex in Vertex.all) {
+	vertex.println();
+
+}
+
+"--------------------------- (All Transitions )-------------------".println();
+
+for (trans in Transition.all) {
+	trans.println();
+	trans.source.println("Transition Source=");
+	trans.target.println("Transition Target=");
+
+}
+

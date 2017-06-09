@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    copyrightText="Copyright (c) 2014 CEA LIST.&#xD;&#xA;&#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html"
+    modelDirectory="/org.eclipse.papyrusrt.umlrt.profile/src-gen" editDirectory="/org.eclipse.papyrusrt.umlrt.profile.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrusrt.umlrt.profile.editor/src-gen" modelPluginID="org.eclipse.papyrusrt.umlrt.profile"
+    modelName="UMLRealTimeSM" editPluginClass="org.eclipse.papyrusrt.umlrt.profile.statemachine.UMLRTStateMachines.provider.UMLRealTimeSMEditPlugin"
+    editorPluginClass="org.eclipse.papyrusrt.umlrt.profile.statemachine.UMLRTStateMachines.presentation.UMLRealTimeSMEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/org.eclipse.papyrusrt.umlrt.profile.tests/src-gen" testSuiteClass="org.eclipse.papyrusrt.umlrt.profile.statemachine.UMLRTStateMachines.tests.UMLRealTimeSMAllTests"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false"
+    editPluginID="org.eclipse.papyrusrt.umlrt.profile.edit" editorPluginID="org.eclipse.papyrusrt.umlrt.profile.editor"
+    usedGenPackages="platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="INVARIANT_CONSTRAINTS" value="IGNORE"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="NON_API_INVARIANTS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>UMLRealTimeSM-addendum.profile.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="UMLRTStateMachines" basePackage="org.eclipse.papyrusrt.umlrt.profile.statemachine" disposableProviderFactory="true"
+      ecorePackage="UMLRTStateMachines.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLRTStateMachines.ecore#//RTStateMachine">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLRTStateMachines.ecore#//RTStateMachine/base_StateMachine"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLRTStateMachines.ecore#//RTStateMachine/isPassive"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLRTStateMachines.ecore#//RTRegion">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLRTStateMachines.ecore#//RTRegion/base_Region"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLRTStateMachines.ecore#//RTState">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLRTStateMachines.ecore#//RTState/base_State"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLRTStateMachines.ecore#//RTPseudostate">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLRTStateMachines.ecore#//RTPseudostate/base_Pseudostate"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLRTStateMachines.ecore#//RTTrigger">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLRTStateMachines.ecore#//RTTrigger/base_Operation"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLRTStateMachines.ecore#//RTGuard">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference UMLRTStateMachines.ecore#//RTGuard/base_Constraint"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

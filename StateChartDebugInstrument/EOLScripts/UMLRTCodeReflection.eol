@@ -1,0 +1,291 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+
+import "UMLRTQuery.eol";
+
+
+var modelroot : UMLRTModel!Package =UMLRTModel.rootElement();
+//modelroot.println();
+var allClasses:Set = modelroot.getAllOwnedClasses();
+"test for owned class".println();
+var allClass:Set= modelroot.getAllOwnedClasses();
+allClasses.println();
+allClasses.first().getPrimitiveAttributes().println();
+for (a in allClasses.first().getPrimitiveAttributes())
+	a.generateViewCode("tempS").println();
+
+///
+operation UMLRTModel!Class  addRequiredAttributes() {
+	/// self.remRequiredAttributes();
+	/// add a property for debug flag
+	var debugProperty:UMLRTModel!Property= new UMLRTModel!Property();
+	debugProperty.name=instrumentPrefix.concat("flag");
+	//debugProperty.type=UMLPrimitiveTypes!Package.all().selectOne(p|p.name="PrimitiveTypes").packagedElement.selectOne(t|t.name="Boolean");
+	debugProperty.type=UMLPrimitiveTypes.packagedElement.selectOne(t|t.name="Boolean");
+	//UMLPrimitiveTypes
+	self.ownedAttribute.add(debugProperty);
+	//// add a property to save all variable value in char *, so instead of transfering the whole data, we only  share a pointer
+	var vraiablesMetaData:UMLRTModel!Property= new UMLRTModel!Property();
+	vraiablesMetaData.name=instrumentPrefix.concat("variablesData");
+	//vraiablesMetaData.type=UMLPrimitiveTypes!Package.all().selectOne(p|p.name="PrimitiveTypes").packagedElement.selectOne(t|t.name="String");
+	vraiablesMetaData.type=UMLPrimitiveTypes.packagedElement.selectOne(t|t.name="String");
+	self.ownedAttribute.add(vraiablesMetaData);
+	self.ownedAttribute.add(vraiablesMetaData);
+	//// add a property to save last event for a caspule, this will be forwared to gateway
+	var debugEvent:UMLRTModel!Property= new UMLRTModel!Property();
+	debugEvent.name=instrumentPrefix.concat("event");
+	self.ownedAttribute.add(debugEvent);
+	debugEvent.applyUMLRTStereotype();
+	debugEvent.getUMLRTStereotypeDetail().type="debugEvents::Event";
+	///// add a property to manage the SRO and break point
+	var SROController:UMLRTModel!Property= new UMLRTModel!Property();
+	SROController.name=instrumentPrefix.concat("SRO");
+	self.ownedAttribute.add(SROController);
+	SROController.applyUMLRTStereotype();
+	SROController.getUMLRTStereotypeDetail().type="SROManager";	
+}
+//// remove added attribute for debugging 
+operation UMLRTModel!Class  remRequiredAttributes() {
+	delete self.ownedAttribute.select(o| o.name.startsWith(instrumentPrefix.concat("flag")));
+	delete self.ownedAttribute.select(o| o.name.startsWith(instrumentPrefix.concat("variablesMetaData")));
+	delete self.ownedAttribute.select(o| o.name.startsWith(instrumentPrefix.concat("event")));
+}
+/// remove vraible change   method
+operation UMLRTModel!Class  remVarChangeMethod() {
+	delete self.ownedBehavior.select(o| o.name.startsWith(instrumentPrefix.concat("variablesChange")));
+	delete self.ownedOperation.select(o| o.name.startsWith(instrumentPrefix.concat("variablesChange")));
+}
+///// add operation to get two parameter variable name and variable value and then chnage it duirng runtime. premitive attribute is only supported 
+////(Int, Real, String and ,Boolean)
+operation UMLRTModel!Class  addVarChangeMethod() {
+	self.remVarChangeMethod();
+	var methodBody:String;
+	methodBody=self.generateVariablesChnageMethod("varName","varValue");
+	//methodBody.println();
+	var wathcOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	wathcOperation.name=instrumentPrefix.concat("variablesChange");
+	wathcOperation.visibility=VisibilityKind#private;
+	///
+	wathcOperation.addParametr("methodReturn", "Boolean", ParameterDirectionKind#`return`, "");
+	wathcOperation.addParametr("varName", "String", ParameterDirectionKind#`in`, "");
+	wathcOperation.addParametr("varValue", "String", ParameterDirectionKind#`in`, "");
+	var watchMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	watchMethod.name=instrumentPrefix.concat("variablesChange");
+	watchMethod.specification=wathcOperation;
+	wathcOperation.method.add(watchMethod);
+	watchMethod.language.add("C++");
+	watchMethod.body.add(methodBody);
+	self.ownedBehavior.add(watchMethod);
+	self.ownedOperation.add(wathcOperation);
+}
+//// add recall all possible messages method and its body 
+operation UMLRTModel!Class  addRecallAllMsgMethod(ports:Set) {
+	self.remVarChangeMethod();
+	var methodBody:String;
+	methodBody=self.generateRecallAllMsgMethodBody(ports);
+	//methodBody.println();
+	var wathcOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	wathcOperation.name=instrumentPrefix.concat("recallAllMsg");
+	wathcOperation.visibility=VisibilityKind#private;
+	///
+	//wathcOperation.addParametr("methodReturn", "Boolean", ParameterDirectionKind#`return`, "");
+	//wathcOperation.addParametr("varName", "String", ParameterDirectionKind#`in`, "");
+	//wathcOperation.addParametr("varValue", "String", ParameterDirectionKind#`in`, "");
+	var watchMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	watchMethod.name=instrumentPrefix.concat("recallAllMsg");
+	watchMethod.specification=wathcOperation;
+	wathcOperation.method.add(watchMethod);
+	watchMethod.language.add("C++");
+	watchMethod.body.add(methodBody);
+	self.ownedBehavior.add(watchMethod);
+	self.ownedOperation.add(wathcOperation);
+}
+
+operation Any generateRecallAllMsgMethodBody(ports:Set){
+	var result:String="";
+	for (port in ports)
+		for (p in port){
+			//p.name.println();
+			result=result.concat(p.name).concat(".recallAll();").concat(endLine);
+		}
+	return result;
+}
+
+//// add operation to view all premitive attribute (Int, Real, String and ,Boolean)
+operation UMLRTModel!Class  addVarWatchMethod() {
+	var methodBody:String;
+	methodBody=self.generateVariablesWatchMethod();
+	var wathcOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	wathcOperation.name=instrumentPrefix.concat("variablesView");
+	wathcOperation.visibility=VisibilityKind#private;
+	var watchMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	watchMethod.name=instrumentPrefix.concat("variablesViewMethod");
+	watchMethod.specification=wathcOperation;
+	wathcOperation.method.add(watchMethod);
+	watchMethod.language.add("C++");
+	watchMethod.body.add(methodBody);
+	self.ownedBehavior.add(watchMethod);
+	self.ownedOperation.add(wathcOperation);
+}
+/// remove watch  method
+operation UMLRTModel!Class  remVarWatchMethod() {
+	delete self.ownedBehavior.select(o| o.name.startsWith(instrumentPrefix.concat("variablesView")));
+	delete self.ownedOperation.select(o| o.name.startsWith(instrumentPrefix.concat("variablesViewMethod")));
+}
+//// generate watch method for a class , just primitive variables
+operation UMLRTModel!Class generateVariablesWatchMethod() : String{
+	var result:String;
+	result="std::string tempS=\"\";". concat("\n");
+	// manage primitive and subclass attributes
+	var primitiveAttr=self.getPrimitiveAttributes();
+	var subClassAttr=self.getSubclassAttributes();
+	var timersAttr=self.getTimerAttributes();
+	for (a in self.ownedAttribute)
+		if (primitiveAttr.count(a)==1)
+			 result=result.concat(a.generateVaraibleWatch("tempS"));
+	    //else if (timersAttr.count(a)==1)
+	    //	 a.println("Timer is vistied");
+		else if (subClassAttr.count(a)==1){
+			 //a.type.println();
+			 //a.type.ownedOperation.println();
+			 if (a.type.ownedOperation.selectOne(o|o.name=instrumentPrefix.concat("variablesView")).size()==0)
+			 	a.type.addVarWatchMethod();
+			 // later I come back here to fix this one
+			 //result=result.concat(endLine).concat("tempS.append(").concat(a.name).concat("->variablesData);").concat(endLine);
+			 }
+	//for (p in primitiveAttr)
+	//result=result.concat(p.generateVaraibleWatch("tempS"));
+	//for (p in subClassAttr)
+	// manage subclass here later
+	// generate dump for whole class
+	result=result.concat("if (").concat(instrumentPrefix).concat("variablesData==NULL)").concat(endLine).concat("    ");
+    result=result.concat(instrumentPrefix).concat("variablesData=(char *)malloc(").concat("strlen(tempS.c_str())+1);").concat(endLine);
+	result=result.concat("else if (strlen(").concat(instrumentPrefix).concat("variablesData)<strlen(tempS.c_str()))").concat(endLine).concat("    ");
+    result=result.concat(instrumentPrefix).concat("variablesData").concat("=(char *) realloc(").concat(instrumentPrefix).concat("variablesData").concat(",strlen(tempS.c_str())+1);").concat(endLine);
+    //varString=(char *) realloc(varString,strlen(varValue)+1);
+    result=result.concat("strcpy(").concat(instrumentPrefix).concat("variablesData,tempS.c_str());").concat(endLine);
+    return  result;
+}
+/// generate variable change method for a class 
+operation UMLRTModel!Class generateVariablesChnageMethod(paramName:String,paramValue:String) : String{
+	var result:String;
+	result="std::string tempVarName=\"\";\n";
+	result=result.concat("tempVarName.append(".concat(paramName).concat(");\n"));
+	var primitiveAttr=self.getPrimitiveAttributes();
+	for (p in primitiveAttr){
+		result=result.concat("if (\"");
+		result=result.concat(p.name).concat("\"==").concat("tempVarName").concat("){\n");
+		result=result.concat(p.generateVaraibleChnage(paramValue));
+		result=result+ "    return true;\n";
+		result=result.concat("}else ");
+		}
+	result=result+"\n" + "    return false;\n";
+	//result.println();
+	return  result;
+}
+/// generate MetaData for all Property of model
+
+/// generate the code to change a primitive value
+operation UMLRTModel!Property generateVaraibleChnage(value:String) : String {
+	var result:String="";
+	switch (self.type.name){
+		case "Real":
+			result="    ".concat(self.name.concat("=").concat("atof(").concat(value).concat(");\n"));
+		case "String":
+		    result=result.concat("    if (").concat(self.name).concat("==NULL)").concat(endLine).concat("    ");
+			result=result.concat("    ").concat(self.name).concat("=(char*) malloc(strlen(").concat(value).concat(")+1);").concat(endLine);
+    		result=result.concat("    else if(strlen(").concat(self.name).concat(")<strlen(").concat(value).concat("))").concat(endLine).concat("        ");
+   			result=result.concat(self.name).concat("=(char *) realloc(").concat(self.name).concat(",strlen(").concat(value).concat(")+1);").concat(endLine);
+			result=result.concat("    strcpy(".concat(self.name).concat(",").concat(value).concat(");\n"));
+		case "Integer":
+			result="    ".concat(self.name.concat("=").concat("atoi(").concat(value).concat(");\n"));
+		case "Boolean":
+			result=("    if(strcmp(").concat(value).concat(",\"true\")==0)").concat("\n        ");
+			result=result.concat(self.name).concat("=true;").concat("\n");
+			result=result.concat("    else ").concat("\n        ");
+			result=result.concat(self.name).concat("=false;").concat("\n");
+	}
+	return result;
+}
+/// generate the code to view a primitive variable value
+operation UMLRTModel!Property generateVaraibleWatch(stringName:String) : String {
+	var result:String;
+	switch (self.type.name){
+		case "Real":
+			result=stringName.concat(".append(\"").concat(self.name).concat(",\");").concat("\n");
+			result=result.concat(stringName.concat(".append(\"").concat(self.type.name).concat(",\");").concat("\n"));
+			result=result.concat("if(").concat(self.name).concat("!=0){").concat("\n");
+			result=result.concat("    char tempR[20];").concat("\n");
+			result=result.concat("    sprintf(tempR,\"%lf\",").concat(self.name).concat(");").concat("\n");
+			result=result.concat("    tempS.append(tempR);").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("}else{").concat("\n");
+			result=result.concat("    tempS.append(\"0\");").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("}").concat("\n");
+		case "String":
+			result=stringName.concat(".append(\"").concat(self.name).concat(",\");").concat("\n");
+			result=result.concat(stringName.concat(".append(\"").concat(self.type.name).concat(",\");").concat("\n"));
+			result=result.concat("if(").concat(self.name).concat("==NULL){").concat("\n");
+			result=result.concat("    tempS.append(\"\\\"\\\"\");").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("}else").concat("{").concat("\n");
+			result=result.concat("    tempS.append(\"\\\"\");").concat("\n");
+			result=result.concat("    tempS.append(").concat(self.name).concat(");").concat("\n");
+			result=result.concat("    tempS.append(\"\\\"\");").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("};").concat("\n");
+		case "Integer":
+			result=stringName.concat(".append(\"").concat(self.name).concat(",\");").concat("\n");
+			result=result.concat(stringName.concat(".append(\"").concat(self.type.name).concat(",\");").concat("\n"));
+			result=result.concat("if(").concat(self.name).concat("!=0){").concat("\n");
+			result=result.concat("    char tempR[10];").concat("\n");
+			result=result.concat("    sprintf(tempR,\"%d\",").concat(self.name).concat(");").concat("\n");
+			result=result.concat("    tempS.append(tempR);").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("}else {").concat("\n");
+			result=result.concat("    tempS.append(\"0\");").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("};").concat("\n");
+		case "Boolean":
+			result=stringName.concat(".append(\"").concat(self.name).concat(",\");").concat("\n");
+			result=result.concat(stringName.concat(".append(\"").concat(self.type.name).concat(",\");").concat("\n"));
+			result=result.concat("if(").concat(self.name).concat("==true){").concat("\n");
+			result=result.concat("    tempS.append(\"true\");").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");
+			result=result.concat("}else {").concat("\n");
+			result=result.concat("    tempS.append(\"false\");").concat("\n");
+			result=result.concat("    tempS.append(\"\\n\");").concat("\n");	
+			result=result.concat("};").concat("\n");
+	}
+	return result;
+}
+
+
+
+
+/* the code that need to be generated for variable watch
+std::string tempS;
+	tempS.append("varReal,");
+	tempS.append("Real,");
+	char tempR[20];
+	varReal=10;
+	sprintf(tempR,"%lf",varReal);
+	tempS.append(tempR);
+	tempS.append("\n");
+	/////
+	tempS.append("varString,");
+	tempS.append("String,\"");
+	if (varString!=NULL)
+		tempS.append(varString);
+	else
+		tempS.append("");
+	tempS.append("\"\n");
+	return tempS.c_str();
+*/
+

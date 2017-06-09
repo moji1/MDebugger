@@ -1,0 +1,255 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+////
+operation UMLRTModel!Class addTracingRequiredHeader(){
+	var s:UMLRTModel!Stereotype=self.applyUMLRTCapsuleProperties();
+	//s.println();
+	//self.println();
+	//self.getUMLRTCapsuleProperties().println();
+	var tempHeader=self.getUMLRTCapsuleProperties().headerPreface;
+	if (tempHeader.isDefined()){
+		self.getUMLRTCapsuleProperties().headerPreface=tempHeader.concat(endLine).concat("#include \"Event.h\"").concat(endLine);
+		self.getUMLRTCapsuleProperties().headerPreface=self.getUMLRTCapsuleProperties().headerPreface.concat(endLine).concat("#include \"SROManager.h\"").concat(endLine);
+		}
+	else{
+		self.getUMLRTCapsuleProperties().headerPreface="#include \"Event.h\"".concat(endLine);
+		self.getUMLRTCapsuleProperties().headerPreface=self.getUMLRTCapsuleProperties().headerPreface.concat(endLine).concat("#include \"SROManager.h\"").concat(endLine);
+	} 
+	
+}
+
+///// 
+operation UMLRTModel!Transition addTrace(traceType:String) {
+	var result:String;
+	// generate debug event for Transition, update tranistion effect
+	var transName="";
+	uniqueID=uniqueID+1;
+	if (not self.name.isDefined()){
+		uniqueID=uniqueID+1;
+		transName=self.source.name.concat("__").concat(self.target.name).concat("__").concat(uniqueID.asString());
+		self.name=transName;
+		}
+	else
+		transName=self.name;
+	if (not self.effect.isDefined()){
+		var traceMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+		uniqueID=uniqueID+1;
+		traceMethod.name=transName.concat("__").concat(uniqueID.asString());
+		traceMethod.language.add("C++");
+		traceMethod.body.add("");
+		self.effect=traceMethod;		
+	}
+	
+	self.generateTraceBody(traceType);
+}
+
+///////
+operation UMLRTModel!Transition generateTraceBody(traceType:String) {
+	var lineStart:String="";
+	var lineEnd:String="";
+	if (traceType="LTTng")
+		self.cleanTraceBody(traceType);
+	//if (traceType=Observarion){
+	lineStart=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONSTART,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	//self.println("transition name is ");
+	//self.source.println();
+	//self.source.name.println("source is ");
+	//self.target.name.println("target is ");
+	lineStart=lineStart.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",(char *)\"\");").concat(endLine);//concat(self.trigger.port.name).concat(");\n");
+	lineEnd=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	lineEnd=lineEnd.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",(char *)\"\");").concat(endLine);//.concat(self.trigger.port.name).concat(");\n");
+	//} 
+	var tempEffect=self.effect.body.first();
+	//tempEffect=lineStart.concat(endLine).concat(tempEffect);  // add trace at start of action code 
+	tempEffect=tempEffect.concat(endLine).concat(lineEnd);    // add trace at end of the action code 
+	// deactive line end
+	//tempEffect=tempEffect.concat("\n").concat(lineEnd);
+	self.effect.body.clear();
+	self.effect.body.add(tempEffect);
+}
+//////
+operation UMLRTModel!Transition cleanTraceBody(traceType:String){
+	var tempEffect=self.effect.body.first();
+	tempEffect=tempEffect.cleanAddedCode(instrumentPrefix.concat("sendEvent("));
+	self.effect.body.clear();
+	self.effect.body.add(tempEffect);
+}
+///////
+operation UMLRTModel!State addTrace(traceType:String) {
+	//var result:String;
+	if (not self.entry.isDefined()){
+		var traceMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+		uniqueID=uniqueID+1;
+		traceMethod.name=self.name.concat("__").concat(uniqueID.asString());
+		traceMethod.language.add("C++");
+		traceMethod.body.add("");
+		self.entry=traceMethod;
+	}
+	if (not self.exit.isDefined()){
+		var traceMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+		uniqueID=uniqueID+1;
+		traceMethod.name=self.name.concat("__").concat(uniqueID.asString());
+		traceMethod.language.add("C++");
+		traceMethod.body.add("");
+		self.exit=traceMethod;
+	}
+	
+	// generate debug event for State/ update all state entry , exit 
+	self.generateTraceBody(traceType);
+	//return  result;
+}
+
+//// add method for send event 
+operation UMLRTModel!Class  addSendEventMethod() {
+	self.remSendEventMethod();
+	var sendEventOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	sendEventOperation.name=instrumentPrefix.concat("sendEvent");
+	sendEventOperation.visibility=VisibilityKind#private;
+	self.ownedOperation.add(sendEventOperation);
+	/// define parameteres
+	/*sendEvent( int  eventSourceKind, int  eventType, const char * instanceName,const ,char * signalName, char * capsuleName, char * sourceName, 
+	char * resereve1, char * reserve2, char * reserve3, char * reserve4, const char * signalName );*/
+	sendEventOperation.addParametr("eventSourceKind", "Integer",ParameterDirectionKind#`in`,"debugEvents::EVENTSOURCEKIND");
+	sendEventOperation.addParametr("eventType", "Integer",ParameterDirectionKind#`in`,"debugEvents::EVENTTYPE");
+	sendEventOperation.addParametr("instanceName", "String",ParameterDirectionKind#`in`,"const char *");
+	sendEventOperation.addParametr("capsuleIndex", "Integer",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("signalName", "String",ParameterDirectionKind#`in`,"const char *");
+	sendEventOperation.addParametr("capsuleName", "String",ParameterDirectionKind#`in`,"const char *");
+	sendEventOperation.addParametr("sourceName", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("reserve1", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("reserve2", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("reserve3", "String",ParameterDirectionKind#`in`,"");
+	////////
+	var sendEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	var methodBody:String;
+	if (traceType="LTTng")
+		methodBody=self.generateWriteLTTngTraceBody();
+	else
+		methodBody=self.generateSendEventBody();
+	sendEventMethod.name=instrumentPrefix.concat("sendEvent");
+	sendEventMethod.specification=sendEventOperation;
+	sendEventOperation.method.add(sendEventMethod);
+	sendEventMethod.language.add("C++");
+	sendEventMethod.body.add(methodBody);
+	
+	self.ownedBehavior.add(sendEventMethod);
+}
+///// method to remove added method
+operation UMLRTModel!Class  remSendEventMethod() {
+	delete self.ownedBehavior.select(o| o.name.startsWith(instrumentPrefix.concat("sendEvent")));
+	delete self.ownedOperation.select(o| o.name.startsWith(instrumentPrefix.concat("sendEvent")));
+}
+
+/////
+
+//// generate body for send method class
+operation Any generateSendEventBody() : String{
+	var result:String;
+	//Todo
+	var preLine="this->".concat(instrumentPrefix);
+	result=preLine.concat("variablesView();").concat(endLine);
+	result=result.concat(preLine).concat("event.clearEventPayload();").concat(endLine);
+	result=result.concat(preLine).concat("event.generateEventID();").concat(endLine);
+	result=result.concat(preLine).concat("event.setCpuTik();").concat(endLine);
+	result=result.concat(preLine).concat("event.setTimePointToNow();").concat(endLine);
+	result=result.concat(preLine).concat("event.setEventSourceKind(eventSourceKind);").concat(endLine);
+	result=result.concat(preLine).concat("event.setEventType(eventType);").concat(endLine);
+	result=result.concat(preLine).concat("event.setCapsuleName(capsuleName);").concat(endLine);
+	result=result.concat(preLine).concat("event.setCapsuleInstance(instanceName);").concat(endLine);
+	result=result.concat(preLine).concat("event.setCapsuleIndex(capsuleIndex);").concat(endLine);
+	result=result.concat(preLine).concat("event.setSourceName(sourceName);").concat(endLine);
+	result=result.concat(preLine).concat("event.setVariableData(this->").concat(instrumentPrefix).concat("variablesData);").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Status\",this->Debug__SRO.getStatusStr());").concat(endLine);
+	result=result.concat("if (eventSourceKind==debugEvents::TRANISTION){").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Source\",reserve1);").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Target\",reserve2);").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Signal\",signalName);").concat(endLine);
+	result=result.concat("}").concat(endLine);
+	result=result.concat("std::string tempS=this->").concat(instrumentPrefix).concat("event.serialize();").concat(endLine);
+	result=result.concat("char eventStr[tempS.length()+1];").concat(endLine);
+	result=result.concat("strcpy(eventStr,tempS.c_str());").concat(endLine);
+	result=result.concat("extComm.event(eventStr).send();").concat(endLine);
+	return  result;
+}
+////
+operation Any generateWriteLTTngTraceBody(): String{
+		var result:String;
+	//Todo
+	var preLine="this->".concat(instrumentPrefix);
+	result=preLine.concat("variablesView();").concat(endLine);
+	result=result.concat(preLine).concat("event.clearEventPayload();").concat(endLine);
+	result=result.concat(preLine).concat("event.generateEventID();").concat(endLine);
+	result=result.concat(preLine).concat("event.setCpuTik();").concat(endLine);
+	result=result.concat(preLine).concat("event.setTimePointToNow();").concat(endLine);
+	result=result.concat(preLine).concat("event.setEventSourceKind(eventSourceKind);").concat(endLine);
+	result=result.concat(preLine).concat("event.setEventType(eventType);").concat(endLine);
+	result=result.concat(preLine).concat("event.setCapsuleName(capsuleName);").concat(endLine);
+	result=result.concat(preLine).concat("event.setCapsuleInstance(instanceName);").concat(endLine);
+	result=result.concat(preLine).concat("event.setCapsuleIndex(capsuleIndex);").concat(endLine);
+	result=result.concat(preLine).concat("event.setSourceName(sourceName);").concat(endLine);
+	result=result.concat(preLine).concat("event.setVariableData(this->").concat(instrumentPrefix).concat("variablesData);").concat(endLine);
+	result=result.concat("if (eventSourceKind==debugEvents::TRANISTION){").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Source\",reserve1);").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Target\",reserve2);").concat(endLine);
+	result=result.concat(preLine).concat("event.setPayloadField(\"Signal\",signalName);").concat(endLine);
+	result=result.concat("}").concat(endLine);
+	result=result.concat("std::string tempS=this->").concat(instrumentPrefix).concat("event.serialize();").concat(endLine);
+	result=result.concat("char eventStr[tempS.length()+1];").concat(endLine);
+	result=result.concat("strcpy(eventStr,tempS.c_str());").concat(endLine);
+	result=result.concat("tracepoint(umlrtevent_provider, umlrtevent_tracepoint,eventStr);").concat(endLine);
+	return  result;
+}
+///////
+
+//////create trace 
+operation UMLRTModel!State generateTraceBody(traceType:String) {
+	var lineStartEntry:String="";
+	var lineEndEntry:String="";
+	var lineStartExit:String="";
+	var lineEndExit:String="";	
+	if (traceType="LTTng")
+		self.cleanTraceBody(traceType);
+	//self.qualifiedName.println("Qualified Name: ");
+	//if (traceType="Observarion"){
+	lineStartEntry=instrumentPrefix.concat("sendEvent(debugEvents::STATE,debugEvents::STATEENTRYSTART,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	lineStartEntry=lineStartEntry.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"\",(char *)\"\",(char *)\"\");").concat(endLine);
+	lineEndEntry=instrumentPrefix.concat("sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	lineEndEntry=lineEndEntry.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"\",(char *)\"\",(char *)\"\");").concat(endLine);
+	lineStartExit=instrumentPrefix.concat("sendEvent(debugEvents::STATE,debugEvents::STATEEXITSTART,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	lineStartExit=lineStartExit.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"\",(char *)\"\",(char *)\"\");").concat(endLine);
+	lineEndExit=instrumentPrefix.concat("sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	lineEndExit=lineEndExit.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"\",(char *)\"\",(char *)\"\");").concat(endLine);
+	//} 
+    var tempEntry=self.entry.body.first();
+    //tempEntry=lineStartEntry.concat("\n").concat(tempEntry); a
+    /// deactive line entry end
+	tempEntry=tempEntry.concat(endLine).concat(lineEndEntry);
+	//tempEntry.println();
+	self.entry.body.clear();
+	self.entry.body.add(tempEntry);
+	var tempExit=self.exit.body.first();
+	//tempExit=lineStartExit.concat("\n").concat(tempExit);
+	// deactive line end event
+	tempExit=tempExit.concat(endLine).concat(lineEndExit);
+	// tempExit.println();
+	self.exit.body.clear();
+	self.exit.body.add(tempExit);
+}
+/////
+operation UMLRTModel!State cleanTraceBody(traceType:String){
+	var tempEntry=self.entry.body.first();
+	tempEntry=tempEntry.cleanAddedCode("__Debug__sendEvent(");
+	self.entry.body.clear();
+	self.entry.body.add(tempEntry);
+	var tempExit=self.exit.body.first();
+	tempExit=tempExit.cleanAddedCode("__Debug__sendEvent(");
+	//tempExit.println();
+	self.exit.body.clear();
+	self.exit.body.add(tempExit);
+}
+

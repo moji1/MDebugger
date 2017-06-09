@@ -1,0 +1,79 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+import "UMLRTQuery.eol";
+import "UMLRTCodeReflection.eol";
+import "UMLRTCodeGenUtil.eol";
+import "UMLRTProfilesOperations.eol";
+import "UMLRTElementOperation.eol";
+import "UMLRTInstrument.eol";
+
+
+var instrumentPrefix:String="__Debug__";
+var LTTngTracePointName:String="LTTNGUMLRTEVENT";
+var generationPrefix="__Generated__";
+var endLine:String="\n";
+var uniqueID:Integer=1; // we need to name the added state and transition uniquely
+var traceType:String="Observarion";
+var debugLevel:Integer=0; // 0= info , 1= debug at frist level functions 2= debug at second level and 3= debug at thirth level 
+var currentCapsuleName:String="";
+
+
+/// load the model
+var modelroot=UMLRTModel!Package.all.select(c|c.type.name="Model").first();
+var UMLPrimitiveTypes=UMLRTModel!Package.all.select(c|c.name="PrimitiveTypes").first();
+var allStateMachines:Set=modelroot.getAllStateMachines();
+var allClasses=modelroot.getAllOwnedClasses();
+
+
+
+transaction {
+
+	//c.generateVariableChnageMethod("varName","varValue");
+
+	"Instrument model started: ".println("Debug Level 0: ");
+	modelroot.addTracePointHeader();
+	"Adding Trace Point Header is done: ".println("Debug Level 0: ");
+	for (c in allClasses){
+		"Romove the existing debug required attributes: ".concat(c.name).println("Debug Level 0: ");
+		c.remRequiredAttributes(); // otherwise it will generate the variable view for debug related variables.
+		"Add method to watch variables: ".concat(c.name).println("Debug Level 0: ");
+		c.addVarWatchMethod();
+		if (c.getStateMachine().isDefined()){
+			c.addSendEventMethod();
+			"Adding Methhod to provide LTTng trace operation in capsule ".concat(c.name).println("Debug Level 0: ");
+		}
+	}
+	/// add tracing to all state that added for debugging 
+	for (statemachine in allStateMachines){
+		"Adding LTTng Trace Point in  State machine  ".concat(statemachine.name).println("Debug Level 0: ");
+    	for (region in statemachine.getAllRegions())
+    		for (s in region.getAllStates().select(s|s.type.name="State"))
+    			s.addTrace(traceType);
+   /// add tracing to all tranistion that added for debugging 
+   		for (region in statemachine.getAllRegions())
+    		for (t in region.getAllTransitions())
+    			t.addTrace(traceType);
+    }
+    
+ "Remove dangling streotypes: ".println("Debug Level 0: ");
+modelroot.remDanglingUMLRTStereotypes();
+	
+}
+
+operation UMLRTModel!Package addTracePointHeader(){
+	var tempArtifact=modelroot.getAtrificats(instrumentPrefix.concat(LTTngTracePointName));
+	//tempArtifact.println();
+	if (tempArtifact.isUndefined()){
+		tempArtifact=self.addArtifact(instrumentPrefix.concat(LTTngTracePointName));
+		tempArtifact.applyUMLRTStereotype();
+		tempArtifact.getUMLRTStereotypeDetail().includeFile=self.generateLTTngTracePointHeaderBody();
+		tempArtifact.getUMLRTStereotypeDetail().sourceFile=self.generateLTTngTracePointCBody();
+	}
+	
+}
+
+

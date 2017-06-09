@@ -1,0 +1,293 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+import "UMLRTQuery.eol";
+var endLine="\n";
+var generationPrefix="__Generated__";
+
+
+
+operation  generateConnDebugger() : String{
+	var result:String="";
+	result="std::cout<<this->getName()<<\": Connection with debugger is in progress\\n\";".concat(endLine);
+    result=result.concat("char  tempS[256];").concat(endLine);
+    //To do 
+    ///sprintf(tempS,"%s%d",this->getName(),this->getIndex());
+    result=result.concat("sprintf(tempS,\"%s%d\",this->getName(),(int)this->getIndex());").concat(endLine);
+    result=result.concat("extComm.registerToControl(tempS).send();").concat(endLine);
+    result=result.concat(instrumentPrefix).concat("sendEvent(debugEvents::DEBUG,debugEvents::REGISTER,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
+	result=result.concat(currentCapsuleName).concat(",(char *) \"\",(char *) \"\",(char *)\"\",(char *) \"\");").concat(endLine);
+	return result;
+}
+///////
+operation  generateConfigLoad(flag:String) : String{
+	var result:String;
+	result=result.concat("std::cout<<this->getName()<<\" is Starting\\n\";").concat(endLine);
+    result=result.concat("config.setCommentStr(\"#\");").concat(endLine);
+    result=result.concat("config.setFieldSeperaor(\"=\");").concat(endLine);
+    result=result.concat("config.setConfigFileName(\"config\");").concat(endLine);
+    result=result.concat("std::string tempStr =\"\";").concat(endLine);
+    result=result.concat("tempStr=config.getConfig(\"debug\");").concat(endLine);
+    result=result.concat("if (tempStr==\"true\")").concat(endLine);
+    //result=result.concat("    this->".concat(flag).concat("=true;").concat(endLine));
+    result=result.concat("    this->".concat(instrumentPrefix).concat("SRO.setExecMode(Stepping);").concat(endLine));
+    //..test it tommorow
+	result=result.concat("else").concat(endLine); 
+	//result=result.concat("    this->".concat(flag).concat("=false;").concat(endLine));
+	result=result.concat("    this->".concat(instrumentPrefix).concat("SRO.setExecMode(Running);").concat(endLine));
+	result=result.concat("std::cout<<\"Config is loaded\\n\";").concat(endLine);
+	return  result;
+}
+
+operation  generateAskForConfig(flag:String) : String{
+	var result:String;
+	result="std::cout<<this->getName()<<\" : is Starting\\n\";".concat(endLine);
+    //result=result.concat("std::string tempS;").concat(endLine);
+   // result=result.concat("std::cout<<\"Enter 1 for running in debug mode, any other key for normal model\\n\";").concat(endLine);
+   // result=result.concat("std::cin>> tempS;").concat(endLine);
+   // result=result.concat("if (tempS==\"1\")").concat(endLine);
+    result=result.concat("    this->".concat(instrumentPrefix).concat("SRO.setExecMode(Stepping);").concat(endLine));
+   // result=result.concat("else").concat(endLine);
+   // result=result.concat("    this->".concat(instrumentPrefix).concat("SRO.setExecMode(Running);").concat(endLine));
+	return  result;
+}
+
+
+//// var change handelr
+operation  generateDbgCommandVarChangeHandler():String{
+	var result:String;
+	result="char varName1[256];".concat(endLine);
+    result=result.concat("char varValue1[1024];").concat(endLine);
+    //result=result.concat("sprintf(varName1,\"%s\",varName);").concat(endLine);
+    result=result.concat("sprintf(varName1,\"%s\",(*(const char * *)msg->getParam( 0 )));").concat(endLine);
+    //result=result.concat("sprintf(varValue1,\"%s\",varValue);").concat(endLine);
+    result=result.concat("sprintf(varValue1,\"%s\",(*(const char * *)msg->getParam( 1 )));").concat(endLine);
+    result=result.concat("this->Debug__variablesChange(varName1,varValue1);").concat(endLine);	
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandVarChangeHandler(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandVarChangeHandler());
+	self.effect=handelEventMethod;		
+}
+///// add defer message handler for debug transition
+operation  generateDbgCommandDeferMsg():String{
+	var result:String;
+    result="msg->defer();".concat(endLine);	
+    result=result.concat("std::cout<<\"A message defered\"<<\"\\n\";").concat(endLine);		
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandDeferMsg(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandDeferMsg());
+	self.effect=handelEventMethod;		
+}
+//// add a method to recall al deferd messages
+operation  generateDbgCommandRecallMsg():String{
+	var result:String;
+    result="this->Debug__recallAllMsg();".concat(endLine);	
+    //result=result.concat("std::cout<<\"A message defered\"<<\"n\";").concat(endLine);		
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandRecallMsg(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandRecallMsg());
+	self.effect=handelEventMethod;		
+}
+//// add set breakpoint  handelr
+operation  generateDbgCommandSetBreakPointHandler():String{
+	var result:String;
+	//#define location ( *(const char * *)msg->getParam( 0 ) )
+    //#define breakPointType ( *(int *)msg->getParam( 1 ) )
+    //#define place ( *(int *)msg->getParam( 2 ) )
+	result="char loc[1024];".concat(endLine);
+    //result=result.concat("sprintf(loc,\"%s\",location);").concat(endLine);
+    result=result.concat("sprintf(loc,\"%s\",(*(const char * *)msg->getParam( 0 )));").concat(endLine);
+    //result=result.concat("this->Debug__SRO.addBreakPoint(loc,(BreakPointType)breakPointType,place);").concat(endLine);
+    result=result.concat("this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));").concat(endLine);
+    result=result.concat("std::cout<<this->Debug__SRO.serializeBreakPoint()<<\"n\";").concat(endLine);		
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandSetBreakPointHandler(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandSetBreakPointHandler());
+	self.effect=handelEventMethod;		
+}
+
+//// add rem breakpoint  handelr
+operation  generateDbgCommandRemBreakPointHandler():String{
+	var result:String;
+	result="char loc[1024];".concat(endLine);
+    //result=result.concat("sprintf(loc,\"%s\",location);").concat(endLine);
+    result=result.concat("sprintf(loc,\"%s\",(*(const char * *)msg->getParam( 0 )));").concat(endLine);
+    //result=result.concat("this->Debug__SRO.remBreakPoint(loc,(BreakPointType)breakPointType,place);").concat(endLine);	
+    result=result.concat("this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));").concat(endLine);
+    result=result.concat("std::cout<<this->Debug__SRO.serializeBreakPoint()<<\"n\";").concat(endLine);	
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandRemBreakPointHandler(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandRemBreakPointHandler());
+	self.effect=handelEventMethod;		
+}
+
+
+//// add view breakpoints  handelr
+operation  generateDbgCommandViewBreakPointsHandler():String{
+	var result:String;
+    result="std::cout<<this->Debug__SRO.serializeBreakPoint()<<\"n\";".concat(endLine);	
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandViewBreakPointsHandler(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandViewBreakPointsHandler());
+	self.effect=handelEventMethod;		
+}
+
+
+//// add view breakpoints  handelr
+operation  generateDbgCommandSetExecModeHandler():String{
+	var result:String;
+    result="this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));".concat(endLine);	
+    return result;
+}
+
+operation UMLRTModel!Transition addDbgCommandSetExecModeHandler(){
+	var transName="";
+	transName=self.name;
+	var handelEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	uniqueID=uniqueID+1;
+	handelEventMethod.name=transName.concat("__").concat(uniqueID.asString());
+	handelEventMethod.language.add("C++");
+	handelEventMethod.body.add(generateDbgCommandSetExecModeHandler());
+	self.effect=handelEventMethod;		
+}
+
+
+operation  generateLTTngTracePointHeaderBody(){
+	var result:String;
+	result="#ifndef LTTNGUMLRTEVENT_H_".concat(endLine);
+	result=result.concat("#define LTTNGUMLRTEVENT_H_").concat(endLine);
+	result=result.concat("#undef TRACEPOINT_PROVIDER").concat(endLine);
+	result=result.concat("#define TRACEPOINT_PROVIDER umlrtevent_provider").concat(endLine);
+	result=result.concat("#undef TRACEPOINT_INCLUDE").concat(endLine);
+	result=result.concat("#define TRACEPOINT_INCLUDE \"./LTTngUMLRTEvent.h\"").concat(endLine);
+	result=result.concat("#if !defined(LTTNGUMLRTEVENT_H_) || defined(TRACEPOINT_HEADER_MULTI_READ)").concat(endLine);
+	result=result.concat("#define LTTNGUMLRTEVENT_H_").concat(endLine);
+	result=result.concat("#include <lttng/tracepoint.h>").concat(endLine);
+	result=result.concat("TRACEPOINT_EVENT(").concat(endLine);
+	result=result.concat("umlrtevent_provider,").concat(endLine);
+	result=result.concat("umlrtevent_tracepoint,").concat(endLine);
+    result=result.concat("TP_ARGS(").concat(endLine);
+    result=result.concat("char*, event_str_arg").concat(endLine);
+    result=result.concat("),").concat(endLine);
+    result=result.concat("TP_FIELDS(").concat(endLine);
+    result=result.concat("ctf_string(event_str_field, event_str_arg)").concat(endLine);
+    result=result.concat(")").concat(endLine);
+	result=result.concat(")").concat(endLine);
+	result=result.concat("#include <lttng/tracepoint-event.h>").concat(endLine);
+	result=result.concat("#endif").concat(endLine);
+	return result;
+}
+
+operation  generateLTTngTracePointCBody(){ // generate the c file for tracepoint
+	var result:String;
+	result="#define TRACEPOINT_CREATE_PROBES".concat(endLine);
+	result=result.concat("#define TRACEPOINT_DEFINE").concat(endLine);
+	result=result.concat("#include \"LTTngUMLRTEvent.h\"").concat(endLine);
+	return result;
+}
+
+operation String cleanAddedCode(keyword:String):String{
+	var lines=self.split(endLine);
+	//lines.println("before");
+	//;
+	//lines.println("after");
+	var result="";
+	for (line in lines.select(line| not line.trim().startsWith(keyword))){
+		result=result.concat(line).concat(endLine);
+	}
+	//result.println();
+	return result;
+}
+/// this function generate  code related to intializing capsule  when user want to run system in debugging mode
+operation  generateDebugIntializationCode(transitionsData:Set):String{
+	var code:String="";
+	for (sourceTrans in transitionsData)
+		for (tran in sourceTrans){
+			code=code.concat(instrumentPrefix.concat("SRO.addTransitionsFromState("));
+			var fristElement:Boolean=true;
+			//tran.println();
+			for (element in tran){
+				//element.println();
+					if (not fristElement)
+						code=code.concat(",");
+					if (element.isDefined())
+						code=code.concat("\"").concat(element).concat("\"");
+					else 
+						code=code.concat("\"").concat("").concat("\"");
+					fristElement=false;
+			}
+			code=code.concat(");").concat(endLine);	
+		}
+	return code;
+}
+
+/// operation aassign DebugInitCode to initial transition
+operation UMLRTModel!Transition addDebugInitCode(transitionsData:Set) {
+		if (not self.effect.isDefined()){
+		var initDebugMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+		initDebugMethod.name="Debug__init";
+		traceMethod.language.add("C++");
+		traceMethod.body.add("");
+		self.effect=traceMethod;		
+	}
+	self.effect.body.clear();
+	var body:String="";
+	body=generateAskForConfig(instrumentPrefix.concat("flag"));
+	body=body.concat("if (").concat(instrumentPrefix).concat("flag").concat("){").concat(endLine);
+	body=body.concat(generateDebugIntializationCode(transitionsData));
+	body=body.concat(generateConnDebugger()).concat("}").concat(endLine);
+	self.effect.body.add(body);
+	body.println();
+}

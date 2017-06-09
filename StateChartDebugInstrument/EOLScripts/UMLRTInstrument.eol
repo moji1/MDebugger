@@ -1,0 +1,568 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+import "UMLRTQuery.eol";
+import "UMLRTCodeReflection.eol";
+import "UMLRTCodeGenUtil.eol";
+import "UMLRTProfilesOperations.eol";
+import "UMLRTElementOperation.eol";
+
+/////
+var instrumentPrefix:String="__Debug__";
+var debugConnectPointName=instrumentPrefix+"Connect__Point__";
+var debugStateName:String=instrumentPrefix.concat("Super__State__");
+var debugEntry:String="__Debug__Entry__";
+var debugChoice:String="__Debug__Choice__";
+var generationPrefix="__Generated__";
+var endLine:String="\n";
+var uniqueID:Integer=1; // we need to name the added state and transition uniquely
+var Observarion:String="Observation";
+var traceType:String="Observation";
+var debugLevel:Integer=0; // 0= info , 1= debug at frist level functions 2= debug at second level and 3= debug at thirth level 
+var debugPortName="extComm";
+var debugPort:UMLRTModel!Port;
+
+/// loading models 
+var UMLPrimitiveTypes=UMLRTModel!Package.all.select(c|c.name="PrimitiveTypes").first();
+UMLPrimitiveTypes.println("Debug Level 0: UMLPrimitiveTypes is loaded: ");
+var modelroot=UMLRTModel!Package.all.select(c|c.type.name="Model").first();
+"Instrumentaion is Started on model:".println("Debug Level 0: ");
+modelroot.println("Debug Level 0: ");
+var gateWayModel=(modelroot.packageImport.selectOne(p|p.importedPackage.name="commGateWay")).importedPackage; // load the gateway model
+var dbgProtocol=gateWayModel.getAllNestedPackage().select(p|p.name="ExtInterface"); // load the debugging protocol
+//var dbgCommandEvent=dbgProtocol.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgCommand");
+var dbgCommandEvent=dbgProtocol.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgVarChange");
+var dbgExecEvent=dbgProtocol.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgExec");
+var anyEvent=dbgProtocol.packagedElement.first().selectOne(e|e.type.name="AnyReceiveEvent");
+var currentCapsuleName:String="";
+/// check if geteway and primitive package imprrted correctly, If not show error and exit
+if (UMLPrimitiveTypes.isUndefined() or dbgProtocol.isUndefined() or dbgCommandEvent.isUndefined()
+	or dbgExecEvent.isUndefined() or anyEvent.isUndefined()){
+	errln("Required model is not loaded correctly (Gateway, Debug protocol or Primitive package)");
+	}
+
+var allStateMachines:Set=modelroot.getAllStateMachines();
+var allClasses=modelroot.getAllOwnedClasses();
+//allClasses.println();
+
+
+
+transaction {
+for (c in allClasses){
+	currentCapsuleName=c.name;
+	"Romove the existing debug required attributes: ".concat(c.name).println("Debug Level 0: ");
+	c.remRequiredAttributes(); // otherwise it will generate the variable view for debug related variables.
+	"Add method to watch variables: ".concat(c.name).println("Debug Level 0: ");
+	c.addVarWatchMethod();
+	"Add method to change variables: " .concat(c.name).println("Debug Level 0: ");
+	c.addVarChangeMethod();
+	"Add required attributes: ".concat(c.name).println("Debug Level 0: ");
+	c.addRequiredAttributes();
+	if (c.getStateMachine().isDefined()){
+		c.println();
+		c.getStateMachine().println();
+		"Add send event  method: ".concat(c.name).println("Debug Level 0: ");
+		c.addSendEventMethod();
+		}
+	
+	}
+	//c.generateVariableChnageMethod("varName","varValue");
+for (s in allStateMachines){
+	"Instrument state machines: ".concat(s.name).println("Debug Level 0: ");
+	debugPort=s.Owner.ownedAttributes.selectOne(p|p.name=debugPortName);
+	currentCapsuleName=s.Owner.name;
+	s.insStateMachineForDbg2();
+	//s.remExistingInsrument();
+	}
+//// remove dangling streotypes
+" Remove dangling streotypes: ".println("Debug Level 0: ");
+modelroot.remDanglingUMLRTStereotypes();
+//abort;
+}
+
+
+//modelroot.remDanglingUMLRTStereotypes();
+////add attributes that are required for debugging (include an attribute to save the current variable values, a boolean attribute to specify to run in debug or normal mode
+//// a port to connect debugger, a timer to move the code to next steps if debugger is off or overloaded)
+operation UMLRTModel!Class  addRequiredAttributes() {
+	self.remRequiredAttributes();
+	/// add a property for debug flag
+	var debugProperty:UMLRTModel!Property= new UMLRTModel!Property();
+	debugProperty.name=instrumentPrefix.concat("flag");
+	//debugProperty.type=UMLPrimitiveTypes!Package.all().selectOne(p|p.name="PrimitiveTypes").packagedElement.selectOne(t|t.name="Boolean");
+	debugProperty.type=UMLPrimitiveTypes.packagedElement.selectOne(t|t.name="Boolean");
+	//UMLPrimitiveTypes
+	self.ownedAttribute.add(debugProperty);
+	//// add a property to save all variable value in char *, so instead of transfering the whole data, we only  share a pointer
+	var vraiablesMetaData:UMLRTModel!Property= new UMLRTModel!Property();
+	vraiablesMetaData.name=instrumentPrefix.concat("variablesMetaData");
+	//vraiablesMetaData.type=UMLPrimitiveTypes!Package.all().selectOne(p|p.name="PrimitiveTypes").packagedElement.selectOne(t|t.name="String");
+	vraiablesMetaData.type=UMLPrimitiveTypes.packagedElement.selectOne(t|t.name="String");
+	self.ownedAttribute.add(vraiablesMetaData);
+	self.ownedAttribute.add(vraiablesMetaData);
+	//// add a property to save last event for a caspule, this will be forwared to gateway
+	var debugEvent:UMLRTModel!Property= new UMLRTModel!Property();
+	debugEvent.name=instrumentPrefix.concat("event");
+	self.ownedAttribute.add(debugEvent);
+	debugEvent.applyUMLRTStereotype();
+	debugEvent.getUMLRTStereotypeDetail().type="debugEvents::Event";	
+}
+//// remove added attribute for debugging 
+operation UMLRTModel!Class  remRequiredAttributes() {
+	delete self.ownedAttribute.select(o| o.name.startsWith(instrumentPrefix.concat("flag")));
+	delete self.ownedAttribute.select(o| o.name.startsWith(instrumentPrefix.concat("variablesMetaData")));
+	delete self.ownedAttribute.select(o| o.name.startsWith(instrumentPrefix.concat("event")));
+}
+///// add operation to get two parameter variable name and variable value and then chnage it duirng runtime. premitive attribute is only supported 
+////(Int, Real, String and ,Boolean)
+operation UMLRTModel!Class  addVarChangeMethod() {
+	self.remVarChangeMethod();
+	var methodBody:String;
+	methodBody=self.generateVariablesChnageMethod("varName","varValue");
+	//methodBody.println();
+	var wathcOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	wathcOperation.name=instrumentPrefix.concat("variablesChange");
+	wathcOperation.visibility=VisibilityKind#private;
+	///
+	wathcOperation.addParametr("methodReturn", "Boolean", ParameterDirectionKind#`return`, "");
+	wathcOperation.addParametr("varName", "String", ParameterDirectionKind#`in`, "");
+	wathcOperation.addParametr("varValue", "String", ParameterDirectionKind#`in`, "");
+	var watchMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	watchMethod.name=instrumentPrefix.concat("variablesChange");
+	watchMethod.specification=wathcOperation;
+	wathcOperation.method.add(watchMethod);
+	watchMethod.language.add("C++");
+	watchMethod.body.add(methodBody);
+	self.ownedBehavior.add(watchMethod);
+	self.ownedOperation.add(wathcOperation);
+}
+//// add method for send event 
+operation UMLRTModel!Class  addSendEventMethod() {
+	self.remSendEventMethod();
+	var sendEventOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	sendEventOperation.name=instrumentPrefix.concat("sendEvent");
+	sendEventOperation.visibility=VisibilityKind#private;
+	self.ownedOperation.add(sendEventOperation);
+	/// define parameteres
+	/*sendEvent( int  eventSourceKind, int  eventType, const char * instanceName,const ,char * signalName, char * capsuleName, char * sourceName, 
+	char * resereve1, char * reserve2, char * reserve3, char * reserve4, const char * signalName );*/
+	sendEventOperation.addParametr("eventSourceKind", "Integer",ParameterDirectionKind#`in`,"debugEvents::EVENTSOURCEKIND");
+	sendEventOperation.addParametr("eventType", "Integer",ParameterDirectionKind#`in`,"debugEvents::EVENTTYPE");
+	sendEventOperation.addParametr("instanceName", "String",ParameterDirectionKind#`in`,"const char *");
+	sendEventOperation.addParametr("capsuleIndex", "Integer",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("signalName", "String",ParameterDirectionKind#`in`,"const char *");
+	sendEventOperation.addParametr("capsuleName", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("sourceName", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("reserve1", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("reserve2", "String",ParameterDirectionKind#`in`,"");
+	sendEventOperation.addParametr("reserve3", "String",ParameterDirectionKind#`in`,"");
+	////////
+	var sendEventMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	var methodBody:String;
+	if (traceType="LTTng")
+		methodBody=self.generateWriteLTTngTraceBody();
+	else
+		methodBody=self.generateSendEventBody();
+	sendEventMethod.name=instrumentPrefix.concat("sendEvent");
+	sendEventMethod.specification=sendEventOperation;
+	sendEventOperation.method.add(sendEventMethod);
+	sendEventMethod.language.add("C++");
+	sendEventMethod.body.add(methodBody);
+	
+	self.ownedBehavior.add(sendEventMethod);
+}
+///// method to remove added method
+operation UMLRTModel!Class  remSendEventMethod() {
+	delete self.ownedBehavior.select(o| o.name.startsWith(instrumentPrefix.concat("sendEvent")));
+	delete self.ownedOperation.select(o| o.name.startsWith(instrumentPrefix.concat("sendEvent")));
+}
+//// add operation to view all premitive attribute (Int, Real, String and ,Boolean)
+operation UMLRTModel!Class  addVarWatchMethod() {
+	//self.println();
+	self.remVarWatchMethod();
+	var methodBody:String;
+	methodBody=self.generateVariablesWatchMethod();
+	//methodBody.println();
+	var wathcOperation:UMLRTModel!Operation= new UMLRTModel!Operation;
+	wathcOperation.name=instrumentPrefix.concat("variablesViewUpdate");
+	wathcOperation.visibility=VisibilityKind#private;
+	var watchMethod:UMLRTModel!OpaqueBehavior= new UMLRTModel!OpaqueBehavior;
+	watchMethod.name=instrumentPrefix.concat("variablesViewUpdate");
+	watchMethod.specification=wathcOperation;
+	wathcOperation.method.add(watchMethod);
+	watchMethod.language.add("C++");
+	watchMethod.body.add(methodBody);
+	self.ownedBehavior.add(watchMethod);
+	self.ownedOperation.add(wathcOperation);
+}
+/// remove watch  method
+operation UMLRTModel!Class  remVarWatchMethod() {
+	delete self.ownedBehavior.select(o| o.name.startsWith(instrumentPrefix.concat("variablesViewUpdate")));
+	delete self.ownedOperation.select(o| o.name.startsWith(instrumentPrefix.concat("variablesViewUpdate")));
+}
+/// remove vraible change   method
+operation UMLRTModel!Class  remVarChangeMethod() {
+	delete self.ownedBehavior.select(o| o.name.startsWith(instrumentPrefix.concat("variablesChange")));
+	delete self.ownedOperation.select(o| o.name.startsWith(instrumentPrefix.concat("variablesChange")));
+}
+
+//// delete previous debugging instrument if exist any
+operation UMLRTModel!StateMachine remExistingInsrument(): UMLRTModel!StateMachine{
+	var intialState=self.getIntialState();
+	var intailTrans=self.getIntialTransition();
+	var mainRegion=self.getMainRegion();
+	if (mainRegion.subvertex.exists(s|s.name=debugStateName)){
+		if (intailTrans.target.name=debugChoice){
+			//"Debug Level 1".println("removing the added choice point and related transitions");
+		    var mainIntialTrans=mainRegion.transition.selectOne(t|t.source.name=debugChoice and t.target.name<>instrumentPrefix.concat("connDebugger"));
+		    /// remove added transition connect from choice point to   debugging main state
+		    //instrumentPrefix.concat("connDebugger")
+		    delete mainRegion.transition.select(t|t.target.name=debugEntry and t.source.name= instrumentPrefix.concat("connDebugger"));
+			delete mainRegion.transition.select(t|t.target.name=instrumentPrefix.concat("connDebugger"));
+			/// remov added  choice point 
+			delete intailTrans.target;
+			/// remove added transition from intial to  choice point 
+			delete intailTrans;
+			//// return back the main intial transition 
+			mainIntialTrans.source=intialState;
+		}
+		/// remove the debugging state
+		delete mainRegion.subvertex.select(s|s.name=debugStateName);
+		delete mainRegion.subvertex.select(s|s.name=instrumentPrefix.concat("connDebugger"));
+	}
+	
+}
+///// add choice point between debugging state machine(Instrumentd) and user defined model
+operation UMLRTModel!StateMachine addDebugChoicePoint(){
+   // find intail transition and add choice point and related transitions,the choice point   move the code to debugging mode when debugging flag is set
+	var intialTrans=self.getIntialTransition();
+	/// this method chnage the transition, save the main region before doing them, otherwiase main region will be missed
+	var mainR=self.getMainRegion();
+	/// add debugging choice point
+	var choicePoint:UMLRTModel!Pseudostate= new UMLRTModel!Pseudostate;
+	choicePoint.kind=UMLRTModel!PseudostateKind#choice;
+	choicePoint.name=debugChoice;
+	//// add state to check establish debugging connection, then move to debugging mode, 
+	//it means I should one state and one transition with a trigger to debug super state 
+	var connDebuggerState:UMLRTModel!State= new UMLRTModel!State;
+	connDebuggerState.name=instrumentPrefix.concat("connDebugger");
+	//// transition to debug check point, it needs to read the config and check the debugging flag 
+	var transToDebugChoicePoint:UMLRTModel!Transition=new UMLRTModel!Transition;
+	var loadConfig:UMLRTModel!OpaqueBehavior=new UMLRTModel!OpaqueBehavior;
+	loadConfig.name="loadConfig";
+	loadConfig.language.add("C++");
+	//loadConfig.body.add(self.generateConfigLoad(instrumentPrefix.concat("flag")));
+	loadConfig.body.add(self.generateAskForConfig(instrumentPrefix.concat("flag")));
+	transToDebugChoicePoint.effect=loadConfig;
+	//// transition to  state that establish connection to debugger
+	var transToDebugConn:UMLRTModel!Transition=new UMLRTModel!Transition; // tranistion to debuger conn satet 	
+	var guardToDebug:UMLRTModel!OpaqueExpression= new UMLRTModel!OpaqueExpression; // transition to guard
+	var constraintForDebug:UMLRTModel!Constraint= new UMLRTModel!Constraint;
+	constraintForDebug.name="checkDebugFlag";
+	guardToDebug.language.add("C++");
+	guardToDebug.body.add("return this->".concat(instrumentPrefix).concat("flag").concat(";").concat(endLine));
+	guardToDebug.name="guardToDebug";
+	constraintForDebug.specification=guardToDebug;
+	transToDebugConn.ownedRule.add(constraintForDebug);
+	transToDebugConn.guard=constraintForDebug;
+	transToDebugChoicePoint.target=choicePoint;
+	transToDebugConn.source=choicePoint;
+	transToDebugConn.name=instrumentPrefix.concat("Trans__DebugConn");
+	transToDebugChoicePoint.source=intialTrans.source;
+	transToDebugChoicePoint.name=instrumentPrefix.concat("Trans__Config");
+	intialTrans.source=choicePoint;
+	transToDebugConn.target=connDebuggerState;
+	//// add entry point to to debug state
+    //// 
+	var ePoint : UMLRTModel!Pseudostate = new UMLRTModel!Pseudostate;
+	ePoint.name=debugConnectPointName;
+	ePoint.kind=UMLRTModel!PseudostateKind#entryPoint;
+	ePoint.name=debugEntry;
+	/// add tranistion to debug entry point
+	var transToDebug:UMLRTModel!Transition=new UMLRTModel!Transition; // tranistion to debuger conn satet 
+	transToDebug.name=instrumentPrefix.concat("TransToDebug");
+	transToDebug.source=connDebuggerState;
+	transToDebug.target=ePoint;
+	var triggerToDebug:UMLRTModel!Trigger=new UMLRTModel!Trigger;
+	triggerToDebug.port=self.Owner.ownedAttributes.select(p|p.name=debugPortName);
+	triggerToDebug.event=anyEvent;
+	var connDebugger:UMLRTModel!OpaqueBehavior=new UMLRTModel!OpaqueBehavior;
+	connDebugger.name="connDebugger";
+	connDebugger.language.add("C++");
+	connDebugger.body.add(self.generateConnDebugger());
+	transToDebug.effect=connDebugger;
+	//triggerToDebug.event.type=AnyReceiveEvent;
+	transToDebug.trigger.add(triggerToDebug);
+	self.getAllRegions().getAllStates().selectOne(s|s.name=debugStateName).connectionPoint.add(ePoint);
+	transToDebug.target=ePoint;
+	mainR.subvertex.add(choicePoint);
+	mainR.subvertex.add(connDebuggerState);
+	mainR.transition.add(transToDebugChoicePoint);
+	mainR.transition.add(transToDebugConn);
+	mainR.transition.add(transToDebug);
+
+}
+//// instrument statemachine for interactive debugging
+operation UMLRTModel!StateMachine insStateMachineForDbg2()  {
+	self.remExistingInsrument();
+	var debugSuperState:UMLRTModel!State= new UMLRTModel!State;
+	debugSuperState.name=debugStateName;	
+     
+	//copy all region of main model to the debug main state
+	var allRegion=self.region;
+    for (r in allRegion)
+    	debugSuperState.region.add(r.valueCopy());
+    for (r in debugSuperState.getAllRegions())
+    	r.insTransForDbg();
+   /// add tracing to all state that added for debugging 
+    for (r in debugSuperState.getAllRegions())
+    	for (s in r.getAllStates().select(s|s.type.name="State"))
+    		s.addTrace(Observarion);
+   /// add tracing to all tranistion that added for debugging 
+   for (r in debugSuperState.getAllRegions())
+    	for (t in r.getAllTransitions())
+    		t.addTrace(Observarion);
+    		
+    
+    //// add trace point to all states and tranistion for debug super state
+    
+	self.region.first().subvertex.add(debugSuperState);
+	self.addDebugChoicePoint();
+}
+
+///  instrument statmachine for  interactive debugging uisng diffrent region, it cause issue for model view, so we don't uset for now
+operation UMLRTModel!StateMachine insStateMachineForDbg()  {
+	var debugRegion : Region= new Region;
+	debugRegion.name="__Debug__Region__";
+	var debugSuperState:UMLRTModel!State= new UMLRTModel!State;
+	debugSuperState.name="__Debug_Super__State__";
+	debugRegion.subvertex.add(debugSuperState);
+	var mainRegion : UMLRTModel!Region= new UMLRTModel!Region;
+	mainRegion.name="Main";
+	var mainSuperState:UMLRTModel!State= new UMLRTModel!State;
+	mainSuperState.name="__Main__Super__State__";
+	var cPoint : UMLRTModel!connectionPoint = new UMLRTModel!connectionPoint;
+	mainRegion.subvertex.add(mainSuperState);
+	var allRegion=self.region;
+	//allRegion.println();
+    mainSuperState.region.addAll(allRegion);
+    for (r in mainSuperState.region)
+    	debugSuperState.region.add(r.valueCopy());
+	self.region.add(debugRegion);
+	self.region.add(mainRegion);
+}
+/// deep copy for effect
+operation UMLRTModel!OpaqueBehavior valueCopy() : UMLRTModel!OpaqueBehavior {
+	var effect:UMLRTModel!OpaqueBehavior=  new UMLRTModel!OpaqueBehavior;
+	effect.name=self.name;
+	effect.visibility=self.visibility;
+	effect.isAbstract=self.isAbstract;
+	effect.isFinalSpecialization=self.isFinalSpecialization;
+	effect.isActive=self.isActive;
+	effect.isReentrant=self.isReentrant;
+	effect.body=self.body;
+	effect.language=self.language;
+	return effect;
+}
+/// deep value copy for trigger
+operation UMLRTModel!Trigger valueCopy() : UMLRTModel!Trigger{
+	var trigger:UMLRTModel!Trigger = new UMLRTModel!Trigger;
+	trigger.name=self.name;
+	trigger.port=self.port;
+	trigger.event=self.event;
+	return trigger;
+}
+/// deep value copy for junction point
+operation  UMLRTModel!Pseudostate valueCopy() : UMLRTModel!Pseudostate{
+	var cPoint : UMLRTModel!Pseudostate = new UMLRTModel!Pseudostate;
+	cPoint.name=self.name;
+	cPoint.kind=self.kind;
+	return cPoint;
+}
+/// deep value copy for state
+operation UMLRTModel!State valueCopy() : UMLRTModel!State{
+	var state:UMLRTModel!State= new UMLRTModel!State;
+	state.name=self.name;
+	for (c in self.connectionPoint)
+		state.connectionPoint.add(c.valueCopy());
+	for (entry in self.entry)
+		if (entry.isDefined())
+			state.entry=entry.valueCopy();
+	for (exit in self.exit)
+		if (exit.isDefined())
+			state.exit=exit.valueCopy();
+	if (state.region.isDefined())
+		for (r in self.region)
+			state.region.add(r.valueCopy());
+	return state;
+}
+/// deep value copy
+operation UMLRTModel!Transition valueCopy(region:UMLRTModel!Region) : UMLRTModel!Transition{
+	var trans:UMLRTModel!Transition= new UMLRTModel!Transition;
+	trans.name=self.name;
+	//self.println();
+	var i : Integer = 0;
+	for (s in region.subvertex)
+			if (i=2)
+				break;
+			else if (s.name=self.source.name){
+				trans.source=s;
+				i=i+1;
+				continue;
+			}
+			else if (s.name=self.target.name){
+				trans.target=s;
+				i=i+1;
+				continue;
+			}
+	
+	if (i<>2){
+		if (not trans.target.isDefined()){ /// search in junction points
+			for (s in region.subvertex)
+			if (s.type.name="State")
+				for (c in s.connectionPoint)
+					if (c.name=self.target.name)
+						trans.target=c;
+		}
+	}
+	//// add check for slef tranistion
+	if (self.source=self.target) 
+		trans.target=trans.source;
+	/// copy triggers
+	for (t in self.trigger)
+		if (t.isDefined())
+			trans.trigger.add(t.valueCopy());	
+    /// copy event
+	for (e in self.effect)
+		if (e.isDefined())
+			trans.effect=e.valueCopy();	
+	return trans;
+}
+/// deep value copy
+operation UMLRTModel!Region valueCopy() : UMLRTModel!Region{
+	var region:UMLRTModel!Region= new UMLRTModel!Region;
+	region.name=self.name;
+	for (s in self.subvertex)
+		region.subvertex.add(s.valueCopy());
+	for (t in self.transition)
+		region.transition.add(t.valueCopy(region));
+	return region;
+}
+
+operation UMLRTModel!Pseudostate valueCopy () : UMLRTModel!Pseudostate {
+	var pseudostate:UMLRTModel!Pseudostate= new UMLRTModel!Pseudostate;
+	pseudostate.name=self.name;
+	return pseudostate;
+	
+}
+
+///  instrument transition for interactive debugging
+operation UMLRTModel!Region insTransForDbg()  {
+	var newTrans : Set ;
+	var newStates : Set ;
+	for (t in self.transition){
+	 //if ((not (t.name.isDefined())) or (not (t.name.startsWith(__Debug__)))){
+	 	// add debug states and transaction and tigger for debugg command
+		var tranBeginState : UMLRTModel!State= new UMLRTModel!State;
+		uniqueID=uniqueID+1;
+		//t.println();
+		//t.source.println();
+		//t.target.println();
+		tranBeginState.name=instrumentPrefix.concat("B__S__").concat(t.source.name).concat("__").concat(t.target.name).concat("__").concat(uniqueID.asString());
+		var selfTransBefore : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigselfTransBefore : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		selfTransBefore.source=tranBeginState;
+		selfTransBefore.target=selfTransBefore.source;
+		selfTransBefore.name=instrumentPrefix.concat("CMD").concat("__").concat(uniqueID.asString());
+		trigselfTransBefore.port.add(debugPort);
+		//delete UMLRTModel!CallEvent;
+		//debugCommandEvent.println();
+		selfTransBefore.addDbgCommandHandler();
+		trigselfTransBefore.event=dbgCommandEvent;
+		selfTransBefore.trigger.add(trigselfTransBefore);
+		/////
+		var tranEndState : UMLRTModel!State= new UMLRTModel!State;
+		uniqueID=uniqueID+1;
+		tranEndState.name=instrumentPrefix.concat("E__S__").concat(t.source.name).concat("__").concat(t.target.name).concat("__").concat(uniqueID.asString());
+		var selfTransAfter : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigselfTransAfter : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		selfTransAfter.source=tranEndState;
+		selfTransAfter.target=selfTransAfter.source;
+		selfTransAfter.name=instrumentPrefix.concat("CMD").concat("__").concat(uniqueID.asString());
+		trigselfTransAfter.port.add(debugPort);
+		trigselfTransAfter.event=dbgCommandEvent;
+		selfTransAfter.trigger.add(trigselfTransAfter);
+		
+		//// add transitions and related triggers, also add one trigger for each created state to reply debug command
+		var tranBeforTransBeginState : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigBeforTransBeginState : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		var tranAfterTransEndState : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigAfterTransEndState : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		tranBeforTransBeginState.source=t.source;
+		tranBeforTransBeginState.target=tranBeginState;
+		tranAfterTransEndState.source=tranEndState;
+		tranAfterTransEndState.target=t.target;
+		uniqueID=uniqueID+1;
+		tranBeforTransBeginState.name=instrumentPrefix.concat("T__A__").concat(t.source.name).concat("__").concat(uniqueID.asString());
+		uniqueID=uniqueID+1;
+		tranAfterTransEndState.name=instrumentPrefix.concat("T__B__").concat(t.target.name).concat("__").concat(uniqueID.asString());
+		trigBeforTransBeginState.port.add(debugPort);
+		trigAfterTransEndState.port.add(debugPort);
+		tranBeforTransBeginState.trigger.add(trigBeforTransBeginState);
+		tranAfterTransEndState.trigger.add(trigAfterTransEndState);
+		/// trigger of main tranistion need to swapped with added transition for instrumention
+		if (t.trigger.first().isDefined()){
+			trigBeforTransBeginState.port.clear();
+			//t.trigger.port.first().println("before remove: ");
+			trigBeforTransBeginState.port.addAll(t.trigger.port.first());
+			//trigBeforTransBeginState.port.println("after set to orginal one");
+     		trigBeforTransBeginState.event=t.trigger.first().event;
+     		t.trigger.port.first().clear();
+     		//t.trigger.port.first().println("After remove: ");
+     		t.trigger.first().port.add(debugPort);
+     		t.trigger.first().event=dbgExecEvent;
+     		//t.trigger.port.first().println("after add ");
+     		} 
+     	else {// later I need to be more carefull about this else
+     		var trigger1 : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+     		trigger1.port.add(debugPort);     		
+     		trigger1.event=dbgExecEvent;
+     		t.trigger.add(trigger1);
+     		t.trigger.first().event=dbgExecEvent;
+     		delete trigBeforTransBeginState;
+     		
+     		}
+     		//delete trigBeforTransBeginState;  		
+    	trigAfterTransEndState.event=dbgExecEvent;
+
+		
+		//mm
+		/////
+		t.source=tranBeginState;
+		t.target=tranEndState;
+
+		newStates.add(tranBeginState);
+		newStates.add(tranEndState);
+		newTrans.add(selfTransBefore);
+		newTrans.add(selfTransAfter);
+		//newStates.add()
+		newTrans.add(tranBeforTransBeginState);
+		newTrans.add(tranAfterTransEndState);
+	}
+	self.subvertex.addAll(newStates);
+	self.transition.addAll(newTrans);
+	for (s in self.subvertex)
+		if (s.type.name="State")
+		 if (s.region.isDefined())
+			for (r in s.region)
+				r.insTransForDbg2();
+
+}
+
+
+///  instrument states for interactive debugging
+

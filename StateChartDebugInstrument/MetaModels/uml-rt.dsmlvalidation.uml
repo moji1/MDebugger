@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:PapyrusDSMLValidationRule="http://www.eclipse.org/papyrus/dsmlvalidation" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profileext="http://www.eclipse.org/Papyrus/2014/profile/profileExternalization" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Package xmi:id="_duYCEHDyEeWKQfcMBIBTFA" name="ValidationRules">
+    <packagedElement xmi:type="uml:Package" xmi:id="_duc6kHDyEeWKQfcMBIBTFA" name="UMLRealTime">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_dudhoHDyEeWKQfcMBIBTFA" supplier="_duc6kHDyEeWKQfcMBIBTFA">
+        <client xmi:type="uml:Profile" href="uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+      </packagedElement>
+      <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_W-tMoN6YEeSreOZ9eFZl5w">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_W-zTQN6YEeSreOZ9eFZl5w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/dsmlvalidation#/"/>
+        </eAnnotations>
+        <appliedProfile xmi:type="uml:Profile" href="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#__sUW0OhNEeCjcc2EgK3Uwg"/>
+      </profileApplication>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_duYpIHDyEeWKQfcMBIBTFA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dubscHDyEeWKQfcMBIBTFA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/Papyrus/2014/profile/profileExternalization#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_PROFILEEXT/ProfileExternalization.profile.uml#_Mzzc0EWjEeSNXJj2G3jVCw"/>
+    </profileApplication>
+  </uml:Package>
+  <profileext:ApplyProfiles xmi:id="_dufW0HDyEeWKQfcMBIBTFA" base_Dependency="_dudhoHDyEeWKQfcMBIBTFA"/>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_TaoU4BMkEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_-g8psEhTEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_iq9EUBMkEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_t6v3AEhUEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_nq7lUBMkEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_8k0ewEhUEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_s0oDABMkEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_I1oJEEhVEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_yhjwoBMkEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_fuuAsEhVEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_7WCeABMkEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_7I_kgEhVEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_GkTQwBMmEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_EBz7IEhdEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_0z-0UBMmEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_IQKCgAbZEeSFB8mUNT_s_w"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_Kuob0BMpEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_1UM30GfEEeO447LqwGjc0A"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_PlakkBMpEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_2UsEcGfEEeO447LqwGjc0A"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_ZPy_MBMpEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_3Xp9UGfEEeO447LqwGjc0A"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_fa4BYBMpEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_QJC94GfGEeO447LqwGjc0A"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_hIResBMmEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_CIqywEheEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_8pP1gBMoEeSz2qq_H0HScA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_Cvp-EGfKEeO447LqwGjc0A"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_MjTvQJ3LEeW6VrvIZUJreg" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#__uQvcJ3KEeW6VrvIZUJreg"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:MessageHandling xmi:id="_K3VAcJ6NEeW6VrvIZUJreg" messageMode="NameIsMessage">
+    <base_Package xmi:type="uml:Profile" href="uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+  </PapyrusDSMLValidationRule:MessageHandling>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_BoLnsOElEeWW8tvNzax4PA" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_9-2JgOEkEeWW8tvNzax4PA"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_-n3-gOQ8EeW10dPuv-Yr7w" message="" id="">
+    <base_Constraint xmi:type="uml:Constraint" href="uml-rt.profile.uml#_wTG4YOQ8EeW10dPuv-Yr7w"/>
+  </PapyrusDSMLValidationRule:ValidationRule>
+</xmi:XMI>

@@ -1,0 +1,445 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+import "UMLRTQuery.eol";
+import "UMLRTCodeReflection.eol";
+import "UMLRTCodeGenUtil.eol";
+import "UMLRTProfilesOperations.eol";
+import "UMLRTElementOperation.eol";
+import "DetailTracing.eol";
+var uniqueId:Integer=0;
+var instrumentPrefix:String="__Debug__";
+
+operation UMLRTModel!Transition applyRule1(ownerCapsule:UMLRTModel!Class)  {
+	//// initialize 
+	var source:UMLRTModel!State=self.source;
+	//self.source.addTrace(traceType);
+	var target:UMLRTModel!State=self.target;
+	//self.target.addTrace(traceType);
+	//source.guardCodes();
+	//target.guardCodes();
+	//var transField:Sequence;
+	//"Rule1 is processing".println();
+	/////applyRulesCommonality
+	var debugMainState=self.applyRulesCommonality(ownerCapsule);
+	var dbgPort=ownerCapsule.ownedAttributes.selectOne(p|p.name=debugPortName);
+	//.createTrigger(instrumentPrefix+concat("Exec"), dbgPort, dbgExecEvent);
+	if (self.kind.asString=="external"){
+		//"working on external rule".println();
+		//var initDbgState=createPseudostate("init__state__".concat(self.name),UMLRTModel!PseudostateKind#`initial`);
+		var dbgState1=createState(instrumentPrefix.concat("B__Ex__").concat(source.name));
+		//BreakPointType{TransitionEffectBreakPoint,StateEntryBreakPoint,StateExitBreakPoint};
+		// mode =2 state  exit, 0 mens before , 1 means after , and 2 means both
+		dbgState1.addExecControlToDbgState(source.name,"2","StateExitBreakPoint","0","","","","");
+		var dbgState2=createState(instrumentPrefix.concat("B__Ac__").concat(self.name));
+		dbgState2.addExecControlToDbgState(source.name,"2","StateExitBreakPoint","1",self.name,"3","TransitionEffectBreakPoint","0");
+		var dbgState3=createState(instrumentPrefix.concat("A__Ac__").concat(self.name));
+		dbgState3.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","1",target.name,"4","StateEntryBreakPoint","0");
+		var dbgState4=createState(instrumentPrefix.concat("A__En__").concat(target.name));
+		dbgState4.addExecControlToDbgState(target.name,"4","StateEntryBreakPoint","1","","","","");
+		//var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), initDbgState, dbgState1);
+		var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), debugMainState.connectionPoint.selectOne(e|e.name="en"), dbgState1,"");
+		var DbgTrans1=createTransition(instrumentPrefix.concat("Ex__").concat(source.name), dbgState1, dbgState2,"");
+		DbgTrans1.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+		if (source.exit.isDefined())
+			DbgTrans1.effect=source.exit.valueCopy();
+		var DbgTrans2=createTransition(instrumentPrefix.concat("AC__").concat(self.name), dbgState2, dbgState3,"");
+		DbgTrans2.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+		if (self.effect.isDefined())
+			DbgTrans2.effect=self.effect.valueCopy();
+		var DbgTrans3=createTransition(instrumentPrefix.concat("En__").concat(target.name), dbgState3, dbgState4,"");
+		DbgTrans3.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+		if (target.entry.isDefined())
+			DbgTrans3.effect=target.entry.valueCopy();
+		var DbgTrans4=createTransition(instrumentPrefix.concat("end__trans__").concat(self.name), dbgState4, 
+			debugMainState.connectionPoint.selectOne(e|e.name="ex"),"");
+		DbgTrans4.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+		//debugMainState.region.first().subvertex.add(initDbgState);
+		debugMainState.region.first().subvertex.add(dbgState1);
+		dbgState1.applyUMLRTState();
+		dbgState1.addTrace(traceType);
+		debugMainState.region.first().subvertex.add(dbgState2);
+		dbgState2.applyUMLRTState();
+		dbgState2.addTrace(traceType);
+		debugMainState.region.first().subvertex.add(dbgState3);
+		dbgState3.applyUMLRTState();
+		dbgState3.addTrace(traceType);
+		debugMainState.region.first().subvertex.add(dbgState4);
+		dbgState4.addTrace(traceType);
+		dbgState4.applyUMLRTState();
+		debugMainState.region.first().transition.add(initDbgTrans);
+		debugMainState.region.first().transition.add(DbgTrans1);
+		initDbgTrans.addTrace(traceType);
+		DbgTrans1.addTrace(traceType);
+		debugMainState.region.first().transition.add(DbgTrans2);
+		DbgTrans2.addTrace(traceType);
+		debugMainState.region.first().transition.add(DbgTrans3);
+		DbgTrans3.addTrace(traceType);
+		debugMainState.region.first().transition.add(DbgTrans4);
+		DbgTrans4.addTrace(traceType);
+		self.addTrace(traceType);	
+	}
+		
+}
+
+operation UMLRTModel!Transition applyRule2(ownerCapsule:UMLRTModel!Class)  { //StoP
+	var source:UMLRTModel!State=self.source;
+	//self.source.addTrace(traceType);
+	var target:UMLRTModel!Pseudostate=self.target;
+	//source.guardCodes();
+	//target.guardCodes();
+	//self.println("Rule2 is processing for transition");
+	/////applyRulesCommonality
+	var debugMainState=self.applyRulesCommonality(ownerCapsule);
+	debugMainState.applyUMLRTState();
+	var dbgPort=ownerCapsule.ownedAttributes.selectOne(p|p.name=debugPortName);
+	//.createTrigger(instrumentPrefix+concat("Exec"), dbgPort, dbgExecEvent);
+	/// rule 2 detail
+	//var initDbgState=createPseudostate("init__state__".concat(self.name),UMLRTModel!PseudostateKind#`initial`);
+	var dbgState1=createState(instrumentPrefix.concat("B__Ex__").concat(source.name));
+	dbgState1.addExecControlToDbgState(source.name,"2","StateExitBreakPoint","0","","","","");
+	var dbgState2=createState(instrumentPrefix.concat("B__Ac__").concat(self.name));
+	dbgState2.addExecControlToDbgState(source.name,"2","StateExitBreakPoint","1",self.name,"3","TransitionEffectBreakPoint","0");
+	var dbgState3=createState(instrumentPrefix.concat("A__Ac__").concat(self.name));
+	dbgState3.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","1","","","","");
+	//var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), initDbgState, dbgState1);
+	var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), debugMainState.connectionPoint.selectOne(e|e.name="en"), dbgState1,"");
+	var DbgTrans1=createTransition(instrumentPrefix.concat("Ex__").concat(source.name), dbgState1, dbgState2,"");
+	DbgTrans1.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	if (source.exit.isDefined())
+		DbgTrans1.effect=source.exit.valueCopy();
+	var DbgTrans2=createTransition(instrumentPrefix.concat("AC__").concat(self.name), dbgState2, dbgState3,"");
+	DbgTrans2.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	if (self.effect.isDefined())
+		DbgTrans2.effect=self.effect.valueCopy();
+	var DbgTrans3=createTransition(instrumentPrefix.concat("end__trans__").concat(self.name), dbgState3, 
+		debugMainState.connectionPoint.selectOne(e|e.name="ex"),"");
+	DbgTrans3.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	//debugMainState.region.first().subvertex.add(initDbgState);
+	debugMainState.region.first().subvertex.add(dbgState1);
+	dbgState1.applyUMLRTState();
+	dbgState1.addTrace(traceType);
+	debugMainState.region.first().subvertex.add(dbgState2);
+	dbgState2.applyUMLRTState();
+	dbgState2.addTrace(traceType);
+	debugMainState.region.first().subvertex.add(dbgState3);
+	dbgState3.applyUMLRTState();
+	dbgState3.addTrace(traceType);
+	debugMainState.region.first().transition.add(initDbgTrans);
+	debugMainState.region.first().transition.add(DbgTrans1);
+	DbgTrans1.addTrace(traceType);
+	debugMainState.region.first().transition.add(DbgTrans2);
+	DbgTrans2.addTrace(traceType);
+	debugMainState.region.first().transition.add(DbgTrans3);
+	DbgTrans3.addTrace(traceType);
+	self.addTrace(traceType);
+}
+
+operation UMLRTModel!Transition applyRule3(ownerCapsule:UMLRTModel!Class)  {
+	var source:UMLRTModel!Pseudostate=self.source;
+	var target:UMLRTModel!State=self.target;
+	//self.target.addTrace(traceType);
+	//source.guardCodes();
+	//target.guardCodes();
+	//self.println("Rule3 is processing for transition");
+	/////applyRulesCommonality
+	var debugMainState=self.applyRulesCommonality(ownerCapsule);
+	var dbgPort=ownerCapsule.ownedAttributes.selectOne(p|p.name=debugPortName);
+	//.createTrigger(instrumentPrefix+concat("Exec"), dbgPort, dbgExecEvent);
+	/// rule 3 detail
+	//var initDbgState=createPseudostate("init__state__".concat(self.name),UMLRTModel!PseudostateKind#`initial`);
+	var dbgState1=createState(instrumentPrefix.concat("B__Ac__").concat(self.name));
+	dbgState1.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","0","","","","");
+	var dbgState2=createState(instrumentPrefix.concat("A__Ac__").concat(self.name));
+	dbgState2.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","1",target.name,"4","StateEntryBreakPoint","0");
+	var dbgState3=createState(instrumentPrefix.concat("A__En__").concat(self.name));
+	dbgState3.addExecControlToDbgState(target.name,"4","StateEntryBreakPoint","1","","","","");
+	//var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), initDbgState, dbgState1);
+	var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), debugMainState.connectionPoint.selectOne(e|e.name="en"), dbgState1,"");
+	var DbgTrans1=createTransition(instrumentPrefix.concat("Ac__").concat(self.name), dbgState1, dbgState2,"");
+	DbgTrans1.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	if (self.effect.isDefined())
+		DbgTrans1.effect=self.effect.valueCopy();
+	var DbgTrans2=createTransition(instrumentPrefix.concat("En__").concat(target.name), dbgState2, dbgState3,"");
+	DbgTrans2.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	if (target.entry.isDefined())
+		DbgTrans2.effect=target.entry.valueCopy();
+	var DbgTrans3=createTransition(instrumentPrefix.concat("end__trans__").concat(self.name), dbgState3, 
+		debugMainState.connectionPoint.selectOne(e|e.name="ex"),"");
+	DbgTrans3.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	//debugMainState.region.first().subvertex.add(initDbgState);
+	debugMainState.region.first().subvertex.add(dbgState1);
+	dbgState1.applyUMLRTState();
+	dbgState1.addTrace(traceType);
+	debugMainState.region.first().subvertex.add(dbgState2);
+	dbgState2.applyUMLRTState();
+	dbgState2.addTrace(traceType);
+	debugMainState.region.first().subvertex.add(dbgState3);
+	dbgState3.applyUMLRTState();
+	dbgState3.addTrace(traceType);
+	debugMainState.region.first().transition.add(initDbgTrans);
+	initDbgTrans.addTrace(traceType);
+	debugMainState.region.first().transition.add(DbgTrans1);
+	DbgTrans1.addTrace(traceType);
+	debugMainState.region.first().transition.add(DbgTrans2);
+	DbgTrans2.addTrace(traceType);
+	debugMainState.region.first().transition.add(DbgTrans3);
+	DbgTrans3.addTrace(traceType);
+	self.addTrace(traceType);
+}
+
+operation UMLRTModel!Transition applyRule4(ownerCapsule:UMLRTModel!Class)  {
+	var source:UMLRTModel!Pseudostate=self.source;
+	var target:UMLRTModel!Pseudostate=self.target;
+	//self.println("Rule4 is processing for transition");
+	/////applyRulesCommonality
+	var debugMainState=self.applyRulesCommonality(ownerCapsule);
+	/// rule 4 detail
+	var dbgPort=ownerCapsule.ownedAttributes.selectOne(p|p.name=debugPortName);
+	//.createTrigger(instrumentPrefix+concat("Exec"), dbgPort, dbgExecEvent);
+	//var initDbgState=createPseudostate("init__state__".concat(self.name),UMLRTModel!PseudostateKind#`initial`);
+	var dbgState1=createState(instrumentPrefix.concat("B__Ac__").concat(self.name));
+	dbgState1.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","0","","","","");
+	var dbgState2=createState(instrumentPrefix.concat("A__Ac__").concat(self.name));
+	dbgState2.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","1","","","","");
+	//var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), initDbgState, dbgState1);
+	var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), debugMainState.connectionPoint.selectOne(e|e.name="en"), dbgState1,"");
+	var DbgTrans1=createTransition(instrumentPrefix.concat("Ac__").concat(self.name), dbgState1, dbgState2,"");
+	DbgTrans1.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);
+	if (self.effect.isDefined())
+		DbgTrans1.effect=self.effect.valueCopy();
+	var DbgTrans2=createTransition(instrumentPrefix.concat("end__trans__").concat(self.name), dbgState2, 
+		debugMainState.connectionPoint.selectOne(e|e.name="ex"),"");
+	DbgTrans2.createTrigger(instrumentPrefix.concat("Exec"), dbgPort, dbgExecEvent);	
+	//debugMainState.region.first().subvertex.add(initDbgState);
+	debugMainState.region.first().subvertex.add(dbgState1);
+	dbgState1.applyUMLRTState();
+	debugMainState.region.first().subvertex.add(dbgState2);
+	dbgState2.applyUMLRTState();
+	debugMainState.region.first().transition.add(initDbgTrans);
+	debugMainState.region.first().transition.add(DbgTrans1);
+	debugMainState.region.first().transition.add(DbgTrans2);
+	self.addTrace(traceType);
+}
+
+operation UMLRTModel!Transition applyRulesCommonality(ownerCapsule:UMLRTModel!Class) :UMLRTModel!State {
+	if (not self.name.isDefined())
+		self.assignName();
+	// 
+	var mainSource=self.source;
+	var container=self.owner;
+	/// addin trace to transtions
+	//self.addTrace(traceType);
+	//create path
+	if ((not (self.source.name.isDefined())) or (self.source.name.trim()=""))
+		self.source.assignName();
+	if ((not (self.target.name.isDefined())) or (self.target.name.trim()=""))
+		self.target.assignName();
+	var pathName:String=instrumentPrefix.concat("Path__").concat(self.name);
+	var path=createPseudostate(pathName,UMLRTModel!PseudostateKind#`choice`);
+	container.subvertex.add(path);
+	path.applyUMLRTPseudostate();
+	// create debug state
+	var debugMainStateName:String=instrumentPrefix.concat("C__").concat(self.name);
+	var debugMainState=createCompositeState(debugMainStateName,false,false,"en","ex");
+	//debugMainState.addTrace(traceType);
+	container.subvertex.add(debugMainState);
+	debugMainState.applyUMLRTState();
+	var entry:UMLRTModel!Pseudostate=createPseudostate("en",UMLRTModel!PseudostateKind#`entryPoint`);
+	debugMainState.connectionPoint.add(entry);
+	entry.applyUMLRTPseudostate();
+	var exit:UMLRTModel!Pseudostate=createPseudostate("ex",UMLRTModel!PseudostateKind#`exitPoint`);
+	debugMainState.connectionPoint.add(exit);
+	exit.applyUMLRTPseudostate();
+	// create transtion as init trans from source state to path
+	var initTransName:String=instrumentPrefix.concat(self.name);
+	var initTrans:UMLRTModel!Transition=createTransition(initTransName,self.source,path,"");
+	self.source=path;
+	container.transition.add(initTrans);
+	initTrans.addTrace(traceType);
+	//// assign trigger
+	if (self.trigger.isDefined() and self.trigger.size()>0)
+		initTrans.trigger.addAll(self.trigger);
+	// create transtion to start debug
+	var enterDebugTransName:String=instrumentPrefix.concat(self.name).concat("__S");
+	var enterDebugTrans:UMLRTModel!Transition=createTransition(enterDebugTransName,path,debugMainState.connectionPoint.selectOne(e|e.name="en"),"");
+	/// guard for cheking debug in choice point
+	var guardString:String="return ".concat(mainSource.generateDebugCheckString("1","TransitionEffectBreakPoint","0")).concat(";").concat(endLine);
+	enterDebugTrans.addGuard(instrumentPrefix.concat("Guard").concat(self.name), guardString);
+	container.transition.add(enterDebugTrans);
+	enterDebugTrans.addTrace(traceType);
+	/// assign gaurd 
+	if (self.guard.isDefined())
+		initTrans.guard=self.guard;
+	/// create transtion  from debug to target state
+	var exitDebugTransName:String=instrumentPrefix.concat(self.name).concat("__E");
+	var exitDebugTrans:UMLRTModel!Transition=createTransition(exitDebugTransName,debugMainState.connectionPoint.selectOne(e|e.name="ex"),self.target,"");
+	container.transition.add(exitDebugTrans);
+	exitDebugTrans.addDbgCommandRecallMsg();
+	exitDebugTrans.addTrace(traceType);
+	/// create debug transitions for view and change variable, set breakpoints, rem break point and view breakpoint 
+	var debugTransName:String=instrumentPrefix.concat(self.name).concat("__dbg__varChange");
+	//var debugTrans:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"internal");
+	var debugTrans:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"");
+	var dbgPort=ownerCapsule.ownedAttributes.selectOne(p|p.name=debugPortName);
+	debugTrans.createTrigger(instrumentPrefix.concat("MSG"), dbgPort, dbgVarChangeEvent);
+	debugTrans.addDbgCommandVarChangeHandler();
+	////
+	var debugTransName:String=instrumentPrefix.concat(self.name).concat("__dbg__setBreakPoint");
+	//var debugTrans1:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"internal");
+	var debugTrans1:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"");
+	debugTrans1.createTrigger(instrumentPrefix.concat("MSG"), dbgPort, dbgSetBreakPointEvent);
+	debugTrans1.addDbgCommandSetBreakPointHandler();
+	////
+	var debugTransName:String=instrumentPrefix.concat(self.name).concat("__dbg__remBreakPoint");
+	//var debugTrans2:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"internal");
+	var debugTrans2:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"");
+	debugTrans2.createTrigger(instrumentPrefix.concat("MSG"), dbgPort, dbgRemBreakPointEvent);
+	debugTrans2.addDbgCommandRemBreakPointHandler();
+	////
+	var debugTransName:String=instrumentPrefix.concat(self.name).concat("__dbg__viewBreakPoints");
+	//var debugTrans3:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"internal");
+	var debugTrans3:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"");
+	debugTrans3.createTrigger(instrumentPrefix.concat("MSG"), dbgPort, dbgViewBreakPointsEvent);
+	debugTrans3.addDbgCommandViewBreakPointsHandler();
+	/////
+	var debugTransName:String=instrumentPrefix.concat(self.name).concat("__dbg__dbgSetExecMode");
+	//var debugTrans4:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"internal");
+	var debugTrans4:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"");
+	debugTrans4.createTrigger(instrumentPrefix.concat("MSG"), dbgPort, dbgSetExecModeEvent);
+	debugTrans4.addDbgCommandSetExecModeHandler();
+	//////
+	///// add tranition to defer messages
+	var debugTransName:String=instrumentPrefix.concat(self.name).concat("__dbg__dbgDeferMsg");
+	//var debugTrans4:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"internal");
+	var debugTrans5:UMLRTModel!Transition=createTransition(debugTransName,debugMainState,debugMainState,"");
+	//debugTrans5.createTrigger(instrumentPrefix.concat("MSG"), dbgPort, dbgSetExecModeEvent);
+	debugTrans5.createDeferTriggers();
+	debugTrans5.addDbgCommandDeferMsg();
+	//var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), initDbgState, dbgState1);
+	container.transition.add(debugTrans);
+	container.transition.add(debugTrans1);
+	container.transition.add(debugTrans2);
+	container.transition.add(debugTrans3);
+	container.transition.add(debugTrans4);
+	container.transition.add(debugTrans5);
+	//// add handelr to serve the breakpointsCommand
+	//...
+	//debugTrans.addTrace(traceType);
+	//////////
+	self.source=path;
+	debugMainState.getMainRegion().applyUMLRTRegion();
+	return debugMainState;
+}
+
+/// add gaurd to state entry and exit to prevent their duplicate execuation
+operation UMLRTModel!State guardCodes() {
+	if (self.entry.isDefined()){
+		var body:String=self.entry.body.first();
+		// second and thirf argument were ignored
+		body="if( not ".concat(self.generateDebugCheckString("5","StateEntryBreakPoint","0")).concat(") {").concat(endLine).concat(body).concat(endLine).concat("}");
+		self.entry.body.clear();
+		self.entry.body.add(body);
+	}
+	if (self.exit.isDefined()){
+		var body:String=self.exit.body.first();
+		// second and thirf argument were ignored
+		body="if( not ".concat(self.generateDebugCheckString("0","StateExitBreakPoint","0")).concat(") {").concat(endLine).concat(body).concat(endLine).concat("}");
+		self.exit.body.clear();
+		self.exit.body.add(body);
+	}
+}
+/// generate  debug guard string for state incluing  orginal states
+operation UMLRTModel!State generateDebugCheckString(mode:String,breaktype:String,loc:String):String{
+	var guardString:String=instrumentPrefix.concat("SRO.checkDebug(\"");
+	//checkDebug()
+	var signalName="\"\"";
+	var protocolName="\"\"";
+	signalName="msg->getSignalName()";
+	protocolName="msg->destPort->role()->protocol";
+	guardString=guardString.concat(self.name).concat("\",").concat(protocolName).concat(",").concat(signalName).
+		concat(",").concat(mode).concat(",").concat(breaktype).concat(",").concat(loc).concat(")");
+	//var gaurdExpression="if (true) " ;
+	//return gaurdExpression.concat("{").concat(endLine).concat(self). concat("}").concat(endLine);
+	return guardString;
+}
+
+/// generate  debug guard string for state incluing  orginal states
+operation UMLRTModel!Pseudostate generateDebugCheckString(mode:String,breaktype:String,loc:String):String{
+	var guardString:String=instrumentPrefix.concat("SRO.checkDebug(\"");
+	//checkDebug()
+	var signalName="\"\"";
+	var protocolName="\"\"";
+	guardString=guardString.concat(self.name).concat("\",").concat(protocolName).concat(",").concat(signalName).
+		concat(",").concat(mode).concat(",").concat(breaktype).concat(",").concat(loc).concat(")");
+	//var gaurdExpression="if (true) " ;
+	//return gaurdExpression.concat("{").concat(endLine).concat(self). concat("}").concat(endLine);
+	return guardString;
+}
+////
+operation  generateBreakPointCheckString(name:String,mode:String,breaktype:String,loc:String):String{
+	var guardString:String=instrumentPrefix.concat("SRO.checkDebug(\"");
+	//checkDebug()
+	var signalName="\"\"";
+	var protocolName="\"\"";
+	guardString=guardString.concat(name).concat("\",").concat(protocolName).concat(",").concat(signalName).
+		concat(",").concat(mode).concat(",").concat(breaktype).concat(",").concat(loc).concat(")");
+	//var gaurdExpression="if (true) " ;
+	//return gaurdExpression.concat("{").concat(endLine).concat(self). concat("}").concat(endLine);
+	return guardString;
+}
+
+////
+operation UMLRTModel!State addExecControlToDbgState(name1:String,mode1:String,breakType1:String,loc1:String,
+	name2:String,mode2:String,breakType2:String,loc2:String){
+	//BreakPointType{TransitionEffectBreakPoint,StateEntryBreakPoint,StateExitBreakPoint};
+	// mode =2 state  exit, 0 mens before , 1 means after , and 2 means both
+	var entryMethod:UMLRTModel!OpaqueBehavior=createMethod(self.name, "C++");
+	var body:String="if (not(".concat(generateBreakPointCheckString(name1,mode1,breakType1,loc1));
+	if (not (breakType2==""))
+		body=body.concat(" or ").concat(generateBreakPointCheckString(name2,mode2,breakType2,loc2));
+	body=body.concat(")){").concat(endLine);
+	body=body.concat(debugPortName).concat(".selfExec().send();}").concat(endLine);
+	entryMethod.body.add(body);
+	self.entry=entryMethod;
+}
+
+/// assign name to transtions that don't have name 
+ operation UMLRTModel!Transition assignName()  {
+	uniqueId=uniqueId+1;
+	var tempS:String="";
+	if (self.source.name.isDefined())
+		tempS=self.source.name;
+	else 
+		tempS="none";
+	if (self.target.name.isDefined())
+		tempS=tempS.concat("__").concat(self.target.name);
+	else 
+		tempS=tempS=tempS.concat("__none");
+	self.name=tempS.concat("__").concat(uniqueId.asString());
+}
+/// assign name to state that don't have name 
+ operation UMLRTModel!State assignName()  {
+	uniqueId=uniqueId+1;
+	var tempS:String="";
+	if ((not (self.name.isDefined())) or (self.name.trim()="")){
+		tempS=self.stateType().concat(uniqueId.asString);
+		self.name=tempS;
+		}
+}
+
+/// assign name to state that don't have name 
+ operation UMLRTModel!Pseudostate assignName()  {
+	uniqueId=uniqueId+1;
+	var tempS:String="";
+	if ((not (self.name.isDefined())) or (self.name.trim()="")){
+		tempS=self.stateType().concat(uniqueId.asString);
+		self.name=tempS;
+		}
+}
+
+

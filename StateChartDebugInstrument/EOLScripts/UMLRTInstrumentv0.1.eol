@@ -1,0 +1,454 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+import "UMLRTQuery.eol";
+import "UMLRTCodeReflection.eol";
+import "UMLRTCodeGenUtil.eol";
+import "UMLRTProfilesOperations.eol";
+import "UMLRTElementOperation.eol";
+import "SRORule.eol";
+import "DetailTracing.eol";
+
+//-----------------------------intialize variables........................................//
+
+var uniqueId:Integer=0; // manages the generation of unique id for the name of the elements
+var instrumentPrefix:String="Debug__"; // use as a prefix for the  generated variables' name
+var debugConnectPointName=instrumentPrefix+"Connect__Point__"; // used for consistent naming
+var debugStateName:String=instrumentPrefix.concat("Super__State__");  // used for consistent naming
+var debugEntry:String="__Debug__Entry__";   // used for consistent naming
+var debugChoice:String="__Debug__Choice__";  // used for consistent naming
+var generationPrefix="__Generated__";  // used for consistent naming
+var endLine:String="\n";  // end of line character
+var uniqueID:Integer=1; // we need to name the added state and transition uniquely
+var Observarion:String="Observation"; 
+var traceType:String="Observation"; // type of tracing 
+var debugLevel:Integer=0; // 0= info , 1= debug at frist level functions 2= debug at second level and 3= debug at thirth level 
+var debugPortName="extComm"; // refers to the name of the port used for communication with Debugging Agent
+var currentCapsuleName:String=""; // refers the the the capsule that passed for instrumentation
+
+
+//-----------------------------loading user models, gateway model, debug protocol........................................//
+
+var UMLPrimitiveTypes=UMLRTModel!Package.all.select(c|c.name="PrimitiveTypes").first();
+var UMLRTSLIB=UMLRTModel!Package.all.select(c|c.name="UMLRT-RTS").first();
+var modelroot=UMLRTModel!Package.all.select(c|c.type.name="Model").first();
+//"Instrumentaion is Started on model:".println("Debug Level 0: ");
+//modelroot.println("Debug Level 0: ");
+var dbgProtocol;
+var rtsBaseCommProtocol;
+var dbgVarChangeEvent;
+var dbgSetBreakPointEvent;
+var dbgRemBreakPointEvent;
+var dbgViewBreakPointsEvent;
+var dbgSetExecModeEvent;
+var anyEvent;
+var dbgExecEvent;
+var rtBound;
+var transitionsData:Set;
+var activePorts:Set; 
+// save all used port which are set for a state machine's trigger'
+/*/// check if geteway and primitive package imprrted correctly, If not show error and exit
+if (UMLPrimitiveTypes.isUndefined() or dbgProtocol.isUndefined() or dbgCommandEvent.isUndefined()
+	or dbgExecEvent.isUndefined() or anyEvent.isUndefined()){
+	errln("Required model is not loaded correctly (Gateway, Debug protocol or Primitive package)");
+	}
+
+*/
+/// extract all state machine and classes
+
+var allStateMachines:Set=modelroot.getAllStateMachines();
+var allClasses=modelroot.getAllOwnedClasses();
+allClasses.size().println("number of capsule");
+allStateMachines.getAllRegions().getAllStates().size().println("number of states");
+
+//----------------------------main loop of the transformation........................................//
+//transaction{
+	addGateWay();
+	refineStructure();
+	for (SM in allStateMachines){
+		//SM.getAllRegions().getAllTransitions().size().println("Number of transtion");
+		//SM.getAllRegions().getAllStates().size().println("number of states");
+		var allStates=SM.getAllRegions().getAllStates().select(s|s.stateType()=="Composite" or s.stateType()=="State");
+		refineForSRO(SM);
+		for (s in allStates){
+			s.guardCodes(); // First guard then add trace, to make sure that the related event will be generated
+			s.addTrace(traceType);
+			
+			}
+		}
+return modelroot;
+//abort;
+//	}
+	
+	
+//----------------------------defined main functions for transformation........................................//
+/// refine state machine for stop and resume operation
+
+operation  addGateWay ():Boolean {
+	// check if top capsule exist , then replace it with new one 
+	//"Adding Gateway Is Started".println("addGateWay operation: ");
+	var modelTopCapsuleName:String=modelroot.getTopCapsule();
+	if (modelTopCapsuleName==""){
+		"Top Capsule Not found".println("addGateWay operation: ");
+		return false;
+		}
+	var debugTop=createCapsule(instrumentPrefix.concat("Top"));
+	modelroot.packagedElement.add(debugTop);
+	debugTop.applyUMLRTStereotype();
+	/// set top capsule
+	if (not modelroot.setTopCapsule(instrumentPrefix.concat("Top"))){
+		"Top Capsule Can Not Be Set".println("addGateWay operation: ");
+		return false;
+		}
+	///set model's language
+	modelroot.setModelLanguage("umlrt-cpp");
+	/// import gateway package
+	var gateWayRoot=DebuggingAgent!Package.all.select(c|c.type.name="Model").first();
+	modelroot.importPackage(gateWayRoot);
+	//// add  the gateway  capsule as part to debug_top
+	var gateWayCapsule=gateWayRoot.getAllOwnedClasses().selectOne(c|c.name="GateWay");
+	debugTop.createProperty(instrumentPrefix.concat("Gateway"),1,1,gateWayCapsule);
+	//// add  the model top capsule as part to debug_top
+	var modelTopCapsule=modelroot.getAllOwnedClasses().selectOne(c|c.name=modelTopCapsuleName);
+	var partUserModel=debugTop.createProperty(instrumentPrefix.concat(modelTopCapsuleName),1,1,modelTopCapsule);
+	/// extract event name for debugging
+	//gateWayRoot.println();
+	dbgProtocol=gateWayRoot.getAllNestedPackage().selectOne(p|p.name="ExtInterface").packagedElement.first();
+	/// get base protocol to get access to rtBound message
+	rtsBaseCommProtocol=UMLRTSLIB.getAllNestedPackage().select(p|p.name="UMLRTBaseCommProtocol");
+	var dbgProtocolP=gateWayRoot.getAllNestedPackage().select(p|p.name="ExtInterface");
+	dbgVarChangeEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgVarChange");
+	dbgExecEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgExec");
+	dbgSetBreakPointEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgSetBreakPoint");
+	dbgRemBreakPointEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgRemBreakPoint");
+	dbgViewBreakPointsEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgViewBreakPoints");
+	dbgSetExecModeEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="dbgSetExecMode");
+    //.... add setexecmode command
+	anyEvent=dbgProtocolP.packagedElement.first().selectOne(e|e.type.name="AnyReceiveEvent");	
+	rtBound=rtsBaseCommProtocol.packagedElement.first().selectOne(e|e.type.name="CallEvent" and e.`operation`.name="rtBound");
+}
+operation  refineStructure(){
+	/// add debug port to all capsules
+	//"refineStructure is started".println();
+	var gateWayRoot=DebuggingAgent!Package.all.select(c|c.type.name="Model").first();
+	//var gateWayCapsule=gateWayRoot.getAllOwnedClasses().selectOne(c|c.name="GateWay");
+	//dbgProtocol=gateWayRoot.getAllNestedPackage().selectOne(p|p.name="ExtInterface").packagedElement.first();
+	//allClasses.addPortToCapsules(debugPortName,dbgProtocol,true,1,1,"SAP");
+	for (c in allClasses)
+		if (c.getStateMachine().isDefined()){
+		    //  add method to handle recalling messages
+		    activePorts=c.getStateMachine().getAllRegions().getAllTransitions().getActivePorts();
+		    c.addRecallAllMsgMethod(activePorts);
+			//c.println("capsule:");
+			c.addPortToCapsules(debugPortName,dbgProtocol,true,1,1,"SAP");
+			//"Add method to view attributes: ".concat(c.name).println("refineStructure: ");
+			c.addVarWatchMethod();
+			//"Add method to change attributes: ".concat(c.name).println("refineStructure: ");
+			c.addVarChangeMethod();
+			//"Add required attributes: ".concat(c.name).println("refineStructure: ");
+			c.addRequiredAttributes();
+			//111--
+			//// add deatil tracing method and apply it on all states and transtions
+			c.addTracingRequiredHeader();
+			c.addSendEventMethod();
+			//// add if guard to all stable state
+			//// generate the code for checking the condition in entry and exit
+			//// 
+			
+		}
+	
+}
+operation  refineForSRO(SM:UMLRTModel!StateMachine)  {
+	var allTransions=SM.getAllRegions().getAllTransitions();
+	var ownerCapsule=SM.Owner;
+	activePorts=allTransions.getActivePorts();
+	//activePorts.println();
+	//SM.println();
+	for (t in allTransions){
+		//t.println("before getting trans data");
+		transitionsData.add(t.transData());
+		//t.println("Transition Name: ");
+		if ((Set{"StoS","StoC","CtoC","Ctos"}).includes(t.transType()))
+			//t.events().println("Rule1");
+			t.applyRule1(ownerCapsule);
+		else if ((Set{"StoP","CtoP"}).includes(t.transType()))
+			//t.events().println("Rule2");
+			t.applyRule2(ownerCapsule);
+		else if ((Set{"PtoS","PtoC"}).includes(t.transType()))
+			//t.events().println("Rule3");
+			t.applyRule3(ownerCapsule);
+		else if ((Set{"PtoP"}).includes(t.transType()))
+			//t.events().println("Rule4");
+			t.applyRule4(ownerCapsule);
+		}
+	/*if (c.getStateMachine().isDefined()){
+		c.println();
+		c.getStateMachine().println();
+		"Add send event  method: ".concat(c.name).println("Debug Level 0: ");
+		c.addSendEventMethod();
+		}*/
+		//transitionsData.println();
+		var initTrans=SM.getIntialTransition();
+		//initTrans.addDebugInitCode(transitionsData);
+		initTrans.addDebugConnectionState(SM);
+		//generateDebugIntializationCode();
+}
+
+
+//// delete previous debugging instrument if exist any
+operation UMLRTModel!StateMachine remExistingInsrument(): UMLRTModel!StateMachine{
+	var intialState=self.getIntialState();
+	var intailTrans=self.getIntialTransition();
+	var mainRegion=self.getMainRegion();
+	if (mainRegion.subvertex.exists(s|s.name=debugStateName)){
+		if (intailTrans.target.name=debugChoice){
+			//"Debug Level 1".println("removing the added choice point and related transitions");
+		    var mainIntialTrans=mainRegion.transition.selectOne(t|t.source.name=debugChoice and t.target.name<>instrumentPrefix.concat("connDebugger"));
+		    /// remove added transition connect from choice point to   debugging main state
+		    //instrumentPrefix.concat("connDebugger")
+		    delete mainRegion.transition.select(t|t.target.name=debugEntry and t.source.name= instrumentPrefix.concat("connDebugger"));
+			delete mainRegion.transition.select(t|t.target.name=instrumentPrefix.concat("connDebugger"));
+			/// remov added  choice point 
+			delete intailTrans.target;
+			/// remove added transition from intial to  choice point 
+			delete intailTrans;
+			//// return back the main intial transition 
+			mainIntialTrans.source=intialState;
+		}
+		/// remove the debugging state
+		delete mainRegion.subvertex.select(s|s.name=debugStateName);
+		delete mainRegion.subvertex.select(s|s.name=instrumentPrefix.concat("connDebugger"));
+	}
+	
+}
+///// add choice point between debugging state machine(Instrumentd) and user defined model
+operation UMLRTModel!StateMachine addDebugChoicePoint(){
+   // find intail transition and add choice point and related transitions,the choice point   move the code to debugging mode when debugging flag is set
+	var intialTrans=self.getIntialTransition();
+	/// this method chnage the transition, save the main region before doing them, otherwiase main region will be missed
+	var mainR=self.getMainRegion();
+	/// add debugging choice point
+	var choicePoint:UMLRTModel!Pseudostate= new UMLRTModel!Pseudostate;
+	choicePoint.kind=UMLRTModel!PseudostateKind#choice;
+	choicePoint.name=debugChoice;
+	//// add state to check establish debugging connection, then move to debugging mode, 
+	//it means I should one state and one transition with a trigger to debug super state 
+	var connDebuggerState:UMLRTModel!State= new UMLRTModel!State;
+	connDebuggerState.name=instrumentPrefix.concat("connDebugger");
+	//// transition to debug check point, it needs to read the config and check the debugging flag 
+	var transToDebugChoicePoint:UMLRTModel!Transition=new UMLRTModel!Transition;
+	var loadConfig:UMLRTModel!OpaqueBehavior=new UMLRTModel!OpaqueBehavior;
+	loadConfig.name="loadConfig";
+	loadConfig.language.add("C++");
+	//loadConfig.body.add(self.generateConfigLoad(instrumentPrefix.concat("flag")));
+	loadConfig.body.add(self.generateAskForConfig(instrumentPrefix.concat("flag")));
+	transToDebugChoicePoint.effect=loadConfig;
+	//// transition to  state that establish connection to debugger
+	var transToDebugConn:UMLRTModel!Transition=new UMLRTModel!Transition; // tranistion to debuger conn satet 	
+	var guardToDebug:UMLRTModel!OpaqueExpression= new UMLRTModel!OpaqueExpression; // transition to guard
+	var constraintForDebug:UMLRTModel!Constraint= new UMLRTModel!Constraint;
+	constraintForDebug.name="checkDebugFlag";
+	guardToDebug.language.add("C++");
+	guardToDebug.body.add("return this->".concat(instrumentPrefix).concat("flag").concat(";").concat(endLine));
+	guardToDebug.name="guardToDebug";
+	constraintForDebug.specification=guardToDebug;
+	transToDebugConn.ownedRule.add(constraintForDebug);
+	transToDebugConn.guard=constraintForDebug;
+	transToDebugChoicePoint.target=choicePoint;
+	transToDebugConn.source=choicePoint;
+	transToDebugConn.name=instrumentPrefix.concat("Trans__DebugConn");
+	transToDebugChoicePoint.source=intialTrans.source;
+	transToDebugChoicePoint.name=instrumentPrefix.concat("Trans__Config");
+	intialTrans.source=choicePoint;
+	transToDebugConn.target=connDebuggerState;
+	//// add entry point to to debug state
+    //// 
+	var ePoint : UMLRTModel!Pseudostate = new UMLRTModel!Pseudostate;
+	ePoint.name=debugConnectPointName;
+	ePoint.kind=UMLRTModel!PseudostateKind#entryPoint;
+	ePoint.name=debugEntry;
+	/// add tranistion to debug entry point
+	var transToDebug:UMLRTModel!Transition=new UMLRTModel!Transition; // tranistion to debuger conn satet 
+	transToDebug.name=instrumentPrefix.concat("TransToDebug");
+	transToDebug.source=connDebuggerState;
+	transToDebug.target=ePoint;
+	var triggerToDebug:UMLRTModel!Trigger=new UMLRTModel!Trigger;
+	triggerToDebug.port=self.Owner.ownedAttributes.select(p|p.name=debugPortName);
+	triggerToDebug.event=anyEvent;
+	var connDebugger:UMLRTModel!OpaqueBehavior=new UMLRTModel!OpaqueBehavior;
+	connDebugger.name="connDebugger";
+	connDebugger.language.add("C++");
+	connDebugger.body.add(self.generateConnDebugger());
+	transToDebug.effect=connDebugger;
+	//triggerToDebug.event.type=AnyReceiveEvent;
+	transToDebug.trigger.add(triggerToDebug);
+	self.getAllRegions().getAllStates().selectOne(s|s.name=debugStateName).connectionPoint.add(ePoint);
+	transToDebug.target=ePoint;
+	mainR.subvertex.add(choicePoint);
+	mainR.subvertex.add(connDebuggerState);
+	mainR.transition.add(transToDebugChoicePoint);
+	mainR.transition.add(transToDebugConn);
+	mainR.transition.add(transToDebug);
+
+}
+//// instrument statemachine for interactive debugging
+operation UMLRTModel!StateMachine insStateMachineForDbg2()  {
+	self.remExistingInsrument();
+	var debugSuperState:UMLRTModel!State= new UMLRTModel!State;
+	debugSuperState.name=debugStateName;	
+     
+	//copy all region of main model to the debug main state
+
+	var allRegion=self.region;
+    for (r in allRegion)
+    	debugSuperState.region.add(r.valueCopy());
+    for (r in debugSuperState.getAllRegions())
+    	r.insTransForDbg();
+   /// add tracing to all state that added for debugging 
+    for (r in debugSuperState.getAllRegions())
+    	for (s in r.getAllStates().select(s|s.type.name="State"))
+    		s.addTrace(Observarion);
+   /// add tracing to all tranistion that added for debugging 
+   for (r in debugSuperState.getAllRegions())
+    	for (t in r.getAllTransitions())
+    		t.addTrace(Observarion);
+   	
+    
+    //// add trace point to all states and tranistion for debug super state
+    
+	self.region.first().subvertex.add(debugSuperState);
+	self.addDebugChoicePoint();
+}
+
+///  instrument statmachine for  interactive debugging uisng diffrent region, it cause issue for model view, so we don't uset for now
+operation UMLRTModel!StateMachine insStateMachineForDbg()  {
+	var debugRegion : Region= new Region;
+	debugRegion.name="__Debug__Region__";
+	var debugSuperState:UMLRTModel!State= new UMLRTModel!State;
+	debugSuperState.name="__Debug_Super__State__";
+	debugRegion.subvertex.add(debugSuperState);
+	var mainRegion : UMLRTModel!Region= new UMLRTModel!Region;
+	mainRegion.name="Main";
+	var mainSuperState:UMLRTModel!State= new UMLRTModel!State;
+	mainSuperState.name="__Main__Super__State__";
+	var cPoint : UMLRTModel!connectionPoint = new UMLRTModel!connectionPoint;
+	mainRegion.subvertex.add(mainSuperState);
+	var allRegion=self.region;
+	//allRegion.println();
+    mainSuperState.region.addAll(allRegion);
+    for (r in mainSuperState.region)
+    	debugSuperState.region.add(r.valueCopy());
+	self.region.add(debugRegion);
+	self.region.add(mainRegion);
+}
+
+///  instrument transition for interactive debugging
+operation UMLRTModel!Region insTransForDbg()  {
+	var newTrans : Set ;
+	var newStates : Set ;
+	for (t in self.transition){
+	 //if ((not (t.name.isDefined())) or (not (t.name.startsWith(__Debug__)))){
+	 	// add debug states and transaction and tigger for debugg command
+		var tranBeginState : UMLRTModel!State= new UMLRTModel!State;
+		uniqueID=uniqueID+1;
+		//t.println();
+		//t.source.println();
+		//t.target.println();
+		tranBeginState.name=instrumentPrefix.concat("B__S__").concat(t.source.name).concat("__").concat(t.target.name).concat("__").concat(uniqueID.asString());
+		var selfTransBefore : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigselfTransBefore : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		selfTransBefore.source=tranBeginState;
+		selfTransBefore.target=selfTransBefore.source;
+		selfTransBefore.name=instrumentPrefix.concat("CMD").concat("__").concat(uniqueID.asString());
+		trigselfTransBefore.port.add(debugPort);
+		//delete UMLRTModel!CallEvent;
+		//debugCommandEvent.println();
+		selfTransBefore.addDbgCommandHandler();
+		trigselfTransBefore.event=dbgCommandEvent;
+		selfTransBefore.trigger.add(trigselfTransBefore);
+		/////
+		var tranEndState : UMLRTModel!State= new UMLRTModel!State;
+		uniqueID=uniqueID+1;
+		tranEndState.name=instrumentPrefix.concat("E__S__").concat(t.source.name).concat("__").concat(t.target.name).concat("__").concat(uniqueID.asString());
+		var selfTransAfter : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigselfTransAfter : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		selfTransAfter.source=tranEndState;
+		selfTransAfter.target=selfTransAfter.source;
+		selfTransAfter.name=instrumentPrefix.concat("CMD").concat("__").concat(uniqueID.asString());
+		trigselfTransAfter.port.add(debugPort);
+		trigselfTransAfter.event=dbgCommandEvent;
+		selfTransAfter.trigger.add(trigselfTransAfter);
+		
+		//// add transitions and related triggers, also add one trigger for each created state to reply debug command
+		var tranBeforTransBeginState : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigBeforTransBeginState : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		var tranAfterTransEndState : UMLRTModel!Transition= new UMLRTModel!Transition;
+		var trigAfterTransEndState : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+		tranBeforTransBeginState.source=t.source;
+		tranBeforTransBeginState.target=tranBeginState;
+		tranAfterTransEndState.source=tranEndState;
+		tranAfterTransEndState.target=t.target;
+		uniqueID=uniqueID+1;
+		tranBeforTransBeginState.name=instrumentPrefix.concat("T__A__").concat(t.source.name).concat("__").concat(uniqueID.asString());
+		uniqueID=uniqueID+1;
+		tranAfterTransEndState.name=instrumentPrefix.concat("T__B__").concat(t.target.name).concat("__").concat(uniqueID.asString());
+		trigBeforTransBeginState.port.add(debugPort);
+		trigAfterTransEndState.port.add(debugPort);
+		tranBeforTransBeginState.trigger.add(trigBeforTransBeginState);
+		tranAfterTransEndState.trigger.add(trigAfterTransEndState);
+		/// trigger of main tranistion need to swapped with added transition for instrumention
+		if (t.trigger.first().isDefined()){
+			trigBeforTransBeginState.port.clear();
+			//t.trigger.port.first().println("before remove: ");
+			trigBeforTransBeginState.port.addAll(t.trigger.port.first());
+			//trigBeforTransBeginState.port.println("after set to orginal one");
+     		trigBeforTransBeginState.event=t.trigger.first().event;
+     		t.trigger.port.first().clear();
+     		//t.trigger.port.first().println("After remove: ");
+     		t.trigger.first().port.add(debugPort);
+     		t.trigger.first().event=dbgExecEvent;
+     		//t.trigger.port.first().println("after add ");
+     		} 
+     	else {// later I need to be more carefull about this else
+     		var trigger1 : UMLRTModel!Trigger= new UMLRTModel!Trigger;
+     		trigger1.port.add(debugPort);     		
+     		trigger1.event=dbgExecEvent;
+     		t.trigger.add(trigger1);
+     		t.trigger.first().event=dbgExecEvent;
+     		delete trigBeforTransBeginState;
+     		
+     		}
+     		//delete trigBeforTransBeginState;  		
+    	trigAfterTransEndState.event=dbgExecEvent;
+
+		
+		//mm
+		/////
+		t.source=tranBeginState;
+		t.target=tranEndState;
+
+		newStates.add(tranBeginState);
+		newStates.add(tranEndState);
+		newTrans.add(selfTransBefore);
+		newTrans.add(selfTransAfter);
+		//newStates.add()
+		newTrans.add(tranBeforTransBeginState);
+		newTrans.add(tranAfterTransEndState);
+	}
+	self.subvertex.addAll(newStates);
+	self.transition.addAll(newTrans);
+	for (s in self.subvertex)
+		if (s.type.name="State")
+		 if (s.region.isDefined())
+			for (r in s.region)
+				r.insTransForDbg2();
+
+}
+
+
+///  instrument states for interactive debugging
+

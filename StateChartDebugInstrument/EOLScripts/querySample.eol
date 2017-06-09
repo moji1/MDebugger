@@ -1,0 +1,99 @@
+/*
+    
+    Developers:
+    Mojtaba Bagherzadeh(mojtaba@cs.queensu.ca): Initial development
+
+*/
+
+//main application blcok
+
+/*helloworld();
+helloworld();
+var int1 : Integer = 0;
+int1=int1.plusOne();
+int1.printInt();
+plusOne(int1);
+int1.printInt();
+var b:Bag = int1.asBag();
+var b2:Bag = int1.asSequence();
+int1.errln("Test Error with value ".concat(" contact test"));
+b2.add(12);
+b2.concat().println();*/
+/// native type
+//var frame = new Native("javax.swing.JFrame");
+//frame.title = "Opened with EOL";
+//frame.setBounds(100,100,300,200);
+//frame.visible = true;
+//var file = new Native("java.io.File")("myfile.txt");
+//file.absolutePath.println();
+UMLRTModel!Class.all.size().println("All classes: ");
+UMLRTModel!Package.all().println("All Packages: ");
+UMLRTModel!Package.all().println("Root Element: ");
+//var stereotype : Stereotype;
+UMLRTModel!Stereotype.all().println();
+//UMLRTModel.stereotype.all();
+//UMLRealTime.all().println();
+//testUML!RootElement::Class.allInstances();
+for (c in Package.all.select(c|c.name="RootElement")) {
+	c.name.println();
+	c.type.println();
+	
+	
+
+}
+//StateMachine.size().println("All classes: ");
+///////
+//var i : Integer = 5;
+//var a : new testUML!Class;
+ //i = "somevalue";
+//if (a.isDefined()) {
+// var i : String;
+// i = "somevalue";
+ //}
+//i = 3;
+//testUML!Class.all.select(c|c.abstract).size().println("Abstract classes: ");
+
+for (c in Class.all) {
+	c.Property.all();
+	//c.stereotype.println();
+	//if (c.namespace.isDefined())
+	if (c.namespace.name="RootElement")
+		//c.allsubt
+		{
+		
+		c.name.println();
+		c.type.println("Type=");
+		c.NameSpace.println("NameSpace=");
+		}
+
+}
+
+//Class.all.select(c|c.type.name="StateMachine").size().println("StateMachine ");
+for (c in Class.all) {
+	//c.CapsuleProperties.println();
+	c.stereotype.all().println();
+	if (c.type.name="StateMachine")
+		//c.allsubt
+		c.name.println();
+		//c.type.println("Type=");
+		//c.NameSpace.println("NameSpace=");
+
+}
+
+////////////body of functions
+operation  helloworld ()  {
+	"Hello world".println();	
+}  
+$pre self>=0
+$post  _result > self
+operation Integer plusOne () : Integer {
+	return self+1;
+}
+
+operation Integer printInt()  {
+	self.println();
+}
+
+operation  plusOne(int1: Integer )  {
+	int1=int1+1;
+}

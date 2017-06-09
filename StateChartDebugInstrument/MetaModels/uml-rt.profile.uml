@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_1h74oEeVEeO0lv5O1DTHOQ" name="UMLRealTime" URI="http://www.eclipse.org/papyrus/umlrt" metaclassReference="_0Mm20GDjEeOesvHnEWH_sQ _922ukGDjEeOesvHnEWH_sQ _923VoGDjEeOesvHnEWH_sQ _923VoWDjEeOesvHnEWH_sQ _NoL5UGDkEeOesvHnEWH_sQ _bmzwUGDkEeOesvHnEWH_sQ _bmzwUWDkEeOesvHnEWH_sQ _IJTCAAbYEeSFB8mUNT_s_w _vk_NoAb2EeSFB8mUNT_s_w">
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_0Mm20GDjEeOesvHnEWH_sQ" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_922ukGDjEeOesvHnEWH_sQ" alias="Property">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_923VoGDjEeOesvHnEWH_sQ" alias="Port">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_923VoWDjEeOesvHnEWH_sQ" alias="Connector">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_NoL5UGDkEeOesvHnEWH_sQ" alias="RedefinableElement">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#RedefinableElement"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_bmzwUGDkEeOesvHnEWH_sQ" alias="Package">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_bmzwUWDkEeOesvHnEWH_sQ" alias="Interface">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Interface"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_IJTCAAbYEeSFB8mUNT_s_w" alias="Collaboration">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Collaboration"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_vk_NoAb2EeSFB8mUNT_s_w" alias="CallEvent">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CallEvent"/>
+  </elementImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_1h74okeVEeO0lv5O1DTHOQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_hcMIwEhNEeO0lv5O1DTHOQ" name="Capsule">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_-g8psEhTEeO0lv5O1DTHOQ" name="Capsules are always active classifiers" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_TF_bEEhUEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>base_Class.isActive</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_t6v3AEhUEeO0lv5O1DTHOQ" name="A capsule cannot have Reception features" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_4YNUYEhUEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>base_Class.ownedReception->isEmpty()</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_8k0ewEhUEeO0lv5O1DTHOQ" name="A capsule class can always be subclassed" constrainedElement="_1h74oEeVEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_GFmRcEhVEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>not(base_Class.isFinalSpecialization)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_I1oJEEhVEeO0lv5O1DTHOQ" name="A capsule can have at most one superclass" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_U-Hk4EhVEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>(base_Class.generalization->size()) &lt;= 1</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_fuuAsEhVEeO0lv5O1DTHOQ" name="Capsule classes are always substitutable" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_zj-68EhVEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>(base_Class.generalization->notEmpty()) implies (base_Class.generalization->forAll (g | g.isSubstitutable))</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_7I_kgEhVEeO0lv5O1DTHOQ" name="All attributes of a capsule class can have at most one type" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_KrqoMEhWEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>base_Class.ownedAttribute->forAll(at | at.type->size() &lt;= 1)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_EBz7IEhdEeO0lv5O1DTHOQ" name="All operations of a capsule are guarded" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_YhzNYEhdEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>base_Class.ownedOperation->notEmpty() implies &#xD;
+   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::guarded))</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_wWou0EhNEeO0lv5O1DTHOQ" name="base_Class" association="_wWu1cEhNEeO0lv5O1DTHOQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_wWu1cEhNEeO0lv5O1DTHOQ" name="E_Capsule_Class1" memberEnd="_wWu1cUhNEeO0lv5O1DTHOQ _wWou0EhNEeO0lv5O1DTHOQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_wWu1cUhNEeO0lv5O1DTHOQ" name="extension_Capsule" type="_hcMIwEhNEeO0lv5O1DTHOQ" aggregation="composite" association="_wWu1cEhNEeO0lv5O1DTHOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_EQwT4EhOEeO0lv5O1DTHOQ" name="CapsulePart">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="__uQvcJ3KEeW6VrvIZUJreg" name="Fixed capsule parts cannot have variable multiplicity" constrainedElement="_EQwT4EhOEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_YDt3YJ3LEeW6VrvIZUJreg" name="">
+        <language>OCL</language>
+        <body>(base_Property.aggregation = UML::AggregationKind::composite and base_Property.lower > 0) implies (base_Property.upper = base_Property.lower)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_wTG4YOQ8EeW10dPuv-Yr7w" name="Plugin capsule parts must have a lower multiplicity of zero" constrainedElement="_EQwT4EhOEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_cwk3cOQ9EeW10dPuv-Yr7w">
+        <language>OCL</language>
+        <body>(base_Property.aggregation = UML::AggregationKind::shared) implies (base_Property.lower = 0)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_9-2JgOEkEeWW8tvNzax4PA" name="Capsule parts must have aggregation" constrainedElement="_EQwT4EhOEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_9-2JgeEkEeWW8tvNzax4PA" name="">
+        <language>OCL</language>
+        <body>base_Property.aggregation &lt;> UML::AggregationKind::none</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_HcX7UEhOEeO0lv5O1DTHOQ" name="base_Property" association="_HcX7UUhOEeO0lv5O1DTHOQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_HcX7UUhOEeO0lv5O1DTHOQ" name="E_CapsulePart_Property1" memberEnd="_HcX7UkhOEeO0lv5O1DTHOQ _HcX7UEhOEeO0lv5O1DTHOQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_HcX7UkhOEeO0lv5O1DTHOQ" name="extension_CapsulePart" type="_EQwT4EhOEeO0lv5O1DTHOQ" aggregation="composite" association="_HcX7UUhOEeO0lv5O1DTHOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_8GLpsEhOEeO0lv5O1DTHOQ" name="Protocol">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_IQKCgAbZEeSFB8mUNT_s_w" name="Protocols can have at most one generalization" constrainedElement="_8GLpsEhOEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_vPY3QAbZEeSFB8mUNT_s_w">
+        <language>OCL</language>
+        <body>base_Collaboration.generalization->size() &lt;= 1</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_RQX6AGF-EeOesvHnEWH_sQ" name="base_Collaboration" association="_RQYhEGF-EeOesvHnEWH_sQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Collaboration"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_GR86IEhPEeO0lv5O1DTHOQ" name="RTPort">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_1UM30GfEEeO447LqwGjc0A" name="Only SPPs can publish their name" constrainedElement="_GR86IEhPEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_M-gxAGfFEeO447LqwGjc0A">
+        <language>OCL</language>
+        <body>isPublish = (base_Port.isService and not isWired)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_2UsEcGfEEeO447LqwGjc0A" name="All service ports must have public visibility and protected otherwise" constrainedElement="_GR86IEhPEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_DVDG8GfGEeO447LqwGjc0A">
+        <language>OCL</language>
+        <body>if (base_Port.isService) then&#xD;
+   (base_Port.visibility = UML::VisibilityKind::public)&#xD;
+else&#xD;
+   (base_Port.visibility = UML::VisibilityKind::protected)&#xD;
+endif</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_3Xp9UGfEEeO447LqwGjc0A" name="All unwired ports (SAPs and SPPs) must be behavior ports" constrainedElement="_GR86IEhPEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_u6mmkGfGEeO447LqwGjc0A" name="All unwired ports (SAPs and SPPs) must be behavior ports">
+        <language>OCL</language>
+        <body>(not isWired) implies (base_Port.isBehavior)</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_QJC94GfGEeO447LqwGjc0A" name="A relay port must be a service port" constrainedElement="_GR86IEhPEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_K9NVsGfHEeO447LqwGjc0A" name="A relay port must be a service port">
+        <language>OCL</language>
+        <body>(isWired and not base_Port.isBehavior) implies (base_Port.isService)</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PV8DIEhPEeO0lv5O1DTHOQ" name="isNotification">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_S5T74EhSEeO0lv5O1DTHOQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Q9f20EhPEeO0lv5O1DTHOQ" name="isPublish">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_U3AXoEhSEeO0lv5O1DTHOQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ScT-MEhPEeO0lv5O1DTHOQ" name="isWired">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_W-rOwEhSEeO0lv5O1DTHOQ" value="true"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_T2bLwEhPEeO0lv5O1DTHOQ" name="registration" type="_t8sxEEhPEeO0lv5O1DTHOQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I3PE4EhQEeO0lv5O1DTHOQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I3VLgEhQEeO0lv5O1DTHOQ" value="1"/>
+      <defaultValue xmi:type="uml:Expression" xmi:id="_wsXU8EhSEeO0lv5O1DTHOQ" type="_t8sxEEhPEeO0lv5O1DTHOQ">
+        <operand xmi:type="uml:InstanceValue" xmi:id="_wsXU8UhSEeO0lv5O1DTHOQ" instance="_xZXFMEhPEeO0lv5O1DTHOQ"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_U-tpgEhPEeO0lv5O1DTHOQ" name="registrationOverride">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_iTD3oEhTEeO0lv5O1DTHOQ" value=""/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Vn6XgEhPEeO0lv5O1DTHOQ" name="base_Port" association="_Vn6XgUhPEeO0lv5O1DTHOQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Vn6XgUhPEeO0lv5O1DTHOQ" name="E_RTPort_Port1" memberEnd="_Vn6XgkhPEeO0lv5O1DTHOQ _Vn6XgEhPEeO0lv5O1DTHOQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Vn6XgkhPEeO0lv5O1DTHOQ" name="extension_RTPort" type="_GR86IEhPEeO0lv5O1DTHOQ" aggregation="composite" association="_Vn6XgUhPEeO0lv5O1DTHOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_t8sxEEhPEeO0lv5O1DTHOQ" name="PortRegistrationType">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_xZXFMEhPEeO0lv5O1DTHOQ" name="Automatic"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_yiLHYEhPEeO0lv5O1DTHOQ" name="Application"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_0DSU0EhPEeO0lv5O1DTHOQ" name="AutomaticLocked"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_Tv_-MEhQEeO0lv5O1DTHOQ" name="RTConnector">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_CIqywEheEeO0lv5O1DTHOQ" name="Only binary connectors are allowed" constrainedElement="_Tv_-MEhQEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_P3D1YEheEeO0lv5O1DTHOQ">
+        <language>OCL</language>
+        <body>base_Connector.end->size() = 2</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VSnAcEhQEeO0lv5O1DTHOQ" name="base_Connector" association="_VSnAcUhQEeO0lv5O1DTHOQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_VSnAcUhQEeO0lv5O1DTHOQ" name="E_RTConnector_Connector1" memberEnd="_VSnAckhQEeO0lv5O1DTHOQ _VSnAcEhQEeO0lv5O1DTHOQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_VSnAckhQEeO0lv5O1DTHOQ" name="extension_RTConnector" type="_Tv_-MEhQEeO0lv5O1DTHOQ" aggregation="composite" association="_VSnAcUhQEeO0lv5O1DTHOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_hSaaUEhQEeO0lv5O1DTHOQ" name="ProtocolContainer">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_lAOv4EhQEeO0lv5O1DTHOQ" name="base_Package" association="_lAU2gEhQEeO0lv5O1DTHOQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_lAU2gEhQEeO0lv5O1DTHOQ" name="E_ProtocolContainer_Package1" memberEnd="_lAU2gUhQEeO0lv5O1DTHOQ _lAOv4EhQEeO0lv5O1DTHOQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_lAU2gUhQEeO0lv5O1DTHOQ" name="extension_ProtocolContainer" type="_hSaaUEhQEeO0lv5O1DTHOQ" aggregation="composite" association="_lAU2gEhQEeO0lv5O1DTHOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_qJOC8EhQEeO0lv5O1DTHOQ" name="RTRedefinedElement">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_Cvp-EGfKEeO447LqwGjc0A" name="Exclusion can only be applied to some UML-RT model elements" constrainedElement="_qJOC8EhQEeO0lv5O1DTHOQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_ufO8YGfKEeO447LqwGjc0A">
+        <language>OCL</language>
+        <body>let el = base_RedefinableElement in&#xD;
+(el.oclIsKindOf(UML::Port) or&#xD;
+ el.oclIsKindOf(UML::Property) or&#xD;
+ el.oclIsKindOf(UML::Operation) or&#xD;
+ el.oclIsKindOf(UML::Behavior) or&#xD;
+ el.oclIsKindOf(UML::Region) or&#xD;
+ el.oclIsKindOf(UML::State) or&#xD;
+ el.oclIsKindOf(UML::StateMachine) or&#xD;
+ el.oclIsKindOf(UML::Transition))</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tCAN8EhQEeO0lv5O1DTHOQ" name="base_RedefinableElement" association="_tCAN8UhQEeO0lv5O1DTHOQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#RedefinableElement"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_jdLp4FqeEeS6ZrwKK5dCsw" name="rootFragment">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#RedefinableElement"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9KkOEFqeEeS6ZrwKK5dCsw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9KlcMFqeEeS6ZrwKK5dCsw" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_tCAN8UhQEeO0lv5O1DTHOQ" name="E_RTRedefinedElement_RedefinableElement1" memberEnd="_tCAN8khQEeO0lv5O1DTHOQ _tCAN8EhQEeO0lv5O1DTHOQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_tCAN8khQEeO0lv5O1DTHOQ" name="extension_RTRedefinedElement" type="_qJOC8EhQEeO0lv5O1DTHOQ" aggregation="composite" association="_tCAN8UhQEeO0lv5O1DTHOQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_g6khEGDFEeOesvHnEWH_sQ" name="RTMessageSet">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_iwFRMGDFEeOesvHnEWH_sQ" name="base_Interface" association="_iwFRMWDFEeOesvHnEWH_sQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Interface"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_qA0ykGDTEeOesvHnEWH_sQ" name="rtMsgKind" type="_UXMMIGDdEeOesvHnEWH_sQ">
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_iOirMKe7EeSgBP-Giw6LYQ" instance="_W7oe0GDdEeOesvHnEWH_sQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_iwFRMWDFEeOesvHnEWH_sQ" name="E_RTMessageSet_Interface1" memberEnd="_iwFRMmDFEeOesvHnEWH_sQ _iwFRMGDFEeOesvHnEWH_sQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_iwFRMmDFEeOesvHnEWH_sQ" name="extension_RTMessageSet" type="_g6khEGDFEeOesvHnEWH_sQ" aggregation="composite" association="_iwFRMWDFEeOesvHnEWH_sQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_UXMMIGDdEeOesvHnEWH_sQ" name="RTMessageKind">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_W7oe0GDdEeOesvHnEWH_sQ" name="in"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_X2AcYGDdEeOesvHnEWH_sQ" name="out"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_YcsB4GDdEeOesvHnEWH_sQ" name="inOut"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_RQYhEGF-EeOesvHnEWH_sQ" name="E_Protocol_Collaboration1" memberEnd="_RQYhEWF-EeOesvHnEWH_sQ _RQX6AGF-EeOesvHnEWH_sQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_RQYhEWF-EeOesvHnEWH_sQ" name="extension_Protocol" type="_8GLpsEhOEeO0lv5O1DTHOQ" aggregation="composite" association="_RQYhEGF-EeOesvHnEWH_sQ"/>
+  </packagedElement>
+</uml:Profile>
