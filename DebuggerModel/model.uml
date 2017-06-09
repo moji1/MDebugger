@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:RTCppProperties="http://www.eclipse.org/papyrus/umlrt/cppproperties" xmlns:UMLRTStateMachines="http://www.eclipse.org/papyrus/umlrt/statemachine" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_MZw7AAdxEeadtKuU2t6fMg" name="commGateWay">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GCr80Ad0EeadtKuU2t6fMg" source="UMLRT_Default_top">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GCsj4Ad0EeadtKuU2t6fMg" key="top_name" value="GateWay"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l53IYD-1Eeex9YQaCwFKZg" source="http://www.eclipse.org/papyrus-rt/language/1.0.0">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l56LsD-1Eeex9YQaCwFKZg" key="language" value="umlrt-cpp"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XIyCcAdxEeadtKuU2t6fMg" name="GateWay" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_k0n4EDCJEeaxYMPe_sHEiw" name="extComm" visibility="public" type="_KS0icDCLEeaxYMPe_sHEiw" isOrdered="true" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k03IoDCJEeaxYMPe_sHEiw" value="50"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k03vsDCJEeaxYMPe_sHEiw" value="50"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_id3i8DHEEeaxYMPe_sHEiw" name="config">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_W2ELwDKoEeaxYMPe_sHEiw" name="configTimer" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W2JEQDKoEeaxYMPe_sHEiw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W2JrUDKoEeaxYMPe_sHEiw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9VpAgD8TEea_INjZTfhBHQ" name="eventSharedMemory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_ykwdUHV4EeauJcu8ajHARw" name="commandTimer" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yx2eIHV4EeauJcu8ajHARw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yx46YHV4EeauJcu8ajHARw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Hhrw8HV-EeauJcu8ajHARw" name="registeredCapsules">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_D3P0oHWAEeauJcu8ajHARw" name="commandSharedMemory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_dy-CgAdxEeadtKuU2t6fMg" name="GateWay">
+        <region xmi:type="uml:Region" xmi:id="_f2Z54AdxEeadtKuU2t6fMg" name="Region1">
+          <transition xmi:type="uml:Transition" xmi:id="_9XO6gAdxEeadtKuU2t6fMg" name="init" source="_8BWssAdxEeadtKuU2t6fMg" target="_fxzoADCVEeaxYMPe_sHEiw">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_USaAUAdzEeadtKuU2t6fMg" name="initial">
+              <language>C++</language>
+              <body>    // instantiate the configutility class 
+    std::cout&lt;&lt;this->getName()&lt;&lt;&quot; is Starting\n&quot;;
+    config.setCommentStr(&quot;#&quot;);
+    config.setFieldSeperaor(&quot;=&quot;);
+    config.setConfigFileName(&quot;config&quot;);
+</body>
+            </effect>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_39bb8D7iEeaZboTzPJJ9rA" name="setupSharedMem" source="_fxzoADCVEeaxYMPe_sHEiw" target="_jxqGMD7iEeaZboTzPJJ9rA">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_kxvjAD8KEea_INjZTfhBHQ" name="checkCommType">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_rtbiwD8KEea_INjZTfhBHQ">
+                <language>C++</language>
+                <body>    std::string tempStr =config.getConfig(&quot;comm&quot;);
+    if (tempStr==&quot;shm&quot;)
+    return true;
+    else 
+    return false;
+</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_d-rn4D8XEea_INjZTfhBHQ" name="setupSHM">
+              <language>C++</language>
+              <body>    // set shared memory as a server
+    eventSharedMemory.setUp(server);
+    commandSharedMemory.setUp(server);
+    std::cout&lt;&lt;this->getName()&lt;&lt;&quot; works with SHM&quot;&lt;&lt;&quot;\n&quot;;
+    commandTimer.informIn(UMLRTTimespec(1,0),4);
+</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="_1M3VMKhTEea5S_8vfXhBZA" port="_W2ELwDKoEeaxYMPe_sHEiw">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_vJoOkD7jEeaZboTzPJJ9rA" name="reconfigSHM" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_fxzoADCVEeaxYMPe_sHEiw"/>
+          <transition xmi:type="uml:Transition" xmi:id="_NZlocD8YEea_INjZTfhBHQ" name="processAndForwardEvent" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_IJ0QkD8bEea_INjZTfhBHQ" name="processAndForwardEvent">
+              <language>C++</language>
+              <body>    std::string tempS=&quot;&quot;;
+    //tempS.append(umlrtparam_eventInfo);
+    tempS.append(eventInfo);
+    //std::cout&lt;&lt;&quot;New message from capsule:&quot;&lt;&lt;tempS&lt;&lt;&quot;\n&quot;;
+    eventSharedMemory.safePushBackString(tempS);
+</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="_ffWT8D8YEea_INjZTfhBHQ" name="newEvent" event="_VA1yEDCQEeaxYMPe_sHEiw" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_7xHX0HV7EeauJcu8ajHARw" name="registerCapsule" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_gyzsYHV9EeauJcu8ajHARw" name="regisetCapsule">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: Registration Message come at channel= \&quot;&quot;&lt;&lt;msg->sapIndex0_&lt;&lt;&quot;\&quot; from capsule instance=&quot;&lt;&lt;std::string(capsuleInstanceName)&lt;&lt;&quot;\n&quot;;
+    std::string tempS=&quot;&quot;;
+    //tempS.append(umlrtparam_capsuleInstanceName);
+    tempS.append(capsuleInstanceName);
+    //std::stringstream ss;
+    //ss&lt;&lt;msg->sapIndex0_;
+    //tempS.append(ss.str());
+    registeredCapsules[tempS] = msg->sapIndex0_;
+    std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: Number of registered capsules is=&quot;&lt;&lt;registeredCapsules.size()&lt;&lt;&quot;\n&quot;;
+</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="_UaycQHV8EeauJcu8ajHARw" event="_mMK6kHV5EeauJcu8ajHARw" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_XmuMwHV8EeauJcu8ajHARw" name="extCommand" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_wtjR0HV9EeauJcu8ajHARw" name="processExtCommand">
+              <language>C++</language>
+              <body>    //std::cout&lt;&lt;&quot;Observer: Try read command\n&quot;;
+    std::string tempStr;
+    //tempStr=commandSharedMemory.safePopFrontString();
+     tempStr=commandSharedMemory.safePopBackString();
+    if (tempStr!=&quot;&quot;){
+    char location[1024];
+    std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: External Command= &quot;&lt;&lt;tempStr&lt;&lt;&quot;\n&quot;;
+    mdebugger::DebugCommand cmd;
+    cmd.deserialize(tempStr);
+    std::cout&lt;&lt;&quot;The capsule id is:&quot;&lt;&lt;cmd.getCapsuleId()&lt;&lt;&quot;\n&quot;;
+    for (std::map&lt;std::string,int>::const_iterator it1=registeredCapsules.begin() ;  it1!=registeredCapsules.end();it1++)
+    //std::cout&lt;&lt;&quot;Registerd capsule:&quot;&lt;&lt;it1->first&lt;&lt;&quot;\n&quot;;
+    if (registeredCapsules.count(cmd.getCapsuleId()))
+    switch (cmd.getCmdId()){
+    case mdebugger::dbgCmd::EXEC:
+    extComm.dbgExec().sendAt(registeredCapsules[cmd.getCapsuleId()]);
+    break;
+    case mdebugger::dbgCmd::VARCHANGE:
+    char varName[256];
+    char varValue[1024];
+    for (std::map&lt;std::string,std::string>::const_iterator it1=cmd.getCmdParams().begin(); it1!=cmd.getCmdParams().end();it1++){
+    sprintf(varName,&quot;%s&quot;,it1->first.c_str());
+    sprintf(varValue,&quot;%s&quot;,it1->second.c_str());
+    extComm.dbgVarChange(varName,varValue).sendAt(registeredCapsules[cmd.getCapsuleId()]);
+    }
+    break;
+    case mdebugger::dbgCmd::SETBREAKPOINT:
+    //char location[1024];
+    sprintf(location,&quot;%s&quot;,cmd.getCmdParam(&quot;loc&quot;).c_str());
+    //std::cout&lt;&lt;&quot;Set BreakPoin command for capsule&quot; &lt;&lt; cmd.getCapsuleId()&lt;&lt;std::endl;
+    extComm.dbgSetBreakPoint(location,atoi(cmd.getCmdParam(&quot;type&quot;).c_str()),atoi(cmd.getCmdParam(&quot;place&quot;).c_str())).sendAt(registeredCapsules[cmd.getCapsuleId()]);
+    break;
+    case mdebugger::dbgCmd::REMBREAKPOINT:
+    //char location[1024];
+    sprintf(location,&quot;%s&quot;,cmd.getCmdParam(&quot;loc&quot;).c_str());
+    //std::cout&lt;&lt;&quot;Rem BreakPoin command for capsule&quot; &lt;&lt; cmd.getCapsuleId()&lt;&lt;std::endl;
+    extComm.dbgRemBreakPoint(location,atoi(cmd.getCmdParam(&quot;type&quot;).c_str()),atoi(cmd.getCmdParam(&quot;place&quot;).c_str())).sendAt(registeredCapsules[cmd.getCapsuleId()]);
+    break;
+    case mdebugger::dbgCmd::VIEWBREAKPOINTS:
+    //std::cout&lt;&lt;&quot;View BreakPoins command for capsule&quot; &lt;&lt; cmd.getCapsuleId()&lt;&lt;std::endl;
+    extComm.dbgViewBreakPoints().sendAt(registeredCapsules[cmd.getCapsuleId()]);
+    break;
+    case mdebugger::dbgCmd::SETEXECMODE:
+    //std::cout&lt;&lt;&quot;Set exec  mode for capsule &quot; &lt;&lt; cmd.getCapsuleId()&lt;&lt;std::endl;
+    extComm.dbgSetExecMode(atoi(cmd.getCmdParam(&quot;ExecMode&quot;).c_str())).sendAt(registeredCapsules[cmd.getCapsuleId()]);;
+    //case mdebugger::VIEWBREAKPOINTS:
+    //case mdebugger::REMBREAKPOINT:
+    //case mdebugger::REMALLBREAKPOINTS:
+    }
+    else
+    std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: Error the capsule name is not registration table, message ignored&quot;&lt;&lt;&quot;\n&quot;;
+    }
+    commandTimer.informIn(UMLRTTimespec(1,0),4);
+</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="_jjA_oHV8EeauJcu8ajHARw" port="_ykwdUHV4EeauJcu8ajHARw">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_xsTGQPCFEeaNzKhabo7mlg" name="replySelfExec" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_HewxYPCkEeaNzKhabo7mlg" name="replySelfExecMethod">
+              <language>C++</language>
+              <body>extComm.dbgExec().sendAt(msg->sapIndex0_);</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="_85e0wPCjEeaNzKhabo7mlg" name="replySelfExecTrig" event="_tCGA8PCFEeaNzKhabo7mlg" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_8BWssAdxEeadtKuU2t6fMg" name="InitObserver"/>
+          <subvertex xmi:type="uml:State" xmi:id="_fxzoADCVEeaxYMPe_sHEiw" name="configLoad">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VVPSEDG_EeaxYMPe_sHEiw" name="initObserver">
+              <language>C++</language>
+              <body>    //init the time for config read 
+    configTimer.informAt(UMLRTTimespec(1,0),4);
+    // include read config
+    config.loadConfig();
+    ///
+    std::string tempStr =&quot;&quot;;
+    tempStr=config.getConfig(&quot;eventareaname&quot;);
+    if (tempStr!=&quot;&quot;)
+    eventSharedMemory.setName(tempStr);
+    tempStr=config.getConfig(&quot;eventqname&quot;);
+    if (tempStr!=&quot;&quot;)
+    eventSharedMemory.setQueueName(tempStr);
+    tempStr=config.getConfig(&quot;eventareasize&quot;);
+    if (tempStr!=&quot;&quot;)
+    eventSharedMemory.setSize(atoi(tempStr.c_str()));
+    /////
+    tempStr=config.getConfig(&quot;commandareaname&quot;);
+    if (tempStr!=&quot;&quot;)
+    commandSharedMemory.setName(tempStr);
+    tempStr=config.getConfig(&quot;commandqname&quot;);
+    if (tempStr!=&quot;&quot;)
+    commandSharedMemory.setQueueName(tempStr);
+    tempStr=config.getConfig(&quot;commandareasize&quot;);
+    if (tempStr!=&quot;&quot;)
+    commandSharedMemory.setSize(atoi(tempStr.c_str()));
+    std::cout&lt;&lt;config;
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_jxqGMD7iEeaZboTzPJJ9rA" name="commWithSharedMem">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_7_JoUD8LEea_INjZTfhBHQ">
+              <language>C++</language>
+              <body></body>
+            </entry>
+          </subvertex>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_KS2-sDCLEeaxYMPe_sHEiw" name="ExtInterface">
+      <packagedElement xmi:type="uml:Collaboration" xmi:id="_KS0icDCLEeaxYMPe_sHEiw" name="ExtInterface">
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_KTCk4DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KS5a8DCLEeaxYMPe_sHEiw" contract="_KS5a8DCLEeaxYMPe_sHEiw"/>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_KTLu0DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KTJSkDCLEeaxYMPe_sHEiw" contract="_KTJSkDCLEeaxYMPe_sHEiw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_KS5a8DCLEeaxYMPe_sHEiw" name="ExtInterface">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_VA1LADCQEeaxYMPe_sHEiw" name="event">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_Er_EADHDEeaxYMPe_sHEiw" name="eventInfo">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_ho6x0HV5EeauJcu8ajHARw" name="registerToControl">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_iYDIsHV5EeauJcu8ajHARw" name="capsuleInstanceName">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_reijgPCFEeaNzKhabo7mlg" name="selfExec"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_KTDzADCLEeaxYMPe_sHEiw" name="ExtInterface~">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_u5FAUHV5EeauJcu8ajHARw" name="dbgCommand">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_wB1YIHV5EeauJcu8ajHARw" name="data" type="_097esHV5EeauJcu8ajHARw"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_48uGkK0_Eea2s6SIdFjObg" name="dbgExec"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_IXFjELjWEeaJ1dlMn1j7GQ" name="dbgVarChange">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_KsTG8LjWEeaJ1dlMn1j7GQ" name="varName">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_NmVPILjWEeaJ1dlMn1j7GQ" name="varValue">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_Hua8sEAyEeev_-3F68RaHA" name="dbgRemBreakPoint">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_KojLgEAyEeev_-3F68RaHA" name="location">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_UGBLgEAyEeev_-3F68RaHA" name="breakPointType" visibility="public" effect="create">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_dcsnAEAyEeev_-3F68RaHA" name="place">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_HcpHMECVEeev_-3F68RaHA" name="dbgSetBreakPoint">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_HcpHMUCVEeev_-3F68RaHA" name="location">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_HcpHMkCVEeev_-3F68RaHA" name="breakPointType" visibility="public" effect="create">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_HcpHM0CVEeev_-3F68RaHA" name="place">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_t2L08ECVEeev_-3F68RaHA" name="dbgViewBreakPoints"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_2NX_YEEDEee0eeIrP9Q9KA" name="dbgSetExecMode">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_4jAaAEEDEee0eeIrP9Q9KA" name="execMode">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_KTHdYDCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KTDzADCLEeaxYMPe_sHEiw"/>
+      <packagedElement xmi:type="uml:AnyReceiveEvent" xmi:id="_KTIEcDCLEeaxYMPe_sHEiw" name="*"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_KTJSkDCLEeaxYMPe_sHEiw" name="ExtInterfaceIO"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_KTMV4DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KTJSkDCLEeaxYMPe_sHEiw"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_VA1yEDCQEeaxYMPe_sHEiw" name="" operation="_VA1LADCQEeaxYMPe_sHEiw"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_mMK6kHV5EeauJcu8ajHARw" operation="_ho6x0HV5EeauJcu8ajHARw"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_6NfT0HV5EeauJcu8ajHARw" operation="_u5FAUHV5EeauJcu8ajHARw"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_B2LakK1AEea2s6SIdFjObg" operation="_48uGkK0_Eea2s6SIdFjObg"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_PsaK0LjWEeaJ1dlMn1j7GQ" operation="_IXFjELjWEeaJ1dlMn1j7GQ"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_tCGA8PCFEeaNzKhabo7mlg" operation="_reijgPCFEeaNzKhabo7mlg"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_HvALgEAyEeev_-3F68RaHA" operation="_Hua8sEAyEeev_-3F68RaHA"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_HctYoECVEeev_-3F68RaHA" operation="_HcpHMECVEeev_-3F68RaHA"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_t2NqIECVEeev_-3F68RaHA" operation="_t2L08ECVEeev_-3F68RaHA"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_2Nc34EEDEee0eeIrP9Q9KA" operation="_2NX_YEEDEee0eeIrP9Q9KA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_097esHV5EeauJcu8ajHARw" name="COMMANDS">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_DcCuEHV6EeauJcu8ajHARw" name="resumeExec">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_J4mh0HV6EeauJcu8ajHARw" value="0"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_tBYCYHV6EeauJcu8ajHARw" name="changeVariables">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_wTlaAHV6EeauJcu8ajHARw" value="2"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_SOhaYDt8EeeKxOtWEfBMmw" name="config" fileName="config"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_MlWf8AdxEeadtKuU2t6fMg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MlYVIAdxEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_IjNqwAdyEeadtKuU2t6fMg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IjO44AdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/statemachine#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml#_KLcn0FDtEeOA4ecmvfqvaw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_IjQHAAdyEeadtKuU2t6fMg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IjQuEAdyEeadtKuU2t6fMg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuEQdyEeadtKuU2t6fMg" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuEgdyEeadtKuU2t6fMg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuEwdyEeadtKuU2t6fMg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuFAdyEeadtKuU2t6fMg" key="Date" value="2015-12-10"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuFQdyEeadtKuU2t6fMg" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IjQHAQdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/cppproperties#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_foSU0EAyEeev_-3F68RaHA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_foX0YEAyEeev_-3F68RaHA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLRealTime:Capsule xmi:id="_XJDvQAdxEeadtKuU2t6fMg" base_Class="_XIyCcAdxEeadtKuU2t6fMg"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_G5QN4AdzEeadtKuU2t6fMg" headerPreface="#include &lt;iostream>&#xA;#include &lt;unistd.h>&#xA;#include &quot;Config.h&quot;&#xA;#include &quot;SharedMem.h&quot;&#xA;#include &lt;map>&#xA;#include &quot;DebugCommand.h&quot;&#xA;using  namespace  Comms;&#xA;using  namespace ConfigUtil;&#xA;" implementationPreface="" base_Class="_XIyCcAdxEeadtKuU2t6fMg"/>
+  <UMLRealTime:RTPort xmi:id="_k0-dYDCJEeaxYMPe_sHEiw" isPublish="true" isWired="false" base_Port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+  <UMLRealTime:ProtocolContainer xmi:id="_KS4M0DCLEeaxYMPe_sHEiw" base_Package="_KS2-sDCLEeaxYMPe_sHEiw"/>
+  <UMLRealTime:RTMessageSet xmi:id="_KTB90DCLEeaxYMPe_sHEiw" base_Interface="_KS5a8DCLEeaxYMPe_sHEiw"/>
+  <UMLRealTime:RTMessageSet xmi:id="_KTGPQDCLEeaxYMPe_sHEiw" base_Interface="_KTDzADCLEeaxYMPe_sHEiw" rtMsgKind="out"/>
+  <UMLRealTime:RTMessageSet xmi:id="_KTLHwDCLEeaxYMPe_sHEiw" base_Interface="_KTJSkDCLEeaxYMPe_sHEiw" rtMsgKind="inOut"/>
+  <UMLRealTime:Protocol xmi:id="_KTNkADCLEeaxYMPe_sHEiw" base_Collaboration="_KS0icDCLEeaxYMPe_sHEiw"/>
+  <UMLRealTime:RTPort xmi:id="_W2KSYDKoEeaxYMPe_sHEiw" base_Port="_W2ELwDKoEeaxYMPe_sHEiw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_PKlFgHU9EeaD0su17ZXL7Q" type="Config" base_Property="_id3i8DHEEeaxYMPe_sHEiw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_Vd6r0HU9EeaD0su17ZXL7Q" type="SharedMem" base_Property="_9VpAgD8TEea_INjZTfhBHQ"/>
+  <UMLRealTime:RTPort xmi:id="_yyA2MHV4EeauJcu8ajHARw" base_Port="_ykwdUHV4EeauJcu8ajHARw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_K0ovcHV-EeauJcu8ajHARw" type="std::map&lt;std::string,int>" base_Property="_Hhrw8HV-EeauJcu8ajHARw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_GwG4IHWAEeauJcu8ajHARw" type="SharedMem" base_Property="_D3P0oHWAEeauJcu8ajHARw"/>
+  <RTCppProperties:ParameterProperties xmi:id="_dIbsIKlhEeasDpNCWnZovw" base_Parameter="_Er_EADHDEeaxYMPe_sHEiw"/>
+  <UMLRTStateMachines:RTRegion xmi:id="_PnrGMDt3EeeKxOtWEfBMmw" base_Region="_f2Z54AdxEeadtKuU2t6fMg"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_RQznMDt3EeeKxOtWEfBMmw" base_Pseudostate="_8BWssAdxEeadtKuU2t6fMg"/>
+  <UMLRTStateMachines:RTState xmi:id="_SHf-oDt3EeeKxOtWEfBMmw" base_State="_fxzoADCVEeaxYMPe_sHEiw"/>
+  <UMLRTStateMachines:RTState xmi:id="_S_bsMDt3EeeKxOtWEfBMmw" base_State="_jxqGMD7iEeaZboTzPJJ9rA"/>
+  <UMLRTStateMachines:RTStateMachine xmi:id="_VNyaIDt3EeeKxOtWEfBMmw" base_StateMachine="_dy-CgAdxEeadtKuU2t6fMg"/>
+  <RTCppProperties:ArtifactProperties xmi:id="_U3IbYDt8EeeKxOtWEfBMmw" base_Artifact="_SOhaYDt8EeeKxOtWEfBMmw" includeFile="# use areaname param, used to specify the shared memory area name, don't set unless there is more than one shared area.&#xA;" sourceFile="# use areaname param, used to specify the shared memory area name, don't set unless there is more than one shared area.&#xA;eventareaname=EventArea&#xA;# qname is the queue name will includes the data. you don't need set it unless there is different queue in one shared area.&#xA;eventqname=EventQ&#xA;eventareasize=99999999&#xA;#### shared mem config for command&#xA;commandareaname=CommandArea&#xA;commandqname=CommandQ&#xA;commandareasize=9999&#xA;### send message method can be instant or periodic; this mode are only can be set for TCP connection,&#xA;Debug=true"/>
+</xmi:XMI>
