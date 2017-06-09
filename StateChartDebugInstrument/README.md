@@ -9,7 +9,7 @@ languages described with the Eclipse Modeling Framework (EMF).
 Besides, as an imperative modeling language, it provides support for programming 
 constructs and the Object Constraint Language. 
 
-### short description of the source code structure
+### Short description of the source code structure
 ```
 │   ├── EOLScripts   --> contains all the developed script for the model transformation
 │   │   ├── DetailTracing.eol      --> This script includes functions to add tracing statement to the models
@@ -71,5 +71,5 @@ adds required attributes and methods to each capsule
 to support debugging. An example of attributes is a map 
 
 
-### standalone test and execution of the scripts.
+### Standalone testing of the transformation scripts
 
