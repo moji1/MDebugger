@@ -10,7 +10,7 @@ Besides, as an imperative modeling language, it provides support for programming
 constructs and the Object Constraint Language. 
 
 ### short description of the source code structure
-
+```
 │   ├── EOLScripts   --> contains all the developed script for the model transformation
 │   │   ├── DetailTracing.eol      --> This script includes functions to add tracing statement to the models
 │   │   ├── LTTngInstrument.eol    --> This script includes functions to add tracing statement compatible with [LTTNg tracing framework](http://lttng.org/)
@@ -46,7 +46,7 @@ constructs and the Object Constraint Language.
 │   └── SampleModels  --> contains sample model to test the scripts.
 │       └── newtest3.uml
 
-
+```
 
 #### Main loop of the transformation
 ```
