@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <menu
+               label="MDebugger">
+            <command
+                  commandId="ca.queensu.cs.debugger.transformation.TransformUMLRTModel"
+                  label="Instrument the model for debugging">
+               <parameter
+                     name="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+                     value="EOLScripts/UMLRTInstrumentv0.1.eol">
+               </parameter>
+            </command>
+            <command
+                  commandId="ca.queensu.cs.debugger.transformation.TransformUMLRTModel"
+                  label="Uninstrument the model">
+               <parameter
+                     name="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+                     value="epsilonScripts/UMLRTUnInstrument.eol">
+               </parameter>
+            </command>
+            <command
+                  commandId="ca.queensu.cs.debugger.transformation.TransformUMLRTModel"
+                  label="Add LTTng Trace points">
+               <parameter
+                     name="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+                     value="EOLScripts/LTTngInstrument.eol">
+               </parameter>
+            </command>
+            <command
+                  commandId="ca.queensu.cs.debugger.transformation.TransformUMLRTModel"
+                  label="Clean LTTng Trace points">
+               <parameter
+                     name="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+                     value="epsilonScripts/cleanLttngTracepoints.eol">
+               </parameter>
+            </command>
+            <command
+                  commandId="ca.queensu.cs.debugger.transformation.TransformUMLRTModel"
+                  label="Execute Customized Instrumentation">
+               <parameter
+                     name="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+                     value="">
+               </parameter>
+            </command>
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrusrt.codegen.papyrus.internal.propertytester.eClass"
+                        value="Model">
+                  </test>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrusrt.codegen.papyrus.codegen">
+            <command
+               commandId="ca.queensu.cs.debugger.transformation.GenerateDebuggableCode"
+               label="Generate code (debug)">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="ca.queensu.cs.debugger.transformation.commands.TransformUMLRTModel"
+            commandId="ca.queensu.cs.debugger.transformation.TransformUMLRTModel">
+      </handler>
+      <handler
+            class="ca.queensu.cs.debugger.transformation.commands.GenerateInstrumentedCode"
+            commandId="ca.queensu.cs.debugger.transformation.GenerateInstrumentedCode">
+      </handler>
+      <handler
+            class="ca.queensu.cs.debugger.transformation.commands.GenerateDebuggableCodeHandler"
+            commandId="ca.queensu.cs.debugger.transformation.GenerateDebuggableCode">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrusrt.codegen.papyrus.commands-category"
+            defaultHandler="ca.queensu.cs.debugger.transformation.commands.TransformUMLRTModel"
+            description="Transform a UML-RT model"
+            id="ca.queensu.cs.debugger.transformation.TransformUMLRTModel"
+            name="UML-RT Model Transformation">
+         <commandParameter
+               id="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+               name="eolScript"
+               optional="false">
+         </commandParameter>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrusrt.codegen.papyrus.commands-category"
+            id="ca.queensu.cs.debugger.transformation.GenerateDebuggableCode"
+            name="Generate Code (debug)">
+         <commandParameter
+               id="ca.queensu.cs.debugger.transformation.commands.parameter.eolScript"
+               name="eolScript"
+               optional="true">
+         </commandParameter>
+      </command>
+   </extension>
+
+</plugin>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            class="ca.queensu.cs.mdebugger.debugger.breakpoints.MDebuggerBreakpoint"
+            id="ca.queensu.cs.mdebugger.debugger.MDebuggerBreakpoint"
+            markerType="ca.queensu.cs.mdebugger.debugger.marker"
+            name="MDebugger Breakpoint">
+      </breakpoint>
+   </extension>
+   <extension
+         id="marker"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="org.eclipse.debug.core.breakpointMarker">
+      </super>
+      <attribute
+            name="ca.queensu.cs.mdebugger.debugger.elementName">
+      </attribute>
+      <attribute
+            name="ca.queensu.cs.mdebugger.debugger.position">
+      </attribute>
+   </extension>
+   <extension point="org.eclipse.ui.popupMenus">
+    <objectContribution
+               adaptable="false"
+               id="ca.queensu.cs.mdebugger.debugger.objectContribution.CustomEntryStateBehaviorEditPart"
+               objectClass="org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomEntryStateBehaviorEditPart">
+            <menu
+               icon="icons/bug.png"
+               id="MDebuggerEntry"
+               label="&amp;MDebugger (entry)"
+               path="additions"> 
+            <separator name="entry"/>
+         </menu>
+         <action
+               class="ca.queensu.cs.mdebugger.debugger.actions.AddBeforeBreakpointsAction"
+               definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+               enablesFor="1"
+               icon="icons/add-breakpoint.png"
+               id="ca.queensu.cs.mdebugger.debugger.popup.entry.InsertBreakpointBeforeActionCodeActionID"
+               label="&amp;Insert Breakpoint Before Action Code"
+               menubarPath="MDebuggerEntry/entry">
+         </action>
+         <action
+               class="ca.queensu.cs.mdebugger.debugger.actions.AddAfterBreakpointsAction"
+               definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+               enablesFor="1"
+               icon="icons/add-breakpoint.png"
+               id="ca.queensu.cs.mdebugger.debugger.popup.entry.InsertBreakpointAfterActionCodeActionID"
+               label="&amp;Insert Breakpoint After Action Code"
+               menubarPath="MDebuggerEntry/entry">
+         </action>
+         <action
+               class="ca.queensu.cs.mdebugger.debugger.actions.RemoveBeforeBreakpointsAction"
+               definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+               enablesFor="1"
+               icon="icons/remove-breakpoint.png"
+               id="ca.queensu.cs.mdebugger.debugger.popup.entry.DisableBreakpointBeforeActionCodeActionID"
+               label="&amp;Disable Breakpoint Before Action Code"
+               menubarPath="MDebuggerEntry/entry">
+         </action>
+         <action
+               class="ca.queensu.cs.mdebugger.debugger.actions.RemoveAfterBreakpointsAction"
+               definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+               enablesFor="1"
+               icon="icons/remove-breakpoint.png"
+               id="ca.queensu.cs.mdebugger.debugger.popup.entry.DisableBreakpointAfterActionCodeActionID"
+               label="&amp;Disable Breakpoint After Action Code"
+               menubarPath="MDebuggerEntry/entry">
+         </action>
+      </objectContribution>
+         <objectContribution
+               adaptable="false"
+               id="ca.queensu.cs.mdebugger.debugger.objectContribution.CustomExitStateBehaviorEditPart"
+               objectClass="org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomExitStateBehaviorEditPart">
+            <menu
+                  icon="icons/bug.png"
+                  id="MDebuggerExit"
+                  label="&amp;MDebugger (exit)"
+                  path="additions">
+               <separator
+                     name="exit">
+               </separator>
+            </menu>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.AddBeforeBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/add-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.InsertBreakpointBeforeActionCodeActionID"
+                  label="&amp;Insert Breakpoint Before Action Code"
+                  menubarPath="MDebuggerExit/exit">
+            </action>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.AddAfterBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/add-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.InsertBreakpointAfterActionCodeActionID"
+                  label="&amp;Insert Breakpoint After Action Code"
+                  menubarPath="MDebuggerExit/exit">
+            </action>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.RemoveBeforeBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/remove-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.DisableBreakpointBeforeActionCodeActionID"
+                  label="&amp;Disable Breakpoint Before Action Code"
+                  menubarPath="MDebuggerExit/exit">
+            </action>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.RemoveAfterBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/remove-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.DisableBreakpointAfterActionCodeActionID"
+                  label="&amp;Disable Breakpoint After Action Code"
+                  menubarPath="MDebuggerExit/exit">
+            </action>
+         </objectContribution>
+         <objectContribution
+               adaptable="false"
+               id="ca.queensu.cs.mdebugger.debugger.objectContribution.RTTransitionEditPart"
+               objectClass="org.eclipse.papyrusrt.umlrt.tooling.diagram.statemachine.internal.editparts.RTTransitionEditPart">
+            <menu
+                  icon="icons/bug.png"
+                  id="MDebuggerTransitionEffect"
+                  label="&amp;MDebugger (transition effect)"
+                  path="additions">
+               <separator
+                     name="effect">
+               </separator>
+            </menu>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.AddBeforeBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/add-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.InsertBreakpointBeforeActionCodeActionID"
+                  label="&amp;Insert Breakpoint Before Action Code"
+                  menubarPath="MDebuggerTransitionEffect/effect">
+            </action>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.AddAfterBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/add-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.InsertBreakpointAfterActionCodeActionID"
+                  label="&amp;Insert Breakpoint After Action Code"
+                  menubarPath="MDebuggerTransitionEffect/effect">
+            </action>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.RemoveBeforeBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/remove-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.DisableBreakpointBeforeActionCodeActionID"
+                  label="&amp;Disable Breakpoint Before Action Code"
+                  menubarPath="MDebuggerTransitionEffect/effect">
+            </action>
+            <action
+                  class="ca.queensu.cs.mdebugger.debugger.actions.RemoveAfterBreakpointsAction"
+                  definitionId="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints"
+                  enablesFor="1"
+                  icon="icons/remove-breakpoint.png"
+                  id="ca.queensu.cs.mdebugger.debugger.popup.entry.DisableBreakpointAfterActionCodeActionID"
+                  label="&amp;Disable Breakpoint After Action Code"
+                  menubarPath="MDebuggerTransitionEffect/effect">
+            </action>
+         </objectContribution>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+	<category name="MDebugger" description="Commands related to MDebugger diagrams." id="ca.queensu.cs.mdebugger.debugger.category.MDebugger"/>
+	<command categoryId="ca.queensu.cs.mdebugger.debugger.category.MDebugger" description="Toggle breakpoints" id="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints" name="Toggle Breakpoints">
+	</command>
+   </extension>
+</plugin>

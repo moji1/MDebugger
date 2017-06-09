@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="ca.queensu.cs.mdebugger.launchconfiguration.delegate.MDebuggerLaunchConfigurationDelegate"
+            id="ca.queensu.cs.mdebugger.launchconfiguration.launchConfigurationType"
+            modes="debug"
+            name="MDebugger launch">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="ca.queensu.cs.mdebugger.launchconfiguration.shortcuts.MDebuggerLaunchShortcut"
+            icon="icons/bug.png"
+            id="ca.queensu.cs.mdebugger.launchconfiguration.shortcut"
+            label="Sample Shortuct"
+            modes="debug">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <and>
+                     <count
+                           value="1">
+                     </count>
+                     <iterate
+                           ifEmpty="false">
+                        <adapt
+                              type="org.eclipse.core.resources.IResource">
+                           <test
+                                 forcePluginActivation="true"
+                                 property="org.eclipse.core.resources.extension"
+                                 value="uml">
+                           </test>
+                        </adapt>
+                     </iterate>
+                  </and>
+               </with></enablement>
+         </contextualLaunch>
+         <configurationType
+               id="ca.queensu.cs.mdebugger.launchconfiguration.launchConfigurationType">
+         </configurationType>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="ca.queensu.cs.mdebugger.launchconfiguration.tabs.MDebuggerTabGroup"
+            id="ca.queensu.cs.mdebugger.launchconfiguration.launchConfigurationTabGroup"
+            type="ca.queensu.cs.mdebugger.launchconfiguration.launchConfigurationType">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+         <launchConfigurationTypeImage
+        icon="icons/bug.png"
+        configTypeID="ca.queensu.cs.mdebugger.launchconfiguration.launchConfigurationType"
+        id="ca.queensu.cs.mdebugger.launchconfiguration.launchConfigurationTypeImage">
+    </launchConfigurationTypeImage>
+   </extension>
+
+</plugin>
