@@ -13,9 +13,15 @@ The PapyrusRT is insatled at /home/.../../
 All the source are configured as Eclipse project and can be accessed by running PapyrusRT(/home/../). You can change and build the code using inside PapyrusRT.
 
 ## Running
-### Step 1
-### Step 2
+Please note that we assume that you download the VM and successfully started the VM.
+- Step 0 : Run The Eclipse
+The eclipse IDE is located t /home/osbox/...,, use command line or explorer to run that using default workspace. After loading the Eclipse press the run bottom which will open a new Eclipse IDE. Inside the the new Eclipse IDE, you should see the  PingPong and counter model which can be used to test the debugging. 
 
+- Step 1 : Generate the code for debugging
+Righ click on the model that you want to debug and select the MDebugger menu. inside that use generate ... to generate the code.
+- Step 2 : Buinld The generated code
+- Step 3 : Debug the code using command line interface:
+- Step 4 : Use the GUI interface:
 ### Developer Guide:
 ### Other Resources
 
