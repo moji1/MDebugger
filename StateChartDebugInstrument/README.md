@@ -68,8 +68,32 @@ to interface with the debugger. It adds a UML-RT port to
 each capsule. These ports are typed with a specific protocol
 used for debugging purposes. The refineStructure function
 adds required attributes and methods to each capsule
-to support debugging. An example of attributes is a map 
+to support debugging. An example of attributes is a map used 
+for maintaining breakpoint information, required by
+the isDebug method during debugging. Examples of methods
+added are the isDebug method and a set of methods
+for supporting attribute view and change operations. The
+isDebug method returns a boolean value indicating whether
+a debugging session is opened or needs to be opened according
+to the current state and the next transition about
+to be taken. The generation of self-reflection methods was
+inspired by work on [physics engine development]  (http://media.steampowered.com/apps/valve/2014/Sergiy_Migdalskiy_Debugging_Techniques.pdf) These
+methods provide support for viewing and changing attribute
+values. To do so, the refineStructure function iterates
+over all attributes of each capsule and generates the corresponding
+helper functions, such as getters and setters. The
+refineForSRO function applies the four transformation rules
+explained in Section 3. For each transition chain, a helper
+function is used in order to determine which instrumentation
+rule needs to be applied, based on the kinds of source
+and target states. Based on the result, the refineForSRO
+calls the proper transformation rule. The addTrace function
+adds support for detailed tracing operations to each state.
+Finally, the guardCodes function adds a guard to every entry
+and exit code to prevent them from being executed when
+the capsule is being debugged.
 
 
 ### Standalone testing of the transformation scripts
+
 
