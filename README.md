@@ -9,4 +9,3 @@ MDebugger is a model-level debugger of [PapyrysRT](https://eclipse.org/papyrus-r
 
 ### Support or Contact
 
-
