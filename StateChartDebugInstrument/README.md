@@ -77,13 +77,13 @@ isDebug method returns a boolean value indicating whether
 a debugging session is opened or needs to be opened according
 to the current state and the next transition about
 to be taken. The generation of self-reflection methods was
-inspired by work on physics engine development[1].  These
+inspired by work on physics engine development [1].  These
 methods provide support for viewing and changing attribute
 values. To do so, the refineStructure function iterates
 over all attributes of each capsule and generates the corresponding
 helper functions, such as getters and setters. The
 refineForSRO function applies the four transformation rules
-explained in Section 3 of our FSE paper[2]. For each transition chain, a helper
+explained in Section 3 of our FSE paper [2]. For each transition chain, a helper
 function is used in order to determine which instrumentation
 rule needs to be applied, based on the kinds of source
 and target states. Based on the result, the refineForSRO
@@ -95,7 +95,14 @@ the capsule is being debugged.
 
 
 ### Standalone testing of the transformation scripts
+The transformations scripts are called by other project to perfrom the required transformation, however it is possible to modify and  execute this script in standalone mode. Execute the trasformation script inside the Eclipse IDE, follow the below instruction:
+- Righ click on the "UMLRTInstrumentv0.1.eol" and select Run as -> Run configuration 
+![alt text]()
+- 
+
 ### Refrences
-[1]http://media.steampowered.com/apps/valve/2014/Sergiy_Migdalskiy_Debugging_Techniques.pdf
-[2]
+[1] http://media.steampowered.com/apps/valve/2014/Sergiy_Migdalskiy_Debugging_Techniques.pdf
+
+[2] https://github.com/moji1/MDebugger/blob/master/FSE2017-Paper-182.pdf
+
 
