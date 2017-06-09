@@ -13,7 +13,7 @@ constructs and the Object Constraint Language.
 
 │   ├── EOLScripts   --> contains all the developed script for the model transformation
 │   │   ├── DetailTracing.eol      --> This script includes functions to add tracing statement to the models
-│   │   ├── LTTngInstrument.eol    --> This script includes functions to add tracing statement compatible with [LTTNg tracing framework](http://lttng.org/)  
+│   │   ├── LTTngInstrument.eol    --> This script includes functions to add tracing statement compatible with [LTTNg tracing framework](http://lttng.org/)
 │   │   ├── ModelClone.eol         --> This script includes functions to manage the clonning of UML-RT model, it is not complete.
 │   │   ├── SRORule.eol            --> This script includes functions to apply the transformations are required to manage the execution of the model during debugging.
 │   │   ├── SRORulev0.1.eol        --> The new optimized version of the SRORule, under development.
