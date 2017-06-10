@@ -5,16 +5,37 @@ MDebugger is a model-level debugger of [PapyrysRT](https://eclipse.org/papyrus-r
 ## Starting Guide:
 ### Virtual Machine
 
-To facilitate the researchers and developers to use MDebugger, we prepare a virtual machine (VirtualBox VM) which including MDebugger source  and all required software (e.g., PapyrusRT).
+To facilitate the researchers and developers to use MDebugger, we prepare a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) uisng Oracle VirtualBox. It includes MDebugger source  and all required software (e.g., PapyrusRT). The virtual machine can be downloaded from the following link:
+http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova
 
-We set up the credential, “osboxes” as the username and “osboxes.org” as the password, for the VM. The source code directory of MDebugger is /home/osboxes/MDebugger/... 
-The PapyrusRT is insatled at /home/.../../
+[Here](https://www.youtube.com/watch?v=ZCfRtQ7-bh8 ) you can find out how to import the OVA file in Oracle Virtualbox. 
 
-All the source are configured as Eclipse project and can be accessed by running PapyrusRT(/home/../). You can change and build the code using inside PapyrusRT.
+
+We set up the credential, “osboxes” as the username and “osboxes.org” as the password, for the VM. The source code directory of MDebugger is ```/home/osboxes/MDebugger``` and PapyrusRT is insatled at ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/``` and can be run uisng ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```
+
 
 ## Running
-### Step 1
-### Step 2
+Please note that we assume that you download the VM and successfully started the VM.
+- Step 0 (Run PapyrusRT):
+    1. Open a terminal and execute  ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```.  You can run the Eclipse from the lanucher menu at the left side of the desktop.
+    2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
+    3. Run the MDebugger as following figure. It will open a new Eclipse instance. Inside the new Eclipse instance, you can generate the debug code from models, build, and debug them. 
+     ![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step1.png)
+    
+
+- Step 1  (Generate debuggable code):
+Please note that you need to follow the remained  steps inside the second instance of Eclipse. 
+    1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter) in the default workspace. To         generated  debuggable code for the model, frist open the models by double clicking on them, then right click on the root element and select generate code for debugging as shown in the following figure. ![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step1.png)
+    2. After selecting the generate the code, a dialog box will show the result of the code generation.  
+    
+     you can create the modeling project based on the UML-RT language and generate the executable C++ code. you may find a tourial and detail information here.  
+
+Righ click on the model that you want to debug and select the MDebugger menu. inside that use generate ... to generate the code.
+- Step 2 : Buinld The generated code
+
+- Step 3 : Debug the code using command line interface:
+
+- Step 4 : Use the GUI interface:
 
 ### Developer Guide:
 ### Other Resources
