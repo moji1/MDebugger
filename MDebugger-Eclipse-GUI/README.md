@@ -2,7 +2,7 @@
 MDebugger can be used within Eclipse. To do so, we have provided an integration with the Eclipse debugger API.
 
 ## Running
-This part assumes that you already [know how to run the MDebugger program in command-line](https://github.com/moji1/MDebugger), and that the steps 1 to 3 are performed, i.e., the instrumented code of the sample model (PingPong model or Counter model) has been generated using “generate code (Debug)“, and the instrumented code has been compiled. The following steps are performed in the second Eclipse instance.
+This part assumes that you have already read [how to run the MDebugger program in command-line](https://github.com/moji1/MDebugger), and that you performed the steps 1 to 3, i.e., generated the instrumented code of the sample model (PingPong model or Counter model) using “generate code (Debug)“, and compiled the instrumented code. All the following steps are performed in the second Eclipse instance.
 
 - Step 1 (Execute the instrumented model)
   1. First, run the debuggable program of the counter model using the following command:
@@ -19,21 +19,21 @@ This part assumes that you already [know how to run the MDebugger program in com
       2. It then runs the MDebugger CLI tool only as a wrapper to communicate with the debug target in Eclipse.
       
   3. If the Counter model was not open, it will be opened automatically. If the debug perspective was not active, Eclipse will ask you to open it. Once confirmed, the main debug interface will be displayed. It consist on the following parts:
-      1. A **Debug** view containing three main items: **Counter [MDebugger launch]** is the Eclipse debug target; **MDebugger (wrapper) [C/C++ Application]** is the command-line debugger that is only used as a wrapper; **Counter-Debug [Launch Group]** is the debug configuration we have created for convenient purpose;
-      
-      2. A **Variables** view listing the different variables of a capsule instance when a stack frame is selected;
-      
-      3. A **Breakpoints** view lists all breakpoints set on this model;
-      
-      4. The **Editing area** showing the *Counter* model;
-      
-      5. The **Console** in which it is still possible to invoke the MDebugger CLI tool using command lines. 
+  
+      * A **Debug** view containing three main items: 
+        * **Counter [MDebugger launch]** is the Eclipse debug target;
+        * **MDebugger (wrapper) [C/C++ Application]** is the command-line debugger that is only used as a wrapper;
+        * **Counter-Debug [Launch Group]** is the debug configuration we have created for convenient purpose;
+      * A **Variables** view listing the different variables of a capsule instance when a stack frame is selected;
+      * A **Breakpoints** view lists all breakpoints set on this model;
+      * The **Editing area** showing the *Counter* model;
+      * The **Console** in which it is still possible to invoke the MDebugger CLI tool using command lines. 
       
 ## Debugging
 
-Now the Eclipse debugger has been launched, a *Debug target* has been created, and a small icon in the top-left corner shows that the Counter application has been paused. A *Debug target* consists of *threads*, each thread represents the execution of a capsule instance in UML-RT. If you are debugging the Counter model, only one thread, called *Counter:Debug\_\_Counter:0* has been created. On the right side of the thread name, its current state appears between bracket. This current state show the current position of the debug pointer in the model. Initially, the current state is before the action code of the initial transition to be executed.
+Now the Eclipse debugger has been launched, a *Debug target* has been created, and a small icon in the top-left corner shows that the Counter application has been paused. A *Debug target* consists of *threads*, each thread represents the execution of a capsule instance in UML-RT. If you are debugging the Counter model, only one thread, called *Counter:Debug\_\_Counter:0* has been created. On the right side of the thread name, its current state appears between brackets. This current state show the current position of the debug pointer in the model. Initially, the current state is before the action code of the initial transition to be executed.
 
-When a capsule thread is paused, a small icon appears on the bottom-left corner of the capsule thread to notify the programmer that this capsule thread is not running. When paused, a capsule thread displays the list of the five last events that occur. Each event is represented as a stack frame of the capsule thread. 
+When a capsule thread is paused, a small icon appears on the bottom-left corner of the capsule thread to notify the programmer that this capsule thread is not running. When paused, a capsule thread displays the list of the five last events that occured. Each event is represented as a *stack frame* of the capsule thread. 
 
 ### Listing and changing variables
 
