@@ -49,7 +49,7 @@ Please note that you need to follow the remained  steps inside the second instan
     
          ```
          cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
-         Debug__TopMain
+         ./Debug__TopMain
          ```
 
 - Step 4 : Use the GUI interface:
