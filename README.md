@@ -66,14 +66,12 @@ Please note that you need to follow the remained  steps inside the second instan
                     use "n -c capsule name" to step over the execuation of the capsules,
                     use "b -c ...." to set breakpoint,
                     and so on. 
-     5. The following figure shows  a full list of the MDebugger commands, and here is a short video which show how to use the MDebugger.
+     5. The following figure shows  a full list of the MDebugger commands.
         ![alt text](screenshots/MDebugger-Commands.png)         
 - Step 4 : Use the GUI interface:
 
-### Evaluation Scenarios
+<!-- .### Evaluation Scenarios
 ### Developer Guide
 ### Other Resources
-
-
-### Support or Contact
+### Support or Contact--!>
 
