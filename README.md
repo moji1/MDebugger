@@ -35,15 +35,20 @@ Please note that you need to follow the remained  steps inside the second instan
 
 
 - Step 2 : Build the generated code
-    1. Generated debug code is in C++ langauge and can be build similar to any C++ program. To build the code you can use the Build command inside Eclipse as shown in the following figure.
+    1. Generated debug code is in C++ langauge and can be build similar to any C++ program. To build the code you can use the build menu by right click on the generated code  as shown in the following figure.
     ![alt text](screenshots/build-code.png) 
     2.Also, you  can use the terminal to run build the code using a generated make file. For instance  the following commands show how to build the generated code for the counter model.
     ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src```
     ```make```
     Similarly, Use  ```/home/osboxes/runtime-MDebugger/PingPong_CDTProject/src   && make ``` for the PingPong model.
-    3. Result of the build in both cases is a debuggable program and its name is ```Debug__TopMain```. use ```./Debug__TopMain``` to run that.
+    3. Result of the build in both cases is a debuggable program and its name is ```Debug__TopMain```. Use ```./Debug__TopMain``` to run that.
 
-- Step 3 : Debug the code using command line interface:
+- Step 3 : Debug the code using command line interface
+    1. Now the debuggable program is ready, and you can debug them using MDebugger. Let's assume that we want to debug the counter model.
+    2. Frist, run the debuggable program of the counter model using the following command:
+    ```cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src```
+    
+    ```Debug__TopMain```
 
 - Step 4 : Use the GUI interface:
 
