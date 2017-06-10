@@ -70,7 +70,7 @@ Please note that you need to follow the remaining  steps inside the second insta
                     and so on. 
      5. The following figure shows  a full list of the MDebugger commands.
         ![alt text](screenshots/MDebugger-Commands.png)         
-- Step 4 : Use the GUI interface:
+- Step 4 : Use the GUI interface: see [this page](https://github.com/moji1/MDebugger/tree/master/MDebugger-Eclipse-GUI).
 
 <!-- .### Evaluation Scenarios
 ### Developer Guide
