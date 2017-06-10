@@ -6,6 +6,7 @@ MDebugger is a model-level debugger of [PapyrysRT](https://eclipse.org/papyrus-r
 ### Virtual Machine
 
 To facilitate the researchers and developers to use MDebugger, we prepare a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) uisng Oracle VirtualBox. It includes MDebugger source  and all required software (e.g., PapyrusRT). The virtual machine can be downloaded from the following links:
+
 http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova
 https://drive.google.com/file/d/0BzxhsAV1WGFRcXdHRHh4Zl85QXM/view?usp=sharing
 
