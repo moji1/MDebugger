@@ -62,12 +62,12 @@ Once a breakpoint is created using the editing area, it is automatically added t
 
 ### Stepping over the execution
 
-Using the Eclipse toolbar, it is possible to stepping over the execution of one capsule instance. To do so, a capsule thread (or a subsequent stack frame within the capsule thread) has to be selected first. Then, hitting the *Step Over* icon in the menu bar (or pressing *F6*) will cause the capsule thread to step over the execution. The list of the last five events is furthermore refreshed, as well as the current state of the capsule thread, which is now: *After transition effect's action code of transition initial*. Stepping over can be done multiple times, causing the Counter capsule to enter the *COUNTING* state, firing the *count* transition, etc.
+Using the Eclipse toolbar, it is possible to stepping over the execution of one capsule instance. To do so, a capsule thread (or a subsequent stack frame within the capsule thread) has to be selected first. Then, hitting the *Step Over* icon in the menu bar (or pressing <kbd>F6</kbd>) will cause the capsule thread to step over the execution. The list of the last five events is furthermore refreshed, as well as the current state of the capsule thread, which is now: *After transition effect's action code of transition initial*. Stepping over can be done multiple times, causing the Counter capsule to enter the *COUNTING* state, firing the *count* transition, etc.
 
 
 ### Resuming execution
 
-Using the Eclipse debugger integration, it is also possible to resume the execution of the system using the *Resume* icon (or by pressing *F8*) in the Eclipse toolbar. Doing so will command the MDebugger to resume the execution until a breakpoint is reached.  
+Using the Eclipse debugger integration, it is also possible to resume the execution of the system using the *Resume* icon (or by pressing <kbd>F8</kbd>) in the Eclipse toolbar. Doing so will command the MDebugger to resume the execution until a breakpoint is reached.  
 
 **Note:** a known limitation of the MDebugger CLI tool prevents a system being resumed to stop when a breakpoint is reached. This limitation will be fixed soon.
 
