@@ -8,18 +8,17 @@ MDebugger is a model-level debugger of [PapyrysRT](https://eclipse.org/papyrus-r
 To facilitate the researchers and developers to use MDebugger, we prepare a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) uisng Oracle VirtualBox. It includes MDebugger source  and all required software (e.g., PapyrusRT). The virtual machine can be downloaded from the following link:
 http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova
 
-[Here](https://www.youtube.com/watch?v=ZCfRtQ7-bh8 ) you can find  how to import the OVA file in Oracle Virtualbox refer 
+[Here](https://www.youtube.com/watch?v=ZCfRtQ7-bh8 ) you can find out how to import the OVA file in Oracle Virtualbox. 
 
 
-We set up the credential, “osboxes” as the username and “osboxes.org” as the password, for the VM. The source code directory of MDebugger is /home/osboxes/MDebugger/ and PapyrusRT is insatled at /home/.../../
+We set up the credential, “osboxes” as the username and “osboxes.org” as the password, for the VM. The source code directory of MDebugger is ```/home/osboxes/MDebugger``` and PapyrusRT is insatled at ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/``` and can be run uisng ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```
 
-All the source are configured as Eclipse project and can be accessed by running PapyrusRT(/home/../). You can change and build the code using inside PapyrusRT.
 
 ## Running
 Please note that we assume that you download the VM and successfully started the VM.
-- Step 0 : Run The Eclipse
+- Step 0 : Run The PapyrusRT 
 
-The eclipse IDE is located t /home/osbox/...,, use command line or explorer to run that using default workspace. After loading the Eclipse press the run bottom which will open a new Eclipse IDE. Inside the the new Eclipse IDE, you should see the  PingPong and counter model which can be used to test the debugging. 
+-- ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```   from  use command line or explorer to run that using default workspace. After loading the Eclipse press the run bottom which will open a new Eclipse IDE. Inside the the new Eclipse IDE, you should see the  PingPong and counter model which can be used to test the debugging. 
 
 - Step 1 : Generate the code for debugging
 
