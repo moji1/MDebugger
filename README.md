@@ -23,7 +23,8 @@ Please note that we assume that you download the VM and successfully started the
     You can run the Eclipse from the lanucher menu at the left side of the desktop.
 
 - Step 1  (Generate debuggable code)
-    -For the purpose of evaluation, we have defined two sample models (PingPong and Counter) in the default workspace. To         generated  debuggable code for the model, frist open the models by double clicking on them, then right click on the root element and select generate code for debugging as shown in the following figure.
+    1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter) in the default workspace. To         generated  debuggable code for the model, frist open the models by double clicking on them, then right click on the root element and select generate code for debugging as shown in the following figure.
+    2. After selecting the generate the code, a dialog box will show the result of the code generation.  
     
      you can create the modeling project based on the UML-RT language and generate the executable C++ code. you may find a tourial and detail information here.  
 
