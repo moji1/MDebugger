@@ -19,25 +19,36 @@ Please note that we assume that you download the VM and successfully started the
 - Step 0 (Run PapyrusRT):
     1. Open a terminal and execute  ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```.  You can run the Eclipse from the lanucher menu at the left side of the desktop.
     2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
-    3. Run the MDebugger as following figure. It will open a new Eclipse instance. Inside the new Eclipse instance, you can generate the debug code from models, build, and debug them. 
-     ![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step1.png)
+    3. Run the MDebugger as shown in the following figure. It will open a new Eclipse instance. Inside the new Eclipse instance, you can generate the debug code from models, build, and debug them. 
+     ![alt text](screenshots/run-eclipse.png)
     
 
 - Step 1  (Generate debuggable code):
 Please note that you need to follow the remained  steps inside the second instance of Eclipse. 
-    1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter) in the default workspace. To         generated  debuggable code for the model, frist open the models by double clicking on them, then right click on the root element and select generate code for debugging as shown in the following figure. ![alt text](https://github.com/moji1/MDebugger/blob/master/StateChartDebugInstrument/Screenshots/Step1.png)
-    2. After selecting the generate the code, a dialog box will show the result of the code generation.  
+    1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter) in the default workspace. To         generated  debuggable code for the model, frist open the models by double clicking on them or by righ click and select open,  as shown in the following figure.
+    ![alt text](screenshots/open-model.png)
+    2. To generate the debug code,  right click on the root element of the openned model and select generate code (Debug) menu as shown in the following figure. 
+    ![alt text](screenshots/generate-debug-code.png)
+    3. After selecting the cenerate code (Debug) menu, a dialog box will show the result of the code generation.  
     
-     you can create the modeling project based on the UML-RT language and generate the executable C++ code. you may find a tourial and detail information here.  
+    Also, you can create the modeling project based on the UML-RT language and generate the executable C++ code. you may find a tourial and detail information [here](https://wiki.eclipse.org/Papyrus-RT/User/User_Guide/Getting_Started).  
 
-Righ click on the model that you want to debug and select the MDebugger menu. inside that use generate ... to generate the code.
-- Step 2 : Buinld The generated code
+
+- Step 2 : Build the generated code
+    1. Generated debug code is in C++ langauge and can be build similar to any C++ program. To build the code you can use the Build command inside Eclipse as shown in the following figure.
+    2.Also, you  can use the terminal to run build the code using a generated make file. For instance  the following commands show how to build the generated code for the counter model.
+    ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
+        make
+    ```
+    Use  ```/home/osboxes/runtime-MDebugger/PingPong_CDTProject/src   && make ``` for the PingPong model.
+    3. Result of the build in both cases is a debuggable program and its name is ```Debug__TopMain```. use ```./Debug__TopMain``` to run that.
 
 - Step 3 : Debug the code using command line interface:
 
 - Step 4 : Use the GUI interface:
 
-### Developer Guide:
+### Evaluation Scenarios
+### Developer Guide
 ### Other Resources
 
 
