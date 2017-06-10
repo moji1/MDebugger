@@ -97,6 +97,8 @@ public class MDebuggerTCPSocket extends Thread {
             		id = Integer.parseInt(messageId);
             	} catch (NumberFormatException e) {
             	}
+            	
+            	System.out.println("Command id:" + id);
 
             	if (id == 0) {
             		this.retrieveCapsuleList(message);

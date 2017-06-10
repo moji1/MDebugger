@@ -90,6 +90,7 @@ public class MDebuggerTCPWriter {
 		if (remove) {
 			buf += " -r ";
 		}
+		System.out.println(buf);
 		sendMessage(buf, Command.WAITING_FOR_ACK);
 	}
 	
@@ -106,6 +107,7 @@ public class MDebuggerTCPWriter {
 		}
 		
 		message = messageSize + message;
+	
 		
 		try {
 //			System.out.println("sending message: '" + message + "'");
