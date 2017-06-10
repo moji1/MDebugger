@@ -35,16 +35,40 @@ Please note that you need to follow the remained  steps inside the second instan
 
 
 - Step 2 : Build the generated code
-    1. Generated debug code is in C++ langauge and can be build similar to any C++ program. To build the code you can use the Build command inside Eclipse as shown in the following figure.
+    1. Generated debug code is in C++ langauge and can be build similar to any C++ program. To build the code you can use the build menu by right click on the generated code  as shown in the following figure.
+    ![alt text](screenshots/build-code.png) 
     2.Also, you  can use the terminal to run build the code using a generated make file. For instance  the following commands show how to build the generated code for the counter model.
-    ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
-        make
-    ```
-    Use  ```/home/osboxes/runtime-MDebugger/PingPong_CDTProject/src   && make ``` for the PingPong model.
-    3. Result of the build in both cases is a debuggable program and its name is ```Debug__TopMain```. use ```./Debug__TopMain``` to run that.
+    ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src```
+    ```make```
+    Similarly, Use  ```/home/osboxes/runtime-MDebugger/PingPong_CDTProject/src   && make ``` for the PingPong model.
+    3. Result of the build in both cases is a debuggable program and its name is ```Debug__TopMain```. Use ```./Debug__TopMain``` to run that.
 
-- Step 3 : Debug the code using command line interface:
-
+- Step 3 : Debug the code using command line interface
+    1. Now the debuggable program is ready, and you can debug them using MDebugger. Let's assume that we want to debug the counter model.
+    2. Frist, run the debuggable program of the counter model using the following command:
+    
+         ```
+         cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
+         ./Debug__TopMain
+         ```
+          Upon successful execution, the following result should be shown in terminal.  
+            ![alt text](screenshots/build-code.png)
+     3. After execution of the program, open a new terminal and run the MDebugger uisng the following commands:
+         ```
+          cd /home/osboxes/MDebugger/MDebugger/Debug/
+         ./MDebugger 
+         
+         ```
+         Upon successful execution, the following result should be shown in terminal. 
+          ![alt text](screenshots/build-code.png)
+     4. You have several debugging commands to debug the counter model. Use help to see a full list of commands. 
+        For instance:
+                    Use "list" to see the running capsules (i.e., similar to thread in programin languages). 
+                    Use "n -c capsule name" to step over the execuation of the capsules.
+                    Use "b -c ...." to set breakpoint
+                    and so on. 
+     5. The following shows  a full list of the MDebugger commands, and here is a short video which show how to use the MDebugger.
+                    
 - Step 4 : Use the GUI interface:
 
 ### Evaluation Scenarios
