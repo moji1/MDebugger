@@ -16,9 +16,11 @@ We set up the credential, “osboxes” as the username and “osboxes.org” as
 
 ## Running
 Please note that we assume that you download the VM and successfully started the VM.
-- Step 0 : Run The PapyrusRT 
+0. Step 0 (Run PapyrusRT )
+  1. Open a terminal and execute  ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```. 
+  2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
 
--- ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```   from  use command line or explorer to run that using default workspace. After loading the Eclipse press the run bottom which will open a new Eclipse IDE. Inside the the new Eclipse IDE, you should see the  PingPong and counter model which can be used to test the debugging. 
+You may run the Eclipse from the lanucher menu at the left side of the desktop.
 
 - Step 1 : Generate the code for debugging
 
