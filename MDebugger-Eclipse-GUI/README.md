@@ -70,3 +70,7 @@ Using the Eclipse toolbar, it is possible to stepping over the execution of one 
 Using the Eclipse debugger integration, it is also possible to resume the execution of the system using the *Resume* icon (or by pressing *F8*) in the Eclipse toolbar. Doing so will command the MDebugger to resume the execution until a breakpoint is reached.  
 
 **Note:** a known limitation of the MDebugger CLI tool prevents a system being resumed to stop when a breakpoint is reached. This limitation will be fixed soon.
+
+### Switching back to the command-line debugger
+
+When using the Eclipse debugger, it is always possible to switch back to the command-line debugger. The latter is opened in the **Console** view, and commands written in it.
