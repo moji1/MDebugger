@@ -5,10 +5,10 @@ MDebugger is a model-level debugger of [PapyrysRT](https://eclipse.org/papyrus-r
 ## Starting Guide:
 ### Virtual Machine
 
-To facilitate the researchers and developers to use MDebugger, we prepare a virtual machine (VirtualBox VM) which including MDebugger source  and all required software (e.g., PapyrusRT).
+To facilitate the researchers and developers to use MDebugger, we prepare a [virtual machine (VirtualBox VM)](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) which including MDebugger source  and all required software (e.g., PapyrusRT). The following short video provides instruction how to import the OVA file in Virtual box.
+https://www.youtube.com/watch?v=ZCfRtQ7-bh8 
 
-We set up the credential, “osboxes” as the username and “osboxes.org” as the password, for the VM. The source code directory of MDebugger is /home/osboxes/MDebugger/... 
-The PapyrusRT is insatled at /home/.../../
+We set up the credential, “osboxes” as the username and “osboxes.org” as the password, for the VM. The source code directory of MDebugger is /home/osboxes/MDebugger/ and PapyrusRT is insatled at /home/.../../
 
 All the source are configured as Eclipse project and can be accessed by running PapyrusRT(/home/../). You can change and build the code using inside PapyrusRT.
 
