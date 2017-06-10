@@ -16,13 +16,16 @@ We set up the credential, “osboxes” as the username and “osboxes.org” as
 
 ## Running
 Please note that we assume that you download the VM and successfully started the VM.
-- Step 0 (Run PapyrusRT )
-    0.1. Open a terminal and execute  ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```. 
-    0.2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
+- Step 0 (Run PapyrusRT):
+    1. Open a terminal and execute  ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```. 
+    2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
   
-    You may run the Eclipse from the lanucher menu at the left side of the desktop.
+    You can run the Eclipse from the lanucher menu at the left side of the desktop.
 
-- Step 1 : Generate the code for debugging
+- Step 1  (Generate debuggable code)
+    -For the purpose of evaluation, we have defined two sample models (PingPong and Counter) in the default workspace. To         generated  debuggable code for the model, frist open the models by double clicking on them, then right click on the root element and select generate code for debugging as shown in the following figure.
+    
+     you can create the modeling project based on the UML-RT language and generate the executable C++ code. you may find a tourial and detail information here.  
 
 Righ click on the model that you want to debug and select the MDebugger menu. inside that use generate ... to generate the code.
 - Step 2 : Buinld The generated code
