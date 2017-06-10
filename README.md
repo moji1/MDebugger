@@ -51,7 +51,24 @@ Please note that you need to follow the remained  steps inside the second instan
          cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
          ./Debug__TopMain
          ```
-
+          Upon successful execution, the following result should be shown in terminal.  
+            ![alt text](screenshots/build-code.png)
+     3. After execution of the program, open a new terminal and run the MDebugger uisng the following commands:
+         ```
+          cd /home/osboxes/MDebugger/MDebugger/Debug/
+         ./MDebugger 
+         
+         ```
+         Upon successful execution, the following result should be shown in terminal. 
+          ![alt text](screenshots/build-code.png)
+     4. You have several debugging commands to debug the counter model. Use help to see a full list of commands. 
+        For instance:
+                    Use "list" to see the running capsules (i.e., similar to thread in programin languages). 
+                    Use "n -c capsule name" to step over the execuation of the capsules.
+                    Use "b -c ...." to set breakpoint
+                    and so on. 
+     5. The following shows  a full list of the MDebugger commands, and here is a short video which show how to use the MDebugger.
+                    
 - Step 4 : Use the GUI interface:
 
 ### Evaluation Scenarios
