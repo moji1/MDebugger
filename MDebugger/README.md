@@ -12,4 +12,8 @@ command interface is responsible for receiving and parsing the debugging command
 or from external applications connected via TCP.
 
 ### Short description of the source code structure
-
+### Build the code 
+```
+   cd /home/osboxes/MDebugger/MDebugger/Debug
+   make 
+```
