@@ -10,3 +10,6 @@ corresponds to the instruction pointer, and the list of variables corresponds to
 In addition to the core component, the communication layer provides services for reading from and writing to the shared memory, and for handling TCP connections. The
 command interface is responsible for receiving and parsing the debugging commands from the command line interface
 or from external applications connected via TCP.
+
+### Short description of the source code structure
+
