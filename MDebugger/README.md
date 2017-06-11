@@ -1,5 +1,5 @@
 ### Goal of the project
-MDebugger is a model-level debugger which provides debugging services by interacting with the debuggable binary.
+MDebugger is a model-level debugger which provides debugging services by interacting with the debuggable binary. 
 It consists of several components including a core component,a command interface, an event manager, and a communication
 layer. The core component implements the main logic of the debugger. Initially, it queries the list of the registered capsule
 instances from the debugging agent. For every capsule instance, it keeps track of certain data including: 1) last events
