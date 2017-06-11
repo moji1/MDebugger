@@ -72,6 +72,9 @@ Please note that you need to follow the remaining  steps inside the second insta
         ![alt text](screenshots/MDebugger-Commands.png)         
 - Step 4 : Use the GUI interface: see [this page](https://github.com/moji1/MDebugger/tree/master/MDebugger-Eclipse-GUI).
 
+### Video Tutorials
+- [Debugging Using Command Line User Interface](https://youtu.be/UJ4BYSOrTOQ)
+- [Debugging Uisng Graphical User Interface](https://youtu.be/PvPbV5QkQ9Y)
 <!-- .### Evaluation Scenarios
 ### Developer Guide
 ### Other Resources
