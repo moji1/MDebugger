@@ -17,7 +17,7 @@ We set up the credential, “osboxes” as the username and “osboxes.org” as
 
 
 ## Running
-Please note that we assume that you download the VM and successfully started the VM.
+Please note that we assume that you downloaded and started the VM successfully.
 - Step 0 (Run PapyrusRT):
     1. Open a terminal and execute  ```/home/osboxes/papyrus-rt-devtest-latest/Papyrus-RT/eclipse```.  You can run the Eclipse from the lanucher menu at the left side of the desktop.
     2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
