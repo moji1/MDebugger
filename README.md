@@ -28,6 +28,7 @@ Please note that we assume that you downloaded and started the VM successfully.
 - Step 1  (Generate debuggable code):
 Please note that you need to follow the remaining steps inside the second instance of Eclipse. 
     1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter project) in the default workspace. To generate debuggable code for a model, first, open a model's project, and then open the model by double-clicking on it or by right-clicking and selecting “open“,  as shown in the following figure. 
+    ![alt text](screenshots/project-model-pointer.png)
     ![alt text](screenshots/open-model.png)
     2. To generate the debug code, right-click on the root element of the opened model and select “generate code (Debug)“ menu as shown in the following figures.
     ![alt text](screenshots/model-root-element.png)
@@ -67,7 +68,7 @@ Please note that you need to follow the remaining steps inside the second instan
      4. You have several debugging commands to debug the counter model. Use help to see a full list of commands. 
         For in use "list" to see the running capsules, 
                     use "n -c capsule name" to step over the execuation of the capsules,
-                    use "b -c ...." to set breakpoint,
+                    use "b -c ...." to set a breakpoint,
                     and so on. 
      5. The following figure shows a full list of the MDebugger commands.
         ![alt text](screenshots/MDebugger-Commands.png)         
