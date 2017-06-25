@@ -30,7 +30,7 @@ Please note that you need to follow the remaining steps inside the second instan
     1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter project) in the default workspace. To generate debuggable code for a model, first, open a model's project, and then open the model by double-clicking on it or by right-clicking and selecting “open“,  as shown in the following figure. 
     ![alt text](screenshots/open-model.png)
     2. To generate the debug code, right-click on the root element of the opened model and select “generate code (Debug)“ menu as shown in the following figures.
-    ![alt text](screenshots/Screen Shot 2017-06-24 at 23.55.24.png)
+    ![alt text](screenshots/model-root-element.png)
     ![alt text](screenshots/generate-debug-code.png)
     3. After selecting the generate code (Debug) menu, a dialog box will show the result of the code generation.  
     
