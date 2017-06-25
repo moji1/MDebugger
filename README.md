@@ -57,16 +57,17 @@ Please note that you need to follow the remaining steps inside the second instan
     1. The generated debug code is in C++ language and can be built similarly to any C++ program. To build the code you can use the build menu by right-clicking on the generated code as shown in the following figure.
     ![alt text](screenshots/build-code.png) 
     2.Also, you can use the terminal to build the code using the generated makefile. For instance, the following commands show how to build the generated code for the counter model.
-    ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src```
-    ``` Make sure that config file called "config" is created and contain the following information.
+        
+         ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src```
+         ``` Make sure that config file called "config" is created and contain the following information.
             eventqname=EventQ
             eventareasize=99999999
             commandareaname=CommandArea
             commandqname=CommandQ
             commandareasize=9999
             Debug=true
-    ```
-    ```make```
+         ```
+         ```make```
     Similarly, Use  ```/home/osboxes/runtime-MDebugger/PingPong_CDTProject/src && make ``` for the PingPong model.
     3. The result of the build in both cases is a debuggable program and its name is ```Debug__TopMain```. Use ```./Debug__TopMain``` to run that.
 
