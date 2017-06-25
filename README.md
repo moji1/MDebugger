@@ -34,7 +34,15 @@ Please note that we assume that you downloaded and started the VM successfully.
 
 - Step 1  (Generate debuggable code):
 Please note that you need to follow the remaining steps inside the second instance of Eclipse. 
-    1. For the purpose of evaluation, we have defined two sample models (PingPong and Counter project) in the default workspace. To generate debuggable code for a model, first, open a model's project, and then open the model by double-clicking on it or by right-clicking and selecting “open“,  as shown in the following figure. 
+    1. There are five projects in the workspace, below is a brief description of these projects: 
+    ```
+    CommGateway        --> The Debugging Agent which is devloped using UML-RT.
+    Counter            --> A sample UML-RT model created for the purpose of evaluation.
+    Counter_CDTProject --> A C++ code generated from the counter model.
+    PingPong           --> A sample UML-RT model created for the purpose of evaluation.
+    PingPong_CDTProject --> A C++ code generated from the PingPong model.
+    ```
+    2. For the purpose of evaluation, we have defined two sample models (PingPong and Counter project) in the default workspace. To generate debuggable code for a model, first, open a model's project, and then open the model by double-clicking on it or by right-clicking and selecting “open“,  as shown in the following figure. 
     ![alt text](screenshots/project-model-pointer.png)
     ![alt text](screenshots/open-model.png)
     2. To generate the debug code, right-click on the root element of the opened model and select “generate code (Debug)“ menu as shown in the following figures.
