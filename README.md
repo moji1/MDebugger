@@ -60,7 +60,7 @@ Please note that you need to follow the remaining steps inside the second instan
         
          ``` cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src```
          ``` 
-         Make sure that config file called "config" is created and contain the following information.
+        Make sure that config file called "config" is created and contain the following information.
             eventqname=EventQ
             eventareasize=99999999
             commandareaname=CommandArea
