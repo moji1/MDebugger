@@ -38,10 +38,10 @@ Please note that we assume that you downloaded and started the VM successfully.
     2. The Eclipse launcher will be shown, use the default workspace (i.e., /home/osboxes/workspace) and press the Launch.
     3. There are four projects in the workspace, below is a brief description of these projects: 
     ```
-    ca.queensu.cs.debugger.transformation       --> A plugin that calls the transfromations' scripts from PapyrusRT.
-    ca.queensu.cs.mdebugger.debugger            --> A MDebugger GUI.
-    ca.queensu.cs.mdebugger.launchconfiguration --> A plugin which manages the MDebugger launch configuration.
-    MDebugger --> A C++ project that implements the core of MDebugger. 
+    ca.queensu.cs.debugger.transformation   --> A plugin that calls the transfromations' scripts from PapyrusRT.
+    ca.queensu.cs.mdebugger.debugger    --> A MDebugger GUI.
+    ca.queensu.cs.mdebugger.launchconfiguration    --> A plugin which manages the MDebugger launch configuration.
+    MDebugger   --> A C++ project that implements the core of MDebugger. 
     ```
     4. Run MDebugger as shown in the following figure. It will open a new Eclipse instance. Inside the new Eclipse instance, you can generate the debug code from UML-RT models, build it, and debug it. 
      ![alt text](screenshots/run-eclipse.png)
