@@ -2,6 +2,15 @@
 MDebugger is a model-level debugger of [Eclipse Papyrus for Real-time](https://eclipse.org/papyrus-rt/) (Papyrus-RT). Papyrus-RT is an Eclipse-based, open-source modelling development environment for UML-RT systems. It allows the generation of complete, executable code from models and advances the state-of-art via support for model representation with mixed graphical/textual notations and an extensible code generator. Using MDebugger, we can debug UML-RT models on the target platfrom without using program debugger or refering to the generated code. The core of the MDebugger is developed at model-level uisng model transformation techniques. A detailed description of the model-level debugger can be found in our [FSE 2017] paper.
 
 
+## Background
+As stated MDebugger provides model-level debugging in the context of Papyrus-RT. The following links may provide useful resources regarding the UML-RT concepts, and using PapyrusRT.
+[PapyrusRT Website](https://eclipse.org/papyrus-rt/)
+[PapyrusRT Forums](https://www.eclipse.org/forums/index.php/f/314/)
+[Getting Started with PapyrusRT](https://wiki.eclipse.org/Papyrus-RT/User/User_Guide/Getting_Started)
+[UML-RT Language Concepts](https://pdfs.semanticscholar.org/7fae/fac63155a404e431c97201f89fc8c37a7d62.pdf)
+[An executable formal semantics for UML-RT](https://link.springer.com/article/10.1007/s10270-014-0399-z)
+
+
 ## Starting Guide:
 ### Virtual Machine
 
