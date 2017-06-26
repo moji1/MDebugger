@@ -1,0 +1,449 @@
+
+#include "Debug__TopControllers.hh"
+
+#include "Counter.hh"
+#include "Debug__Top.hh"
+#include "GateWay.hh"
+#include "umlrtcapsuleclass.hh"
+#include "umlrtcapsulepart.hh"
+#include "umlrtcommsport.hh"
+#include "umlrtcommsportfarend.hh"
+#include "umlrtcontroller.hh"
+#include "umlrtslot.hh"
+#include <cstddef>
+
+
+static UMLRTController DefaultController_( "DefaultController" );
+
+UMLRTController * DefaultController = &DefaultController_;
+
+static Capsule_Debug__Top debug__Top( &Debug__Top, &Debug__Top_slots[InstId_Debug__Top], NULL, NULL, true );
+
+static UMLRTSlot * slots_Debug__Top[] = 
+{
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Counter],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway]
+};
+
+static UMLRTCapsulePart parts_Debug__Top[] = 
+{
+    {
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Counter,
+        1,
+        &slots_Debug__Top[0]
+    },
+    {
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Gateway,
+        1,
+        &slots_Debug__Top[1]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Counter[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Counter[] = 
+{
+    {
+        &Counter,
+        Capsule_Counter::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Counter],
+        1,
+        borderfarEndList_Debug__Top_Debug__Counter,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Counter,
+        Capsule_Counter::borderport_timer1,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Counter],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Counter[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Counter_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Counter[0],
+    &borderports_Debug__Top_Debug__Counter[1]
+};
+
+static Capsule_Counter debug__Top_Debug__Counter( &Counter, &Debug__Top_slots[InstId_Debug__Top_Debug__Counter], borderports_Debug__Top_Debug__Counter_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_commandTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        1,
+        borderfarEndList_Debug__Top_Debug__Gateway,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_configTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Gateway[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        50,
+        &borderfarEndList_Debug__Top_Debug__Gateway[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Gateway_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Gateway[0],
+    &borderports_Debug__Top_Debug__Gateway[1],
+    &borderports_Debug__Top_Debug__Gateway[2]
+};
+
+static Capsule_GateWay debug__Top_Debug__Gateway( &GateWay, &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway], borderports_Debug__Top_Debug__Gateway_ptrs, NULL, true );
+
+UMLRTSlot Debug__Top_slots[] = 
+{
+    {
+        "Debug__Top",
+        0,
+        &Debug__Top,
+        NULL,
+        0,
+        &debug__Top,
+        &DefaultController_,
+        2,
+        parts_Debug__Top,
+        0,
+        NULL,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Counter",
+        0,
+        &Counter,
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Counter,
+        &debug__Top_Debug__Counter,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Debug__Top_Debug__Counter,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Gateway",
+        0,
+        &GateWay,
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Gateway,
+        &debug__Top_Debug__Gateway,
+        &DefaultController_,
+        0,
+        NULL,
+        3,
+        borderports_Debug__Top_Debug__Gateway,
+        NULL,
+        true,
+        false
+    }
+};
+

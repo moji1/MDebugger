@@ -1,0 +1,60 @@
+
+#ifndef DEBUG__TOPCONTROLLERS_HH
+#define DEBUG__TOPCONTROLLERS_HH
+
+class UMLRTController;
+struct UMLRTCommsPort;
+struct UMLRTSlot;
+
+enum CapsuleInstanceId
+{
+    InstId_Debug__Top,
+    InstId_Debug__Top_Debug__Gateway,
+    InstId_Debug__Top_Debug__Parcer_Router,
+    InstId_Debug__Top_Debug__Parcer_Router_bin0,
+    InstId_Debug__Top_Debug__Parcer_Router_bin1,
+    InstId_Debug__Top_Debug__Parcer_Router_bin2,
+    InstId_Debug__Top_Debug__Parcer_Router_bin3,
+    InstId_Debug__Top_Debug__Parcer_Router_gen,
+    InstId_Debug__Top_Debug__Parcer_Router_left,
+    InstId_Debug__Top_Debug__Parcer_Router_left_chute1,
+    InstId_Debug__Top_Debug__Parcer_Router_left_chute2,
+    InstId_Debug__Top_Debug__Parcer_Router_left_sensor,
+    InstId_Debug__Top_Debug__Parcer_Router_left_switcher,
+    InstId_Debug__Top_Debug__Parcer_Router_right,
+    InstId_Debug__Top_Debug__Parcer_Router_right_chute1,
+    InstId_Debug__Top_Debug__Parcer_Router_right_chute2,
+    InstId_Debug__Top_Debug__Parcer_Router_right_sensor,
+    InstId_Debug__Top_Debug__Parcer_Router_right_switcher,
+    InstId_Debug__Top_Debug__Parcer_Router_top,
+    InstId_Debug__Top_Debug__Parcer_Router_top_chute1,
+    InstId_Debug__Top_Debug__Parcer_Router_top_chute2,
+    InstId_Debug__Top_Debug__Parcer_Router_top_sensor,
+    InstId_Debug__Top_Debug__Parcer_Router_top_switcher
+};
+extern UMLRTController * DefaultController;
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Gateway[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_bin0[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_bin1[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_bin2[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_bin3[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_gen[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_left[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_left_chute1[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_left_chute2[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_left_sensor[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_left_switcher[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_right[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_right_chute1[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_right_chute2[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_right_sensor[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_right_switcher[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_top[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_top_chute1[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_top_chute2[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_top_sensor[];
+extern UMLRTCommsPort borderports_Debug__Top_Debug__Parcer_Router_top_switcher[];
+extern UMLRTSlot Debug__Top_slots[];
+
+#endif
+

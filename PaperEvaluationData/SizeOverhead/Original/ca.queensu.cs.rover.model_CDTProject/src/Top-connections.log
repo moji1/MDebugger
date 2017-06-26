@@ -1,0 +1,10 @@
+Top.Connector1
+    Top.controlSoftware#temperature.far[0] <-> Top.rover#temperature.far[0]
+Top.Connector2
+    Top.controlSoftware#detection.far[0] <-> Top.rover#detection.far[0]
+Top.Connector3
+    Top.controlSoftware#engine.far[0] <-> Top.rover#engine.far[0]
+Top.rover.detection
+    Top.controlSoftware#detection.far[0] <-> Top.rover.detectionSensor2#detection.far[0]
+Top.rover.engine
+    Top.rover.engineController#engine.far[0] <-> Top.controlSoftware#engine.far[0]

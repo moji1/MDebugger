@@ -1,0 +1,10 @@
+Debug__Top.Debug__Top.Connector1
+    Debug__Top.Debug__Top.controlSoftware#temperature.far[0] <-> Debug__Top.Debug__Top.rover#temperature.far[0]
+Debug__Top.Debug__Top.Connector2
+    Debug__Top.Debug__Top.controlSoftware#detection.far[0] <-> Debug__Top.Debug__Top.rover#detection.far[0]
+Debug__Top.Debug__Top.Connector3
+    Debug__Top.Debug__Top.controlSoftware#engine.far[0] <-> Debug__Top.Debug__Top.rover#engine.far[0]
+Debug__Top.Debug__Top.rover.detection
+    Debug__Top.Debug__Top.controlSoftware#detection.far[0] <-> Debug__Top.Debug__Top.rover.detectionSensor2#detection.far[0]
+Debug__Top.Debug__Top.rover.engine
+    Debug__Top.Debug__Top.rover.engineController#engine.far[0] <-> Debug__Top.Debug__Top.controlSoftware#engine.far[0]

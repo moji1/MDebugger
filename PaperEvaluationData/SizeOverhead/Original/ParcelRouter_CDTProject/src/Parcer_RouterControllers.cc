@@ -1,0 +1,2897 @@
+
+#include "Parcer_RouterControllers.hh"
+
+#include "Bin.hh"
+#include "Chute.hh"
+#include "Gen.hh"
+#include "Parcer_Router.hh"
+#include "Sensor.hh"
+#include "Stage.hh"
+#include "Switcher.hh"
+#include "umlrtcapsuleclass.hh"
+#include "umlrtcapsulepart.hh"
+#include "umlrtcommsport.hh"
+#include "umlrtcommsportfarend.hh"
+#include "umlrtcontroller.hh"
+#include "umlrtslot.hh"
+#include <cstddef>
+
+
+static UMLRTController DefaultController_( "DefaultController" );
+
+UMLRTController * DefaultController = &DefaultController_;
+
+static Capsule_Parcer_Router parcer_Router( &Parcer_Router, &Parcer_Router_slots[InstId_Parcer_Router], NULL, NULL, true );
+
+static UMLRTSlot * slots_Parcer_Router[] = 
+{
+    &Parcer_Router_slots[InstId_Parcer_Router_bin0],
+    &Parcer_Router_slots[InstId_Parcer_Router_bin1],
+    &Parcer_Router_slots[InstId_Parcer_Router_bin2],
+    &Parcer_Router_slots[InstId_Parcer_Router_bin3],
+    &Parcer_Router_slots[InstId_Parcer_Router_gen],
+    &Parcer_Router_slots[InstId_Parcer_Router_left],
+    &Parcer_Router_slots[InstId_Parcer_Router_right],
+    &Parcer_Router_slots[InstId_Parcer_Router_top]
+};
+
+static UMLRTCapsulePart parts_Parcer_Router[] = 
+{
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin0,
+        1,
+        &slots_Parcer_Router[0]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin1,
+        1,
+        &slots_Parcer_Router[1]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin2,
+        1,
+        &slots_Parcer_Router[2]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin3,
+        1,
+        &slots_Parcer_Router[3]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_gen,
+        1,
+        &slots_Parcer_Router[4]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_left,
+        1,
+        &slots_Parcer_Router[5]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_right,
+        1,
+        &slots_Parcer_Router[6]
+    },
+    {
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_top,
+        1,
+        &slots_Parcer_Router[7]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_bin0[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_left_switcher[Capsule_Switcher::borderport_left]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_bin0[] = 
+{
+    {
+        &Bin,
+        Capsule_Bin::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin0],
+        1,
+        borderfarEndList_Parcer_Router_bin0,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Bin,
+        Capsule_Bin::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin0],
+        1,
+        &borderfarEndList_Parcer_Router_bin0[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_bin0_ptrs[] = 
+{
+    &borderports_Parcer_Router_bin0[0],
+    &borderports_Parcer_Router_bin0[1]
+};
+
+static Capsule_Bin parcer_Router_bin0( &Bin, &Parcer_Router_slots[InstId_Parcer_Router_bin0], borderports_Parcer_Router_bin0_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_bin1[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_left_switcher[Capsule_Switcher::borderport_right]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_bin1[] = 
+{
+    {
+        &Bin,
+        Capsule_Bin::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin1],
+        1,
+        borderfarEndList_Parcer_Router_bin1,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Bin,
+        Capsule_Bin::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin1],
+        1,
+        &borderfarEndList_Parcer_Router_bin1[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_bin1_ptrs[] = 
+{
+    &borderports_Parcer_Router_bin1[0],
+    &borderports_Parcer_Router_bin1[1]
+};
+
+static Capsule_Bin parcer_Router_bin1( &Bin, &Parcer_Router_slots[InstId_Parcer_Router_bin1], borderports_Parcer_Router_bin1_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_bin2[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_right_switcher[Capsule_Switcher::borderport_left]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_bin2[] = 
+{
+    {
+        &Bin,
+        Capsule_Bin::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin2],
+        1,
+        borderfarEndList_Parcer_Router_bin2,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Bin,
+        Capsule_Bin::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin2],
+        1,
+        &borderfarEndList_Parcer_Router_bin2[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_bin2_ptrs[] = 
+{
+    &borderports_Parcer_Router_bin2[0],
+    &borderports_Parcer_Router_bin2[1]
+};
+
+static Capsule_Bin parcer_Router_bin2( &Bin, &Parcer_Router_slots[InstId_Parcer_Router_bin2], borderports_Parcer_Router_bin2_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_bin3[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_right_switcher[Capsule_Switcher::borderport_right]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_bin3[] = 
+{
+    {
+        &Bin,
+        Capsule_Bin::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin3],
+        1,
+        borderfarEndList_Parcer_Router_bin3,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Bin,
+        Capsule_Bin::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_bin3],
+        1,
+        &borderfarEndList_Parcer_Router_bin3[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_bin3_ptrs[] = 
+{
+    &borderports_Parcer_Router_bin3[0],
+    &borderports_Parcer_Router_bin3[1]
+};
+
+static Capsule_Bin parcer_Router_bin3( &Bin, &Parcer_Router_slots[InstId_Parcer_Router_bin3], borderports_Parcer_Router_bin3_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_gen[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_top_chute1[Capsule_Chute::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_gen[] = 
+{
+    {
+        &Gen,
+        Capsule_Gen::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_gen],
+        1,
+        borderfarEndList_Parcer_Router_gen,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Gen,
+        Capsule_Gen::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_gen],
+        1,
+        &borderfarEndList_Parcer_Router_gen[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Gen,
+        Capsule_Gen::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_gen],
+        1,
+        &borderfarEndList_Parcer_Router_gen[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_gen_ptrs[] = 
+{
+    &borderports_Parcer_Router_gen[0],
+    &borderports_Parcer_Router_gen[1],
+    &borderports_Parcer_Router_gen[2]
+};
+
+static Capsule_Gen parcer_Router_gen( &Gen, &Parcer_Router_slots[InstId_Parcer_Router_gen], borderports_Parcer_Router_gen_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_left[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_left[] = 
+{
+    {
+        &Stage,
+        Capsule_Stage::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_left],
+        1,
+        borderfarEndList_Parcer_Router_left,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_left,
+        &Parcer_Router_slots[InstId_Parcer_Router_left],
+        1,
+        &borderfarEndList_Parcer_Router_left[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_right,
+        &Parcer_Router_slots[InstId_Parcer_Router_left],
+        1,
+        &borderfarEndList_Parcer_Router_left[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_left],
+        1,
+        &borderfarEndList_Parcer_Router_left[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_left_ptrs[] = 
+{
+    &borderports_Parcer_Router_left[0],
+    &borderports_Parcer_Router_left[1],
+    &borderports_Parcer_Router_left[2],
+    &borderports_Parcer_Router_left[3]
+};
+
+static Capsule_Stage parcer_Router_left( &Stage, &Parcer_Router_slots[InstId_Parcer_Router_left], borderports_Parcer_Router_left_ptrs, NULL, true );
+
+static UMLRTSlot * slots_Parcer_Router_left[] = 
+{
+    &Parcer_Router_slots[InstId_Parcer_Router_left_chute1],
+    &Parcer_Router_slots[InstId_Parcer_Router_left_chute2],
+    &Parcer_Router_slots[InstId_Parcer_Router_left_sensor],
+    &Parcer_Router_slots[InstId_Parcer_Router_left_switcher]
+};
+
+static UMLRTCapsulePart parts_Parcer_Router_left[] = 
+{
+    {
+        &Stage,
+        Capsule_Stage::part_chute1,
+        1,
+        &slots_Parcer_Router_left[0]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_chute2,
+        1,
+        &slots_Parcer_Router_left[1]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_sensor,
+        1,
+        &slots_Parcer_Router_left[2]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_switcher,
+        1,
+        &slots_Parcer_Router_left[3]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_left_chute1[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_left_sensor[Capsule_Sensor::borderport_detection]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_switcher[Capsule_Switcher::borderport_left]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_left_chute2[Capsule_Chute::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_left_chute1[] = 
+{
+    {
+        &Chute,
+        Capsule_Chute::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute1[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute1],
+        1,
+        borderfarEndList_Parcer_Router_left_chute1,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_exit,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute1[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute1[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute1[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_left_chute1_ptrs[] = 
+{
+    &borderports_Parcer_Router_left_chute1[0],
+    &borderports_Parcer_Router_left_chute1[1],
+    &borderports_Parcer_Router_left_chute1[2],
+    &borderports_Parcer_Router_left_chute1[3],
+    &borderports_Parcer_Router_left_chute1[4]
+};
+
+static Capsule_Chute parcer_Router_left_chute1( &Chute, &Parcer_Router_slots[InstId_Parcer_Router_left_chute1], borderports_Parcer_Router_left_chute1_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_left_chute2[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_left_chute1[Capsule_Chute::borderport_exit]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_left_switcher[Capsule_Switcher::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_left_chute2[] = 
+{
+    {
+        &Chute,
+        Capsule_Chute::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute2[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute2],
+        1,
+        borderfarEndList_Parcer_Router_left_chute2,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_exit,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute2[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute2[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_left_chute2[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_left_chute2_ptrs[] = 
+{
+    &borderports_Parcer_Router_left_chute2[0],
+    &borderports_Parcer_Router_left_chute2[1],
+    &borderports_Parcer_Router_left_chute2[2],
+    &borderports_Parcer_Router_left_chute2[3],
+    &borderports_Parcer_Router_left_chute2[4]
+};
+
+static Capsule_Chute parcer_Router_left_chute2( &Chute, &Parcer_Router_slots[InstId_Parcer_Router_left_chute2], borderports_Parcer_Router_left_chute2_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_left_sensor[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_left_chute1[Capsule_Chute::borderport_detection]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_left_switcher[Capsule_Switcher::borderport_switchProtocol]
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_left_sensor[] = 
+{
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_sensor],
+        1,
+        borderfarEndList_Parcer_Router_left_sensor,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_switchProtocol,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_sensor],
+        1,
+        &borderfarEndList_Parcer_Router_left_sensor[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_sensor],
+        1,
+        &borderfarEndList_Parcer_Router_left_sensor[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_left_sensor_ptrs[] = 
+{
+    &borderports_Parcer_Router_left_sensor[0],
+    &borderports_Parcer_Router_left_sensor[1],
+    &borderports_Parcer_Router_left_sensor[2]
+};
+
+static Capsule_Sensor parcer_Router_left_sensor( &Sensor, &Parcer_Router_slots[InstId_Parcer_Router_left_sensor], borderports_Parcer_Router_left_sensor_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_left_switcher[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_left_chute2[Capsule_Chute::borderport_exit]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_bin0[Capsule_Bin::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_bin1[Capsule_Bin::borderport_enter]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_left_sensor[Capsule_Sensor::borderport_switchProtocol]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_left_switcher[] = 
+{
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_left,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_left_switcher[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_right,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_left_switcher[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_switcher],
+        1,
+        borderfarEndList_Parcer_Router_left_switcher,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_switchProtocol,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_left_switcher[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_left_switcher[5],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_left_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_left_switcher[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_left_switcher_ptrs[] = 
+{
+    &borderports_Parcer_Router_left_switcher[0],
+    &borderports_Parcer_Router_left_switcher[1],
+    &borderports_Parcer_Router_left_switcher[2],
+    &borderports_Parcer_Router_left_switcher[3],
+    &borderports_Parcer_Router_left_switcher[4],
+    &borderports_Parcer_Router_left_switcher[5]
+};
+
+static Capsule_Switcher parcer_Router_left_switcher( &Switcher, &Parcer_Router_slots[InstId_Parcer_Router_left_switcher], borderports_Parcer_Router_left_switcher_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_right[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_right[] = 
+{
+    {
+        &Stage,
+        Capsule_Stage::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_right],
+        1,
+        borderfarEndList_Parcer_Router_right,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_left,
+        &Parcer_Router_slots[InstId_Parcer_Router_right],
+        1,
+        &borderfarEndList_Parcer_Router_right[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_right,
+        &Parcer_Router_slots[InstId_Parcer_Router_right],
+        1,
+        &borderfarEndList_Parcer_Router_right[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_right],
+        1,
+        &borderfarEndList_Parcer_Router_right[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_right_ptrs[] = 
+{
+    &borderports_Parcer_Router_right[0],
+    &borderports_Parcer_Router_right[1],
+    &borderports_Parcer_Router_right[2],
+    &borderports_Parcer_Router_right[3]
+};
+
+static Capsule_Stage parcer_Router_right( &Stage, &Parcer_Router_slots[InstId_Parcer_Router_right], borderports_Parcer_Router_right_ptrs, NULL, true );
+
+static UMLRTSlot * slots_Parcer_Router_right[] = 
+{
+    &Parcer_Router_slots[InstId_Parcer_Router_right_chute1],
+    &Parcer_Router_slots[InstId_Parcer_Router_right_chute2],
+    &Parcer_Router_slots[InstId_Parcer_Router_right_sensor],
+    &Parcer_Router_slots[InstId_Parcer_Router_right_switcher]
+};
+
+static UMLRTCapsulePart parts_Parcer_Router_right[] = 
+{
+    {
+        &Stage,
+        Capsule_Stage::part_chute1,
+        1,
+        &slots_Parcer_Router_right[0]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_chute2,
+        1,
+        &slots_Parcer_Router_right[1]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_sensor,
+        1,
+        &slots_Parcer_Router_right[2]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_switcher,
+        1,
+        &slots_Parcer_Router_right[3]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_right_chute1[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_right_sensor[Capsule_Sensor::borderport_detection]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_switcher[Capsule_Switcher::borderport_right]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_right_chute2[Capsule_Chute::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_right_chute1[] = 
+{
+    {
+        &Chute,
+        Capsule_Chute::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute1[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute1],
+        1,
+        borderfarEndList_Parcer_Router_right_chute1,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_exit,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute1[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute1[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute1[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_right_chute1_ptrs[] = 
+{
+    &borderports_Parcer_Router_right_chute1[0],
+    &borderports_Parcer_Router_right_chute1[1],
+    &borderports_Parcer_Router_right_chute1[2],
+    &borderports_Parcer_Router_right_chute1[3],
+    &borderports_Parcer_Router_right_chute1[4]
+};
+
+static Capsule_Chute parcer_Router_right_chute1( &Chute, &Parcer_Router_slots[InstId_Parcer_Router_right_chute1], borderports_Parcer_Router_right_chute1_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_right_chute2[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_right_chute1[Capsule_Chute::borderport_exit]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_right_switcher[Capsule_Switcher::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_right_chute2[] = 
+{
+    {
+        &Chute,
+        Capsule_Chute::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute2[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute2],
+        1,
+        borderfarEndList_Parcer_Router_right_chute2,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_exit,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute2[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute2[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_right_chute2[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_right_chute2_ptrs[] = 
+{
+    &borderports_Parcer_Router_right_chute2[0],
+    &borderports_Parcer_Router_right_chute2[1],
+    &borderports_Parcer_Router_right_chute2[2],
+    &borderports_Parcer_Router_right_chute2[3],
+    &borderports_Parcer_Router_right_chute2[4]
+};
+
+static Capsule_Chute parcer_Router_right_chute2( &Chute, &Parcer_Router_slots[InstId_Parcer_Router_right_chute2], borderports_Parcer_Router_right_chute2_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_right_sensor[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_right_chute1[Capsule_Chute::borderport_detection]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_right_switcher[Capsule_Switcher::borderport_switchProtocol]
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_right_sensor[] = 
+{
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_sensor],
+        1,
+        borderfarEndList_Parcer_Router_right_sensor,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_switchProtocol,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_sensor],
+        1,
+        &borderfarEndList_Parcer_Router_right_sensor[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_sensor],
+        1,
+        &borderfarEndList_Parcer_Router_right_sensor[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_right_sensor_ptrs[] = 
+{
+    &borderports_Parcer_Router_right_sensor[0],
+    &borderports_Parcer_Router_right_sensor[1],
+    &borderports_Parcer_Router_right_sensor[2]
+};
+
+static Capsule_Sensor parcer_Router_right_sensor( &Sensor, &Parcer_Router_slots[InstId_Parcer_Router_right_sensor], borderports_Parcer_Router_right_sensor_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_right_switcher[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_right_chute2[Capsule_Chute::borderport_exit]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_bin2[Capsule_Bin::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_bin3[Capsule_Bin::borderport_enter]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_right_sensor[Capsule_Sensor::borderport_switchProtocol]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_right_switcher[] = 
+{
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_left,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_right_switcher[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_right,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_right_switcher[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_switcher],
+        1,
+        borderfarEndList_Parcer_Router_right_switcher,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_switchProtocol,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_right_switcher[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_right_switcher[5],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_right_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_right_switcher[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_right_switcher_ptrs[] = 
+{
+    &borderports_Parcer_Router_right_switcher[0],
+    &borderports_Parcer_Router_right_switcher[1],
+    &borderports_Parcer_Router_right_switcher[2],
+    &borderports_Parcer_Router_right_switcher[3],
+    &borderports_Parcer_Router_right_switcher[4],
+    &borderports_Parcer_Router_right_switcher[5]
+};
+
+static Capsule_Switcher parcer_Router_right_switcher( &Switcher, &Parcer_Router_slots[InstId_Parcer_Router_right_switcher], borderports_Parcer_Router_right_switcher_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_top[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_top[] = 
+{
+    {
+        &Stage,
+        Capsule_Stage::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_top],
+        1,
+        borderfarEndList_Parcer_Router_top,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_left,
+        &Parcer_Router_slots[InstId_Parcer_Router_top],
+        1,
+        &borderfarEndList_Parcer_Router_top[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_right,
+        &Parcer_Router_slots[InstId_Parcer_Router_top],
+        1,
+        &borderfarEndList_Parcer_Router_top[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Stage,
+        Capsule_Stage::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_top],
+        1,
+        &borderfarEndList_Parcer_Router_top[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_top_ptrs[] = 
+{
+    &borderports_Parcer_Router_top[0],
+    &borderports_Parcer_Router_top[1],
+    &borderports_Parcer_Router_top[2],
+    &borderports_Parcer_Router_top[3]
+};
+
+static Capsule_Stage parcer_Router_top( &Stage, &Parcer_Router_slots[InstId_Parcer_Router_top], borderports_Parcer_Router_top_ptrs, NULL, true );
+
+static UMLRTSlot * slots_Parcer_Router_top[] = 
+{
+    &Parcer_Router_slots[InstId_Parcer_Router_top_chute1],
+    &Parcer_Router_slots[InstId_Parcer_Router_top_chute2],
+    &Parcer_Router_slots[InstId_Parcer_Router_top_sensor],
+    &Parcer_Router_slots[InstId_Parcer_Router_top_switcher]
+};
+
+static UMLRTCapsulePart parts_Parcer_Router_top[] = 
+{
+    {
+        &Stage,
+        Capsule_Stage::part_chute1,
+        1,
+        &slots_Parcer_Router_top[0]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_chute2,
+        1,
+        &slots_Parcer_Router_top[1]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_sensor,
+        1,
+        &slots_Parcer_Router_top[2]
+    },
+    {
+        &Stage,
+        Capsule_Stage::part_switcher,
+        1,
+        &slots_Parcer_Router_top[3]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_top_chute1[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_top_sensor[Capsule_Sensor::borderport_detection]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_gen[Capsule_Gen::borderport_enter]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_chute2[Capsule_Chute::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_top_chute1[] = 
+{
+    {
+        &Chute,
+        Capsule_Chute::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute1[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute1],
+        1,
+        borderfarEndList_Parcer_Router_top_chute1,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_exit,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute1[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute1[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute1],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute1[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_top_chute1_ptrs[] = 
+{
+    &borderports_Parcer_Router_top_chute1[0],
+    &borderports_Parcer_Router_top_chute1[1],
+    &borderports_Parcer_Router_top_chute1[2],
+    &borderports_Parcer_Router_top_chute1[3],
+    &borderports_Parcer_Router_top_chute1[4]
+};
+
+static Capsule_Chute parcer_Router_top_chute1( &Chute, &Parcer_Router_slots[InstId_Parcer_Router_top_chute1], borderports_Parcer_Router_top_chute1_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_top_chute2[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_chute1[Capsule_Chute::borderport_exit]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_switcher[Capsule_Switcher::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_top_chute2[] = 
+{
+    {
+        &Chute,
+        Capsule_Chute::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute2[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute2],
+        1,
+        borderfarEndList_Parcer_Router_top_chute2,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_exit,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute2[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute2[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Chute,
+        Capsule_Chute::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_chute2],
+        1,
+        &borderfarEndList_Parcer_Router_top_chute2[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_top_chute2_ptrs[] = 
+{
+    &borderports_Parcer_Router_top_chute2[0],
+    &borderports_Parcer_Router_top_chute2[1],
+    &borderports_Parcer_Router_top_chute2[2],
+    &borderports_Parcer_Router_top_chute2[3],
+    &borderports_Parcer_Router_top_chute2[4]
+};
+
+static Capsule_Chute parcer_Router_top_chute2( &Chute, &Parcer_Router_slots[InstId_Parcer_Router_top_chute2], borderports_Parcer_Router_top_chute2_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_top_sensor[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_top_chute1[Capsule_Chute::borderport_detection]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_switcher[Capsule_Switcher::borderport_switchProtocol]
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_top_sensor[] = 
+{
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_detection,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_sensor],
+        1,
+        borderfarEndList_Parcer_Router_top_sensor,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_switchProtocol,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_sensor],
+        1,
+        &borderfarEndList_Parcer_Router_top_sensor[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Sensor,
+        Capsule_Sensor::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_sensor],
+        1,
+        &borderfarEndList_Parcer_Router_top_sensor[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_top_sensor_ptrs[] = 
+{
+    &borderports_Parcer_Router_top_sensor[0],
+    &borderports_Parcer_Router_top_sensor[1],
+    &borderports_Parcer_Router_top_sensor[2]
+};
+
+static Capsule_Sensor parcer_Router_top_sensor( &Sensor, &Parcer_Router_slots[InstId_Parcer_Router_top_sensor], borderports_Parcer_Router_top_sensor_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Parcer_Router_top_switcher[] = 
+{
+    {
+        0,
+        &borderports_Parcer_Router_top_chute2[Capsule_Chute::borderport_exit]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_left_chute1[Capsule_Chute::borderport_enter]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Parcer_Router_right_chute1[Capsule_Chute::borderport_enter]
+    },
+    {
+        0,
+        &borderports_Parcer_Router_top_sensor[Capsule_Sensor::borderport_switchProtocol]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Parcer_Router_top_switcher[] = 
+{
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_left,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_top_switcher[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_right,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_top_switcher[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_enter,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_switcher],
+        1,
+        borderfarEndList_Parcer_Router_top_switcher,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_switchProtocol,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_top_switcher[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_timer,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_top_switcher[5],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Switcher,
+        Capsule_Switcher::borderport_log,
+        &Parcer_Router_slots[InstId_Parcer_Router_top_switcher],
+        1,
+        &borderfarEndList_Parcer_Router_top_switcher[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Parcer_Router_top_switcher_ptrs[] = 
+{
+    &borderports_Parcer_Router_top_switcher[0],
+    &borderports_Parcer_Router_top_switcher[1],
+    &borderports_Parcer_Router_top_switcher[2],
+    &borderports_Parcer_Router_top_switcher[3],
+    &borderports_Parcer_Router_top_switcher[4],
+    &borderports_Parcer_Router_top_switcher[5]
+};
+
+static Capsule_Switcher parcer_Router_top_switcher( &Switcher, &Parcer_Router_slots[InstId_Parcer_Router_top_switcher], borderports_Parcer_Router_top_switcher_ptrs, NULL, true );
+
+UMLRTSlot Parcer_Router_slots[] = 
+{
+    {
+        "Parcer_Router",
+        0,
+        &Parcer_Router,
+        NULL,
+        0,
+        &parcer_Router,
+        &DefaultController_,
+        8,
+        parts_Parcer_Router,
+        0,
+        NULL,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.bin0",
+        0,
+        &Bin,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin0,
+        &parcer_Router_bin0,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Parcer_Router_bin0,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.bin1",
+        0,
+        &Bin,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin1,
+        &parcer_Router_bin1,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Parcer_Router_bin1,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.bin2",
+        0,
+        &Bin,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin2,
+        &parcer_Router_bin2,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Parcer_Router_bin2,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.bin3",
+        0,
+        &Bin,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_bin3,
+        &parcer_Router_bin3,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Parcer_Router_bin3,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.gen",
+        0,
+        &Gen,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_gen,
+        &parcer_Router_gen,
+        &DefaultController_,
+        0,
+        NULL,
+        3,
+        borderports_Parcer_Router_gen,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.left",
+        0,
+        &Stage,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_left,
+        &parcer_Router_left,
+        &DefaultController_,
+        4,
+        parts_Parcer_Router_left,
+        4,
+        borderports_Parcer_Router_left,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.left.chute1",
+        0,
+        &Chute,
+        &Stage,
+        Capsule_Stage::part_chute1,
+        &parcer_Router_left_chute1,
+        &DefaultController_,
+        0,
+        NULL,
+        5,
+        borderports_Parcer_Router_left_chute1,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.left.chute2",
+        0,
+        &Chute,
+        &Stage,
+        Capsule_Stage::part_chute2,
+        &parcer_Router_left_chute2,
+        &DefaultController_,
+        0,
+        NULL,
+        5,
+        borderports_Parcer_Router_left_chute2,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.left.sensor",
+        0,
+        &Sensor,
+        &Stage,
+        Capsule_Stage::part_sensor,
+        &parcer_Router_left_sensor,
+        &DefaultController_,
+        0,
+        NULL,
+        3,
+        borderports_Parcer_Router_left_sensor,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.left.switcher",
+        0,
+        &Switcher,
+        &Stage,
+        Capsule_Stage::part_switcher,
+        &parcer_Router_left_switcher,
+        &DefaultController_,
+        0,
+        NULL,
+        6,
+        borderports_Parcer_Router_left_switcher,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.right",
+        0,
+        &Stage,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_right,
+        &parcer_Router_right,
+        &DefaultController_,
+        4,
+        parts_Parcer_Router_right,
+        4,
+        borderports_Parcer_Router_right,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.right.chute1",
+        0,
+        &Chute,
+        &Stage,
+        Capsule_Stage::part_chute1,
+        &parcer_Router_right_chute1,
+        &DefaultController_,
+        0,
+        NULL,
+        5,
+        borderports_Parcer_Router_right_chute1,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.right.chute2",
+        0,
+        &Chute,
+        &Stage,
+        Capsule_Stage::part_chute2,
+        &parcer_Router_right_chute2,
+        &DefaultController_,
+        0,
+        NULL,
+        5,
+        borderports_Parcer_Router_right_chute2,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.right.sensor",
+        0,
+        &Sensor,
+        &Stage,
+        Capsule_Stage::part_sensor,
+        &parcer_Router_right_sensor,
+        &DefaultController_,
+        0,
+        NULL,
+        3,
+        borderports_Parcer_Router_right_sensor,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.right.switcher",
+        0,
+        &Switcher,
+        &Stage,
+        Capsule_Stage::part_switcher,
+        &parcer_Router_right_switcher,
+        &DefaultController_,
+        0,
+        NULL,
+        6,
+        borderports_Parcer_Router_right_switcher,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.top",
+        0,
+        &Stage,
+        &Parcer_Router,
+        Capsule_Parcer_Router::part_top,
+        &parcer_Router_top,
+        &DefaultController_,
+        4,
+        parts_Parcer_Router_top,
+        4,
+        borderports_Parcer_Router_top,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.top.chute1",
+        0,
+        &Chute,
+        &Stage,
+        Capsule_Stage::part_chute1,
+        &parcer_Router_top_chute1,
+        &DefaultController_,
+        0,
+        NULL,
+        5,
+        borderports_Parcer_Router_top_chute1,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.top.chute2",
+        0,
+        &Chute,
+        &Stage,
+        Capsule_Stage::part_chute2,
+        &parcer_Router_top_chute2,
+        &DefaultController_,
+        0,
+        NULL,
+        5,
+        borderports_Parcer_Router_top_chute2,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.top.sensor",
+        0,
+        &Sensor,
+        &Stage,
+        Capsule_Stage::part_sensor,
+        &parcer_Router_top_sensor,
+        &DefaultController_,
+        0,
+        NULL,
+        3,
+        borderports_Parcer_Router_top_sensor,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Parcer_Router.top.switcher",
+        0,
+        &Switcher,
+        &Stage,
+        Capsule_Stage::part_switcher,
+        &parcer_Router_top_switcher,
+        &DefaultController_,
+        0,
+        NULL,
+        6,
+        borderports_Parcer_Router_top_switcher,
+        NULL,
+        true,
+        false
+    }
+};
+

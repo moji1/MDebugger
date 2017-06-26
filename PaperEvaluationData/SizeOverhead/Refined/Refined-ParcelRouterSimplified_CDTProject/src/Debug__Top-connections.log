@@ -1,0 +1,56 @@
+Debug__Top.Debug__Parcer_Router.RTConnector1
+    Debug__Top.Debug__Parcer_Router.gen#enter.far[0] <-> Debug__Top.Debug__Parcer_Router.top#enter.far[0]
+Debug__Top.Debug__Parcer_Router.RTConnector2
+    Debug__Top.Debug__Parcer_Router.top#right.far[0] <-> Debug__Top.Debug__Parcer_Router.right#enter.far[0]
+Debug__Top.Debug__Parcer_Router.RTConnector3
+    Debug__Top.Debug__Parcer_Router.top#left.far[0] <-> Debug__Top.Debug__Parcer_Router.left#enter.far[0]
+Debug__Top.Debug__Parcer_Router.RTConnector4
+    Debug__Top.Debug__Parcer_Router.right#right.far[0] <-> Debug__Top.Debug__Parcer_Router.bin3#enter.far[0]
+Debug__Top.Debug__Parcer_Router.RTConnector5
+    Debug__Top.Debug__Parcer_Router.right#left.far[0] <-> Debug__Top.Debug__Parcer_Router.bin2#enter.far[0]
+Debug__Top.Debug__Parcer_Router.RTConnector6
+    Debug__Top.Debug__Parcer_Router.left#right.far[0] <-> Debug__Top.Debug__Parcer_Router.bin1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.RTConnector7
+    Debug__Top.Debug__Parcer_Router.left#left.far[0] <-> Debug__Top.Debug__Parcer_Router.bin0#enter.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector1
+    Debug__Top.Debug__Parcer_Router.left.chute1#detection.far[0] <-> Debug__Top.Debug__Parcer_Router.left.sensor#detection.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector2
+    Debug__Top.Debug__Parcer_Router.left.chute1#exit.far[0] <-> Debug__Top.Debug__Parcer_Router.left.chute2#enter.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector3
+    Debug__Top.Debug__Parcer_Router.left.sensor#switchProtocol.far[0] <-> Debug__Top.Debug__Parcer_Router.left.switcher#switchProtocol.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector4
+    Debug__Top.Debug__Parcer_Router.top#left.far[0] <-> Debug__Top.Debug__Parcer_Router.left.chute1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector5
+    Debug__Top.Debug__Parcer_Router.left.switcher#right.far[0] <-> Debug__Top.Debug__Parcer_Router.bin1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector6
+    Debug__Top.Debug__Parcer_Router.left.switcher#left.far[0] <-> Debug__Top.Debug__Parcer_Router.bin0#enter.far[0]
+Debug__Top.Debug__Parcer_Router.left.RTConnector7
+    Debug__Top.Debug__Parcer_Router.left.chute2#exit.far[0] <-> Debug__Top.Debug__Parcer_Router.left.switcher#enter.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector1
+    Debug__Top.Debug__Parcer_Router.right.chute1#detection.far[0] <-> Debug__Top.Debug__Parcer_Router.right.sensor#detection.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector2
+    Debug__Top.Debug__Parcer_Router.right.chute1#exit.far[0] <-> Debug__Top.Debug__Parcer_Router.right.chute2#enter.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector3
+    Debug__Top.Debug__Parcer_Router.right.sensor#switchProtocol.far[0] <-> Debug__Top.Debug__Parcer_Router.right.switcher#switchProtocol.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector4
+    Debug__Top.Debug__Parcer_Router.top#right.far[0] <-> Debug__Top.Debug__Parcer_Router.right.chute1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector5
+    Debug__Top.Debug__Parcer_Router.right.switcher#right.far[0] <-> Debug__Top.Debug__Parcer_Router.bin3#enter.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector6
+    Debug__Top.Debug__Parcer_Router.right.switcher#left.far[0] <-> Debug__Top.Debug__Parcer_Router.bin2#enter.far[0]
+Debug__Top.Debug__Parcer_Router.right.RTConnector7
+    Debug__Top.Debug__Parcer_Router.right.chute2#exit.far[0] <-> Debug__Top.Debug__Parcer_Router.right.switcher#enter.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector1
+    Debug__Top.Debug__Parcer_Router.top.chute1#detection.far[0] <-> Debug__Top.Debug__Parcer_Router.top.sensor#detection.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector2
+    Debug__Top.Debug__Parcer_Router.top.chute1#exit.far[0] <-> Debug__Top.Debug__Parcer_Router.top.chute2#enter.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector3
+    Debug__Top.Debug__Parcer_Router.top.sensor#switchProtocol.far[0] <-> Debug__Top.Debug__Parcer_Router.top.switcher#switchProtocol.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector4
+    Debug__Top.Debug__Parcer_Router.gen#enter.far[0] <-> Debug__Top.Debug__Parcer_Router.top.chute1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector5
+    Debug__Top.Debug__Parcer_Router.top.switcher#right.far[0] <-> Debug__Top.Debug__Parcer_Router.right.chute1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector6
+    Debug__Top.Debug__Parcer_Router.top.switcher#left.far[0] <-> Debug__Top.Debug__Parcer_Router.left.chute1#enter.far[0]
+Debug__Top.Debug__Parcer_Router.top.RTConnector7
+    Debug__Top.Debug__Parcer_Router.top.chute2#exit.far[0] <-> Debug__Top.Debug__Parcer_Router.top.switcher#enter.far[0]

@@ -1,0 +1,16 @@
+Car.RTConnector1
+    Car.centralLock#lockPort.far[0] <-> Car.door1#lockPort.far[0]
+Car.RTConnector2
+    Car.centralLock#lockPort.far[1] <-> Car.door2#lockPort.far[0]
+Car.RTConnector3
+    Car.centralLock#lockPort.far[2] <-> Car.door3#lockPort.far[0]
+Car.RTConnector4
+    Car.centralLock#lockPort.far[3] <-> Car.door4#lockPort.far[0]
+Car.door1.RTConnector1
+    Car.centralLock#lockPort.far[0] <-> Car.door1.lock#lockPort.far[0]
+Car.door2.RTConnector1
+    Car.centralLock#lockPort.far[1] <-> Car.door2.lock#lockPort.far[0]
+Car.door3.RTConnector1
+    Car.centralLock#lockPort.far[2] <-> Car.door3.lock#lockPort.far[0]
+Car.door4.RTConnector1
+    Car.centralLock#lockPort.far[3] <-> Car.door4.lock#lockPort.far[0]
