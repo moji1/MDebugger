@@ -61,23 +61,38 @@ The four last variables *Current transition*, *Current position*, *Event type*, 
 
 ### Listing, adding, and removing breakpoints
 
-Using the **Breakpoints** view, it is possible to list all breakpoints that were added to the model. When opening the first time the debug target, the list is currently empty.
+Using the **Editing area** and the **Breakpoints** view, it is possible to create, remove, and list all breakpoints of the model. When opening the first time the debug target, the list of breakpoints in the **Breakpoints** view is currently empty, as no breakpoint has been added yet. The following explains how to create, list, and remove breakpoints using the **Editing area** and the **Breakpoints** view jointly.
+
+#### Inserting a breakpoint
 
 Creating breakpoints is done directly to the model opened in the **Editing area**. the first step is to right-click on any transition or entry/exit action code of a state in the state machine. Doing so, a *MDebugger* entry can be selected, and four actions are available:
-- Insert breakpoint after action code: cause a breakpoint to be created after the action code of this specific transition, state entry, or state exit;
-- Insert breakpoint before action code: cause a breakpoint to be created before the action code of this specific transition, state entry, or state exit;
-- Disable breakpoint after action code: cause an existing breakpoint (if any) previously inserted after the action code to be removed;
-- Disable breakpoint before action code: cause an existing breakpoint (if any) previously inserted before the action code to be removed.
+- *Insert breakpoint after action code:* cause a breakpoint to be created after the action code of this specific transition, state entry, or state exit;
+- *Insert breakpoint before action code:* cause a breakpoint to be created before the action code of this specific transition, state entry, or state exit;
+- *Disable breakpoint after action code:* cause an existing breakpoint (if any) previously inserted after the action code to be removed;
+- *Disable breakpoint before action code:* cause an existing breakpoint (if any) previously inserted before the action code to be removed.
+
+In the figure below, right-clicking on the *count* transition on the *CounterStateMachine* causes the context menu to open. It contains the *MDebugger (transition effect)* entry, which consists of the four aforementioned actions to add and remove breakpoints on the selected transition (before and after the transition effect).
+
+Clicking on the *Insert breakpoint after action code* causes a breakpoint to be created after the action code of the *count* transition is executed.
 
 ![alt text](screenshots/6-insert-breakpoint.png)
 
-Once a breakpoint is created using the editing area, it is automatically added to the **Breakpoint** view. Deleting a breakpoint can be done using the *Disable breakpoint ..." entry in the contextual menu of the transition, state entry, or state exit. It is also possible to delete the breakpoint using the **Breakpoints** view by hititing the *Remove selected breakpoint (Delete)* icon.
+#### Listing breakpoints
+
+Once a breakpoint is created using the editing area, it is automatically added to the **Breakpoint** view. The figure below shows the **Breakpoint** view. Make sure that the figure is revealed over the **Variables** view (by clicking on the **Breakpoint** tab).
 
 ![alt text](screenshots/7-breakpoints-list.png)
 
+#### Deleting breakpoints
 
+Deleting a breakpoint can be done either in the **Editing area** or in the **breakpoints** view:
 
-**Note:** some improvements can be done to the Eclipse implementation to improve the user experience. They include:
+* Using the **Editing area**, it is possible to right-click on a transition, state entry, or state exit, and select the "Disable breakpoint ..." entry in the contextual menu. In the screenshot available in the subsection entitled **Inserting a breakpoint**, right-clicking on the *count* transition causes the context menu to open. Under the *MDebugger (transition effect)* entry, it is possible to select the *Disable breakpoint after action code* action to disable the previously created breakpoint;
+* Using the **Breakpoints** view, it is possible to select a breakpoint in the list of breakpoints, and hit the *Remove selected breakpoint (Delete)* icon (see screenshot above).
+
+#### Further improvements on supporting breakpoints in the GUI version
+
+Further improvements can be done to the Eclipse implementation to improve the user experience. They include:
 - Displaying user-friendly label in the **Breakpoints** view (currently, only the affected resource name is used);
 - Graphically displaying breakpoints directly on the diagrams;
 - Hiding the *Disable breakpoint ...* options when no breakpoint exists, and reciprocally, hiding the *Insert breakpoint ...* options when a breakpoint has already been inserted;
