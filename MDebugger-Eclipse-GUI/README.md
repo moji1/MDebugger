@@ -8,8 +8,9 @@ This part assumes that you have already read [how to run the MDebugger program i
   1. First, run the debuggable program of the counter model using the following command:
     
          ```
-         cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
-         ./Debug__TopMain
+         $ cd /home/osboxes/runtime-MDebugger/Counter_CDTProject/src
+         $ make
+         $ ./Debug__TopMain
          ```
      Upon successful execution, the following result should be shown in terminal.  
             ![alt text](../screenshots/run-debuggable.png)
@@ -28,14 +29,14 @@ This part assumes that you have already read [how to run the MDebugger program i
     
     Once confirmed, the main debug interface will be displayed. It consist on the following parts:
   
-      * A **Debug** view containing three main items: 
-        * **Counter [MDebugger launch]** is the Eclipse debug target;
-        * **MDebugger (wrapper) [C/C++ Application]** is the command-line debugger that is only used as a wrapper;
-        * **Counter-Debug [Launch Group]** is the debug configuration we have created for convenient purpose;
-      * A **Variables** view listing the different variables of a capsule instance when a stack frame is selected;
-      * A **Breakpoints** view lists all breakpoints set on this model;
-      * The **Editing area** showing the *Counter* model;
-      * The **Console** in which it is still possible to invoke the MDebugger CLI tool using command lines. 
+    * A **Debug** view containing three main items: 
+      * **Counter [MDebugger launch]** is the Eclipse debug target;
+      * **MDebugger (wrapper) [C/C++ Application]** is the command-line debugger that is only used as a wrapper;
+      * **Counter-Debug [Launch Group]** is the debug configuration we have created for convenient purpose;
+    * A **Variables** view listing the different variables of a capsule instance when a stack frame is selected;
+    * A **Breakpoints** view lists all breakpoints set on this model;
+    * The **Editing area** showing the *Counter* model;
+    * The **Console** in which it is still possible to invoke the MDebugger CLI tool using command lines. 
       
        
 ![alt text](screenshots/3-eclipse-debugger.png)
