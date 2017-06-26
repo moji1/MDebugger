@@ -8,4 +8,4 @@ This folder contains the models along with their generated source code which are
 
 
 #### /PerformanceOverhead 
-This folder contains all the traces which were produced during the experiment. The Original subfolder includes traces by the replication system generated from the original model, and Refined subfolder includes traces by the replication system generated from the instrumented model
+This folder contains all traces which were produced during the experiment. The Original subfolder includes traces by the replication system generated from the original model, and Refined subfolder includes traces by the replication system generated from the instrumented model
