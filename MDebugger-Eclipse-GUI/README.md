@@ -87,7 +87,7 @@ Once a breakpoint is created using the editing area, it is automatically added t
 
 Deleting a breakpoint can be done either in the **Editing area** or in the **breakpoints** view:
 
-* Using the **Editing area**, it is possible to right-click on a transition, state entry, or state exit, and select the "Disable breakpoint ..." entry in the contextual menu. In the screenshot available in the subsection entitled **Inserting a breakpoint**, right-clicking on the *count* transition causes the context menu to open. Under the *MDebugger (transition effect)* entry, it is possible to select the *Disable breakpoint after action code* action to disable the previously created breakpoint;
+* Using the **Editing area**, it is possible to right-click on a transition, state entry, or state exit, and select the "Disable breakpoint ..." entry in the contextual menu. In the screenshot available in the subsection above entitled ["Inserting a breakpoint"](https://github.com/moji1/MDebugger/blob/master/MDebugger-Eclipse-GUI/README.md#inserting-a-breakpoint), right-clicking on the *count* transition causes the context menu to open. Under the *MDebugger (transition effect)* entry, it is possible to select the *Disable breakpoint after action code* action to disable the previously created breakpoint;
 * Using the **Breakpoints** view, it is possible to select a breakpoint in the list of breakpoints, and hit the *Remove selected breakpoint (Delete)* icon (see screenshot above).
 
 #### Further improvements on supporting breakpoints in the GUI version
