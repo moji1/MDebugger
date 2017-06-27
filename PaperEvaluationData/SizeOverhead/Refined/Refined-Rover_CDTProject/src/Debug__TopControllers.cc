@@ -1,0 +1,1200 @@
+
+#include "Debug__TopControllers.hh"
+
+#include "ControlSoftware.hh"
+#include "Debug__Top.hh"
+#include "DetectionSensor.hh"
+#include "EngineController.hh"
+#include "GateWay.hh"
+#include "Rover.hh"
+#include "TemperatureSensor.hh"
+#include "Top.hh"
+#include "umlrtcapsuleclass.hh"
+#include "umlrtcapsulepart.hh"
+#include "umlrtcommsport.hh"
+#include "umlrtcommsportfarend.hh"
+#include "umlrtcontroller.hh"
+#include "umlrtslot.hh"
+#include <cstddef>
+
+
+static UMLRTController DefaultController_( "DefaultController" );
+
+UMLRTController * DefaultController = &DefaultController_;
+
+static Capsule_Debug__Top debug__Top( &Debug__Top, &Debug__Top_slots[InstId_Debug__Top], NULL, NULL, true );
+
+static UMLRTSlot * slots_Debug__Top[] = 
+{
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top]
+};
+
+static UMLRTCapsulePart parts_Debug__Top[] = 
+{
+    {
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Gateway,
+        1,
+        &slots_Debug__Top[0]
+    },
+    {
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Top,
+        1,
+        &slots_Debug__Top[1]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_commandTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        1,
+        borderfarEndList_Debug__Top_Debug__Gateway,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_configTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Gateway[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        50,
+        &borderfarEndList_Debug__Top_Debug__Gateway[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Gateway_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Gateway[0],
+    &borderports_Debug__Top_Debug__Gateway[1],
+    &borderports_Debug__Top_Debug__Gateway[2]
+};
+
+static Capsule_GateWay debug__Top_Debug__Gateway( &GateWay, &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway], borderports_Debug__Top_Debug__Gateway_ptrs, NULL, true );
+
+static Capsule_Top debug__Top_Debug__Top( &Top, &Debug__Top_slots[InstId_Debug__Top_Debug__Top], NULL, NULL, true );
+
+static UMLRTSlot * slots_Debug__Top_Debug__Top[] = 
+{
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover]
+};
+
+static UMLRTCapsulePart parts_Debug__Top_Debug__Top[] = 
+{
+    {
+        &Top,
+        Capsule_Top::part_controlSoftware,
+        1,
+        &slots_Debug__Top_Debug__Top[0]
+    },
+    {
+        &Top,
+        Capsule_Top::part_rover,
+        1,
+        &slots_Debug__Top_Debug__Top[1]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_controlSoftware[] = 
+{
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_rover_detectionSensor2[Capsule_DetectionSensor::borderport_detection]
+    },
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_rover_engineController[Capsule_EngineController::borderport_engine]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_rover[Capsule_Rover::borderport_temperature]
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_controlSoftware[] = 
+{
+    {
+        &ControlSoftware,
+        Capsule_ControlSoftware::borderport_detection,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_controlSoftware,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &ControlSoftware,
+        Capsule_ControlSoftware::borderport_engine,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_controlSoftware[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &ControlSoftware,
+        Capsule_ControlSoftware::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_controlSoftware[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &ControlSoftware,
+        Capsule_ControlSoftware::borderport_temperature,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_controlSoftware[4],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &ControlSoftware,
+        Capsule_ControlSoftware::borderport_timer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_controlSoftware[5],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &ControlSoftware,
+        Capsule_ControlSoftware::borderport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_controlSoftware[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_controlSoftware_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_controlSoftware[0],
+    &borderports_Debug__Top_Debug__Top_controlSoftware[1],
+    &borderports_Debug__Top_Debug__Top_controlSoftware[2],
+    &borderports_Debug__Top_Debug__Top_controlSoftware[3],
+    &borderports_Debug__Top_Debug__Top_controlSoftware[4],
+    &borderports_Debug__Top_Debug__Top_controlSoftware[5]
+};
+
+static Capsule_ControlSoftware debug__Top_Debug__Top_controlSoftware( &ControlSoftware, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_controlSoftware], borderports_Debug__Top_Debug__Top_controlSoftware_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_rover[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_controlSoftware[Capsule_ControlSoftware::borderport_temperature]
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_rover[] = 
+{
+    {
+        &Rover,
+        Capsule_Rover::borderport_detection,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_rover,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Rover,
+        Capsule_Rover::borderport_engine,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Rover,
+        Capsule_Rover::borderport_temperature,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_rover_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_rover[0],
+    &borderports_Debug__Top_Debug__Top_rover[1],
+    &borderports_Debug__Top_Debug__Top_rover[2]
+};
+
+static Capsule_Rover debug__Top_Debug__Top_rover( &Rover, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover], borderports_Debug__Top_Debug__Top_rover_ptrs, NULL, true );
+
+static UMLRTSlot * slots_Debug__Top_Debug__Top_rover[] = 
+{
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor2],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_engineController],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_temperatureSensor]
+};
+
+static UMLRTCapsulePart parts_Debug__Top_Debug__Top_rover[] = 
+{
+    {
+        &Rover,
+        Capsule_Rover::part_detectionSensor,
+        1,
+        &slots_Debug__Top_Debug__Top_rover[0]
+    },
+    {
+        &Rover,
+        Capsule_Rover::part_detectionSensor2,
+        1,
+        &slots_Debug__Top_Debug__Top_rover[1]
+    },
+    {
+        &Rover,
+        Capsule_Rover::part_engineController,
+        1,
+        &slots_Debug__Top_Debug__Top_rover[2]
+    },
+    {
+        &Rover,
+        Capsule_Rover::part_temperatureSensor,
+        1,
+        &slots_Debug__Top_Debug__Top_rover[3]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_rover_detectionSensor[] = 
+{
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_detection,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_timer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_rover_detectionSensor_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor[0],
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor[1],
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor[2],
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor[3]
+};
+
+static Capsule_DetectionSensor debug__Top_Debug__Top_rover_detectionSensor( &DetectionSensor, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor], borderports_Debug__Top_Debug__Top_rover_detectionSensor_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor2[] = 
+{
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_controlSoftware[Capsule_ControlSoftware::borderport_detection]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_rover_detectionSensor2[] = 
+{
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_detection,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor2],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor2,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor2],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor2[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_timer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor2],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor2[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &DetectionSensor,
+        Capsule_DetectionSensor::borderport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor2],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_detectionSensor2[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_rover_detectionSensor2_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor2[0],
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor2[1],
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor2[2],
+    &borderports_Debug__Top_Debug__Top_rover_detectionSensor2[3]
+};
+
+static Capsule_DetectionSensor debug__Top_Debug__Top_rover_detectionSensor2( &DetectionSensor, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_detectionSensor2], borderports_Debug__Top_Debug__Top_rover_detectionSensor2_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_rover_engineController[] = 
+{
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_controlSoftware[Capsule_ControlSoftware::borderport_engine]
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_rover_engineController[] = 
+{
+    {
+        &EngineController,
+        Capsule_EngineController::borderport_engine,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_engineController],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_rover_engineController,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &EngineController,
+        Capsule_EngineController::borderport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_engineController],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_engineController[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &EngineController,
+        Capsule_EngineController::borderport_timer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_engineController],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_engineController[3],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &EngineController,
+        Capsule_EngineController::borderport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_engineController],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_rover_engineController[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_rover_engineController_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_rover_engineController[0],
+    &borderports_Debug__Top_Debug__Top_rover_engineController[1],
+    &borderports_Debug__Top_Debug__Top_rover_engineController[2],
+    &borderports_Debug__Top_Debug__Top_rover_engineController[3]
+};
+
+static Capsule_EngineController debug__Top_Debug__Top_rover_engineController( &EngineController, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_engineController], borderports_Debug__Top_Debug__Top_rover_engineController_ptrs, NULL, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_rover_temperatureSensor[] = 
+{
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_rover_temperatureSensor[] = 
+{
+    {
+        &TemperatureSensor,
+        Capsule_TemperatureSensor::borderport_temperature,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_temperatureSensor],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_rover_temperatureSensor,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_rover_temperatureSensor_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_rover_temperatureSensor[0]
+};
+
+static Capsule_TemperatureSensor debug__Top_Debug__Top_rover_temperatureSensor( &TemperatureSensor, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_rover_temperatureSensor], borderports_Debug__Top_Debug__Top_rover_temperatureSensor_ptrs, NULL, true );
+
+UMLRTSlot Debug__Top_slots[] = 
+{
+    {
+        "Debug__Top",
+        0,
+        &Debug__Top,
+        NULL,
+        0,
+        &debug__Top,
+        &DefaultController_,
+        2,
+        parts_Debug__Top,
+        0,
+        NULL,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Gateway",
+        0,
+        &GateWay,
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Gateway,
+        &debug__Top_Debug__Gateway,
+        &DefaultController_,
+        0,
+        NULL,
+        3,
+        borderports_Debug__Top_Debug__Gateway,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top",
+        0,
+        &Top,
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Top,
+        &debug__Top_Debug__Top,
+        &DefaultController_,
+        2,
+        parts_Debug__Top_Debug__Top,
+        0,
+        NULL,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.controlSoftware",
+        0,
+        &ControlSoftware,
+        &Top,
+        Capsule_Top::part_controlSoftware,
+        &debug__Top_Debug__Top_controlSoftware,
+        &DefaultController_,
+        0,
+        NULL,
+        6,
+        borderports_Debug__Top_Debug__Top_controlSoftware,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.rover",
+        0,
+        &Rover,
+        &Top,
+        Capsule_Top::part_rover,
+        &debug__Top_Debug__Top_rover,
+        &DefaultController_,
+        4,
+        parts_Debug__Top_Debug__Top_rover,
+        3,
+        borderports_Debug__Top_Debug__Top_rover,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.rover.detectionSensor",
+        0,
+        &DetectionSensor,
+        &Rover,
+        Capsule_Rover::part_detectionSensor,
+        &debug__Top_Debug__Top_rover_detectionSensor,
+        &DefaultController_,
+        0,
+        NULL,
+        4,
+        borderports_Debug__Top_Debug__Top_rover_detectionSensor,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.rover.detectionSensor2",
+        0,
+        &DetectionSensor,
+        &Rover,
+        Capsule_Rover::part_detectionSensor2,
+        &debug__Top_Debug__Top_rover_detectionSensor2,
+        &DefaultController_,
+        0,
+        NULL,
+        4,
+        borderports_Debug__Top_Debug__Top_rover_detectionSensor2,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.rover.engineController",
+        0,
+        &EngineController,
+        &Rover,
+        Capsule_Rover::part_engineController,
+        &debug__Top_Debug__Top_rover_engineController,
+        &DefaultController_,
+        0,
+        NULL,
+        4,
+        borderports_Debug__Top_Debug__Top_rover_engineController,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.rover.temperatureSensor",
+        0,
+        &TemperatureSensor,
+        &Rover,
+        Capsule_Rover::part_temperatureSensor,
+        &debug__Top_Debug__Top_rover_temperatureSensor,
+        &DefaultController_,
+        0,
+        NULL,
+        1,
+        borderports_Debug__Top_Debug__Top_rover_temperatureSensor,
+        NULL,
+        true,
+        false
+    }
+};
+

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:RTCppProperties="http://www.eclipse.org/papyrus/umlrt/cppproperties" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_0vhJYNq9EeahI77Vg4Dl9Q" name="CarDoorLock">
+    <eAnnotations xmi:id="_R8398NrKEeahI77Vg4Dl9Q" source="UMLRT_Default_top">
+      <details xmi:id="_R84lANrKEeahI77Vg4Dl9Q" key="top_name" value="Car"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iSbRENq_EeahI77Vg4Dl9Q" name="Car" isActive="true">
+      <ownedAttribute xmi:id="_GVbv0NrBEeahI77Vg4Dl9Q" name="door1" visibility="protected" type="_ls0UUNq_EeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SnJA8NrgEeal5dJZNvUqew" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Sm8zsNrgEeal5dJZNvUqew" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_LNSPkNrBEeahI77Vg4Dl9Q" name="centralLock" visibility="protected" type="_s7aB8Nq_EeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite"/>
+      <ownedAttribute xmi:id="_V8mg4NrgEeal5dJZNvUqew" name="door2" visibility="protected" type="_ls0UUNq_EeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite"/>
+      <ownedAttribute xmi:id="_5AKKQNrgEeal5dJZNvUqew" name="door3" visibility="protected" type="_ls0UUNq_EeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite"/>
+      <ownedAttribute xmi:id="_AVcVwNrhEeal5dJZNvUqew" name="door4" visibility="protected" type="_ls0UUNq_EeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite"/>
+      <ownedConnector xmi:id="_U4X_YNrCEeahI77Vg4Dl9Q" name="RTConnector1">
+        <end xmi:id="_U4YmcNrCEeahI77Vg4Dl9Q" partWithPort="_LNSPkNrBEeahI77Vg4Dl9Q" role="_k3gyENrBEeahI77Vg4Dl9Q"/>
+        <end xmi:id="_U4ZNgNrCEeahI77Vg4Dl9Q" partWithPort="_GVbv0NrBEeahI77Vg4Dl9Q" role="_-jLfANrBEeahI77Vg4Dl9Q"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="_bwP6gNrgEeal5dJZNvUqew" name="RTConnector2">
+        <end xmi:id="_bwRvsNrgEeal5dJZNvUqew" partWithPort="_LNSPkNrBEeahI77Vg4Dl9Q" role="_k3gyENrBEeahI77Vg4Dl9Q"/>
+        <end xmi:id="_bwRvsdrgEeal5dJZNvUqew" partWithPort="_V8mg4NrgEeal5dJZNvUqew" role="_-jLfANrBEeahI77Vg4Dl9Q"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="_-3w20NrgEeal5dJZNvUqew" name="RTConnector3">
+        <end xmi:id="_-3ysANrgEeal5dJZNvUqew" partWithPort="_LNSPkNrBEeahI77Vg4Dl9Q" role="_k3gyENrBEeahI77Vg4Dl9Q"/>
+        <end xmi:id="_-3zTENrgEeal5dJZNvUqew" partWithPort="_5AKKQNrgEeal5dJZNvUqew" role="_-jLfANrBEeahI77Vg4Dl9Q"/>
+      </ownedConnector>
+      <ownedConnector xmi:id="_EUhacNrhEeal5dJZNvUqew" name="RTConnector4">
+        <end xmi:id="_EUjPoNrhEeal5dJZNvUqew" partWithPort="_LNSPkNrBEeahI77Vg4Dl9Q" role="_k3gyENrBEeahI77Vg4Dl9Q"/>
+        <end xmi:id="_EUjPodrhEeal5dJZNvUqew" partWithPort="_AVcVwNrhEeal5dJZNvUqew" role="_-jLfANrBEeahI77Vg4Dl9Q"/>
+      </ownedConnector>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ls0UUNq_EeahI77Vg4Dl9Q" name="Door" isActive="true">
+      <ownedAttribute xmi:id="_yAJcQNrBEeahI77Vg4Dl9Q" name="lock" visibility="protected" type="_xS9RANq_EeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zv8SANrZEeal5dJZNvUqew" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zvPucNrZEeal5dJZNvUqew" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_-jLfANrBEeahI77Vg4Dl9Q" name="lockPort" visibility="public" type="_LXKZwNrAEeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f3zGENrdEeal5dJZNvUqew" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f3ouANrdEeal5dJZNvUqew" value="1"/>
+      </ownedAttribute>
+      <ownedConnector xmi:id="_-n9H8NraEeal5dJZNvUqew" name="RTConnector1">
+        <end xmi:id="_-oCngNraEeal5dJZNvUqew" role="_-jLfANrBEeahI77Vg4Dl9Q"/>
+        <end xmi:id="_-oCngdraEeal5dJZNvUqew" partWithPort="_yAJcQNrBEeahI77Vg4Dl9Q" role="_WvH7ENrBEeahI77Vg4Dl9Q"/>
+      </ownedConnector>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xS9RANq_EeahI77Vg4Dl9Q" name="Lock" classifierBehavior="__KYzgNrCEeahI77Vg4Dl9Q" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_WvH7ENrBEeahI77Vg4Dl9Q" name="lockPort" visibility="public" type="_LXKZwNrAEeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-JnYYNrVEeaBAosuR3tfxw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-JjG8NrVEeaBAosuR3tfxw" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="__KYzgNrCEeahI77Vg4Dl9Q" name="lockSM">
+        <region xmi:id="_BAOTwNrDEeahI77Vg4Dl9Q" name="Region1">
+          <transition xmi:id="_J75OQNrDEeahI77Vg4Dl9Q" name="lock" source="_D7MQENrDEeahI77Vg4Dl9Q" target="_FLMfYNrDEeahI77Vg4Dl9Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_Io77INrPEeay9vzLxQrrvQ" name="replyLock">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;The Lock &quot;&lt;&lt;this->borderPorts[0]->slotName()&lt;&lt;&quot;  is locked&quot;&lt;&lt;std::endl;
+    lockPort.lockStatus(true).send();
+</body>
+            </effect>
+            <trigger xmi:id="__mJ4wNreEeal5dJZNvUqew" name="lock" event="_XN1s0NrAEeahI77Vg4Dl9Q" port="_WvH7ENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_WQqykNrDEeahI77Vg4Dl9Q" name="init" source="_Cz87MNrDEeahI77Vg4Dl9Q" target="_D7MQENrDEeahI77Vg4Dl9Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_XjCGcNrQEeaBAosuR3tfxw" name="init">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;The Lock &quot;&lt;&lt;this->borderPorts[0]->slotName()&lt;&lt;&quot;  is unlocked&quot;&lt;&lt;std::endl;
+</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_hi8_INrDEeahI77Vg4Dl9Q" name="unlock" source="_FLMfYNrDEeahI77Vg4Dl9Q" target="_D7MQENrDEeahI77Vg4Dl9Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_bx_0sNrlEeal5dJZNvUqew" name="replyUnlock">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;The Lock &quot;&lt;&lt;this->borderPorts[0]->slotName()&lt;&lt;&quot;  is unlocked&quot;&lt;&lt;std::endl;
+    lockPort.lockStatus(false).send();
+</body>
+            </effect>
+            <trigger xmi:id="_ggdK4NrEEeahI77Vg4Dl9Q" name="unlock" event="_Zlrt8NrAEeahI77Vg4Dl9Q" port="_WvH7ENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_v7FiUNrDEeahI77Vg4Dl9Q" name="twiceLock" source="_FLMfYNrDEeahI77Vg4Dl9Q" target="_FLMfYNrDEeahI77Vg4Dl9Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_D3ixQNrmEeal5dJZNvUqew" name="replyTwiceUnlock">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;The Lock   &quot;&lt;&lt;this->borderPorts[0]->slotName()&lt;&lt;&quot;  is already unlocked&quot;&lt;&lt;std::endl;
+    lockPort.lockStatus(false).send();
+</body>
+            </effect>
+            <trigger xmi:id="_GTLJMNrFEeahI77Vg4Dl9Q" name="twiceLock" event="_XN1s0NrAEeahI77Vg4Dl9Q" port="_WvH7ENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_5iMmgNrDEeahI77Vg4Dl9Q" name="twiceUnlock" source="_D7MQENrDEeahI77Vg4Dl9Q" target="_D7MQENrDEeahI77Vg4Dl9Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_-X__YNrlEeal5dJZNvUqew" name="replyTwiceLock">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;The Lock   &quot;&lt;&lt;this->borderPorts[0]->slotName()&lt;&lt;&quot;  is already unlocked&quot;&lt;&lt;std::endl;
+    lockPort.lockStatus(true).send();
+</body>
+            </effect>
+            <trigger xmi:id="_Wjd-gNreEeal5dJZNvUqew" event="_Zlrt8NrAEeahI77Vg4Dl9Q" port="_WvH7ENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_Cz87MNrDEeahI77Vg4Dl9Q" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_D7MQENrDEeahI77Vg4Dl9Q" name="unlocked"/>
+          <subvertex xmi:type="uml:State" xmi:id="_FLMfYNrDEeahI77Vg4Dl9Q" name="locked"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_s7aB8Nq_EeahI77Vg4Dl9Q" name="CentralLock" classifierBehavior="_mTK68NrFEeahI77Vg4Dl9Q" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_k3gyENrBEeahI77Vg4Dl9Q" name="lockPort" visibility="public" type="_LXKZwNrAEeahI77Vg4Dl9Q" isOrdered="true" aggregation="composite" isBehavior="true" isConjugated="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fVbt8NrfEeal5dJZNvUqew" value="4"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fVTyINrfEeal5dJZNvUqew" value="4"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_Cey60NrUEeaBAosuR3tfxw" name="startupTimer" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_pzTr8NroEeal5dJZNvUqew" name="tmpInt">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_t1vmoNroEeal5dJZNvUqew"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_u29zENroEeal5dJZNvUqew" name="locksCount">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_zKDY4NroEeal5dJZNvUqew" value="4"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_mTK68NrFEeahI77Vg4Dl9Q" name="centralLockSM">
+        <region xmi:id="_oPcaYNrFEeahI77Vg4Dl9Q" name="Region1">
+          <transition xmi:id="_HV4RcNrHEeahI77Vg4Dl9Q" source="_64F7ENrGEeahI77Vg4Dl9Q" target="_0JLVkNrSEeaBAosuR3tfxw"/>
+          <transition xmi:id="_mrtE0NrHEeahI77Vg4Dl9Q" source="_7a5GINrGEeahI77Vg4Dl9Q" target="_IcetINrHEeahI77Vg4Dl9Q">
+            <trigger xmi:id="_ZbNNMNrJEeahI77Vg4Dl9Q" event="_NUfP0NrFEeahI77Vg4Dl9Q" port="_k3gyENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_dJOzkNrIEeahI77Vg4Dl9Q" source="_cd7pQNrHEeahI77Vg4Dl9Q" target="_bRbzYNrnEeal5dJZNvUqew">
+            <trigger xmi:id="_v44UINrJEeahI77Vg4Dl9Q" event="_NUfP0NrFEeahI77Vg4Dl9Q" port="_k3gyENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_5LhOENrSEeaBAosuR3tfxw" source="_0JLVkNrSEeaBAosuR3tfxw" target="_7a5GINrGEeahI77Vg4Dl9Q">
+            <trigger xmi:id="_HlMpYNrTEeaBAosuR3tfxw" port="_Cey60NrUEeaBAosuR3tfxw">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_EgRIsNrnEeal5dJZNvUqew" source="_IcetINrHEeahI77Vg4Dl9Q" target="_9fM5sNrmEeal5dJZNvUqew">
+            <trigger xmi:id="_8nPPkNrpEeal5dJZNvUqew" event="_NUfP0NrFEeahI77Vg4Dl9Q" port="_k3gyENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_KEVOMNrnEeal5dJZNvUqew" guard="_IUNCcNrpEeal5dJZNvUqew" source="_9fM5sNrmEeal5dJZNvUqew" target="_BIWYMNrHEeahI77Vg4Dl9Q">
+            <ownedRule xmi:id="_IUNCcNrpEeal5dJZNvUqew">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_IUNCcdrpEeal5dJZNvUqew">
+                <language>C++</language>
+                <body>    return tmpInt==locksCount;
+</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="_MAD7ENrnEeal5dJZNvUqew" source="_9fM5sNrmEeal5dJZNvUqew" target="_IcetINrHEeahI77Vg4Dl9Q"/>
+          <transition xmi:id="_ZcttcNrnEeal5dJZNvUqew" source="_BIWYMNrHEeahI77Vg4Dl9Q" target="_cd7pQNrHEeahI77Vg4Dl9Q">
+            <trigger xmi:id="_31v2gNrpEeal5dJZNvUqew" event="_NUfP0NrFEeahI77Vg4Dl9Q" port="_k3gyENrBEeahI77Vg4Dl9Q"/>
+          </transition>
+          <transition xmi:id="_jCt-YNrnEeal5dJZNvUqew" guard="_l54t4NrpEeal5dJZNvUqew" source="_bRbzYNrnEeal5dJZNvUqew" target="_7a5GINrGEeahI77Vg4Dl9Q">
+            <ownedRule xmi:id="_l54t4NrpEeal5dJZNvUqew">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_l54t4drpEeal5dJZNvUqew">
+                <language>C++</language>
+                <body>    return tmpInt==locksCount;
+</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <transition xmi:id="_nKsgYNrnEeal5dJZNvUqew" source="_bRbzYNrnEeal5dJZNvUqew" target="_cd7pQNrHEeahI77Vg4Dl9Q"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_64F7ENrGEeahI77Vg4Dl9Q" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_7a5GINrGEeahI77Vg4Dl9Q" name="doorsOpen">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_2oNS4NrJEeahI77Vg4Dl9Q" name="getLockCommand">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;Doors are open&quot;&lt;&lt;std::endl;
+    std::cout&lt;&lt;&quot;Press any key to close doors&quot;&lt;&lt;std::endl;
+    getchar();
+    std::cout&lt;&lt;&quot;Sending Lock message to doors\n&quot;&lt;&lt;std::endl;
+    /// send message to first door
+    lockPort.lock().send(4);
+    tmpInt=1;
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_BIWYMNrHEeahI77Vg4Dl9Q" name="doorsClosed">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_XyQE0NrpEeal5dJZNvUqew">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;Doors are closed&quot;&lt;&lt;std::endl;
+    std::cout&lt;&lt;&quot;Press any key to open doors&quot;&lt;&lt;std::endl;
+    getchar();
+    std::cout&lt;&lt;&quot;Sending UnLock message to doors\n&quot;&lt;&lt;std::endl;
+    /// send message to first door
+    lockPort.unlock().send(4);
+    tmpInt=1;
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_IcetINrHEeahI77Vg4Dl9Q" name="WaitAllDoorBeClosed">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VddNINroEeal5dJZNvUqew">
+              <language>C++</language>
+              <body>    tmpInt++;
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_cd7pQNrHEeahI77Vg4Dl9Q" name="WaitAllDoorBeOpened">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_gW1VANrpEeal5dJZNvUqew">
+              <language>C++</language>
+              <body>    tmpInt++;
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_0JLVkNrSEeaBAosuR3tfxw" name="StartingUp">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_LssqQNrTEeaBAosuR3tfxw" name="startup">
+              <language>C++</language>
+              <body>    startupTimer.informIn(UMLRTTimespec(3,0));
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_9fM5sNrmEeal5dJZNvUqew" name="AllDoorClosed" kind="choice"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_bRbzYNrnEeal5dJZNvUqew" name="Choice1" kind="choice"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_LXPSQNrAEeahI77Vg4Dl9Q" name="Locking">
+      <packagedElement xmi:type="uml:Collaboration" xmi:id="_LXKZwNrAEeahI77Vg4Dl9Q" name="Locking">
+        <interfaceRealization xmi:id="_LXV_8NrAEeahI77Vg4Dl9Q" client="_LXKZwNrAEeahI77Vg4Dl9Q" supplier="_LXSVkNrAEeahI77Vg4Dl9Q" contract="_LXSVkNrAEeahI77Vg4Dl9Q"/>
+        <interfaceRealization xmi:id="_LXfJ4NrAEeahI77Vg4Dl9Q" client="_LXKZwNrAEeahI77Vg4Dl9Q" supplier="_LXcGkNrAEeahI77Vg4Dl9Q" contract="_LXcGkNrAEeahI77Vg4Dl9Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_LXSVkNrAEeahI77Vg4Dl9Q" name="Locking">
+        <ownedOperation xmi:id="_WHBOsNrAEeahI77Vg4Dl9Q" name="lock"/>
+        <ownedOperation xmi:id="_Y7LYYNrAEeahI77Vg4Dl9Q" name="unlock"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_LXX1INrAEeahI77Vg4Dl9Q" name="Locking~">
+        <ownedOperation xmi:id="_MKPDMNrFEeahI77Vg4Dl9Q" name="lockStatus">
+          <ownedParameter xmi:id="_P-KAwNrFEeahI77Vg4Dl9Q" name="locked">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_LXaRYNrAEeahI77Vg4Dl9Q" client="_LXKZwNrAEeahI77Vg4Dl9Q" supplier="_LXX1INrAEeahI77Vg4Dl9Q"/>
+      <packagedElement xmi:type="uml:AnyReceiveEvent" xmi:id="_LXa4cNrAEeahI77Vg4Dl9Q" name="*"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_LXcGkNrAEeahI77Vg4Dl9Q" name="LockingIO"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_LXgYANrAEeahI77Vg4Dl9Q" client="_LXKZwNrAEeahI77Vg4Dl9Q" supplier="_LXcGkNrAEeahI77Vg4Dl9Q"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_XN1s0NrAEeahI77Vg4Dl9Q" operation="_WHBOsNrAEeahI77Vg4Dl9Q"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_Zlrt8NrAEeahI77Vg4Dl9Q" operation="_Y7LYYNrAEeahI77Vg4Dl9Q"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_NUfP0NrFEeahI77Vg4Dl9Q" operation="_MKPDMNrFEeahI77Vg4Dl9Q"/>
+    </packagedElement>
+    <profileApplication xmi:id="_0wPiINq9EeahI77Vg4Dl9Q">
+      <eAnnotations xmi:id="_0wR-YNq9EeahI77Vg4Dl9Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_LVEcINrNEeahI77Vg4Dl9Q">
+      <eAnnotations xmi:id="_LVFqQNrNEeahI77Vg4Dl9Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/cppproperties#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLRealTime:Capsule xmi:id="_iUqswNq_EeahI77Vg4Dl9Q" base_Class="_iSbRENq_EeahI77Vg4Dl9Q"/>
+  <UMLRealTime:Capsule xmi:id="_ltJEcNq_EeahI77Vg4Dl9Q" base_Class="_ls0UUNq_EeahI77Vg4Dl9Q"/>
+  <UMLRealTime:Capsule xmi:id="_s7p5kNq_EeahI77Vg4Dl9Q" base_Class="_s7aB8Nq_EeahI77Vg4Dl9Q"/>
+  <UMLRealTime:Capsule xmi:id="_xTPk4Nq_EeahI77Vg4Dl9Q" base_Class="_xS9RANq_EeahI77Vg4Dl9Q"/>
+  <UMLRealTime:ProtocolContainer xmi:id="_LXQgYNrAEeahI77Vg4Dl9Q" base_Package="_LXPSQNrAEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTMessageSet xmi:id="_LXUKwNrAEeahI77Vg4Dl9Q" base_Interface="_LXSVkNrAEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTMessageSet xmi:id="_LXZDQNrAEeahI77Vg4Dl9Q" base_Interface="_LXX1INrAEeahI77Vg4Dl9Q" rtMsgKind="out"/>
+  <UMLRealTime:RTMessageSet xmi:id="_LXdUsNrAEeahI77Vg4Dl9Q" base_Interface="_LXcGkNrAEeahI77Vg4Dl9Q" rtMsgKind="inOut"/>
+  <UMLRealTime:Protocol xmi:id="_LXg_ENrAEeahI77Vg4Dl9Q" base_Collaboration="_LXKZwNrAEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:CapsulePart xmi:id="_GVgBQNrBEeahI77Vg4Dl9Q" base_Property="_GVbv0NrBEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:CapsulePart xmi:id="_LNWhANrBEeahI77Vg4Dl9Q" base_Property="_LNSPkNrBEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTPort xmi:id="_WvNaoNrBEeahI77Vg4Dl9Q" base_Port="_WvH7ENrBEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTPort xmi:id="_k3m4sNrBEeahI77Vg4Dl9Q" base_Port="_k3gyENrBEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:CapsulePart xmi:id="_yAPi4NrBEeahI77Vg4Dl9Q" base_Property="_yAJcQNrBEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTPort xmi:id="_-jPJYNrBEeahI77Vg4Dl9Q" base_Port="_-jLfANrBEeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTConnector xmi:id="_U4ZNgdrCEeahI77Vg4Dl9Q" base_Connector="_U4X_YNrCEeahI77Vg4Dl9Q"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_QG5zcNrNEeahI77Vg4Dl9Q" headerPreface="#include&lt;stdio.h>&#xA;#include&lt;iostream>&#xA;&#xA;" base_Class="_s7aB8Nq_EeahI77Vg4Dl9Q"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_qaE6YNrPEeay9vzLxQrrvQ" headerPreface="#include&lt;stdio.h>&#xA;#include&lt;iostream>" base_Class="_xS9RANq_EeahI77Vg4Dl9Q"/>
+  <UMLRealTime:RTPort xmi:id="_Ce3MQNrUEeaBAosuR3tfxw" isWired="false" base_Port="_Cey60NrUEeaBAosuR3tfxw"/>
+  <UMLRealTime:RTConnector xmi:id="_-oDOkNraEeal5dJZNvUqew" base_Connector="_-n9H8NraEeal5dJZNvUqew"/>
+  <UMLRealTime:CapsulePart xmi:id="_V8w48NrgEeal5dJZNvUqew" base_Property="_V8mg4NrgEeal5dJZNvUqew"/>
+  <UMLRealTime:RTConnector xmi:id="_bwRvstrgEeal5dJZNvUqew" base_Connector="_bwP6gNrgEeal5dJZNvUqew"/>
+  <UMLRealTime:CapsulePart xmi:id="_5AN0oNrgEeal5dJZNvUqew" base_Property="_5AKKQNrgEeal5dJZNvUqew"/>
+  <UMLRealTime:RTConnector xmi:id="_-3zTEdrgEeal5dJZNvUqew" base_Connector="_-3w20NrgEeal5dJZNvUqew"/>
+  <UMLRealTime:CapsulePart xmi:id="_AVeyANrhEeal5dJZNvUqew" base_Property="_AVcVwNrhEeal5dJZNvUqew"/>
+  <UMLRealTime:RTConnector xmi:id="_EUj2sNrhEeal5dJZNvUqew" base_Connector="_EUhacNrhEeal5dJZNvUqew"/>
+</xmi:XMI>

@@ -1,0 +1,16 @@
+Debug__Top.Debug__Car.RTConnector1
+    Debug__Top.Debug__Car.centralLock#lockPort.far[0] <-> Debug__Top.Debug__Car.door1#lockPort.far[0]
+Debug__Top.Debug__Car.RTConnector2
+    Debug__Top.Debug__Car.centralLock#lockPort.far[1] <-> Debug__Top.Debug__Car.door2#lockPort.far[0]
+Debug__Top.Debug__Car.RTConnector3
+    Debug__Top.Debug__Car.centralLock#lockPort.far[2] <-> Debug__Top.Debug__Car.door3#lockPort.far[0]
+Debug__Top.Debug__Car.RTConnector4
+    Debug__Top.Debug__Car.centralLock#lockPort.far[3] <-> Debug__Top.Debug__Car.door4#lockPort.far[0]
+Debug__Top.Debug__Car.door1.RTConnector1
+    Debug__Top.Debug__Car.centralLock#lockPort.far[0] <-> Debug__Top.Debug__Car.door1.lock#lockPort.far[0]
+Debug__Top.Debug__Car.door2.RTConnector1
+    Debug__Top.Debug__Car.centralLock#lockPort.far[1] <-> Debug__Top.Debug__Car.door2.lock#lockPort.far[0]
+Debug__Top.Debug__Car.door3.RTConnector1
+    Debug__Top.Debug__Car.centralLock#lockPort.far[2] <-> Debug__Top.Debug__Car.door3.lock#lockPort.far[0]
+Debug__Top.Debug__Car.door4.RTConnector1
+    Debug__Top.Debug__Car.centralLock#lockPort.far[3] <-> Debug__Top.Debug__Car.door4.lock#lockPort.far[0]

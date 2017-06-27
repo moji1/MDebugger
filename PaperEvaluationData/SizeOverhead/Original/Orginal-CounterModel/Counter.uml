@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:RTCppProperties="http://www.eclipse.org/papyrus/umlrt/cppproperties" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_lehlMOlbEea4rcs9HfOmsA" name="RootElement">
+    <eAnnotations xmi:id="_6nTg4OnLEeaKJ9Meq6miRA" source="UMLRT_Default_top">
+      <details xmi:id="_6nWkMOnLEeaKJ9Meq6miRA" key="top_name" value="Counter"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ny_iMOlbEea4rcs9HfOmsA" name="Counter" classifierBehavior="_shJbUOnHEeaKJ9Meq6miRA" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_qJdDQOlbEea4rcs9HfOmsA" name="protocol1" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1NcVIOlbEea4rcs9HfOmsA" value="500"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1Naf8OlbEea4rcs9HfOmsA" value="500"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_iFjgoOwAEeaOSqgzK8ElPw" name="Attribute1">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_A7eygOwuEeaC2K7ACCHr_g" name="counter">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_IB730OwuEeaC2K7ACCHr_g" name="timer1" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_shJbUOnHEeaKJ9Meq6miRA" name="StateMachine1">
+        <region xmi:id="_s0sCYOnHEeaKJ9Meq6miRA" name="Region1">
+          <transition xmi:id="_jCyEcOwtEeaC2K7ACCHr_g" name="intittrans" source="_unk8UOnHEeaKJ9Meq6miRA" target="_vO2XsOnHEeaKJ9Meq6miRA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_tap3MOwtEeaC2K7ACCHr_g" name="inittrans">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;Capsule is started\n&quot;; 
+    timer1.informEvery(UMLRTTimespec(3,1));
+</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_Ad8jsOy3EeaC2K7ACCHr_g" name="trans1" source="_vO2XsOnHEeaKJ9Meq6miRA" target="_vO2XsOnHEeaKJ9Meq6miRA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_bFitYOy3EeaC2K7ACCHr_g" name="count">
+              <language>C++</language>
+              <body>    counter=counter+1;
+</body>
+            </effect>
+            <trigger xmi:id="_HzaVYOy3EeaC2K7ACCHr_g" port="_IB730OwuEeaC2K7ACCHr_g">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_unk8UOnHEeaKJ9Meq6miRA" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_vO2XsOnHEeaKJ9Meq6miRA" name="State1">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_LXnVAOnPEeaKJ9Meq6miRA" name="state1entry">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;State 1 is vistited\n&quot;;
+    std::cout&lt;&lt;&quot;Counter is &quot;&lt;&lt;counter&lt;&lt;&quot;\n&quot;;
+</body>
+            </entry>
+            <exit xmi:type="uml:OpaqueBehavior" xmi:id="_RQqYUOzKEeaC2K7ACCHr_g" name="state1Exit">
+              <language>C++</language>
+              <body>    std::cout&lt;&lt;&quot;State 1 exit is running\n&quot;;
+</body>
+            </exit>
+          </subvertex>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <profileApplication xmi:id="_le28YOlbEea4rcs9HfOmsA">
+      <eAnnotations xmi:id="_le5YoOlbEea4rcs9HfOmsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_ms44IOwAEeaOSqgzK8ElPw">
+      <eAnnotations xmi:id="_ms6GQOwAEeaOSqgzK8ElPw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/cppproperties#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLRealTime:Capsule xmi:id="_n2PDcOlbEea4rcs9HfOmsA" base_Class="_ny_iMOlbEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_qJe4cOlbEea4rcs9HfOmsA" isPublish="true" isWired="false" base_Port="_qJdDQOlbEea4rcs9HfOmsA"/>
+  <UMLRealTime:RTPort xmi:id="_ICOLsOwuEeaC2K7ACCHr_g" isWired="false" base_Port="_IB730OwuEeaC2K7ACCHr_g"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_Xz-NwOydEeaC2K7ACCHr_g" headerPreface="#include &lt;iostream>" base_Class="_ny_iMOlbEea4rcs9HfOmsA"/>
+</xmi:XMI>

@@ -1,0 +1,16 @@
+Simulator.RTConnector6
+    Simulator.client[0]#Server1Comm.far[0] <-> Simulator.server1#ServerComm.far[0]
+    Simulator.client[1]#Server1Comm.far[0] <-> Simulator.server1#ServerComm.far[1]
+    Simulator.client[2]#Server1Comm.far[0] <-> Simulator.server1#ServerComm.far[2]
+    Simulator.client[3]#Server1Comm.far[0] <-> Simulator.server1#ServerComm.far[3]
+    Simulator.client[4]#Server1Comm.far[0] <-> Simulator.server1#ServerComm.far[4]
+Simulator.RTConnector7
+    Simulator.client[0]#Server2Comm.far[0] <-> Simulator.server2#ServerComm.far[0]
+    Simulator.client[1]#Server2Comm.far[0] <-> Simulator.server2#ServerComm.far[1]
+    Simulator.client[2]#Server2Comm.far[0] <-> Simulator.server2#ServerComm.far[2]
+    Simulator.client[3]#Server2Comm.far[0] <-> Simulator.server2#ServerComm.far[3]
+    Simulator.client[4]#Server2Comm.far[0] <-> Simulator.server2#ServerComm.far[4]
+Simulator.RTConnector8
+    Simulator.server1#Master.far[0] <-> Simulator.server2#Slave.far[0]
+Simulator.RTConnector9
+    Simulator.server2#Master.far[0] <-> Simulator.server1#Slave.far[0]

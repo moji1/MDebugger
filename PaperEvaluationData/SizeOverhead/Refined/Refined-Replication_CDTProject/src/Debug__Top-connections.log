@@ -1,0 +1,16 @@
+Debug__Top.Debug__Simulator.RTConnector6
+    Debug__Top.Debug__Simulator.client[0]#Server1Comm.far[0] <-> Debug__Top.Debug__Simulator.server1#ServerComm.far[0]
+    Debug__Top.Debug__Simulator.client[1]#Server1Comm.far[0] <-> Debug__Top.Debug__Simulator.server1#ServerComm.far[1]
+    Debug__Top.Debug__Simulator.client[2]#Server1Comm.far[0] <-> Debug__Top.Debug__Simulator.server1#ServerComm.far[2]
+    Debug__Top.Debug__Simulator.client[3]#Server1Comm.far[0] <-> Debug__Top.Debug__Simulator.server1#ServerComm.far[3]
+    Debug__Top.Debug__Simulator.client[4]#Server1Comm.far[0] <-> Debug__Top.Debug__Simulator.server1#ServerComm.far[4]
+Debug__Top.Debug__Simulator.RTConnector7
+    Debug__Top.Debug__Simulator.client[0]#Server2Comm.far[0] <-> Debug__Top.Debug__Simulator.server2#ServerComm.far[0]
+    Debug__Top.Debug__Simulator.client[1]#Server2Comm.far[0] <-> Debug__Top.Debug__Simulator.server2#ServerComm.far[1]
+    Debug__Top.Debug__Simulator.client[2]#Server2Comm.far[0] <-> Debug__Top.Debug__Simulator.server2#ServerComm.far[2]
+    Debug__Top.Debug__Simulator.client[3]#Server2Comm.far[0] <-> Debug__Top.Debug__Simulator.server2#ServerComm.far[3]
+    Debug__Top.Debug__Simulator.client[4]#Server2Comm.far[0] <-> Debug__Top.Debug__Simulator.server2#ServerComm.far[4]
+Debug__Top.Debug__Simulator.RTConnector8
+    Debug__Top.Debug__Simulator.server1#Master.far[0] <-> Debug__Top.Debug__Simulator.server2#Slave.far[0]
+Debug__Top.Debug__Simulator.RTConnector9
+    Debug__Top.Debug__Simulator.server2#Master.far[0] <-> Debug__Top.Debug__Simulator.server1#Slave.far[0]
