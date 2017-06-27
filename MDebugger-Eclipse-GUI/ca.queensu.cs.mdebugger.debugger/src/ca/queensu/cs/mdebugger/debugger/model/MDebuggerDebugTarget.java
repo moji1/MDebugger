@@ -173,7 +173,7 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 			public void run() {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().removeSelectionListener(debugTarget);					
 			}
-		});    	
+		}); 	
     }
     
     public void setWriter(MDebuggerTCPWriter writer) {

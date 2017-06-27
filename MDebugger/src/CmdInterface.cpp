@@ -52,6 +52,7 @@ const std::vector<CMDDesc> CmdInterface::cmdDescList =
 			{"list","l",{{"-i","traceNo","O"}},"List running capsules and their current state"},
 			{"list","l",{{"-c","capsuleName","M"},{"-i","traceNo","O"}},"List capsule's configuration including breakpoints and etc"},
 			{"list","l",{{"-c","capsuleName","M"},{"-b","","O"},{"-i","traceNo","O"}},"List exiting breakpoint"},
+			{"seq","sq",{{"-c","capsuleName","M"},{"-n","count","M"}},"generate sequence diagram"},
 			{"save","s",{{"-c","capsuleName","M"},{"-f","filePath","O"}},"Save existing events to a file specified by filePath"},
 			{"connect","con",{{"-h","host","M"},{"-p","port","M"},{"-i","traceNo","O"}},"Connect to eclipse debugger"},
 			{"exit","q",{},"Exit the MDebugger"},
@@ -139,8 +140,8 @@ void CmdInterface::setCommandStr(const std::string& commandStr) {
 }
 
 mdebugger::mdebuggerCommand CmdInterface::stringToUserCommad(std::string commandName) {
-	std::vector<std::string> commands={"breakpoint","continue","help","list","modify","next","save","view","run","connect","exit","restart"};
-	std::vector<std::string> commandsL={"b","c","h","l","m","n","s","v","r","con","s","r"};
+	std::vector<std::string> commands={"breakpoint","continue","help","list","modify","next","save","view","run","seq","connect","exit","restart"};
+	std::vector<std::string> commandsL={"b","c","h","l","m","n","s","v","r","sq","con","s","r"};
 	for (int i=0;i<commands.size();i++)
 		if (commands[i]==commandName || commandsL[i]==commandName )
 			return (mdebugger::mdebuggerCommand)i;

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:UMLRTStateMachines="http://www.eclipse.org/papyrus/umlrt/statemachine" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_0GZ5wE1iEeeFgIitP47fuA" name="Counter">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0GZ5wU1iEeeFgIitP47fuA" source="http://www.eclipse.org/papyrus-rt/language/1.0.0">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0GZ5wk1iEeeFgIitP47fuA" key="language" value="umlrt-cpp"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_92uu4E1jEeeFgIitP47fuA" source="UMLRT_Default_top">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9201gE1jEeeFgIitP47fuA" key="top_name" value="Counter"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7rXgAE1iEeeFgIitP47fuA" name="Counter" classifierBehavior="_RUEGwE1jEeeFgIitP47fuA" isActive="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9363IE1iEeeFgIitP47fuA" name="varInt" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_DxM-sE1jEeeFgIitP47fuA" name="varBool" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_HsjZ8E1jEeeFgIitP47fuA" name="varString" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_NmuSUE1jEeeFgIitP47fuA" name="log" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_6kIb0IeXEeSVyrlWP4nYew"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_PDcH8E1jEeeFgIitP47fuA" name="timer" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_RUEGwE1jEeeFgIitP47fuA" name="CounterStateMachine" isReentrant="false">
+        <region xmi:type="uml:Region" xmi:id="_RU7CYE1jEeeFgIitP47fuA" name="Region">
+          <transition xmi:type="uml:Transition" xmi:id="_cooLQE1jEeeFgIitP47fuA" name="initial" kind="external" source="_boT9wE1jEeeFgIitP47fuA" target="_RVtFgE1jEeeFgIitP47fuA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_uIq6kE1jEeeFgIitP47fuA" name="Effect" isReentrant="false">
+              <language>C++</language>
+              <body>timer.informEvery(UMLRTTimespec(10,0));
+varInt = 0;
+varBool = false;
+varString = &quot;This is a string&quot;;
+log.show(&quot;Start counting.\n&quot;);</body>
+            </effect>
+          </transition>
+          <transition xmi:type="uml:Transition" xmi:id="_kyQk0E1jEeeFgIitP47fuA" name="count" kind="external" source="_RVtFgE1jEeeFgIitP47fuA" target="_RVtFgE1jEeeFgIitP47fuA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_53rfYE1jEeeFgIitP47fuA" name="Effect" isReentrant="false">
+              <language>C++</language>
+              <body>varInt++;
+log.show(&quot;Counting. New value: %d\n&quot;, varInt);</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="_mlQMcE1jEeeFgIitP47fuA" port="_PDcH8E1jEeeFgIitP47fuA">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <subvertex xmi:type="uml:State" xmi:id="_RVtFgE1jEeeFgIitP47fuA" name="COUNTING"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_boT9wE1jEeeFgIitP47fuA" kind="initial"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0GZ5w01iEeeFgIitP47fuA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0GZ5xE1iEeeFgIitP47fuA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0GZ5xU1iEeeFgIitP47fuA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0GZ5xk1iEeeFgIitP47fuA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/statemachine#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml#_KLcn0FDtEeOA4ecmvfqvaw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0GZ5x01iEeeFgIitP47fuA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0GZ5yE1iEeeFgIitP47fuA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/cppproperties#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLRealTime:Capsule xmi:id="_7z6YAE1iEeeFgIitP47fuA" base_Class="_7rXgAE1iEeeFgIitP47fuA"/>
+  <UMLRealTime:RTPort xmi:id="_NoP8UE1jEeeFgIitP47fuA" isPublish="false" isWired="false" base_Port="_NmuSUE1jEeeFgIitP47fuA"/>
+  <UMLRealTime:RTPort xmi:id="_PDsmoE1jEeeFgIitP47fuA" isPublish="false" isWired="false" base_Port="_PDcH8E1jEeeFgIitP47fuA"/>
+  <UMLRTStateMachines:RTState xmi:id="_RV22gE1jEeeFgIitP47fuA" base_State="_RVtFgE1jEeeFgIitP47fuA"/>
+  <UMLRTStateMachines:RTRegion xmi:id="_RWAAcE1jEeeFgIitP47fuA" base_Region="_RU7CYE1jEeeFgIitP47fuA"/>
+  <UMLRTStateMachines:RTStateMachine xmi:id="_RWV-sE1jEeeFgIitP47fuA" base_StateMachine="_RUEGwE1jEeeFgIitP47fuA"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_boot4E1jEeeFgIitP47fuA" base_Pseudostate="_boT9wE1jEeeFgIitP47fuA"/>
+</xmi:XMI>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:RTCppProperties="http://www.eclipse.org/papyrus/umlrt/cppproperties" xmlns:UMLRTStateMachines="http://www.eclipse.org/papyrus/umlrt/statemachine" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_MZw7AAdxEeadtKuU2t6fMg" name="commGateWay">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GCr80Ad0EeadtKuU2t6fMg" source="UMLRT_Default_top">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GCsj4Ad0EeadtKuU2t6fMg" key="top_name" value="GateWay"/>
+    <eAnnotations xmi:id="_GCr80Ad0EeadtKuU2t6fMg" source="UMLRT_Default_top">
+      <details xmi:id="_GCsj4Ad0EeadtKuU2t6fMg" key="top_name" value="GateWay"/>
     </eAnnotations>
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l53IYD-1Eeex9YQaCwFKZg" source="http://www.eclipse.org/papyrus-rt/language/1.0.0">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l56LsD-1Eeex9YQaCwFKZg" key="language" value="umlrt-cpp"/>
+    <eAnnotations xmi:id="_l53IYD-1Eeex9YQaCwFKZg" source="http://www.eclipse.org/papyrus-rt/language/1.0.0">
+      <details xmi:id="_l56LsD-1Eeex9YQaCwFKZg" key="language" value="umlrt-cpp"/>
     </eAnnotations>
     <packagedElement xmi:type="uml:Class" xmi:id="_XIyCcAdxEeadtKuU2t6fMg" name="GateWay" isActive="true">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_k0n4EDCJEeaxYMPe_sHEiw" name="extComm" visibility="public" type="_KS0icDCLEeaxYMPe_sHEiw" isOrdered="true" aggregation="composite" isBehavior="true">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k03IoDCJEeaxYMPe_sHEiw" value="50"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k03vsDCJEeaxYMPe_sHEiw" value="50"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_id3i8DHEEeaxYMPe_sHEiw" name="config">
+      <ownedAttribute xmi:id="_id3i8DHEEeaxYMPe_sHEiw" name="config">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_W2ELwDKoEeaxYMPe_sHEiw" name="configTimer" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
@@ -20,7 +20,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W2JEQDKoEeaxYMPe_sHEiw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W2JrUDKoEeaxYMPe_sHEiw" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_9VpAgD8TEea_INjZTfhBHQ" name="eventSharedMemory">
+      <ownedAttribute xmi:id="_9VpAgD8TEea_INjZTfhBHQ" name="eventSharedMemory">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_ykwdUHV4EeauJcu8ajHARw" name="commandTimer" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
@@ -28,15 +28,15 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yx2eIHV4EeauJcu8ajHARw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yx46YHV4EeauJcu8ajHARw" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_Hhrw8HV-EeauJcu8ajHARw" name="registeredCapsules">
+      <ownedAttribute xmi:id="_Hhrw8HV-EeauJcu8ajHARw" name="registeredCapsules">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_D3P0oHWAEeauJcu8ajHARw" name="commandSharedMemory">
+      <ownedAttribute xmi:id="_D3P0oHWAEeauJcu8ajHARw" name="commandSharedMemory">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
       <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_dy-CgAdxEeadtKuU2t6fMg" name="GateWay">
-        <region xmi:type="uml:Region" xmi:id="_f2Z54AdxEeadtKuU2t6fMg" name="Region1">
-          <transition xmi:type="uml:Transition" xmi:id="_9XO6gAdxEeadtKuU2t6fMg" name="init" source="_8BWssAdxEeadtKuU2t6fMg" target="_fxzoADCVEeaxYMPe_sHEiw">
+        <region xmi:id="_f2Z54AdxEeadtKuU2t6fMg" name="Region1">
+          <transition xmi:id="_9XO6gAdxEeadtKuU2t6fMg" name="init" source="_8BWssAdxEeadtKuU2t6fMg" target="_fxzoADCVEeaxYMPe_sHEiw">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_USaAUAdzEeadtKuU2t6fMg" name="initial">
               <language>C++</language>
               <body>    // instantiate the configutility class 
@@ -47,8 +47,8 @@
 </body>
             </effect>
           </transition>
-          <transition xmi:type="uml:Transition" xmi:id="_39bb8D7iEeaZboTzPJJ9rA" name="setupSharedMem" source="_fxzoADCVEeaxYMPe_sHEiw" target="_jxqGMD7iEeaZboTzPJJ9rA">
-            <ownedRule xmi:type="uml:Constraint" xmi:id="_kxvjAD8KEea_INjZTfhBHQ" name="checkCommType">
+          <transition xmi:id="_39bb8D7iEeaZboTzPJJ9rA" name="setupSharedMem" source="_fxzoADCVEeaxYMPe_sHEiw" target="_jxqGMD7iEeaZboTzPJJ9rA">
+            <ownedRule xmi:id="_kxvjAD8KEea_INjZTfhBHQ" name="checkCommType">
               <specification xmi:type="uml:OpaqueExpression" xmi:id="_rtbiwD8KEea_INjZTfhBHQ">
                 <language>C++</language>
                 <body>    std::string tempStr =config.getConfig(&quot;comm&quot;);
@@ -68,12 +68,12 @@
     commandTimer.informIn(UMLRTTimespec(1,0),4);
 </body>
             </effect>
-            <trigger xmi:type="uml:Trigger" xmi:id="_1M3VMKhTEea5S_8vfXhBZA" port="_W2ELwDKoEeaxYMPe_sHEiw">
+            <trigger xmi:id="_1M3VMKhTEea5S_8vfXhBZA" port="_W2ELwDKoEeaxYMPe_sHEiw">
               <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
             </trigger>
           </transition>
-          <transition xmi:type="uml:Transition" xmi:id="_vJoOkD7jEeaZboTzPJJ9rA" name="reconfigSHM" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_fxzoADCVEeaxYMPe_sHEiw"/>
-          <transition xmi:type="uml:Transition" xmi:id="_NZlocD8YEea_INjZTfhBHQ" name="processAndForwardEvent" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+          <transition xmi:id="_vJoOkD7jEeaZboTzPJJ9rA" name="reconfigSHM" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_fxzoADCVEeaxYMPe_sHEiw"/>
+          <transition xmi:id="_NZlocD8YEea_INjZTfhBHQ" name="processAndForwardEvent" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_IJ0QkD8bEea_INjZTfhBHQ" name="processAndForwardEvent">
               <language>C++</language>
               <body>    std::string tempS=&quot;&quot;;
@@ -83,9 +83,9 @@
     eventSharedMemory.safePushBackString(tempS);
 </body>
             </effect>
-            <trigger xmi:type="uml:Trigger" xmi:id="_ffWT8D8YEea_INjZTfhBHQ" name="newEvent" event="_VA1yEDCQEeaxYMPe_sHEiw" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+            <trigger xmi:id="_ffWT8D8YEea_INjZTfhBHQ" name="newEvent" event="_VA1yEDCQEeaxYMPe_sHEiw" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
           </transition>
-          <transition xmi:type="uml:Transition" xmi:id="_7xHX0HV7EeauJcu8ajHARw" name="registerCapsule" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+          <transition xmi:id="_7xHX0HV7EeauJcu8ajHARw" name="registerCapsule" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_gyzsYHV9EeauJcu8ajHARw" name="regisetCapsule">
               <language>C++</language>
               <body>    std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: Registration Message come at channel= \&quot;&quot;&lt;&lt;msg->sapIndex0_&lt;&lt;&quot;\&quot; from capsule instance=&quot;&lt;&lt;std::string(capsuleInstanceName)&lt;&lt;&quot;\n&quot;;
@@ -99,9 +99,9 @@
     std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: Number of registered capsules is=&quot;&lt;&lt;registeredCapsules.size()&lt;&lt;&quot;\n&quot;;
 </body>
             </effect>
-            <trigger xmi:type="uml:Trigger" xmi:id="_UaycQHV8EeauJcu8ajHARw" event="_mMK6kHV5EeauJcu8ajHARw" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+            <trigger xmi:id="_UaycQHV8EeauJcu8ajHARw" event="_mMK6kHV5EeauJcu8ajHARw" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
           </transition>
-          <transition xmi:type="uml:Transition" xmi:id="_XmuMwHV8EeauJcu8ajHARw" name="extCommand" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+          <transition xmi:id="_XmuMwHV8EeauJcu8ajHARw" name="extCommand" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_wtjR0HV9EeauJcu8ajHARw" name="processExtCommand">
               <language>C++</language>
               <body>    //std::cout&lt;&lt;&quot;Observer: Try read command\n&quot;;
@@ -159,16 +159,16 @@
     commandTimer.informIn(UMLRTTimespec(1,0),4);
 </body>
             </effect>
-            <trigger xmi:type="uml:Trigger" xmi:id="_jjA_oHV8EeauJcu8ajHARw" port="_ykwdUHV4EeauJcu8ajHARw">
+            <trigger xmi:id="_jjA_oHV8EeauJcu8ajHARw" port="_ykwdUHV4EeauJcu8ajHARw">
               <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
             </trigger>
           </transition>
-          <transition xmi:type="uml:Transition" xmi:id="_xsTGQPCFEeaNzKhabo7mlg" name="replySelfExec" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
+          <transition xmi:id="_xsTGQPCFEeaNzKhabo7mlg" name="replySelfExec" source="_jxqGMD7iEeaZboTzPJJ9rA" target="_jxqGMD7iEeaZboTzPJJ9rA">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_HewxYPCkEeaNzKhabo7mlg" name="replySelfExecMethod">
               <language>C++</language>
               <body>extComm.dbgExec().sendAt(msg->sapIndex0_);</body>
             </effect>
-            <trigger xmi:type="uml:Trigger" xmi:id="_85e0wPCjEeaNzKhabo7mlg" name="replySelfExecTrig" event="_tCGA8PCFEeaNzKhabo7mlg" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
+            <trigger xmi:id="_85e0wPCjEeaNzKhabo7mlg" name="replySelfExecTrig" event="_tCGA8PCFEeaNzKhabo7mlg" port="_k0n4EDCJEeaxYMPe_sHEiw"/>
           </transition>
           <subvertex xmi:type="uml:Pseudostate" xmi:id="_8BWssAdxEeadtKuU2t6fMg" name="InitObserver"/>
           <subvertex xmi:type="uml:State" xmi:id="_fxzoADCVEeaxYMPe_sHEiw" name="configLoad">
@@ -214,60 +214,60 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_KS2-sDCLEeaxYMPe_sHEiw" name="ExtInterface">
       <packagedElement xmi:type="uml:Collaboration" xmi:id="_KS0icDCLEeaxYMPe_sHEiw" name="ExtInterface">
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_KTCk4DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KS5a8DCLEeaxYMPe_sHEiw" contract="_KS5a8DCLEeaxYMPe_sHEiw"/>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_KTLu0DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KTJSkDCLEeaxYMPe_sHEiw" contract="_KTJSkDCLEeaxYMPe_sHEiw"/>
+        <interfaceRealization xmi:id="_KTCk4DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KS5a8DCLEeaxYMPe_sHEiw" contract="_KS5a8DCLEeaxYMPe_sHEiw"/>
+        <interfaceRealization xmi:id="_KTLu0DCLEeaxYMPe_sHEiw" client="_KS0icDCLEeaxYMPe_sHEiw" supplier="_KTJSkDCLEeaxYMPe_sHEiw" contract="_KTJSkDCLEeaxYMPe_sHEiw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_KS5a8DCLEeaxYMPe_sHEiw" name="ExtInterface">
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_VA1LADCQEeaxYMPe_sHEiw" name="event">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_Er_EADHDEeaxYMPe_sHEiw" name="eventInfo">
+        <ownedOperation xmi:id="_VA1LADCQEeaxYMPe_sHEiw" name="event">
+          <ownedParameter xmi:id="_Er_EADHDEeaxYMPe_sHEiw" name="eventInfo">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_ho6x0HV5EeauJcu8ajHARw" name="registerToControl">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_iYDIsHV5EeauJcu8ajHARw" name="capsuleInstanceName">
+        <ownedOperation xmi:id="_ho6x0HV5EeauJcu8ajHARw" name="registerToControl">
+          <ownedParameter xmi:id="_iYDIsHV5EeauJcu8ajHARw" name="capsuleInstanceName">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_reijgPCFEeaNzKhabo7mlg" name="selfExec"/>
+        <ownedOperation xmi:id="_reijgPCFEeaNzKhabo7mlg" name="selfExec"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_KTDzADCLEeaxYMPe_sHEiw" name="ExtInterface~">
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_u5FAUHV5EeauJcu8ajHARw" name="dbgCommand">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_wB1YIHV5EeauJcu8ajHARw" name="data" type="_097esHV5EeauJcu8ajHARw"/>
+        <ownedOperation xmi:id="_u5FAUHV5EeauJcu8ajHARw" name="dbgCommand">
+          <ownedParameter xmi:id="_wB1YIHV5EeauJcu8ajHARw" name="data" type="_097esHV5EeauJcu8ajHARw"/>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_48uGkK0_Eea2s6SIdFjObg" name="dbgExec"/>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_IXFjELjWEeaJ1dlMn1j7GQ" name="dbgVarChange">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_KsTG8LjWEeaJ1dlMn1j7GQ" name="varName">
+        <ownedOperation xmi:id="_48uGkK0_Eea2s6SIdFjObg" name="dbgExec"/>
+        <ownedOperation xmi:id="_IXFjELjWEeaJ1dlMn1j7GQ" name="dbgVarChange">
+          <ownedParameter xmi:id="_KsTG8LjWEeaJ1dlMn1j7GQ" name="varName">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_NmVPILjWEeaJ1dlMn1j7GQ" name="varValue">
+          <ownedParameter xmi:id="_NmVPILjWEeaJ1dlMn1j7GQ" name="varValue">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_Hua8sEAyEeev_-3F68RaHA" name="dbgRemBreakPoint">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_KojLgEAyEeev_-3F68RaHA" name="location">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_UGBLgEAyEeev_-3F68RaHA" name="breakPointType" visibility="public" effect="create">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_dcsnAEAyEeev_-3F68RaHA" name="place">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_HcpHMECVEeev_-3F68RaHA" name="dbgSetBreakPoint">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_HcpHMUCVEeev_-3F68RaHA" name="location">
+        <ownedOperation xmi:id="_Hua8sEAyEeev_-3F68RaHA" name="dbgRemBreakPoint">
+          <ownedParameter xmi:id="_KojLgEAyEeev_-3F68RaHA" name="location">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_HcpHMkCVEeev_-3F68RaHA" name="breakPointType" visibility="public" effect="create">
+          <ownedParameter xmi:id="_UGBLgEAyEeev_-3F68RaHA" name="breakPointType" visibility="public" effect="create">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
           </ownedParameter>
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_HcpHM0CVEeev_-3F68RaHA" name="place">
+          <ownedParameter xmi:id="_dcsnAEAyEeev_-3F68RaHA" name="place">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_t2L08ECVEeev_-3F68RaHA" name="dbgViewBreakPoints"/>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_2NX_YEEDEee0eeIrP9Q9KA" name="dbgSetExecMode">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_4jAaAEEDEee0eeIrP9Q9KA" name="execMode">
+        <ownedOperation xmi:id="_HcpHMECVEeev_-3F68RaHA" name="dbgSetBreakPoint">
+          <ownedParameter xmi:id="_HcpHMUCVEeev_-3F68RaHA" name="location">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_HcpHMkCVEeev_-3F68RaHA" name="breakPointType" visibility="public" effect="create">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_HcpHM0CVEeev_-3F68RaHA" name="place">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_t2L08ECVEeev_-3F68RaHA" name="dbgViewBreakPoints"/>
+        <ownedOperation xmi:id="_2NX_YEEDEee0eeIrP9Q9KA" name="dbgSetExecMode">
+          <ownedParameter xmi:id="_4jAaAEEDEee0eeIrP9Q9KA" name="execMode">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
           </ownedParameter>
         </ownedOperation>
@@ -288,44 +288,44 @@
       <packagedElement xmi:type="uml:CallEvent" xmi:id="_2Nc34EEDEee0eeIrP9Q9KA" operation="_2NX_YEEDEee0eeIrP9Q9KA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_097esHV5EeauJcu8ajHARw" name="COMMANDS">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_DcCuEHV6EeauJcu8ajHARw" name="resumeExec">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_J4mh0HV6EeauJcu8ajHARw" value="0"/>
+      <ownedLiteral xmi:id="_DcCuEHV6EeauJcu8ajHARw" name="resumeExec">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_J4mh0HV6EeauJcu8ajHARw"/>
       </ownedLiteral>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_tBYCYHV6EeauJcu8ajHARw" name="changeVariables">
+      <ownedLiteral xmi:id="_tBYCYHV6EeauJcu8ajHARw" name="changeVariables">
         <specification xmi:type="uml:LiteralInteger" xmi:id="_wTlaAHV6EeauJcu8ajHARw" value="2"/>
       </ownedLiteral>
     </packagedElement>
     <packagedElement xmi:type="uml:Artifact" xmi:id="_SOhaYDt8EeeKxOtWEfBMmw" name="config" fileName="config"/>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_MlWf8AdxEeadtKuU2t6fMg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MlYVIAdxEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_MlWf8AdxEeadtKuU2t6fMg">
+      <eAnnotations xmi:id="_MlYVIAdxEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_IjNqwAdyEeadtKuU2t6fMg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IjO44AdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_IjNqwAdyEeadtKuU2t6fMg">
+      <eAnnotations xmi:id="_IjO44AdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/statemachine#/"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml#_KLcn0FDtEeOA4ecmvfqvaw"/>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml#_KLcn0FDtEeOA4ecmvfqvaw"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_IjQHAAdyEeadtKuU2t6fMg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IjQuEAdyEeadtKuU2t6fMg" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuEQdyEeadtKuU2t6fMg" key="Version" value="0.0.11"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuEgdyEeadtKuU2t6fMg" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuEwdyEeadtKuU2t6fMg" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuFAdyEeadtKuU2t6fMg" key="Date" value="2015-12-10"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IjQuFQdyEeadtKuU2t6fMg" key="Author" value=""/>
+    <profileApplication xmi:id="_IjQHAAdyEeadtKuU2t6fMg">
+      <eAnnotations xmi:id="_IjQuEAdyEeadtKuU2t6fMg" source="PapyrusVersion">
+        <details xmi:id="_IjQuEQdyEeadtKuU2t6fMg" key="Version" value="0.0.11"/>
+        <details xmi:id="_IjQuEgdyEeadtKuU2t6fMg" key="Comment" value=""/>
+        <details xmi:id="_IjQuEwdyEeadtKuU2t6fMg" key="Copyright" value=""/>
+        <details xmi:id="_IjQuFAdyEeadtKuU2t6fMg" key="Date" value="2015-12-10"/>
+        <details xmi:id="_IjQuFQdyEeadtKuU2t6fMg" key="Author" value=""/>
       </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IjQHAQdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:id="_IjQHAQdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/cppproperties#/"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
+      <appliedProfile href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
     </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_foSU0EAyEeev_-3F68RaHA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_foX0YEAyEeev_-3F68RaHA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:id="_foSU0EAyEeev_-3F68RaHA">
+      <eAnnotations xmi:id="_foX0YEAyEeev_-3F68RaHA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
     </profileApplication>
   </uml:Model>
   <UMLRealTime:Capsule xmi:id="_XJDvQAdxEeadtKuU2t6fMg" base_Class="_XIyCcAdxEeadtKuU2t6fMg"/>

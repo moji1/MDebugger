@@ -153,6 +153,35 @@ void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int cou
 
 }
 
+// added by David
+void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
+	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
+		if (it->first.find(capsuleName) != std::string::npos){
+			std::vector<debugEvents::Event> events=this->capsules[it->second].lastNEvents(count);
+			std::cout<<"@startuml\n";
+			for (int i=0;i<events.size();i++) {
+				if (events[i].getEventSourceKind() == 3) { // the event is a transition
+					// need to ignore transitions with destination 'Debug__Path__*'
+					std::string signal = events[i].getEventPayload().begin()->second;
+					// need info about ports and message source/destination
+					std::cout<<"\""<<events[i].getOwnerName()<<"\" <- "<<"timer"<<": "<<signal<<"\n";
+					std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond())<<":"<<events[i].getTimePointNano()<<")\n";
+					// note left if current capsule is sending signal
+				}
+			}
+			std::cout<<"@enduml\n";
+		}
+	}
+}
+
+// added by David: for formatting timestamp
+std::string mdebugger::UMLRTDebugger::convertTime(long timeSecond) {
+	char* t;
+	strftime(t, 23, "%d-%m-%Y\\n(%H:%M:%S",localtime(&timeSecond));
+	std::string output(t);
+	return output;
+}
+
 void mdebugger::UMLRTDebugger::sendCommand(std::string cmdStr) {
 	commandQ.safePushBackString(cmdStr);
 
@@ -590,6 +619,14 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 		case mdebugger::mdebuggerCommand::MODIFY:
 			if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-n") && cmd.commandOptions.count("-v")){
 				modifyCapsuleAttribute(cmd.commandOptions["-c"],cmd.commandOptions["-n"],cmd.commandOptions["-v"]);
+			}
+			break;
+		/// added by david
+		case mdebugger::mdebuggerCommand::SEQ:
+			if  (atoi(cmd.commandOptions["-n"].c_str())>0) {
+				viewSequenceDiagram(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
+			} else {
+				std::cout<<"invalid count\n";
 			}
 			break;
 		default:

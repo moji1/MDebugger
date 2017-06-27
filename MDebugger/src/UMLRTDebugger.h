@@ -53,6 +53,8 @@ public:
 	std::string serializeCapsuleBreakPoints(std::string capsuleQualifiedName);
 	void viewCapsuleAttributes(std::string capsuleQualifiedName);
 	void viewCapsuleEvents(std::string capsuleQualifiedName,int count);
+	void viewSequenceDiagram(std::string capsuleQualifiedName,int count);
+	std::string convertTime(long timeSecond);
 	std::string serializeCapsuleAttributes(std::string capsuleQualifiedName);
 	std::string serializeCapsuleEvents(std::string capsuleQualifiedName,int count);
 	void stepExec(std::string capsuleQualifiedName);

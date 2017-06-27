@@ -17,7 +17,6 @@ public class CapsuleThreadTimerTask extends TimerTask {
 	@Override
 	public void run() {
 		this.debugTarget.requestEventList(capsuleName, 5);
-
 	}
 
 }
