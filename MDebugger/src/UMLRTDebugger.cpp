@@ -154,32 +154,66 @@ void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int cou
 }
 
 // added by David
+// Note that this doesn't work well for "fast" systems (e.g. PingPong where the two capsules are sending singals every
+// few milliseconds.  By the time event data has been obtained from the first capsule, the second capsule will have recorded
+// several more new events.  Can maybe get around this by somehow "pausing" all capsule execution while obtaining events?
 void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
+	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
+	std::vector<debugEvents::Event> events;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
-		if (it->first.find(capsuleName) != std::string::npos){
-			std::vector<debugEvents::Event> events=this->capsules[it->second].lastNEvents(count);
-			std::cout<<"@startuml\n";
-			for (int i=0;i<events.size();i++) {
-				if (events[i].getEventSourceKind() == 3) { // the event is a transition
-					// need to ignore transitions with destination 'Debug__Path__*'
-					std::string signal = events[i].getEventPayload().begin()->second;
-					// need info about ports and message source/destination
-					std::cout<<"\""<<events[i].getOwnerName()<<"\" <- "<<"timer"<<": "<<signal<<"\n";
-					std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond())<<":"<<events[i].getTimePointNano()<<")\n";
-					// note left if current capsule is sending signal
-				}
-			}
-			std::cout<<"@enduml\n";
-		}
+		//if (it->first.find(capsuleName) != std::string::npos){
+			mdebugger::CapsuleTracker currentCapsule = this->capsules[it->second];
+			// for now, just grab 10*count events.  Find a better way to do this in the future though
+			std::vector<debugEvents::Event> capEvents=currentCapsule.lastNEvents(count*10);
+			int i = 0;
+			int j = 0;
+			while (j < count && i < capEvents.size()) {
+			//for (int i=0;i<events.size();i++) {
+				if (capEvents[i].getEventSourceKind() == 3){
+					std::string sender = capEvents[i].getEventPayload().find("SenderCapsule")->second;
+					std::string owner = capEvents[i].getOwnerName();
+					if (!(capEvents[i].getEventPayload().find("Source")->second).compare(0,filterString.length(),filterString) &&
+							(capsuleName == owner || capsuleName.substr(0,capsuleName.find(":")) == sender)) {
+						events.push_back(capEvents[i]);
+						//std::cout<<owner.substr(0,owner.find(":"))<<" <- "<<sender<<": "<<port<<" : "<<signal<<"\n";
+						//std::cout<<"note right: "<<events[i].getTimePointSecond()<<":"<<events[i].getTimePointNano()<<"\n";
+						//std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
+						// note left if current capsule is sending signal
+						j++;
+					} // end if
+				} // end if
+				i++;
+			} // end while
+	} // end for
+	sort(events.begin(),events.end(),eventComp);
+	std::cout<<"@startuml\n";
+	for (int i = 0; i < count; i++){
+		std::string sender = events[i].getEventPayload().find("SenderCapsule")->second;
+		std::string owner = events[i].getOwnerName();
+		std::string port = events[i].getEventPayload().find("Port")->second;
+		std::string signal = events[i].getEventPayload().find("Signal")->second;
+		std::cout<<owner.substr(0,owner.find(":"))<<" <- "<<sender<<": "<<port<<" : "<<signal<<"\n";
+		std::cout<<"note right: "<<events[i].getTimePointSecond()<<":"<<events[i].getTimePointNano()<<"\n";
+		//std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
 	}
+	std::cout<<"@enduml\n";
+}
+
+// added by David: for sorting vector of events by timestamp
+bool mdebugger::UMLRTDebugger::eventComp(const debugEvents::Event &e1, const debugEvents::Event &e2){
+	if (e1.getTimePointSecond() == e2.getTimePointSecond())
+		return e1.getTimePointNano() > e2.getTimePointNano();
+	else
+		return e1.getTimePointSecond() > e2.getTimePointSecond();
 }
 
 // added by David: for formatting timestamp
-std::string mdebugger::UMLRTDebugger::convertTime(long timeSecond) {
+std::string mdebugger::UMLRTDebugger::convertTime(long timeSecond, long timeNano) {
 	char* t;
-	strftime(t, 23, "%d-%m-%Y\\n(%H:%M:%S",localtime(&timeSecond));
+	strftime(t, 23, "%d-%m-%Y\\n(%H:%M:%S:",localtime(&timeSecond));
 	std::string output(t);
-	return output;
+	std::string nano = std::to_string(timeNano);
+	return output + nano + ")\n";
 }
 
 void mdebugger::UMLRTDebugger::sendCommand(std::string cmdStr) {

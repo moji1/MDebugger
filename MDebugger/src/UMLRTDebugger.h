@@ -54,7 +54,6 @@ public:
 	void viewCapsuleAttributes(std::string capsuleQualifiedName);
 	void viewCapsuleEvents(std::string capsuleQualifiedName,int count);
 	void viewSequenceDiagram(std::string capsuleQualifiedName,int count);
-	std::string convertTime(long timeSecond);
 	std::string serializeCapsuleAttributes(std::string capsuleQualifiedName);
 	std::string serializeCapsuleEvents(std::string capsuleQualifiedName,int count);
 	void stepExec(std::string capsuleQualifiedName);
@@ -89,6 +88,8 @@ private:
 	//std::condition_variable cmdCond;
 	std::thread extCon;
 	CmdInterface cmdLineInterface;
+	static bool eventComp(const debugEvents::Event &e1, const debugEvents::Event &e2);
+	std::string convertTime(long timeSecond, long timeNano);
 };
 
 } /* namespace mdebugger */
