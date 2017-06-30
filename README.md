@@ -118,8 +118,5 @@ Please note that you need to follow the remaining steps inside the second instan
 ### Video Tutorials
 - [Debugging Using Command Line User Interface](https://youtu.be/UJ4BYSOrTOQ)
 - [Debugging Using Graphical User Interface](https://youtu.be/PvPbV5QkQ9Y)
-<!-- .### Evaluation Scenarios
-### Developer Guide
-### Other Resources
-### Support or Contact--!>
+
 
