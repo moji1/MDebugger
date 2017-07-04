@@ -187,15 +187,20 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 	} // end for
 	sort(events.begin(),events.end(),eventComp);
 	std::cout<<"@startuml\n";
-	for (int i = 0; i < count; i++){
+	for (int i = 0; i < count && i < events.size(); i++){
 		std::string sender = events[i].getEventPayload().find("SenderCapsule")->second;
 		std::string owner = events[i].getOwnerName();
 		std::string port = events[i].getEventPayload().find("Port")->second;
 		std::string signal = events[i].getEventPayload().find("Signal")->second;
-		std::cout<<owner.substr(0,owner.find(":"))<<" <- "<<sender<<": "<<port<<" : "<<signal<<"\n";
+		std::cout<<owner.substr(0,owner.find(":"))<<" <- ";
+		if (port == "timer")
+			std::cout<<port;
+		else
+			std::cout<<sender;
+		std::cout<<": "<<signal<<"\n";
 		std::cout<<"note right: "<<events[i].getTimePointSecond()<<":"<<events[i].getTimePointNano()<<"\n";
 		//std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
-	}
+	} // end for
 	std::cout<<"@enduml\n";
 }
 
