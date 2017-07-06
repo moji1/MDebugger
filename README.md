@@ -20,7 +20,7 @@ As stated MDebugger provides model-level debugging in the context of Papyrus-RT.
 ## Starting Guide:
 ### Virtual Machine
 
-To help researchers and developers to use MDebugger, we prepared a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) using Oracle VirtualBox. It includes MDebugger source  and all required software (e.g., PapyrusRT). The virtual machine can be downloaded from the following links:
+To help researchers and developers to use MDebugger, we prepared a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) using Oracle VirtualBox. It includes MDebugger source  and all required softwares (e.g., PapyrusRT). The virtual machine can be downloaded from the following links:
 
 http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova
 https://drive.google.com/file/d/0BzxhsAV1WGFRcXdHRHh4Zl85QXM/view?usp=sharing
