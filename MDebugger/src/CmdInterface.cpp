@@ -52,7 +52,7 @@ const std::vector<CMDDesc> CmdInterface::cmdDescList =
 			{"list","l",{{"-i","traceNo","O"}},"List running capsules and their current state"},
 			{"list","l",{{"-c","capsuleName","M"},{"-i","traceNo","O"}},"List capsule's configuration including breakpoints and etc"},
 			{"list","l",{{"-c","capsuleName","M"},{"-b","","O"},{"-i","traceNo","O"}},"List exiting breakpoint"},
-			{"seq","sq",{{"-c","capsuleName","M"},{"-n","count","M"}},"generate sequence diagram"},
+			{"seq","sq",{{"-c","capsuleName","M"},{"-n","count","M"}},"generate sequence diagram for last n events"},
 			{"save","s",{{"-c","capsuleName","M"},{"-f","filePath","O"}},"Save existing events to a file specified by filePath"},
 			{"connect","con",{{"-h","host","M"},{"-p","port","M"},{"-i","traceNo","O"}},"Connect to eclipse debugger"},
 			{"exit","q",{},"Exit the MDebugger"},

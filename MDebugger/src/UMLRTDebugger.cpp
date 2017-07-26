@@ -154,9 +154,6 @@ void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int cou
 }
 
 // added by David
-// Note that this doesn't work well for "fast" systems (e.g. PingPong where the two capsules are sending singals every
-// few milliseconds.  By the time event data has been obtained from the first capsule, the second capsule will have recorded
-// several more new events.  Can maybe get around this by somehow "pausing" all capsule execution while obtaining events?
 void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
 	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
 	std::vector<debugEvents::Event> events;
@@ -164,21 +161,17 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 		//if (it->first.find(capsuleName) != std::string::npos){
 			mdebugger::CapsuleTracker currentCapsule = this->capsules[it->second];
 			// for now, just grab 10*count events.  Find a better way to do this in the future though
+
 			std::vector<debugEvents::Event> capEvents=currentCapsule.lastNEvents(count*10);
 			int i = 0;
 			int j = 0;
 			while (j < count && i < capEvents.size()) {
-			//for (int i=0;i<events.size();i++) {
 				if (capEvents[i].getEventSourceKind() == 3){
 					std::string sender = capEvents[i].getEventPayload().find("SenderCapsule")->second;
 					std::string owner = capEvents[i].getOwnerName();
 					if (!(capEvents[i].getEventPayload().find("Source")->second).compare(0,filterString.length(),filterString) &&
 							(capsuleName == owner || capsuleName.substr(0,capsuleName.find(":")) == sender)) {
 						events.push_back(capEvents[i]);
-						//std::cout<<owner.substr(0,owner.find(":"))<<" <- "<<sender<<": "<<port<<" : "<<signal<<"\n";
-						//std::cout<<"note right: "<<events[i].getTimePointSecond()<<":"<<events[i].getTimePointNano()<<"\n";
-						//std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
-						// note left if current capsule is sending signal
 						j++;
 					} // end if
 				} // end if
@@ -198,10 +191,19 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 		else
 			std::cout<<sender;
 		std::cout<<": "<<signal<<"\n";
-		std::cout<<"note right: "<<events[i].getTimePointSecond()<<":"<<events[i].getTimePointNano()<<"\n";
+		std::cout<<"note right: "<<events[i].getTimePointSecond();
+		std::cout<<":"<<events[i].getTimePointNano();
+		std::cout<<"\n";
 		//std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
 	} // end for
 	std::cout<<"@enduml\n";
+
+	// launch plantuml - need help here: memory allocation for child process
+	//char const * cmd = "/usr/bin/java";
+	//char const * args[] = {"java","-jar ~/Desktop/plantuml.jar", "~/Desktop/umltest"};
+	//char const ** env = {};
+	//CMDInterface::ChildProcess plantuml(cmd,args,env);
+	//plantuml.startChild();
 }
 
 // added by David: for sorting vector of events by timestamp
@@ -662,10 +664,16 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			break;
 		/// added by david
 		case mdebugger::mdebuggerCommand::SEQ:
-			if  (atoi(cmd.commandOptions["-n"].c_str())>0) {
-				viewSequenceDiagram(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
+			if (cmd.commandOptions.count("-n")==1) {
+				if (atoi(cmd.commandOptions["-n"].c_str())>0 && atoi(cmd.commandOptions["-n"].c_str())<21) {
+					std::unique_lock<std::mutex> lock(this->eventMutex);
+					viewSequenceDiagram(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
+				} else {
+					std::cout<<"invalid count - count must be between 1 and 20 inclusive\n";
+				}
 			} else {
-				std::cout<<"invalid count\n";
+				std::unique_lock<std::mutex> lock(this->eventMutex);
+				viewSequenceDiagram(cmd.commandOptions["-c"], 5);
 			}
 			break;
 		default:

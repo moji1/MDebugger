@@ -7,6 +7,7 @@
 
 #ifndef UMLRTDEBUGGER_H_
 #define UMLRTDEBUGGER_H_
+#include "ChildProcess.h"
 #include "CapsuleTracker.h"
 #include "SharedMem.h"
 #include "Config.h"
