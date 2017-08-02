@@ -154,56 +154,80 @@ void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int cou
 }
 
 // added by David
+// Notes:
+// Need to try this on Rock Paper Scissors model to understand interactions between more than 2 capsules
+// Currently has trouble differentiating between capsule instances b/c "SenderCapsule" info for an event does not differentiate between instances.
+// Maybe use a list instead of vector for the events to make removal quicker? I dunno.  Sort would be slower then?
+//
+// The function adds ALL recent transitions to a vector while building a set of capsules that are connected to the focus capsule through
+// transition events.  It then removes events that don't involve capsules that are connected to the focus capsule, sorts those events,
+// and prints the resulting plantuml code.
 void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
 	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
 	std::vector<debugEvents::Event> events;
+	bool newCapsuleAdded;
+	std::unordered_set<std::string> visitedCapsules = {capsuleName.substr(0,capsuleName.find(":"))};
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
-		//if (it->first.find(capsuleName) != std::string::npos){
-			mdebugger::CapsuleTracker currentCapsule = this->capsules[it->second];
-			// for now, just grab 10*count events.  Find a better way to do this in the future though
-
-			std::vector<debugEvents::Event> capEvents=currentCapsule.lastNEvents(count*10);
-			int i = 0;
-			int j = 0;
-			while (j < count && i < capEvents.size()) {
-				if (capEvents[i].getEventSourceKind() == 3){
-					std::string sender = capEvents[i].getEventPayload().find("SenderCapsule")->second;
-					std::string owner = capEvents[i].getOwnerName();
-					if (!(capEvents[i].getEventPayload().find("Source")->second).compare(0,filterString.length(),filterString) &&
-							(capsuleName == owner || capsuleName.substr(0,capsuleName.find(":")) == sender)) {
-						events.push_back(capEvents[i]);
-						j++;
-					} // end if
+		newCapsuleAdded = false;
+		mdebugger::CapsuleTracker currentCapsule = this->capsules[it->second];
+		// using 10*count for now to just find transitions.  Please find a better way.
+		std::vector<debugEvents::Event> capEvents = currentCapsule.lastNEvents(10*count);
+		int i = 0;
+		while (i < capEvents.size()) {
+			if (capEvents[i].getEventSourceKind() == 3){
+				std::string sender = capEvents[i].getPayloadField("SenderCapsule");
+				std::string owner = capEvents[i].getOwnerName();
+				if (!(capEvents[i].getPayloadField("Source").compare(0,filterString.length(),filterString))){
+					events.push_back(capEvents[i]);
+					if (visitedCapsules.count(owner.substr(0,owner.find(":"))) == 1 || visitedCapsules.count(sender) == 1)
+						newCapsuleAdded = true;
 				} // end if
-				i++;
-			} // end while
+			} // end if
+			i++;
+		} // end while
+		if (newCapsuleAdded) {
+			std::string owner = it->first;
+			visitedCapsules.insert(owner.substr(0,owner.find(":")));
+		} // end if
+	} // end for
+	for(std::vector<debugEvents::Event>::const_iterator it = events.begin(); it != events.end(); ++it) {
+		std::string owner = it->getOwnerName();
+		if (visitedCapsules.count(owner.substr(0,owner.find(":"))) != 1)
+			events.erase(it);
 	} // end for
 	sort(events.begin(),events.end(),eventComp);
-	std::cout<<"@startuml\n";
+	// put plantuml code on stringstream
+	std::ostringstream uml;
+	uml<<"@startuml\n";
 	for (int i = 0; i < count && i < events.size(); i++){
-		std::string sender = events[i].getEventPayload().find("SenderCapsule")->second;
+		std::string sender = events[i].getPayloadField("SenderCapsule");
 		std::string owner = events[i].getOwnerName();
-		std::string port = events[i].getEventPayload().find("Port")->second;
-		std::string signal = events[i].getEventPayload().find("Signal")->second;
-		std::cout<<owner.substr(0,owner.find(":"))<<" <- ";
+		std::string port = events[i].getPayloadField("Port");
+		std::string signal = events[i].getPayloadField("Signal");
+		uml<<owner.substr(0,owner.find(":"))<<" <- ";
 		if (port == "timer")
-			std::cout<<port;
+			uml<<port;
 		else
-			std::cout<<sender;
-		std::cout<<": "<<signal<<"\n";
-		std::cout<<"note right: "<<events[i].getTimePointSecond();
-		std::cout<<":"<<events[i].getTimePointNano();
-		std::cout<<"\n";
-		//std::cout<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
+			uml<<sender;
+		uml<<": "<<signal<<"\n";
+		uml<<"note right: "<<events[i].getTimePointSecond();
+		uml<<":"<<events[i].getTimePointNano();
+		uml<<"\n";
+		//uml<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
 	} // end for
-	std::cout<<"@enduml\n";
+	uml<<"@enduml\n";
 
-	// launch plantuml - need help here: memory allocation for child process
-	//char const * cmd = "/usr/bin/java";
-	//char const * args[] = {"java","-jar ~/Desktop/plantuml.jar", "~/Desktop/umltest"};
-	//char const ** env = {};
-	//CMDInterface::ChildProcess plantuml(cmd,args,env);
-	//plantuml.startChild();
+	// launch plantuml - creates .png image in the current directory (MDebugger)
+	// Try to find a way to do this without writing to file (slow)
+	std::ofstream outFile;
+	outFile.open("seqDiagram.txt");
+	outFile<<uml.str();
+	outFile.close();
+	char const * cmd = "cat seqDiagram.txt | java -jar plantuml.jar -pipe > seqDiagram.png";
+	system(cmd);
+	char const * viewImg = "eog seqDiagram.png";
+	system(viewImg);
+
 }
 
 // added by David: for sorting vector of events by timestamp
