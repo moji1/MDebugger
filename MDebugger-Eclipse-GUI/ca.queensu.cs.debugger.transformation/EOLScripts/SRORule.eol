@@ -421,7 +421,7 @@ operation UMLRTModel!State addExecControlToDbgState(name1:String,mode1:String,br
 	if (self.target.name.isDefined())
 		tempS=tempS.concat("__").concat(self.target.name);
 	else 
-		tempS=tempS=tempS.concat("__none");
+		tempS=tempS.concat("__none");
 	self.name=tempS.concat("__").concat(uniqueId.asString());
 }
 /// assign name to state that don't have name 
