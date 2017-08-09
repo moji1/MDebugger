@@ -161,7 +161,7 @@ void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int cou
 //
 // The function adds ALL recent transitions to a vector while building a set of capsules that are connected to the focus capsule through
 // transition events.  It then removes events that don't involve capsules that are connected to the focus capsule, sorts those events,
-// and prints the resulting plantuml code.
+// generates plantuml code, and displays the generated diagram.
 void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
 	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
 	std::vector<debugEvents::Event> events;
@@ -210,10 +210,10 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 		else
 			uml<<sender;
 		uml<<": "<<signal<<"\n";
-		uml<<"note right: "<<events[i].getTimePointSecond();
-		uml<<":"<<events[i].getTimePointNano();
-		uml<<"\n";
-		//uml<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
+		//uml<<"note right: "<<events[i].getTimePointSecond();
+		//uml<<":"<<events[i].getTimePointNano();
+		//uml<<"\n";
+		uml<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano())<<"\n";
 	} // end for
 	uml<<"@enduml\n";
 
@@ -240,11 +240,12 @@ bool mdebugger::UMLRTDebugger::eventComp(const debugEvents::Event &e1, const deb
 
 // added by David: for formatting timestamp
 std::string mdebugger::UMLRTDebugger::convertTime(long timeSecond, long timeNano) {
-	char* t;
+	char t[23];
 	strftime(t, 23, "%d-%m-%Y\\n(%H:%M:%S:",localtime(&timeSecond));
 	std::string output(t);
 	std::string nano = std::to_string(timeNano);
-	return output + nano + ")\n";
+	output.append(nano).append(")\n");
+	return output;
 }
 
 void mdebugger::UMLRTDebugger::sendCommand(std::string cmdStr) {
