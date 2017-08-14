@@ -190,17 +190,17 @@ void Capsule_Ponger::inject( const UMLRTMessage & message )
     case Debug__InitState:
         currentState = state_____Debug__InitState( &message );
         break;
-    case Debug__C__keepPlaying__Debug__B__Ac__keepPlaying:
-        currentState = state_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( &message );
+    case Debug__C__Initial__Debug__B__Ac__Initial:
+        currentState = state_____Debug__C__Initial__Debug__B__Ac__Initial( &message );
         break;
-    case Debug__C__keepPlaying__Debug__A__Ac__keepPlaying:
-        currentState = state_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( &message );
+    case Debug__C__Initial__Debug__A__Ac__Initial:
+        currentState = state_____Debug__C__Initial__Debug__A__Ac__Initial( &message );
         break;
-    case Debug__C__keepPlaying__Debug__A__En__keepPlaying:
-        currentState = state_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( &message );
+    case Debug__C__Initial__Debug__A__En__Initial:
+        currentState = state_____Debug__C__Initial__Debug__A__En__Initial( &message );
         break;
-    case Debug__C__keepPlaying__boundary:
-        currentState = state_____Debug__C__keepPlaying__boundary( &message );
+    case Debug__C__Initial__boundary:
+        currentState = state_____Debug__C__Initial__boundary( &message );
         break;
     case Debug__C__timeout__Debug__B__Ex__WAITING_FOR_TIMER:
         currentState = state_____Debug__C__timeout__Debug__B__Ex__WAITING_FOR_TIMER( &message );
@@ -213,6 +213,18 @@ void Capsule_Ponger::inject( const UMLRTMessage & message )
         break;
     case Debug__C__timeout__boundary:
         currentState = state_____Debug__C__timeout__boundary( &message );
+        break;
+    case Debug__C__keepPlaying__Debug__B__Ac__keepPlaying:
+        currentState = state_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( &message );
+        break;
+    case Debug__C__keepPlaying__Debug__A__Ac__keepPlaying:
+        currentState = state_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( &message );
+        break;
+    case Debug__C__keepPlaying__Debug__A__En__keepPlaying:
+        currentState = state_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( &message );
+        break;
+    case Debug__C__keepPlaying__boundary:
+        currentState = state_____Debug__C__keepPlaying__boundary( &message );
         break;
     case Debug__C__onPing__Debug__B__Ex__PLAYING:
         currentState = state_____Debug__C__onPing__Debug__B__Ex__PLAYING( &message );
@@ -228,18 +240,6 @@ void Capsule_Ponger::inject( const UMLRTMessage & message )
         break;
     case Debug__C__onPing__boundary:
         currentState = state_____Debug__C__onPing__boundary( &message );
-        break;
-    case Debug__C__Initial__Debug__B__Ac__Initial:
-        currentState = state_____Debug__C__Initial__Debug__B__Ac__Initial( &message );
-        break;
-    case Debug__C__Initial__Debug__A__Ac__Initial:
-        currentState = state_____Debug__C__Initial__Debug__A__Ac__Initial( &message );
-        break;
-    case Debug__C__Initial__Debug__A__En__Initial:
-        currentState = state_____Debug__C__Initial__Debug__A__En__Initial( &message );
-        break;
-    case Debug__C__Initial__boundary:
-        currentState = state_____Debug__C__Initial__boundary( &message );
         break;
     case Debug__C__endOfRound__Debug__B__Ac__endOfRound:
         currentState = state_____Debug__C__endOfRound__Debug__B__Ac__endOfRound( &message );
@@ -668,7 +668,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__Initial__Debug__end__trans__
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__Initial transition Debug__C__Initial::Debug__A__En__Initial,Debug__C__Initial::ex,dbgExec:extComm */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__Initial::Region1::Debug__end__trans__Initial",(char *)"Debug__A__En__Initial",(char *)"ex",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__Initial::Region1::Debug__end__trans__Initial",(char *)"Debug__A__En__Initial",(char *)"ex",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -677,7 +677,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__Initial__Debug__init__trans_
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__Initial transition Debug__C__Initial::en,Debug__C__Initial::Debug__B__Ac__Initial */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__Initial::Region1::Debug__init__trans__Initial",(char *)"en",(char *)"Debug__B__Ac__Initial",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__Initial::Region1::Debug__init__trans__Initial",(char *)"en",(char *)"Debug__B__Ac__Initial",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -707,7 +707,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__endOfRound__Debug__end__tran
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__endOfRound transition Debug__C__endOfRound::Debug__A__En__endOfRound,Debug__C__endOfRound::ex,dbgExec:extComm */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__endOfRound::Region1::Debug__end__trans__endOfRound",(char *)"Debug__A__En__endOfRound",(char *)"ex",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__endOfRound::Region1::Debug__end__trans__endOfRound",(char *)"Debug__A__En__endOfRound",(char *)"ex",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -716,7 +716,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__endOfRound__Debug__init__tra
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__endOfRound transition Debug__C__endOfRound::en,Debug__C__endOfRound::Debug__B__Ac__endOfRound */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__endOfRound::Region1::Debug__init__trans__endOfRound",(char *)"en",(char *)"Debug__B__Ac__endOfRound",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__endOfRound::Region1::Debug__init__trans__endOfRound",(char *)"en",(char *)"Debug__B__Ac__endOfRound",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -743,7 +743,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__keepPlaying__Debug__end__tra
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__keepPlaying transition Debug__C__keepPlaying::Debug__A__En__keepPlaying,Debug__C__keepPlaying::ex,dbgExec:extComm */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__keepPlaying::Region1::Debug__end__trans__keepPlaying",(char *)"Debug__A__En__keepPlaying",(char *)"ex",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__keepPlaying::Region1::Debug__end__trans__keepPlaying",(char *)"Debug__A__En__keepPlaying",(char *)"ex",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -752,7 +752,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__keepPlaying__Debug__init__tr
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__keepPlaying transition Debug__C__keepPlaying::en,Debug__C__keepPlaying::Debug__B__Ac__keepPlaying */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__keepPlaying::Region1::Debug__init__trans__keepPlaying",(char *)"en",(char *)"Debug__B__Ac__keepPlaying",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__keepPlaying::Region1::Debug__init__trans__keepPlaying",(char *)"en",(char *)"Debug__B__Ac__keepPlaying",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -790,7 +790,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__onPing__Debug__end__trans__o
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__onPing transition Debug__C__onPing::Debug__A__En__WAITING FOR TIMER,Debug__C__onPing::ex,dbgExec:extComm */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__onPing::Region1::Debug__end__trans__onPing",(char *)"Debug__A__En__WAITING FOR TIMER",(char *)"ex",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__onPing::Region1::Debug__end__trans__onPing",(char *)"Debug__A__En__WAITING FOR TIMER",(char *)"ex",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -799,7 +799,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__onPing__Debug__init__trans__
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__onPing transition Debug__C__onPing::en,Debug__C__onPing::Debug__B__Ex__PLAYING */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__onPing::Region1::Debug__init__trans__onPing",(char *)"en",(char *)"Debug__B__Ex__PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__onPing::Region1::Debug__init__trans__onPing",(char *)"en",(char *)"Debug__B__Ex__PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -829,7 +829,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__timeout__Debug__end__trans__
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger::Debug__C__timeout transition Debug__C__timeout::Debug__A__Ac__timeout,Debug__C__timeout::ex,dbgExec:extComm */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__timeout::Region1::Debug__end__trans__timeout",(char *)"Debug__A__Ac__timeout",(char *)"ex",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__C__timeout::Region1::Debug__end__trans__timeout",(char *)"Debug__A__Ac__timeout",(char *)"ex",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -837,7 +837,7 @@ void Capsule_Ponger::transitionaction_____Debug__C__timeout__Debug__end__trans__
 void Capsule_Ponger::transitionaction_____Debug__InitDebug( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Pseudo1,Debug__InitState */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Pseudo2,Debug__InitState */
     std::cout<<this->getName()<<" : is Starting\n";
     this->Debug__SRO.setExecMode(Stepping);
     /* UMLRTGEN-USERREGION-END */
@@ -852,7 +852,10 @@ void Capsule_Ponger::transitionaction_____Debug__Initial( const UMLRTMessage * m
     Debug__SRO.addTransitionsFromState("","Initial","PLAYING","","");
     Debug__SRO.addTransitionsFromState("PLAYING","onPing","WAITING FOR TIMER","ping","PingPongProtocol");
     Debug__SRO.addTransitionsFromState("ThreePongsSent?","keepPlaying","PLAYING","","");
+    Debug__SRO.addTransitionsFromState("STARTING ROUND","startRound","WAITING FOR END OF ROUND","timeout","Timing");
     Debug__SRO.addTransitionsFromState("ThreePongsSent?","endOfRound","PLAYING","","");
+    Debug__SRO.addTransitionsFromState("WAITING FOR END OF ROUND","endRound","STARTING ROUND","end","endProtocol");
+    Debug__SRO.addTransitionsFromState("","Initial","STARTING ROUND","","");
     Debug__SRO.addTransitionsFromState("WAITING FOR TIMER","timeout","ThreePongsSent?","timeout","Timing");
     std::cout<<this->getName()<<": Connection with debugger is in progress\n";
     char  tempS[256];
@@ -869,7 +872,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__E( const UMLRTMessage 
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::ex,PLAYING */
     this->Debug__recallAllMsg();
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__Initial__E",(char *)"ex",(char *)"PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__Initial__E",(char *)"ex",(char *)"PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -878,7 +881,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__S( const UMLRTMessage 
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__Initial,Debug__C__Initial::en */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__Initial__S",(char *)"Debug__Path__Initial",(char *)"en",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__Initial__S",(char *)"Debug__Path__Initial",(char *)"en",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -886,7 +889,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__S( const UMLRTMessage 
 void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__dbgDeferMsg( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_24,Debug__C__Initial */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_6,Debug__C__Initial */
     msg->defer();
     std::cout<<"A message defered"<<"\n";
     /* UMLRTGEN-USERREGION-END */
@@ -896,7 +899,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__dbgDeferMsg( cons
 void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__dbgSetExecMode( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_23,Debug__C__Initial */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_5,Debug__C__Initial */
     this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
@@ -905,7 +908,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__dbgSetExecMode( c
 void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__remBreakPoint( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_21,Debug__C__Initial */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_3,Debug__C__Initial */
     char loc[1024];
     sprintf(loc,"%s",(*(const char * *)msg->getParam( 0 )));
     this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
@@ -917,7 +920,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__remBreakPoint( co
 void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__setBreakPoint( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_20,Debug__C__Initial */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_2,Debug__C__Initial */
     char loc[1024];
     sprintf(loc,"%s",(*(const char * *)msg->getParam( 0 )));
     this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
@@ -929,7 +932,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__setBreakPoint( co
 void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__varChange( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_19,Debug__C__Initial */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_1,Debug__C__Initial */
     char varName1[256];
     char varValue1[1024];
     sprintf(varName1,"%s",(*(const char * *)msg->getParam( 0 )));
@@ -942,7 +945,7 @@ void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__varChange( const 
 void Capsule_Ponger::transitionaction_____Debug__Initial__dbg__viewBreakPoints( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_22,Debug__C__Initial */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__Initial::new_exitpoint_4,Debug__C__Initial */
     std::cout<<this->Debug__SRO.serializeBreakPoint()<<"n";
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
@@ -952,7 +955,7 @@ void Capsule_Ponger::transitionaction_____Debug__endOfRound( const UMLRTMessage 
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition ThreePongsSent?,Debug__Path__endOfRound */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__endOfRound",(char *)"ThreePongsSent?",(char *)"Debug__Path__endOfRound",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__endOfRound",(char *)"ThreePongsSent?",(char *)"Debug__Path__endOfRound",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -962,7 +965,7 @@ void Capsule_Ponger::transitionaction_____Debug__endOfRound__E( const UMLRTMessa
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__endOfRound::ex,PLAYING */
     this->Debug__recallAllMsg();
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__endOfRound__E",(char *)"ex",(char *)"PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__endOfRound__E",(char *)"ex",(char *)"PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -971,7 +974,7 @@ void Capsule_Ponger::transitionaction_____Debug__endOfRound__S( const UMLRTMessa
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__endOfRound,Debug__C__endOfRound::en */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__endOfRound__S",(char *)"Debug__Path__endOfRound",(char *)"en",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__endOfRound__S",(char *)"Debug__Path__endOfRound",(char *)"en",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1045,7 +1048,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying( const UMLRTMessage
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition ThreePongsSent?,Debug__Path__keepPlaying */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__keepPlaying",(char *)"ThreePongsSent?",(char *)"Debug__Path__keepPlaying",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__keepPlaying",(char *)"ThreePongsSent?",(char *)"Debug__Path__keepPlaying",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1055,7 +1058,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__E( const UMLRTMess
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::ex,PLAYING */
     this->Debug__recallAllMsg();
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__keepPlaying__E",(char *)"ex",(char *)"PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__keepPlaying__E",(char *)"ex",(char *)"PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1064,7 +1067,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__S( const UMLRTMess
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__keepPlaying,Debug__C__keepPlaying::en */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__keepPlaying__S",(char *)"Debug__Path__keepPlaying",(char *)"en",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__keepPlaying__S",(char *)"Debug__Path__keepPlaying",(char *)"en",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1072,7 +1075,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__S( const UMLRTMess
 void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__dbgDeferMsg( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_6,Debug__C__keepPlaying */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_18,Debug__C__keepPlaying */
     msg->defer();
     std::cout<<"A message defered"<<"\n";
     /* UMLRTGEN-USERREGION-END */
@@ -1082,7 +1085,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__dbgDeferMsg( 
 void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__dbgSetExecMode( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_5,Debug__C__keepPlaying */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_17,Debug__C__keepPlaying */
     this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
@@ -1091,7 +1094,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__dbgSetExecMod
 void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__remBreakPoint( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_3,Debug__C__keepPlaying */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_15,Debug__C__keepPlaying */
     char loc[1024];
     sprintf(loc,"%s",(*(const char * *)msg->getParam( 0 )));
     this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
@@ -1103,7 +1106,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__remBreakPoint
 void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__setBreakPoint( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_2,Debug__C__keepPlaying */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_14,Debug__C__keepPlaying */
     char loc[1024];
     sprintf(loc,"%s",(*(const char * *)msg->getParam( 0 )));
     this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
@@ -1115,7 +1118,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__setBreakPoint
 void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__varChange( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_1,Debug__C__keepPlaying */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_13,Debug__C__keepPlaying */
     char varName1[256];
     char varValue1[1024];
     sprintf(varName1,"%s",(*(const char * *)msg->getParam( 0 )));
@@ -1128,7 +1131,7 @@ void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__varChange( co
 void Capsule_Ponger::transitionaction_____Debug__keepPlaying__dbg__viewBreakPoints( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_4,Debug__C__keepPlaying */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__keepPlaying::new_exitpoint_16,Debug__C__keepPlaying */
     std::cout<<this->Debug__SRO.serializeBreakPoint()<<"n";
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
@@ -1138,7 +1141,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing( const UMLRTMessage * ms
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition PLAYING,Debug__Path__onPing,ping:pongPort */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__onPing",(char *)"PLAYING",(char *)"Debug__Path__onPing",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__onPing",(char *)"PLAYING",(char *)"Debug__Path__onPing",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1148,7 +1151,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__E( const UMLRTMessage *
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::ex,WAITING FOR TIMER */
     this->Debug__recallAllMsg();
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__onPing__E",(char *)"ex",(char *)"WAITING FOR TIMER",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__onPing__E",(char *)"ex",(char *)"WAITING FOR TIMER",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1157,7 +1160,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__S( const UMLRTMessage *
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__onPing,Debug__C__onPing::en */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__onPing__S",(char *)"Debug__Path__onPing",(char *)"en",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__onPing__S",(char *)"Debug__Path__onPing",(char *)"en",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1165,7 +1168,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__S( const UMLRTMessage *
 void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__dbgDeferMsg( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_18,Debug__C__onPing */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_24,Debug__C__onPing */
     msg->defer();
     std::cout<<"A message defered"<<"\n";
     /* UMLRTGEN-USERREGION-END */
@@ -1175,7 +1178,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__dbgDeferMsg( const
 void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__dbgSetExecMode( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_17,Debug__C__onPing */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_23,Debug__C__onPing */
     this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
@@ -1184,7 +1187,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__dbgSetExecMode( co
 void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__remBreakPoint( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_15,Debug__C__onPing */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_21,Debug__C__onPing */
     char loc[1024];
     sprintf(loc,"%s",(*(const char * *)msg->getParam( 0 )));
     this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
@@ -1196,7 +1199,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__remBreakPoint( con
 void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__setBreakPoint( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_14,Debug__C__onPing */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_20,Debug__C__onPing */
     char loc[1024];
     sprintf(loc,"%s",(*(const char * *)msg->getParam( 0 )));
     this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
@@ -1208,7 +1211,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__setBreakPoint( con
 void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__varChange( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_13,Debug__C__onPing */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_19,Debug__C__onPing */
     char varName1[256];
     char varValue1[1024];
     sprintf(varName1,"%s",(*(const char * *)msg->getParam( 0 )));
@@ -1221,7 +1224,7 @@ void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__varChange( const U
 void Capsule_Ponger::transitionaction_____Debug__onPing__dbg__viewBreakPoints( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
-    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_16,Debug__C__onPing */
+    /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__onPing::new_exitpoint_22,Debug__C__onPing */
     std::cout<<this->Debug__SRO.serializeBreakPoint()<<"n";
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
@@ -1231,7 +1234,7 @@ void Capsule_Ponger::transitionaction_____Debug__timeout( const UMLRTMessage * m
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition WAITING FOR TIMER,Debug__Path__timeout,timeout:pongerTimer */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__timeout",(char *)"WAITING FOR TIMER",(char *)"Debug__Path__timeout",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__timeout",(char *)"WAITING FOR TIMER",(char *)"Debug__Path__timeout",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1241,7 +1244,7 @@ void Capsule_Ponger::transitionaction_____Debug__timeout__E( const UMLRTMessage 
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__C__timeout::ex,ThreePongsSent? */
     this->Debug__recallAllMsg();
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__timeout__E",(char *)"ex",(char *)"ThreePongsSent?",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__timeout__E",(char *)"ex",(char *)"ThreePongsSent?",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1250,7 +1253,7 @@ void Capsule_Ponger::transitionaction_____Debug__timeout__S( const UMLRTMessage 
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__timeout,Debug__C__timeout::en */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Debug__timeout__S",(char *)"Debug__Path__timeout",(char *)"en",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Debug__timeout__S",(char *)"Debug__Path__timeout",(char *)"en",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1325,7 +1328,7 @@ void Capsule_Ponger::transitionaction_____Initial( const UMLRTMessage * msg )
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__Initial,PLAYING */
     log.log("Ponger is ready");
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::Initial",(char *)"Debug__Path__Initial",(char *)"PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::Initial",(char *)"Debug__Path__Initial",(char *)"PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1337,7 +1340,7 @@ void Capsule_Ponger::transitionaction_____endOfRound( const UMLRTMessage * msg )
     log.show("ending round.\n");
     endPort.end().send();
     this->pongsSent = 0;
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::endOfRound",(char *)"Debug__Path__endOfRound",(char *)"PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::endOfRound",(char *)"Debug__Path__endOfRound",(char *)"PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1346,7 +1349,7 @@ void Capsule_Ponger::transitionaction_____keepPlaying( const UMLRTMessage * msg 
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__keepPlaying,PLAYING */
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::keepPlaying",(char *)"Debug__Path__keepPlaying",(char *)"PLAYING",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::keepPlaying",(char *)"Debug__Path__keepPlaying",(char *)"PLAYING",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1357,7 +1360,7 @@ void Capsule_Ponger::transitionaction_____onPing( const UMLRTMessage * msg )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger transition Debug__Path__onPing,WAITING FOR TIMER */
     log.show("ping received.\n");
     pongerTimer.informIn(UMLRTTimespec(1,0));
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::onPing",(char *)"Debug__Path__onPing",(char *)"WAITING FOR TIMER",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::onPing",(char *)"Debug__Path__onPing",(char *)"WAITING FOR TIMER",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1369,7 +1372,7 @@ void Capsule_Ponger::transitionaction_____timeout( const UMLRTMessage * msg )
     pongPort.pong().send();
     this->pongsSent++;
     log.show("pong message sent.\n");
-    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",(char *)"",(char *)"PingPong::Ponger::StateMachine::Region::timeout",(char *)"Debug__Path__timeout",(char *)"ThreePongsSent?",(char *)"",(char *)"");
+    Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)"",this->getTypeName(),(char *)"PingPong::Ponger::StateMachine::Region::timeout",(char *)"Debug__Path__timeout",(char *)"ThreePongsSent?",(char *)"null",(char *)"null");
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1378,7 +1381,7 @@ bool Capsule_Ponger::guard_____Debug__Initial__S( const UMLRTMessage * msg )
 {
     #define rtdata ( (void *)msg->getParam( 0 ) )
     /* UMLRTGEN-USERREGION-BEGIN platform:/resource/PingPongReferee/PingPongRef_debug.uml PingPong::Ponger guard Debug__Path__Initial,Debug__C__Initial::en */
-    return Debug__SRO.checkDebug("Pseudo1","","",1,TransitionEffectBreakPoint,0);
+    return Debug__SRO.checkDebug("Pseudo2","","",1,TransitionEffectBreakPoint,0);
     /* UMLRTGEN-USERREGION-END */
     #undef rtdata
 }
@@ -1462,194 +1465,194 @@ void Capsule_Ponger::actionchain_____Debug__C__Initial__Debug__init__trans__Init
     entryaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_100( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_101( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_102( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_103( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_104( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_105( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_106( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_107( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_108( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_109( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_110( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_111( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_112( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_113( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_114( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_115( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_116( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_117( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_118( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_119( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_120( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_121( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_122( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_123( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__Initial );
-    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_95( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_1( const UMLRTMessage * msg )
 {
     update_state( Debug__C__Initial__Debug__B__Ac__Initial );
     entryaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_96( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_10( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_11( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_12( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_13( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_14( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_15( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_16( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_17( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_18( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_19( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_2( const UMLRTMessage * msg )
 {
     update_state( Debug__C__Initial__Debug__A__Ac__Initial );
     entryaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_97( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_20( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_21( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_22( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_23( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_24( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_25( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_26( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_27( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_28( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_29( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_3( const UMLRTMessage * msg )
 {
     update_state( Debug__C__Initial__Debug__A__En__Initial );
     entryaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_98_to_unvisited_boundary( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_4_to_unvisited_boundary( const UMLRTMessage * msg )
 {
     update_state( Debug__C__Initial__boundary );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_99_to_visited_boundary( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_5_to_visited_boundary( const UMLRTMessage * msg )
 {
     update_state( Debug__C__Initial__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_6( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__B__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_7( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__Ac__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_8( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__Initial__Debug__A__En__Initial( msg );
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__Initial__new_transition_9( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__Initial );
+    save_history( Debug__C__Initial, Debug__C__Initial__boundary );
 }
 
 void Capsule_Ponger::actionchain_____Debug__C__endOfRound__Debug__Ac__endOfRound( const UMLRTMessage * msg )
@@ -1908,191 +1911,191 @@ void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__Debug__init__trans__
     entryaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_1( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_59( const UMLRTMessage * msg )
 {
     update_state( Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
     entryaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_10( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_11( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_12( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_13( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_14( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_15( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_16( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_17( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_18( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_19( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_2( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_60( const UMLRTMessage * msg )
 {
     update_state( Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
     entryaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_20( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_21( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_22( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_23( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_24( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_25( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_26( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_27( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_28( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_29( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__keepPlaying );
-    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_3( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_61( const UMLRTMessage * msg )
 {
     update_state( Debug__C__keepPlaying__Debug__A__En__keepPlaying );
     entryaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_4_to_unvisited_boundary( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_62_to_unvisited_boundary( const UMLRTMessage * msg )
 {
     update_state( Debug__C__keepPlaying__boundary );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_5_to_visited_boundary( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_63_to_visited_boundary( const UMLRTMessage * msg )
 {
     update_state( Debug__C__keepPlaying__boundary );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_6( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_64( const UMLRTMessage * msg )
 {
     exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
     update_state( Debug__C__keepPlaying );
     save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_7( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_65( const UMLRTMessage * msg )
 {
     exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
     update_state( Debug__C__keepPlaying );
     save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_8( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_66( const UMLRTMessage * msg )
 {
     exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
     update_state( Debug__C__keepPlaying );
     save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_9( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_67( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_68( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_69( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_70( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_71( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_72( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_73( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_74( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_75( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_76( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_77( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_78( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_79( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_80( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_81( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_82( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_83( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_84( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__B__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_85( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__Ac__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_86( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__keepPlaying__Debug__A__En__keepPlaying( msg );
+    update_state( Debug__C__keepPlaying );
+    save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__keepPlaying__new_transition_87( const UMLRTMessage * msg )
 {
     update_state( Debug__C__keepPlaying );
     save_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary );
@@ -2140,242 +2143,242 @@ void Capsule_Ponger::actionchain_____Debug__C__onPing__Debug__init__trans__onPin
     entryaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_59( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_100( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_101( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_102( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_103( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_104( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_105( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_106( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_107( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_108( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_109( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_110( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_111( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_112( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_113( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_114( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_115( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_116( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_117( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_118( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_119( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_120( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_121( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_122( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_123( const UMLRTMessage * msg )
+{
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_88( const UMLRTMessage * msg )
 {
     update_state( Debug__C__onPing__Debug__B__Ex__PLAYING );
     entryaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_60( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_89( const UMLRTMessage * msg )
 {
     update_state( Debug__C__onPing__Debug__B__Ac__onPing );
     entryaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_61( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_90( const UMLRTMessage * msg )
 {
     update_state( Debug__C__onPing__Debug__A__Ac__onPing );
     entryaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_62( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_91( const UMLRTMessage * msg )
 {
     update_state( Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
     entryaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_63_to_unvisited_boundary( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_92_to_unvisited_boundary( const UMLRTMessage * msg )
 {
     update_state( Debug__C__onPing__boundary );
 }
 
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_64_to_visited_boundary( const UMLRTMessage * msg )
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_93_to_visited_boundary( const UMLRTMessage * msg )
 {
     update_state( Debug__C__onPing__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_65( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_66( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_67( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_68( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_69( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_70( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_71( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_72( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_73( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_74( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_75( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_76( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_77( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_78( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_79( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_80( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_81( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_82( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_83( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_84( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_85( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_86( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_87( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_88( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_89( const UMLRTMessage * msg )
-{
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__boundary );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_90( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_91( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_92( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
-}
-
-void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_93( const UMLRTMessage * msg )
-{
-    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
-    update_state( Debug__C__onPing );
-    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
 }
 
 void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_94( const UMLRTMessage * msg )
 {
+    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_95( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_96( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__Ac__onPing( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_97( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_98( const UMLRTMessage * msg )
+{
     update_state( Debug__C__onPing );
     save_history( Debug__C__onPing, Debug__C__onPing__boundary );
+}
+
+void Capsule_Ponger::actionchain_____Debug__C__onPing__new_transition_99( const UMLRTMessage * msg )
+{
+    exitaction_____Debug__C__onPing__Debug__B__Ex__PLAYING( msg );
+    update_state( Debug__C__onPing );
+    save_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING );
 }
 
 void Capsule_Ponger::actionchain_____Debug__C__timeout__Debug__AC__timeout( const UMLRTMessage * msg )
@@ -2959,37 +2962,37 @@ Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__ex( const 
     return PLAYING;
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_19( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_1( const UMLRTMessage * msg )
 {
     actionchain_____Debug__Initial__dbg__varChange( msg );
     return choice_____Debug__C__Initial__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_20( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_2( const UMLRTMessage * msg )
 {
     actionchain_____Debug__Initial__dbg__setBreakPoint( msg );
     return choice_____Debug__C__Initial__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_21( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_3( const UMLRTMessage * msg )
 {
     actionchain_____Debug__Initial__dbg__remBreakPoint( msg );
     return choice_____Debug__C__Initial__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_22( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_4( const UMLRTMessage * msg )
 {
     actionchain_____Debug__Initial__dbg__viewBreakPoints( msg );
     return choice_____Debug__C__Initial__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_23( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_5( const UMLRTMessage * msg )
 {
     actionchain_____Debug__Initial__dbg__dbgSetExecMode( msg );
     return choice_____Debug__C__Initial__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_24( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__Initial__new_exitpoint_6( const UMLRTMessage * msg )
 {
     actionchain_____Debug__Initial__dbg__dbgDeferMsg( msg );
     return choice_____Debug__C__Initial__deephistory( msg );
@@ -3055,37 +3058,37 @@ Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__ex( co
     return PLAYING;
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_1( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_13( const UMLRTMessage * msg )
 {
     actionchain_____Debug__keepPlaying__dbg__varChange( msg );
     return choice_____Debug__C__keepPlaying__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_2( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_14( const UMLRTMessage * msg )
 {
     actionchain_____Debug__keepPlaying__dbg__setBreakPoint( msg );
     return choice_____Debug__C__keepPlaying__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_3( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_15( const UMLRTMessage * msg )
 {
     actionchain_____Debug__keepPlaying__dbg__remBreakPoint( msg );
     return choice_____Debug__C__keepPlaying__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_4( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_16( const UMLRTMessage * msg )
 {
     actionchain_____Debug__keepPlaying__dbg__viewBreakPoints( msg );
     return choice_____Debug__C__keepPlaying__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_5( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_17( const UMLRTMessage * msg )
 {
     actionchain_____Debug__keepPlaying__dbg__dbgSetExecMode( msg );
     return choice_____Debug__C__keepPlaying__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_6( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__keepPlaying__new_exitpoint_18( const UMLRTMessage * msg )
 {
     actionchain_____Debug__keepPlaying__dbg__dbgDeferMsg( msg );
     return choice_____Debug__C__keepPlaying__deephistory( msg );
@@ -3103,37 +3106,37 @@ Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__ex( const U
     return WAITING_FOR_TIMER;
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_13( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_19( const UMLRTMessage * msg )
 {
     actionchain_____Debug__onPing__dbg__varChange( msg );
     return choice_____Debug__C__onPing__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_14( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_20( const UMLRTMessage * msg )
 {
     actionchain_____Debug__onPing__dbg__setBreakPoint( msg );
     return choice_____Debug__C__onPing__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_15( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_21( const UMLRTMessage * msg )
 {
     actionchain_____Debug__onPing__dbg__remBreakPoint( msg );
     return choice_____Debug__C__onPing__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_16( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_22( const UMLRTMessage * msg )
 {
     actionchain_____Debug__onPing__dbg__viewBreakPoints( msg );
     return choice_____Debug__C__onPing__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_17( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_23( const UMLRTMessage * msg )
 {
     actionchain_____Debug__onPing__dbg__dbgSetExecMode( msg );
     return choice_____Debug__C__onPing__deephistory( msg );
 }
 
-Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_18( const UMLRTMessage * msg )
+Capsule_Ponger::State Capsule_Ponger::junction_____Debug__C__onPing__new_exitpoint_24( const UMLRTMessage * msg )
 {
     actionchain_____Debug__onPing__dbg__dbgDeferMsg( msg );
     return choice_____Debug__C__onPing__deephistory( msg );
@@ -3191,27 +3194,27 @@ Capsule_Ponger::State Capsule_Ponger::choice_____Debug__C__Initial__deephistory(
 {
     if( check_history( Debug__C__Initial, Debug__C__Initial__Debug__B__Ac__Initial ) )
     {
-        actionchain_____Debug__C__Initial__new_transition_95( msg );
+        actionchain_____Debug__C__Initial__new_transition_1( msg );
         return Debug__C__Initial__Debug__B__Ac__Initial;
     }
     else if( check_history( Debug__C__Initial, Debug__C__Initial__Debug__A__Ac__Initial ) )
     {
-        actionchain_____Debug__C__Initial__new_transition_96( msg );
+        actionchain_____Debug__C__Initial__new_transition_2( msg );
         return Debug__C__Initial__Debug__A__Ac__Initial;
     }
     else if( check_history( Debug__C__Initial, Debug__C__Initial__Debug__A__En__Initial ) )
     {
-        actionchain_____Debug__C__Initial__new_transition_97( msg );
+        actionchain_____Debug__C__Initial__new_transition_3( msg );
         return Debug__C__Initial__Debug__A__En__Initial;
     }
     else if( check_history( Debug__C__Initial, SPECIAL_INTERNAL_STATE_UNVISITED ) )
     {
-        actionchain_____Debug__C__Initial__new_transition_98_to_unvisited_boundary( msg );
+        actionchain_____Debug__C__Initial__new_transition_4_to_unvisited_boundary( msg );
         return Debug__C__Initial__boundary;
     }
     else if( check_history( Debug__C__Initial, Debug__C__Initial__boundary ) )
     {
-        actionchain_____Debug__C__Initial__new_transition_99_to_visited_boundary( msg );
+        actionchain_____Debug__C__Initial__new_transition_5_to_visited_boundary( msg );
         return Debug__C__Initial__boundary;
     }
     return currentState;
@@ -3251,27 +3254,27 @@ Capsule_Ponger::State Capsule_Ponger::choice_____Debug__C__keepPlaying__deephist
 {
     if( check_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__B__Ac__keepPlaying ) )
     {
-        actionchain_____Debug__C__keepPlaying__new_transition_1( msg );
+        actionchain_____Debug__C__keepPlaying__new_transition_59( msg );
         return Debug__C__keepPlaying__Debug__B__Ac__keepPlaying;
     }
     else if( check_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__Ac__keepPlaying ) )
     {
-        actionchain_____Debug__C__keepPlaying__new_transition_2( msg );
+        actionchain_____Debug__C__keepPlaying__new_transition_60( msg );
         return Debug__C__keepPlaying__Debug__A__Ac__keepPlaying;
     }
     else if( check_history( Debug__C__keepPlaying, Debug__C__keepPlaying__Debug__A__En__keepPlaying ) )
     {
-        actionchain_____Debug__C__keepPlaying__new_transition_3( msg );
+        actionchain_____Debug__C__keepPlaying__new_transition_61( msg );
         return Debug__C__keepPlaying__Debug__A__En__keepPlaying;
     }
     else if( check_history( Debug__C__keepPlaying, SPECIAL_INTERNAL_STATE_UNVISITED ) )
     {
-        actionchain_____Debug__C__keepPlaying__new_transition_4_to_unvisited_boundary( msg );
+        actionchain_____Debug__C__keepPlaying__new_transition_62_to_unvisited_boundary( msg );
         return Debug__C__keepPlaying__boundary;
     }
     else if( check_history( Debug__C__keepPlaying, Debug__C__keepPlaying__boundary ) )
     {
-        actionchain_____Debug__C__keepPlaying__new_transition_5_to_visited_boundary( msg );
+        actionchain_____Debug__C__keepPlaying__new_transition_63_to_visited_boundary( msg );
         return Debug__C__keepPlaying__boundary;
     }
     return currentState;
@@ -3281,32 +3284,32 @@ Capsule_Ponger::State Capsule_Ponger::choice_____Debug__C__onPing__deephistory( 
 {
     if( check_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ex__PLAYING ) )
     {
-        actionchain_____Debug__C__onPing__new_transition_59( msg );
+        actionchain_____Debug__C__onPing__new_transition_88( msg );
         return Debug__C__onPing__Debug__B__Ex__PLAYING;
     }
     else if( check_history( Debug__C__onPing, Debug__C__onPing__Debug__B__Ac__onPing ) )
     {
-        actionchain_____Debug__C__onPing__new_transition_60( msg );
+        actionchain_____Debug__C__onPing__new_transition_89( msg );
         return Debug__C__onPing__Debug__B__Ac__onPing;
     }
     else if( check_history( Debug__C__onPing, Debug__C__onPing__Debug__A__Ac__onPing ) )
     {
-        actionchain_____Debug__C__onPing__new_transition_61( msg );
+        actionchain_____Debug__C__onPing__new_transition_90( msg );
         return Debug__C__onPing__Debug__A__Ac__onPing;
     }
     else if( check_history( Debug__C__onPing, Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER ) )
     {
-        actionchain_____Debug__C__onPing__new_transition_62( msg );
+        actionchain_____Debug__C__onPing__new_transition_91( msg );
         return Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER;
     }
     else if( check_history( Debug__C__onPing, SPECIAL_INTERNAL_STATE_UNVISITED ) )
     {
-        actionchain_____Debug__C__onPing__new_transition_63_to_unvisited_boundary( msg );
+        actionchain_____Debug__C__onPing__new_transition_92_to_unvisited_boundary( msg );
         return Debug__C__onPing__boundary;
     }
     else if( check_history( Debug__C__onPing, Debug__C__onPing__boundary ) )
     {
-        actionchain_____Debug__C__onPing__new_transition_64_to_visited_boundary( msg );
+        actionchain_____Debug__C__onPing__new_transition_93_to_visited_boundary( msg );
         return Debug__C__onPing__boundary;
     }
     return currentState;
@@ -3443,20 +3446,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__Debug__A__Ac_
             actionchain_____Debug__C__Initial__Debug__En__PLAYING( msg );
             return Debug__C__Initial__Debug__A__En__Initial;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__Initial__new_transition_101( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_19( msg );
+            actionchain_____Debug__C__Initial__new_transition_7( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_1( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_105( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_20( msg );
+            actionchain_____Debug__C__Initial__new_transition_11( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_2( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_109( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_21( msg );
+            actionchain_____Debug__C__Initial__new_transition_15( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_3( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__Initial__new_transition_113( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_22( msg );
+            actionchain_____Debug__C__Initial__new_transition_19( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_4( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__Initial__new_transition_117( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_23( msg );
+            actionchain_____Debug__C__Initial__new_transition_23( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_5( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3466,8 +3469,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__Debug__A__Ac_
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__Initial__new_transition_121( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_24( msg );
+            actionchain_____Debug__C__Initial__new_transition_27( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_6( msg );
         }
         return currentState;
     default:
@@ -3488,20 +3491,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__Debug__A__En_
             actionchain_____Debug__C__Initial__Debug__end__trans__Initial( msg );
             return junction_____Debug__C__Initial__ex( msg );
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__Initial__new_transition_102( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_19( msg );
+            actionchain_____Debug__C__Initial__new_transition_8( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_1( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_106( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_20( msg );
+            actionchain_____Debug__C__Initial__new_transition_12( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_2( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_110( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_21( msg );
+            actionchain_____Debug__C__Initial__new_transition_16( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_3( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__Initial__new_transition_114( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_22( msg );
+            actionchain_____Debug__C__Initial__new_transition_20( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_4( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__Initial__new_transition_118( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_23( msg );
+            actionchain_____Debug__C__Initial__new_transition_24( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_5( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3511,8 +3514,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__Debug__A__En_
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__Initial__new_transition_122( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_24( msg );
+            actionchain_____Debug__C__Initial__new_transition_28( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_6( msg );
         }
         return currentState;
     default:
@@ -3533,20 +3536,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__Debug__B__Ac_
             actionchain_____Debug__C__Initial__Debug__Ac__Initial( msg );
             return Debug__C__Initial__Debug__A__Ac__Initial;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__Initial__new_transition_100( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_19( msg );
+            actionchain_____Debug__C__Initial__new_transition_6( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_1( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_104( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_20( msg );
+            actionchain_____Debug__C__Initial__new_transition_10( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_2( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_108( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_21( msg );
+            actionchain_____Debug__C__Initial__new_transition_14( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_3( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__Initial__new_transition_112( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_22( msg );
+            actionchain_____Debug__C__Initial__new_transition_18( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_4( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__Initial__new_transition_116( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_23( msg );
+            actionchain_____Debug__C__Initial__new_transition_22( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_5( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3556,8 +3559,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__Debug__B__Ac_
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__Initial__new_transition_120( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_24( msg );
+            actionchain_____Debug__C__Initial__new_transition_26( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_6( msg );
         }
         return currentState;
     default:
@@ -3575,20 +3578,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__boundary( con
         switch( msg->getSignalId() )
         {
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__Initial__new_transition_103( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_19( msg );
+            actionchain_____Debug__C__Initial__new_transition_9( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_1( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_107( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_20( msg );
+            actionchain_____Debug__C__Initial__new_transition_13( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_2( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__Initial__new_transition_111( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_21( msg );
+            actionchain_____Debug__C__Initial__new_transition_17( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_3( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__Initial__new_transition_115( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_22( msg );
+            actionchain_____Debug__C__Initial__new_transition_21( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_4( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__Initial__new_transition_119( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_23( msg );
+            actionchain_____Debug__C__Initial__new_transition_25( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_5( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3598,8 +3601,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__Initial__boundary( con
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__Initial__new_transition_123( msg );
-            return junction_____Debug__C__Initial__new_exitpoint_24( msg );
+            actionchain_____Debug__C__Initial__new_transition_29( msg );
+            return junction_____Debug__C__Initial__new_exitpoint_6( msg );
         }
         return currentState;
     default:
@@ -3797,20 +3800,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__Debug__A_
             actionchain_____Debug__C__keepPlaying__Debug__En__PLAYING( msg );
             return Debug__C__keepPlaying__Debug__A__En__keepPlaying;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__keepPlaying__new_transition_7( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_1( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_65( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_13( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_11( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_2( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_69( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_14( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_15( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_3( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_73( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_15( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__keepPlaying__new_transition_19( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_4( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_77( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_16( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__keepPlaying__new_transition_23( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_5( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_81( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_17( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3820,8 +3823,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__Debug__A_
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__keepPlaying__new_transition_27( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_6( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_85( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_18( msg );
         }
         return currentState;
     default:
@@ -3842,20 +3845,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__Debug__A_
             actionchain_____Debug__C__keepPlaying__Debug__end__trans__keepPlaying( msg );
             return junction_____Debug__C__keepPlaying__ex( msg );
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__keepPlaying__new_transition_8( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_1( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_66( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_13( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_12( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_2( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_70( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_14( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_16( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_3( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_74( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_15( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__keepPlaying__new_transition_20( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_4( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_78( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_16( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__keepPlaying__new_transition_24( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_5( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_82( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_17( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3865,8 +3868,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__Debug__A_
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__keepPlaying__new_transition_28( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_6( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_86( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_18( msg );
         }
         return currentState;
     default:
@@ -3887,20 +3890,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__Debug__B_
             actionchain_____Debug__C__keepPlaying__Debug__Ac__keepPlaying( msg );
             return Debug__C__keepPlaying__Debug__A__Ac__keepPlaying;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__keepPlaying__new_transition_6( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_1( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_64( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_13( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_10( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_2( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_68( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_14( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_14( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_3( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_72( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_15( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__keepPlaying__new_transition_18( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_4( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_76( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_16( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__keepPlaying__new_transition_22( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_5( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_80( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_17( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3910,8 +3913,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__Debug__B_
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__keepPlaying__new_transition_26( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_6( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_84( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_18( msg );
         }
         return currentState;
     default:
@@ -3929,20 +3932,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__boundary(
         switch( msg->getSignalId() )
         {
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__keepPlaying__new_transition_9( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_1( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_67( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_13( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_13( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_2( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_71( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_14( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__keepPlaying__new_transition_17( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_3( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_75( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_15( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__keepPlaying__new_transition_21( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_4( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_79( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_16( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__keepPlaying__new_transition_25( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_5( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_83( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_17( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3952,8 +3955,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__keepPlaying__boundary(
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__keepPlaying__new_transition_29( msg );
-            return junction_____Debug__C__keepPlaying__new_exitpoint_6( msg );
+            actionchain_____Debug__C__keepPlaying__new_transition_87( msg );
+            return junction_____Debug__C__keepPlaying__new_exitpoint_18( msg );
         }
         return currentState;
     default:
@@ -3974,20 +3977,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__A__Ac__
             actionchain_____Debug__C__onPing__Debug__En__WAITING_FOR_TIMER( msg );
             return Debug__C__onPing__Debug__A__En__WAITING_FOR_TIMER;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__onPing__new_transition_67( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_13( msg );
+            actionchain_____Debug__C__onPing__new_transition_96( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_19( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_72( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_14( msg );
+            actionchain_____Debug__C__onPing__new_transition_101( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_20( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_77( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_15( msg );
+            actionchain_____Debug__C__onPing__new_transition_106( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_21( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__onPing__new_transition_82( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_16( msg );
+            actionchain_____Debug__C__onPing__new_transition_111( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_22( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__onPing__new_transition_87( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_17( msg );
+            actionchain_____Debug__C__onPing__new_transition_116( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_23( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -3997,8 +4000,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__A__Ac__
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__onPing__new_transition_92( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_18( msg );
+            actionchain_____Debug__C__onPing__new_transition_121( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_24( msg );
         }
         return currentState;
     default:
@@ -4019,20 +4022,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__A__En__
             actionchain_____Debug__C__onPing__Debug__end__trans__onPing( msg );
             return junction_____Debug__C__onPing__ex( msg );
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__onPing__new_transition_68( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_13( msg );
+            actionchain_____Debug__C__onPing__new_transition_97( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_19( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_73( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_14( msg );
+            actionchain_____Debug__C__onPing__new_transition_102( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_20( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_78( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_15( msg );
+            actionchain_____Debug__C__onPing__new_transition_107( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_21( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__onPing__new_transition_83( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_16( msg );
+            actionchain_____Debug__C__onPing__new_transition_112( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_22( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__onPing__new_transition_88( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_17( msg );
+            actionchain_____Debug__C__onPing__new_transition_117( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_23( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -4042,8 +4045,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__A__En__
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__onPing__new_transition_93( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_18( msg );
+            actionchain_____Debug__C__onPing__new_transition_122( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_24( msg );
         }
         return currentState;
     default:
@@ -4064,20 +4067,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__B__Ac__
             actionchain_____Debug__C__onPing__Debug__AC__onPing( msg );
             return Debug__C__onPing__Debug__A__Ac__onPing;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__onPing__new_transition_66( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_13( msg );
+            actionchain_____Debug__C__onPing__new_transition_95( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_19( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_71( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_14( msg );
+            actionchain_____Debug__C__onPing__new_transition_100( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_20( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_76( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_15( msg );
+            actionchain_____Debug__C__onPing__new_transition_105( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_21( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__onPing__new_transition_81( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_16( msg );
+            actionchain_____Debug__C__onPing__new_transition_110( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_22( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__onPing__new_transition_86( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_17( msg );
+            actionchain_____Debug__C__onPing__new_transition_115( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_23( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -4087,8 +4090,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__B__Ac__
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__onPing__new_transition_91( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_18( msg );
+            actionchain_____Debug__C__onPing__new_transition_120( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_24( msg );
         }
         return currentState;
     default:
@@ -4109,20 +4112,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__B__Ex__
             actionchain_____Debug__C__onPing__Debug__Ex__PLAYING( msg );
             return Debug__C__onPing__Debug__B__Ac__onPing;
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__onPing__new_transition_65( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_13( msg );
+            actionchain_____Debug__C__onPing__new_transition_94( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_19( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_70( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_14( msg );
+            actionchain_____Debug__C__onPing__new_transition_99( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_20( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_75( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_15( msg );
+            actionchain_____Debug__C__onPing__new_transition_104( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_21( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__onPing__new_transition_80( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_16( msg );
+            actionchain_____Debug__C__onPing__new_transition_109( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_22( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__onPing__new_transition_85( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_17( msg );
+            actionchain_____Debug__C__onPing__new_transition_114( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_23( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -4132,8 +4135,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__Debug__B__Ex__
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__onPing__new_transition_90( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_18( msg );
+            actionchain_____Debug__C__onPing__new_transition_119( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_24( msg );
         }
         return currentState;
     default:
@@ -4151,20 +4154,20 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__boundary( cons
         switch( msg->getSignalId() )
         {
         case ExtInterface::signal_dbgVarChange:
-            actionchain_____Debug__C__onPing__new_transition_69( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_13( msg );
+            actionchain_____Debug__C__onPing__new_transition_98( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_19( msg );
         case ExtInterface::signal_dbgSetBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_74( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_14( msg );
+            actionchain_____Debug__C__onPing__new_transition_103( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_20( msg );
         case ExtInterface::signal_dbgRemBreakPoint:
-            actionchain_____Debug__C__onPing__new_transition_79( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_15( msg );
+            actionchain_____Debug__C__onPing__new_transition_108( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_21( msg );
         case ExtInterface::signal_dbgViewBreakPoints:
-            actionchain_____Debug__C__onPing__new_transition_84( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_16( msg );
+            actionchain_____Debug__C__onPing__new_transition_113( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_22( msg );
         case ExtInterface::signal_dbgSetExecMode:
-            actionchain_____Debug__C__onPing__new_transition_89( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_17( msg );
+            actionchain_____Debug__C__onPing__new_transition_118( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_23( msg );
         default:
             this->unexpectedMessage();
             break;
@@ -4174,8 +4177,8 @@ Capsule_Ponger::State Capsule_Ponger::state_____Debug__C__onPing__boundary( cons
         switch( msg->getSignalId() )
         {
         default:
-            actionchain_____Debug__C__onPing__new_transition_94( msg );
-            return junction_____Debug__C__onPing__new_exitpoint_18( msg );
+            actionchain_____Debug__C__onPing__new_transition_123( msg );
+            return junction_____Debug__C__onPing__new_exitpoint_24( msg );
         }
         return currentState;
     default:

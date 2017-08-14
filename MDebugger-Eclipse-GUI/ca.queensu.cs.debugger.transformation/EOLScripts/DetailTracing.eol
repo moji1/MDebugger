@@ -48,17 +48,21 @@ operation UMLRTModel!Transition generateTraceBody(traceType:String) {
 	var lineEnd:String="";
     if (traceType="LTTng")
         self.cleanTraceBody(traceType);
-    if ((Set{"StoS","StoC"}).includes(self.transType())){
+    if ((Set{"StoS","StoP"}).includes(self.transType())){
+        
    		lineStart=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONSTART,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
 		lineStart=lineStart.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());").concat(endLine);//concat(self.trigger.port.name).concat(");\n");
 	    lineEnd=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
 	    lineEnd=lineEnd.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());").concat(endLine);//.concat(self.trigger.port.name).concat(");\n");
     } 
     else {
-	    lineStart=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONSTART,this->getName(),this->getIndex(),(char *)\"\",(char *)\"\"");
-		lineStart=lineStart.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",(char *)\"\",(char *)\"\");").concat(endLine);//concat(self.trigger.port.name).concat(");\n");
-	    lineEnd=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)\"\",(char *)\"\"");
-	    lineEnd=lineEnd.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",(char *)\"\",(char *)\"\");").concat(endLine);//.concat(self.trigger.port.name).concat(");\n");
+        self.println("trace in exception list for transition: ");
+        self.transType().println("Transition type is: ");
+        
+	    lineStart=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONSTART,this->getName(),this->getIndex(),(char *)\"\",this->getTypeName()");
+		lineStart=lineStart.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",(char *)\"null\",(char *)\"null\");").concat(endLine);//concat(self.trigger.port.name).concat(");\n");
+	    lineEnd=instrumentPrefix.concat("sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)\"\",this->getTypeName()");
+	    lineEnd=lineEnd.concat(currentCapsuleName).concat(",(char *)\"").concat(self.qualifiedName).concat("\",(char *)\"").concat(self.source.name).concat("\",(char *)\"").concat(self.target.name).concat("\",(char *)\"null\",(char *)\"null\");").concat(endLine);//.concat(self.trigger.port.name).concat(");\n");
     }
 	var tempEffect=self.effect.body.first();
     //tempEffect=lineStart.concat(endLine).concat(tempEffect);  // add trace at start of action code 
