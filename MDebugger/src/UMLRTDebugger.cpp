@@ -164,7 +164,7 @@ void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int cou
 // generates plantuml code, and displays the generated diagram.
 void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
 	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
-	std::vector<debugEvents::Event> events;
+	std::list<debugEvents::Event> events;
 	bool newCapsuleAdded;
 	std::unordered_set<std::string> visitedCapsules = {capsuleName.substr(0,capsuleName.find(":"))};
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
@@ -177,7 +177,8 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 			if (capEvents[i].getEventSourceKind() == 3){
 				std::string sender = capEvents[i].getPayloadField("SenderCapsule");
 				std::string owner = capEvents[i].getOwnerName();
-				if (!(capEvents[i].getPayloadField("Source").compare(0,filterString.length(),filterString))){
+				std::string payloadSource = capEvents[i].getPayloadField("Source");
+				if (!(payloadSource.compare(0,filterString.length(),filterString))){
 					events.push_back(capEvents[i]);
 					if (visitedCapsules.count(owner.substr(0,owner.find(":"))) == 1 || visitedCapsules.count(sender) == 1)
 						newCapsuleAdded = true;
@@ -190,62 +191,16 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 			visitedCapsules.insert(owner.substr(0,owner.find(":")));
 		} // end if
 	} // end for
-	for(std::vector<debugEvents::Event>::const_iterator it = events.begin(); it != events.end(); ++it) {
+	for(std::list<debugEvents::Event>::const_iterator it = events.begin(); it != events.end(); ++it) {
 		std::string owner = it->getOwnerName();
 		if (visitedCapsules.count(owner.substr(0,owner.find(":"))) != 1)
 			events.erase(it);
 	} // end for
-	sort(events.begin(),events.end(),eventComp);
-	// put plantuml code on stringstream
-	std::ostringstream uml;
-	uml<<"@startuml\n";
-	for (int i = 0; i < count && i < events.size(); i++){
-		std::string sender = events[i].getPayloadField("SenderCapsule");
-		std::string owner = events[i].getOwnerName();
-		std::string port = events[i].getPayloadField("Port");
-		std::string signal = events[i].getPayloadField("Signal");
-		uml<<owner.substr(0,owner.find(":"))<<" <- ";
-		if (port == "timer")
-			uml<<port;
-		else
-			uml<<sender;
-		uml<<": "<<signal<<"\n";
-		//uml<<"note right: "<<events[i].getTimePointSecond();
-		//uml<<":"<<events[i].getTimePointNano();
-		//uml<<"\n";
-		uml<<"note right: "<<convertTime(events[i].getTimePointSecond(), events[i].getTimePointNano())<<"\n";
-	} // end for
-	uml<<"@enduml\n";
 
-	// launch plantuml - creates .png image in the current directory (MDebugger)
-	// Try to find a way to do this without writing to file (slow)
-	std::ofstream outFile;
-	outFile.open("seqDiagram.txt");
-	outFile<<uml.str();
-	outFile.close();
-	char const * cmd = "cat seqDiagram.txt | java -jar plantuml.jar -pipe > seqDiagram.png";
-	system(cmd);
-	char const * viewImg = "eog seqDiagram.png";
-	system(viewImg);
+	diagram::SequenceDiagram sqDiag(events);
+	sqDiag.printPlantUML(std::cout,count);
+	sqDiag.runPlantUML(count);
 
-}
-
-// added by David: for sorting vector of events by timestamp
-bool mdebugger::UMLRTDebugger::eventComp(const debugEvents::Event &e1, const debugEvents::Event &e2){
-	if (e1.getTimePointSecond() == e2.getTimePointSecond())
-		return e1.getTimePointNano() > e2.getTimePointNano();
-	else
-		return e1.getTimePointSecond() > e2.getTimePointSecond();
-}
-
-// added by David: for formatting timestamp
-std::string mdebugger::UMLRTDebugger::convertTime(long timeSecond, long timeNano) {
-	char t[23];
-	strftime(t, 23, "%d-%m-%Y\\n(%H:%M:%S:",localtime(&timeSecond));
-	std::string output(t);
-	std::string nano = std::to_string(timeNano);
-	output.append(nano).append(")\n");
-	return output;
 }
 
 void mdebugger::UMLRTDebugger::sendCommand(std::string cmdStr) {
@@ -667,6 +622,13 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				setExecMode(cmd.commandOptions["-c"],ExecMode::Running);
 				stepExec(cmd.commandOptions["-c"]);
+			// This part added by David - allow user to omit "-c" option and run all capsules
+			} else {
+				for (std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
+					std::unique_lock<std::mutex> lock(this->eventMutex);
+					setExecMode(it->first,ExecMode::Running);
+					stepExec(it->first);
+				}
 			}
 			break;
 		case mdebugger::mdebuggerCommand::CONNECT:
@@ -694,7 +656,7 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 					std::unique_lock<std::mutex> lock(this->eventMutex);
 					viewSequenceDiagram(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
 				} else {
-					std::cout<<"invalid count - count must be between 1 and 20 inclusive\n";
+					std::cout<<"invalid count - count must be in the range 1-20\n";
 				}
 			} else {
 				std::unique_lock<std::mutex> lock(this->eventMutex);

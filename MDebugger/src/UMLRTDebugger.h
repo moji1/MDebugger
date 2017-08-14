@@ -20,6 +20,7 @@
 #include <chrono>
 #include "SROManager.h"
 #include "ParsingUtil.h"
+#include "SequenceDiagram.h"
 #include <iostream>
 #include <fstream>
 #include <unordered_set>
@@ -89,8 +90,6 @@ private:
 	//std::condition_variable cmdCond;
 	std::thread extCon;
 	CmdInterface cmdLineInterface;
-	static bool eventComp(const debugEvents::Event &e1, const debugEvents::Event &e2);
-	std::string convertTime(long timeSecond, long timeNano);
 };
 
 } /* namespace mdebugger */

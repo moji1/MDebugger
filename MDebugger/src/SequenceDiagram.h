@@ -9,6 +9,7 @@
 #define SEQUENCEDIAGRAM_H_
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "Event.h"
 
@@ -16,13 +17,21 @@ namespace diagram {
 
 class SequenceDiagram {
 public:
-	SequenceDiagram(std::string capsuleQualifiedName, int count);
+	SequenceDiagram(std::vector<debugEvents::Event> transitions, bool isSorted = false);
 	virtual ~SequenceDiagram();
-	void printPlantUML();
-	void runPlantUML();
+	std::vector<debugEvents::Event> getTransitions() const;
+	void setPlantumlDirectory(std::string directory);
+	//std::string& getPlantumlDirectory() const;
+	void printPlantUML(std::ostream& output, int numTransitions);
+	void runPlantUML(int numTransitions);
+
 
 private:
 	std::vector<debugEvents::Event> transitions;
+	std::string plantumlDirectory;
+	void sortTransitions();
+	static bool eventComp(const debugEvents::Event &e1, const debugEvents::Event &e2);
+	std::string convertTime(long timeSecond, long timeNano);
 };
 
 } // namespace diagram
