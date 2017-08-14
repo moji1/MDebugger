@@ -1,0 +1,6 @@
+Debug__Top.Debug__Top.RTConnector1
+    Debug__Top.Debug__Top.pinger#pingPort.far[0] <-> Debug__Top.Debug__Top.ponger#pongPort.far[0]
+Debug__Top.Debug__Top.RTConnector2
+    Debug__Top.Debug__Top.referee#startPort.far[0] <-> Debug__Top.Debug__Top.pinger#startPort.far[0]
+Debug__Top.Debug__Top.RTConnector3
+    Debug__Top.Debug__Top.ponger#endPort.far[0] <-> Debug__Top.Debug__Top.referee#endPort.far[0]
