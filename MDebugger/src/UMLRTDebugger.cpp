@@ -197,7 +197,9 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 			events.erase(it);
 	} // end for
 
-	diagram::SequenceDiagram sqDiag(events);
+	std::vector<debugEvents::Event> diagramEvents{std::make_move_iterator(std::begin(events)),std::make_move_iterator(std::end(events))};
+
+	diagram::SequenceDiagram sqDiag(diagramEvents);
 	sqDiag.printPlantUML(std::cout,count);
 	sqDiag.runPlantUML(count);
 
