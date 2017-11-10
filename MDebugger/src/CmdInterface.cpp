@@ -35,6 +35,36 @@ std::string & trim(std::string & str)
 const std::vector<CMDDesc> CmdInterface::cmdDescList =
 	{
 			{"help","h",{},"Show the commands and their options"},
+			{"breakpoint","b",{{"-c","capsule","M"},{"-t","Transition","M"},
+					{"-b|-e","","M"},{"-r","","O"}},"Set/remove breakpoint at beginning/end of a transition"},
+			//{"breakpoint","b",{{"-c","capsuleName","M"},{"-t","Transition's name","M"},{"-e","","O"},{"-i","traceNo","O"}},"Set breakpoint at end of a transition"},
+			{"breakpoint","b",{{"-c","capsule","M"},{"-s","State","M"},
+					{"-b|-e","","M"},{"-en|-ex","","M"},{"-r","","O"}},"Set/remove breakpoint at beginning/end of state entry/exit"},
+			//{"breakpoint","b",{{"-c","capsuleName","M"},{"-s","State's name","M"},{"-e","","O"},{"-entry","","O"},{"-exit","","O"},{"-i","traceNo","O"}},"Set breakpoint at end of  state entry/exit"},
+			//{"breakpoint","b",{{"-c","capsuleName","M"},{"-t","Transition's name","M"},{"-b","","O"},{"-r","","O"},{"-i","traceNo","O"}},"Remove breakpoint at beginning of a transition"},
+			//{"breakpoint","b",{{"-c","capsuleName","M"},{"-t","Transition's name","M"},{"-e","","O"},{"-r","","O"},{"-i","traceNo","O"}},"Remove breakpoint at end of a transition"},
+			//{"breakpoint","b",{{"-c","capsuleName","M"},{"-s","State's name","M"},{"-b","","O"},{"-r","","O"},{"-entry","","O"},{"-exit","","O"},{"-i","traceNo","O"}},"Remove breakpoint at beginning of a entry/exit"},
+			//{"breakpoint","b",{{"-c","capsuleName","M"},{"-s","State's name","M"},{"-e","","O"},{"-r","","O"},{"-entry","","O"},{"-exit","","O"},{"-i","traceNo","O"}},"Remove breakpoint at end of a state entry/exit"},
+			{"next","n",{{"-c","capsule","M"}},"Execute until next step"},
+			{"continue","c",{{"-c","capsule","M"}},"Continue execution until next breakpoint"},
+			{"run","r",{{"-c","capsule","M"}},"Run the capsule without interrupt"},
+			{"modify","m",{{"-c","capsule","M"},{"-n","variable","M"},{"-v","value","M"}},"Modify a attribute of capsule"},
+			{"watch","w",{{"-c","capsule","M"},{"-n","variable","O"}},"View the capsule's attributes"},
+			{"backtrace","bt",{{"-c","capsule","M"},{"-n","count","M"},{"-e","","O"}},"View  last n events of capsule's execution"},
+			{"list","l",{{"-c","capsule","O"},{"-b","","O"}},"List running capsules and their current state"},
+			//{"list","l",{},"List capsule's configuration including breakpoints and etc"},
+			//{"list","l",{{"-c","capsule","M"},{"-b","","O"}},"List exiting breakpoint"},
+			{"seq","sq",{{"-c","capsule","M"},{"-n","count","O"}},"generate sequence diagram for last n events."},
+			{"save","s",{{"-c","capsule","M"},{"-f","filePath","M"}},"Save existing events to a file specified by filePath"},
+			{"connect","con",{{"-h","host","M"},{"-p","port","M"}},"Connect to eclipse debugger"},
+			{"exit","q",{},"Exit the MDebugger"},
+			{"restart","r",{},"Restart the Debugging session"},
+
+	};
+////////
+const std::vector<CMDDesc> CmdInterface::extCmdList =
+	{
+			{"help","h",{},"Show the commands and their options"},
 			{"breakpoint","b",{{"-c","capsuleName","M"},{"-t","Transition's name","M"},{"-b","","O"},{"-i","traceNo","O"}},"Set breakpoint at beginning of a transition"},
 			{"breakpoint","b",{{"-c","capsuleName","M"},{"-t","Transition's name","M"},{"-e","","O"},{"-i","traceNo","O"}},"Set breakpoint at end of a transition"},
 			{"breakpoint","b",{{"-c","capsuleName","M"},{"-s","State's name","M"},{"-b","","O"},{"-entry","","O"},{"-exit","","O"},{"-i","traceNo","O"}},"Set breakpoint at beginning of state entry/exit"},
@@ -90,14 +120,19 @@ CmdInterface::~CmdInterface() {
 }
 
 void CmdInterface::showHelp() {
-	std::cout<<"Available Options\n";
+	std::cout<<"Available Commands\n";
 	for (int i=0;i<this->cmdDescList.size();i++){
-		std::cout<<"\""<<std::setw(14)<<std::left<<cmdDescList[i].commandName+"|"+cmdDescList[i].commandL+"\" ";
+		std::cout<<std::setw(14)<<std::left<<cmdDescList[i].commandName+"|"+cmdDescList[i].commandL;
 		std::string options;
-		for (int j=0;j<cmdDescList[i].commandOptions.size();j++)
-			options.append(" "+cmdDescList[i].commandOptions[j][0]+" "+ cmdDescList[i].commandOptions[j][1]);
+		if (cmdDescList[i].commandOptions.size()>=1)
+			for (int j=0;j<cmdDescList[i].commandOptions.size();j++)
+				if (cmdDescList[i].commandOptions[j][2]=="M")
+					options.append(" "+cmdDescList[i].commandOptions[j][0]+" "+ cmdDescList[i].commandOptions[j][1]);
+				else
+					options.append(" ["+cmdDescList[i].commandOptions[j][0]+" "+ cmdDescList[i].commandOptions[j][1]+"]");
 		std::cout<<std::setw(33)<<std::left<<options;
-		std::cout<<"("<<cmdDescList[i].commandHelp<<")\n";
+		std::cout<<std::endl;
+		//std::cout<<"("<<cmdDescList[i].commandHelp<<std::endl;
 	}
 }
 
@@ -140,8 +175,8 @@ void CmdInterface::setCommandStr(const std::string& commandStr) {
 }
 
 mdebugger::mdebuggerCommand CmdInterface::stringToUserCommad(std::string commandName) {
-	std::vector<std::string> commands={"breakpoint","continue","help","list","modify","next","save","view","run","seq","connect","exit","restart"};
-	std::vector<std::string> commandsL={"b","c","h","l","m","n","s","v","r","sq","con","s","r"};
+	std::vector<std::string> commands={"breakpoint","continue","help","list","modify","next","save","view","run","seq","connect","exit","restart","backtrace","watch"};
+	std::vector<std::string> commandsL={"b","c","h","l","m","n","s","v","r","sq","con","s","r","bt","w"};
 	for (int i=0;i<commands.size();i++)
 		if (commands[i]==commandName || commandsL[i]==commandName )
 			return (mdebugger::mdebuggerCommand)i;
@@ -177,7 +212,9 @@ bool CmdInterface::parseCommand() {
 			for (int z=0;z<cmdDescList.size();z++){
 				if (cmdDescList[z].commandL==cmdTokens[0] || cmdDescList[z].commandName==cmdTokens[0])
 					for (int j=0;j<cmdDescList[z].commandOptions.size();j++)
-						if (cmdDescList[z].commandOptions[j][0]==cmdTokens[i]){
+						if (cmdDescList[z].commandOptions[j][0]==cmdTokens[i] ||
+								cmdDescList[z].commandOptions[j][0].find(cmdTokens[i]+"|")!=std::string::npos||
+								cmdDescList[z].commandOptions[j][0].find("|"+cmdTokens[i])!=std::string::npos){ /// check multiple command options here too
 							parsError=false;
 							if (cmdDescList[z].commandOptions[j][1].length()>=1 && i+1<cmdTokens.size())
 								this->parsedCMD.commandOptions[cmdTokens[i]]=cmdTokens[i+1];

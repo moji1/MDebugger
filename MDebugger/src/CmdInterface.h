@@ -21,7 +21,7 @@ typedef struct {
 	std::vector<std::vector<std::string>>  commandOptions; // option, mandatory or optional, value name
 	std::string commandHelp;
 } CMDDesc;
-typedef enum {BREAKPOINT,CONTINUEEXEC,HELP,LIST,MODIFY,NEXT,SAVE,VIEW,RUNEXEC,SEQ,CONNECT,EXIT,RESTART,UNKOWNCOMMAND} mdebuggerCommand;
+typedef enum {BREAKPOINT,CONTINUEEXEC,HELP,LIST,MODIFY,NEXT,SAVE,VIEW,RUNEXEC,SEQ,CONNECT,EXIT,RESTART,BACKTRACE,WATCH,UNKOWNCOMMAND} mdebuggerCommand;
 typedef struct {
 	mdebugger::mdebuggerCommand cmdID;
 	std::map<std::string,std::string>  commandOptions; // option, mandatory or optional, value name
@@ -47,6 +47,7 @@ public:
 
 private:
 	const static std::vector<mdebugger::CMDDesc> cmdDescList;
+	const static std::vector<mdebugger::CMDDesc> extCmdList;
 	std::string commandStr;
 	std::vector<std::string> cmdTokens;
 	ParsedCMD parsedCMD;

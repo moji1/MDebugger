@@ -510,21 +510,21 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				listCapsules();}
 			break;
-		case mdebugger::mdebuggerCommand::VIEW:
+		case mdebugger::mdebuggerCommand::WATCH:
 			if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-v")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				viewCapsuleAttributes(cmd.commandOptions["-c"]);
 			}
-			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-e")==1){
-				std::unique_lock<std::mutex> lock(this->eventMutex);
-				if (cmd.commandOptions.count("-n")==1){
-					if  (atoi(cmd.commandOptions["-n"].c_str())>0)
-						viewCapsuleEvents(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
-				}
-				else
-					viewCapsuleEvents(cmd.commandOptions["-c"], 5);
-			}
 			break;
+		case mdebugger::mdebuggerCommand::BACKTRACE:
+			 if (cmd.commandOptions.count("-c")==1 )
+					if (cmd.commandOptions.count("-n")==1){
+						if  (atoi(cmd.commandOptions["-n"].c_str())>0)
+							viewCapsuleEvents(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
+					}
+					else
+						viewCapsuleEvents(cmd.commandOptions["-c"], 5);
+			 break;
 		case mdebugger::mdebuggerCommand::NEXT:
 			if (cmd.commandOptions.count("-c")==1 ){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
@@ -558,9 +558,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-b")==1 && cmd.commandOptions.count("-r")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -572,9 +572,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-e")==1 && cmd.commandOptions.count("-r")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -586,9 +586,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-b")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -600,9 +600,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-e")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
