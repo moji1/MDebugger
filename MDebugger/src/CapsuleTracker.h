@@ -53,10 +53,12 @@ public:
 	const std::deque<debugEvents::Event>& capsuleHistoryEvents);
 	const debugEvents::Event& getLastEvent() const;
 	void setLastEvent(const debugEvents::Event& lastEvent);
-	const std::string& getLastState() const;
-	void setLastState(const std::string& lastState);
+	//const std::string& getLastState() const;
+	//void setLastState(const std::string& lastState);
 	//void processLiveEvent();
 	std::string getExecModeStr();
+	std::string getCrrentStateForPrint();
+
 private:
 	std::string capsuleInstance,capsuleName;
 	int capsuleIndex;
@@ -64,7 +66,7 @@ private:
 	std::deque<debugEvents::Event>  capsuleLiveEvents;
 	//std::deque<debugEvents::Event>  capsuleHistoryEvents;
 	std::deque<std::string> breakPoints;
-	std::string lastState;
+	//std::string lastState;
 	ExecMode execMode;
 
 };

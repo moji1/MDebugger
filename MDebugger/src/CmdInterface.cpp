@@ -233,6 +233,13 @@ bool CmdInterface::parseCommand() {
 	return true;
 }
 
+void CmdInterface::prettyPrint(std::string text, int length, char fillChar) {
+	std::cout<<std::left<<std::setw(length)<<std::setfill(fillChar);
+	std::cout<<text<<" ";
+
+
+}
+
 } /* namespace mdebugger */
 
 const mdebugger::ParsedCMD& mdebugger::CmdInterface::getParsedCmd() const {

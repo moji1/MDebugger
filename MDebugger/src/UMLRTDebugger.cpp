@@ -451,11 +451,17 @@ void mdebugger::UMLRTDebugger::intializeTCP() {
 
 void mdebugger::UMLRTDebugger::listCapsules(){
 	std::cout<<"Running Capsule List:\n";
+	cmdLineInterface.prettyPrint("Capsule Id", 40, ' ');
+	cmdLineInterface.prettyPrint("Current Execution State", 40, ' ');
+	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it){
-			std::cout<<it->second <<"- "<<it->first<<"\n";
+			//std::cout<<it->second <<"- "<<it->first<<"\n";
+		    cmdLineInterface.prettyPrint(it->first, 40, ' ');
+		    cmdLineInterface.prettyPrint(this->capsules[it->second].getCrrentStateForPrint(), 40, ' ');
+		    std::cout<<std::endl;
 			//this->capsules[it->second].processLiveEvent();
 			//std::cout<<std::setw(30)<<std::setfill('-')<<"\n";
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
+			//std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
 			//std::cout<<std::setw(40)<<std::setfill('-')<<"\n";
 		}
 }

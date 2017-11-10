@@ -44,6 +44,7 @@ public:
 	void tokenizeCommand();
 	const ParsedCMD& getParsedCmd() const;
 	void setParsedCmd(const ParsedCMD& parsedCmd);
+	void prettyPrint(std::string text, int length, char fillChar);
 
 private:
 	const static std::vector<mdebugger::CMDDesc> cmdDescList;
