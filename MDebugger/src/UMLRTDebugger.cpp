@@ -284,7 +284,7 @@ void mdebugger::UMLRTDebugger::setExecMode(std::string capsuleName,ExecMode exec
 	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			std::cout<<"Run capsule  \""<<capsuleName<<"\" ....."<<std::endl;
+			std::cout<<"Set Exec Mode for capsule  \""<<capsuleName<<"\" ....."<<std::endl;
 			this->capsules[it->second].setExecMode(execMode);
 			mdebugger::DebugCommand dbgCmd;
 			dbgCmd.setQualifiedName(capsuleName);
@@ -677,7 +677,7 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			if (cmd.commandOptions.count("-c")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				setExecMode(cmd.commandOptions["-c"],ExecMode::Running);
-				stepExec(cmd.commandOptions["-c"]);
+				//stepExec(cmd.commandOptions["-c"]);
 			// This part added by David - allow user to omit "-c" option and run all capsules
 			} else {
 				for (std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {

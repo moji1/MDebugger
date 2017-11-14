@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:style_1="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_XJAr8AdxEeadtKuU2t6fMg" type="CompositeStructure" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_XJB6EAdxEeadtKuU2t6fMg" type="Class_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_XJB6EgdxEeadtKuU2t6fMg" type="Class_NameLabel"/>
@@ -164,7 +164,7 @@
   <notation:Diagram xmi:id="_f2bvEAdxEeadtKuU2t6fMg" type="PapyrusUMLStateMachineDiagram" name="DebuggerSM" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_f2bvEQdxEeadtKuU2t6fMg" type="StateMachine_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_f2bvEgdxEeadtKuU2t6fMg" type="StateMachine_NameLabel">
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f2bvEwdxEeadtKuU2t6fMg" width="803" height="28"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f2bvEwdxEeadtKuU2t6fMg" width="803" height="34"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_tNoK4C9LEeaxYMPe_sHEiw" type="StateMachine_RegionCompartment">
         <children xmi:type="notation:Shape" xmi:id="_f2bvFQdxEeadtKuU2t6fMg" type="Region_Shape">
@@ -257,7 +257,7 @@
           <element xsi:nil="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X0FG8jt3EeeKxOtWEfBMmw" x="200"/>
         </children>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f2bvGwdxEeadtKuU2t6fMg" y="28" width="803" height="380"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f2bvGwdxEeadtKuU2t6fMg" y="34" width="803" height="374"/>
       </children>
       <element xmi:type="uml:StateMachine" href="model.uml#_dy-CgAdxEeadtKuU2t6fMg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f2bvHAdxEeadtKuU2t6fMg" x="30" y="30" width="803" height="408"/>
@@ -270,9 +270,12 @@
       <element xsi:nil="true"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Xz-ZQjt3EeeKxOtWEfBMmw" x="230" y="30"/>
     </children>
-    <styles xmi:type="notation:StringValueStyle" xmi:id="_f2bvHQdxEeadtKuU2t6fMg" name="diagram_compatibility_version" stringValue="1.2.0"/>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_f2bvHQdxEeadtKuU2t6fMg" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_f2bvHgdxEeadtKuU2t6fMg"/>
-    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_f2bvHwdxEeadtKuU2t6fMg">
+    <styles xmi:type="style_1:PapyrusDiagramStyle" xmi:id="_yeqMoMjkEeewhZwYcFrjog" diagramKindId="org.eclipse.papyrus.uml.diagram.stateMachine">
+      <owner xmi:type="uml:StateMachine" href="model.uml#_dy-CgAdxEeadtKuU2t6fMg"/>
+    </styles>
+    <styles xmi:type="style_1:PapyrusDiagramStyle" xmi:id="_yerawMjkEeewhZwYcFrjog" diagramKindId="org.eclipse.papyrusrt.umlrt.tooling.diagram.statemachine.UMLRTStateMachine">
       <owner xmi:type="uml:StateMachine" href="model.uml#_dy-CgAdxEeadtKuU2t6fMg"/>
     </styles>
     <element xmi:type="uml:StateMachine" href="model.uml#_dy-CgAdxEeadtKuU2t6fMg"/>
