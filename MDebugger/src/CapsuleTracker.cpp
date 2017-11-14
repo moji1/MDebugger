@@ -203,7 +203,7 @@ std::string CapsuleTracker::getCrrentStateForPrint() {
 } /* namespace mdebugger */
 
 std::string mdebugger::CapsuleTracker::getExecModeStr() {
-	std::vector<std::string>  execModeStr={"STEPIN","STEPOVER","CONTINUE","RUN"};
+	std::vector<std::string>  execModeStr={"Suspended","Continue","Run"};
 	return execModeStr[this->getExecMode()];
 }
 

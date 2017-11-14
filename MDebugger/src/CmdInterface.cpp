@@ -240,6 +240,50 @@ void CmdInterface::prettyPrint(std::string text, int length, char fillChar) {
 
 }
 
+std::vector<std::string> CmdInterface::tokenizeString(std::string str, char seperator) {
+	std::vector<std::string> tokens;
+	if (str.length()>0){
+		std::string tempS="";
+		bool newVar=false;
+		for (int i=0;i< str.length();i++){
+			if ((str[i]==seperator) && newVar){
+				newVar=false;
+				tokens.push_back(trim(tempS));
+				tempS="";
+			}
+			else {
+				tempS=tempS+(str[i]);
+				newVar=true;
+			}
+		}
+		if (newVar)
+			tokens.push_back((tempS));
+	}
+	return tokens;
+}
+
+void CmdInterface::prettyPrintVariable(std::string varData) {
+	std::vector<std::string> tokens=this->tokenizeString(varData, ',');
+	if (tokens.size()==3){
+		this->prettyPrint(tokens.at(0), 30, ' ');
+		this->prettyPrint(tokens.at(1), 10, ' ');
+		this->prettyPrint(tokens.at(2), 30, ' ');
+	}
+	else
+		this->prettyPrint("Error: Variable Data is not valid", 30, ' ');
+	std::cout<<std::endl;
+
+}
+
+void CmdInterface::prettyPrintTime(long seconds, long nanosecond) {
+	char t[23];
+	strftime(t, 23, "%H:%M:%S.",localtime(&seconds));
+	std::string output(t);
+	std::string nano = std::to_string(nanosecond);
+	output.append(nano.substr(0,6));
+	this->prettyPrint(output, 17, ' ');
+}
+
 } /* namespace mdebugger */
 
 const mdebugger::ParsedCMD& mdebugger::CmdInterface::getParsedCmd() const {

@@ -101,55 +101,94 @@ void mdebugger::UMLRTDebugger::addCapsule(mdebugger::CapsuleTracker capsuleTrack
 }
 
 void mdebugger::UMLRTDebugger::listCapsuleConfig(std::string capsuleName) {
+	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			//std::cout<<it->second <<") "<<it->first<<"\n";
-			//std::cout<<std::setw(30)<<std::setfill('-')<<"\n";
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
-			std::cout<<"Running Mode is  \""<<this->capsules[it->second].getExecModeStr()<<"\"\n";
-			std::cout<<"Breakpoints:\n"; //
-			for (int i=0;i<this->capsules[it->second].getBreakPoints().size();i++)
-				std::cout<<i+1<<") "<<this->capsules[it->second].getBreakPoints()[i]<<"\n";
+			cmdLineInterface.prettyPrint("Current Execution State", 30, ' ');
+			cmdLineInterface.prettyPrint("Exec Mode", 10, ' ');
+			std::cout<<std::endl;
+			cmdLineInterface.prettyPrint(this->capsules[it->second].getCrrentStateForPrint(),30,' ');
+			cmdLineInterface.prettyPrint(this->capsules[it->second].getExecModeStr(),10,' ');
+			std::cout<<std::endl;
+			capsuleFound=true;
 			}
+	if (! capsuleFound)
+			std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 
 }
 
 void mdebugger::UMLRTDebugger::listCapsuleBreakPoints(std::string capsuleName) {
+	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
 			//std::cout<<it->second <<"- "<<it->first<<"\n";
-			std::cout<<"Breakpoints:\n"; //
+			//std::cout<<"Breakpoints:\n"; //
+			cmdLineInterface.prettyPrint("Type", 10, ' ');
+			cmdLineInterface.prettyPrint("Place", 10, ' ');
+			cmdLineInterface.prettyPrint("Name", 30, ' ');
+			std::cout<<std::endl;
 			for (int i=0;i<this->capsules[it->second].getBreakPoints().size();i++)
 				std::cout<<i+1<<") "<<this->capsules[it->second].getBreakPoints()[i]<<"\n";
+			capsuleFound=true;
 			}
+
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 }
 
 void mdebugger::UMLRTDebugger::viewCapsuleAttributes(std::string capsuleName) {
-	//std::cout<<"show variables\n";
+	bool capsuleFound=false;
+	cmdLineInterface.prettyPrint("Name", 30, ' ');
+	cmdLineInterface.prettyPrint("Type", 10, ' ');
+	cmdLineInterface.prettyPrint("Value", 30, ' ');
+	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			//std::cout<<it->second <<") "<<it->first<<"\n";
-			//this->capsules[it->second].processLiveEvent();
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
-			std::cout<<"----------- "<<capsuleName<<" Capsule's Variables---------------------------\n"; //
-			std::cout<<this->capsules[it->second].getLastEvent().getVariableData()<<"\n";
-			//std::cout<<this->capsules[it->second].getLastEvent().getEventId()<<"\n";
-			//std::cout<<"-----------------------------------------------------------------------------\n";
+			std::vector<std::string> vars=cmdLineInterface.tokenizeString(capsules[it->second].getLastEvent().getVariableData(), '\n');
+			for (std::vector<std::string>::iterator it=vars.begin();it!=vars.end();it++)
+				cmdLineInterface.prettyPrintVariable(*it);
+			//std::cout<<this->capsules[it->second].getLastEvent().getVariableData()<<"\n";
+			capsuleFound=true;
 			}
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 
 }
 
 void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int count) {
+	bool capsuleFound=false;
+	cmdLineInterface.prettyPrint("Timestamp", 17, ' ');
+	cmdLineInterface.prettyPrint("Cpu Tick", 10, ' ');
+	cmdLineInterface.prettyPrint("Type",13,' ');
+	cmdLineInterface.prettyPrint("Location",20,' ');
+	cmdLineInterface.prettyPrint("Signal",10,' ');
+	cmdLineInterface.prettyPrint("Port",10,' ');
+	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			//std::cout<<it->second <<"- "<<it->first<<"\n";
-			//this->capsules[it->second].processLiveEvent();
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
-			//std::cout<<"-----------last  "<<count<<" "<<capsuleName<<" Capsule's Events---------------------------\n"; //
 			std::vector<debugEvents::Event> events=this->capsules[it->second].lastNEvents(count);
-			for (int i=0;i<events.size();i++)
-				std::cout<<i+1<<"- "<<events[i];
+			for (int i=0;i<events.size();i++){
+				cmdLineInterface.prettyPrintTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
+				cmdLineInterface.prettyPrint(cmdLineInterface.tokenizeString(std::to_string(events[i].getCpuTik()),'.')[0],10,' ');
+				cmdLineInterface.prettyPrint(events[i].getEventTypeLabel(),13,' ');
+				std::string tempS=events[i].getSimpleSourceName();
+				if (tempS.find("Debug__")!=std::string::npos)
+					tempS="*"+tempS.substr(7,tempS.length()-7);
+				cmdLineInterface.prettyPrint(tempS,20, ' ');
+				if (events[i].getEventType()==debugEvents::TRANISTIONSTART ||
+						events[i].getEventType()==debugEvents::TRANISTIONEND ||
+						events[i].getEventType()==debugEvents::TRANISTION){
+					cmdLineInterface.prettyPrint(events[i].getPayloadField("Signal"),10,' ');
+					if (events[i].getPayloadField("Port").compare("null")!=0)
+							cmdLineInterface.prettyPrint(events[i].getPayloadField("Port"),10,' ');
+				}
+
+				std::cout<<std::endl;
 			}
+			capsuleFound=true;
+			}
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 
 }
 
@@ -242,8 +281,10 @@ void mdebugger::UMLRTDebugger::setBreakPoint(std::string capsuleName,std::string
 }
 
 void mdebugger::UMLRTDebugger::setExecMode(std::string capsuleName,ExecMode execMode) {
+	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
+			std::cout<<"Run capsule  \""<<capsuleName<<"\" ....."<<std::endl;
 			this->capsules[it->second].setExecMode(execMode);
 			mdebugger::DebugCommand dbgCmd;
 			dbgCmd.setQualifiedName(capsuleName);
@@ -251,7 +292,12 @@ void mdebugger::UMLRTDebugger::setExecMode(std::string capsuleName,ExecMode exec
 			dbgCmd.setCmdParams("ExecMode", Util::intToStr(int(execMode))); // 0 begin 1=end
 			dbgCmd.generateTraceNo();
 			sendCommand(dbgCmd.serialize());
+
+			capsuleFound=true;
 		}
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
+
 
 }
 
@@ -451,13 +497,15 @@ void mdebugger::UMLRTDebugger::intializeTCP() {
 
 void mdebugger::UMLRTDebugger::listCapsules(){
 	std::cout<<"Running Capsule List:\n";
-	cmdLineInterface.prettyPrint("Capsule Id", 40, ' ');
-	cmdLineInterface.prettyPrint("Current Execution State", 40, ' ');
+	cmdLineInterface.prettyPrint("Capsule Id", 30, ' ');
+	cmdLineInterface.prettyPrint("Current Execution State", 30, ' ');
+	cmdLineInterface.prettyPrint("Exec Mode",10, ' ');
 	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it){
 			//std::cout<<it->second <<"- "<<it->first<<"\n";
-		    cmdLineInterface.prettyPrint(it->first, 40, ' ');
-		    cmdLineInterface.prettyPrint(this->capsules[it->second].getCrrentStateForPrint(), 40, ' ');
+		    cmdLineInterface.prettyPrint(it->first, 30, ' ');
+		    cmdLineInterface.prettyPrint(this->capsules[it->second].getCrrentStateForPrint(), 30, ' ');
+		    cmdLineInterface.prettyPrint(this->capsules[it->second].getExecModeStr(),10, ' ');
 		    std::cout<<std::endl;
 			//this->capsules[it->second].processLiveEvent();
 			//std::cout<<std::setw(30)<<std::setfill('-')<<"\n";
@@ -517,7 +565,7 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 				listCapsules();}
 			break;
 		case mdebugger::mdebuggerCommand::WATCH:
-			if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-v")==1){
+			if (cmd.commandOptions.count("-c")==1){ //&& cmd.commandOptions.count("-v")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				viewCapsuleAttributes(cmd.commandOptions["-c"]);
 			}

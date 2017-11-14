@@ -45,7 +45,11 @@ public:
 	const ParsedCMD& getParsedCmd() const;
 	void setParsedCmd(const ParsedCMD& parsedCmd);
 	void prettyPrint(std::string text, int length, char fillChar);
-
+	std::vector<std::string> tokenizeString(std::string str,char seperator);
+	void prettyPrintVariable(std::string);
+	void prettyPrintTime(long seconds, long nanosecond);
+	//void prettyPrintEvent(std::string);
+	//void prettyPrintEventWithDetail(std::string);
 private:
 	const static std::vector<mdebugger::CMDDesc> cmdDescList;
 	const static std::vector<mdebugger::CMDDesc> extCmdList;
