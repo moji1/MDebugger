@@ -20,7 +20,7 @@ As stated MDebugger provides model-level debugging in the context of Papyrus-RT.
 ## Starting Guide:
 ### Virtual Machine
 
-To help researchers and developers to use MDebugger, we prepared a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) using Oracle VirtualBox. It includes MDebugger source  and all required softwares (e.g., PapyrusRT). The virtual machine can be downloaded from the following links:
+To help researchers and developers to use MDebugger, we prepared a [virtual machine](http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova) using Oracle VirtualBox. It includes MDebugger source and all required software (e.g., PapyrusRT). The virtual machine can be downloaded from the following links:
 
 http://mase.cs.queensu.ca/fse-artifact/MDebugger.ova
 https://drive.google.com/file/d/0BzxhsAV1WGFRcXdHRHh4Zl85QXM/view?usp=sharing
@@ -51,7 +51,7 @@ Please note that we assume that you downloaded and started the VM successfully.
 Please note that you need to follow the remaining steps inside the second instance of Eclipse. 
     1. There are five projects in the workspace, below is a brief description of these projects: 
     ```
-    CommGateway        --> The Debugging Agent which is devloped using UML-RT.
+    CommGateway        --> The Debugging Agent which is developed using UML-RT.
     Counter            --> A sample UML-RT model created for the purpose of evaluation.
     Counter_CDTProject --> A C++ code generated from the counter model.
     PingPong           --> A sample UML-RT model created for the purpose of evaluation.
