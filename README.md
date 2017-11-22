@@ -117,7 +117,7 @@ Please note that you need to follow the remaining steps inside the second instan
 
 ### Video Tutorials
 - [Overview of MDebugger](https://youtu.be/L0JDn8eczwQ)
-- [Debugging Using Command Line User Interface](https://youtu.be/UJ4BYSOrTOQ)
-- [Debugging Using Graphical User Interface](https://youtu.be/PvPbV5QkQ9Y)
+- [Debugging Using Command Line User Interface](https://www.youtube.com/watch?v=6sJtuQgf36o)
+- [Debugging Using Graphical User Interface](https://www.youtube.com/watch?v=rzIlmVUXKfI)
 
 
