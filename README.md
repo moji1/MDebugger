@@ -105,14 +105,14 @@ Please note that you need to follow the remaining steps inside the second instan
          
          ```
          Upon successful execution, the following result should be shown in the terminal. 
-          ![alt text](screenshots/MDebugger-list.png)
+          ![alt text](screenshots/Listcommands.png)
      4. You have several debugging commands to debug the counter model. Use help to see a full list of commands. 
         For in use "list" to see the running capsules, 
                     use "n -c capsule name" to step over the execuation of the capsules,
                     use "b -c ...." to set a breakpoint,
                     and so on. 
      5. The following figure shows a full list of the MDebugger commands.
-        ![alt text](screenshots/MDebugger-Commands.png)         
+        ![alt text](screenshots/Help.png)         
 - Step 4 : Use the GUI interface: see [this page](https://github.com/moji1/MDebugger/tree/master/MDebugger-Eclipse-GUI).
 
 ### Video Tutorials
