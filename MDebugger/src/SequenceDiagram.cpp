@@ -34,7 +34,9 @@ void SequenceDiagram::setPlantumlDirectory(std::string directory) {
 
 void SequenceDiagram::printPlantUML(std::ostream& output, int numTransitions) {
 	output<<"@startuml\n";
-	for (int i = 0; i < numTransitions && i < transitions.size(); i++){
+	if (transitions.size() < numTransitions)
+		numTransitions = transitions.size() - 1;
+	for (int i = numTransitions; i > 0; i--){
 		std::string sender = transitions[i].getPayloadField("SenderCapsule");
 		std::string owner = transitions[i].getOwnerName();
 		std::string port = transitions[i].getPayloadField("Port");
