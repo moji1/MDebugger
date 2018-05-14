@@ -205,14 +205,10 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
 	std::list<debugEvents::Event> events;
 	bool newCapsuleAdded;
-	std::cout<<"Checkpoint 1\n";
 	std::unordered_set<std::string> visitedCapsules = {capsuleName.substr(0,capsuleName.find(":"))};
-	std::cout<<"Checkpoint 2\n";
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
-		std::cout<<"Checkpoint 3\n";
 		newCapsuleAdded = false;
 		mdebugger::CapsuleTracker currentCapsule = this->capsules[it->second];
-		std::cout<<"Checkpoint 4\n";
 		// using 10*count for now to just find transitions.  Please find a better way.
 		std::vector<debugEvents::Event> capEvents = currentCapsule.lastNEvents(10*count);
 		int i = 0;
@@ -234,26 +230,18 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 			visitedCapsules.insert(owner.substr(0,owner.find(":")));
 		} // end if
 	} // end for
-	std::cout<<"Checkpoint 5\n";
 	for(std::list<debugEvents::Event>::const_iterator it = events.begin(); it != events.end(); ++it) {
-		std::cout<<"Checkpoint 6\n";
 		std::string owner = it->getOwnerName();
-		std::cout<<"Checkpoint 7\n";
 		if (visitedCapsules.count(owner.substr(0,owner.find(":"))) != 1){
 			it = events.erase(it);
 			--it;
 		}
-		std::cout<<"Checkpoint 8\n";
 	} // end for
 
 	std::vector<debugEvents::Event> diagramEvents{std::make_move_iterator(std::begin(events)),std::make_move_iterator(std::end(events))};
-	std::cout<<"Checkpoint 9\n";
 	diagram::SequenceDiagram sqDiag(diagramEvents);
-	std::cout<<"Checkpoint 10\n";
 	sqDiag.printPlantUML(std::cout,count);
-	std::cout<<"Checkpoint 11\n";
 	sqDiag.runPlantUML(count);
-	std::cout<<"Checkpoint 12????\n";
 
 }
 

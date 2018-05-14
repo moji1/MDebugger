@@ -31,7 +31,7 @@ private:
 	std::string plantumlDirectory;
 	void sortTransitions();
 	static bool eventComp(const debugEvents::Event &e1, const debugEvents::Event &e2);
-	std::string convertTime(long timeSecond, long timeNano);
+	std::string convertTime(long baseSec, long baseNano, long timeSecond, long timeNano);
 };
 
 } // namespace diagram

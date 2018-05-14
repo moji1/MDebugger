@@ -36,6 +36,8 @@ void SequenceDiagram::printPlantUML(std::ostream& output, int numTransitions) {
 	output<<"@startuml\n";
 	if (transitions.size() < numTransitions)
 		numTransitions = transitions.size() - 1;
+	long baseTimeSecond = transitions[numTransitions].getTimePointSecond();
+	long baseTimeNano = transitions[numTransitions].getTimePointNano();
 	for (int i = numTransitions; i > 0; i--){
 		std::string sender = transitions[i].getPayloadField("SenderCapsule");
 		std::string owner = transitions[i].getOwnerName();
@@ -43,17 +45,20 @@ void SequenceDiagram::printPlantUML(std::ostream& output, int numTransitions) {
 		std::string signal = transitions[i].getPayloadField("Signal");
 		output<<owner.substr(0,owner.find(":"))<<" <- ";
 		if (signal == "timeout")
-			// Which is better: unique timers for each capsule, or just one "timer" lifeline?
 			output<<port;
-			//output<<"timer";
 		else
 			output<<sender;
 		output<<": "<<signal<<"\n";
-		output<<"note right: "<<convertTime(transitions[i].getTimePointSecond(), transitions[i].getTimePointNano());
+		if (i == numTransitions){
+			output<<"note right: 0.000s\n";
+		} else {
+			output<<"note right: "<<convertTime(baseTimeSecond, baseTimeNano, transitions[i].getTimePointSecond(), transitions[i].getTimePointNano());
+		}
 	} // end for
 	output<<"@enduml\n";
 }
 
+// Hard-coded to open png with gnome image viewer
 void SequenceDiagram::runPlantUML(int numTransitions) {
 	std::ostringstream uml;
 	printPlantUML(uml, numTransitions);
@@ -78,12 +83,25 @@ bool SequenceDiagram::eventComp(const debugEvents::Event &e1, const debugEvents:
 		return e1.getTimePointSecond() > e2.getTimePointSecond();
 }
 
-std::string SequenceDiagram::convertTime(long timeSecond, long timeNano) {
-	char t[23];
-	strftime(t, 23, "%Y-%m-%d\\n(%H:%M:%S:",localtime(&timeSecond));
-	std::string output(t);
+// Returns a formatted string of the event timestamp relative to the initial event.
+// Truncates nanoseconds to three digits.
+std::string SequenceDiagram::convertTime(long baseSec, long baseNano, long timeSecond, long timeNano) {
+	bool negativeFlag = false;
+	timeSecond = timeSecond - baseSec;
+	timeNano = timeNano - baseNano;
+	if (timeNano < 0) {
+		timeSecond--;
+		negativeFlag = true;
+	}
+	timeNano = 1000000000L + timeNano;
+	std::string output = "+";
+	std::string second = std::to_string(timeSecond);
 	std::string nano = std::to_string(timeNano);
-	output.append(nano).append(")\n");
+	if (negativeFlag)
+		nano = nano.substr(0,2);
+	else
+		nano = nano.substr(1,3);
+	output.append(second).append(".").append(nano).append("s").append("\n");
 	return output;
 }
 
