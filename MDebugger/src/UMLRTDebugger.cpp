@@ -217,7 +217,7 @@ void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int c
 				std::string sender = capEvents[i].getPayloadField("SenderCapsule");
 				std::string owner = capEvents[i].getOwnerName();
 				std::string payloadSource = capEvents[i].getPayloadField("Source");
-				if ((payloadSource.compare(0,filterString.length(),filterString))){
+				if (payloadSource.compare(0,filterString.length(),filterString) && sender.compare("null")){
 					events.push_back(capEvents[i]);
 					if (visitedCapsules.count(owner.substr(0,owner.find(":"))) == 1 || visitedCapsules.count(sender) == 1)
 						newCapsuleAdded = true;

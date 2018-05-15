@@ -50,7 +50,7 @@ void SequenceDiagram::printPlantUML(std::ostream& output, int numTransitions) {
 			output<<sender;
 		output<<": "<<signal<<"\n";
 		if (i == numTransitions){
-			output<<"note right: 0.000s\n";
+			output<<"note right: 0.00s\n";
 		} else {
 			output<<"note right: "<<convertTime(baseTimeSecond, baseTimeNano, transitions[i].getTimePointSecond(), transitions[i].getTimePointNano());
 		}
@@ -98,9 +98,9 @@ std::string SequenceDiagram::convertTime(long baseSec, long baseNano, long timeS
 	std::string second = std::to_string(timeSecond);
 	std::string nano = std::to_string(timeNano);
 	if (negativeFlag)
-		nano = nano.substr(0,2);
+		nano = nano.substr(0,1);
 	else
-		nano = nano.substr(1,3);
+		nano = nano.substr(1,2);
 	output.append(second).append(".").append(nano).append("s").append("\n");
 	return output;
 }
