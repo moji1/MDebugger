@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Q9_jMFwtEeiFtYE3rpVz3w" name="debugging" metaclassReference="_V_kmsFwtEeiFtYE3rpVz3w _V_rUYFwtEeiFtYE3rpVz3w">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_arjNoFwtEeiFtYE3rpVz3w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_MLqDUVwyEeiFtYE3rpVz3w" name="debugging" nsURI="http:///schemas/debugging/_MLqDUFwyEeiFtYE3rpVz3w/2" nsPrefix="debugging">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MLqDYlwyEeiFtYE3rpVz3w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MLqDY1wyEeiFtYE3rpVz3w" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MLqDZFwyEeiFtYE3rpVz3w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MLqDZVwyEeiFtYE3rpVz3w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MLqDZlwyEeiFtYE3rpVz3w" key="Date" value="2018-05-20"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MLqDZ1wyEeiFtYE3rpVz3w" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_MLqDUlwyEeiFtYE3rpVz3w" name="Current">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MLqDU1wyEeiFtYE3rpVz3w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_SPnjIFwtEeiFtYE3rpVz3w"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MLqDVFwyEeiFtYE3rpVz3w" name="base_Transition" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MLqDVlwyEeiFtYE3rpVz3w" name="base_Vertex" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Vertex"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_MLqDWFwyEeiFtYE3rpVz3w" name="Breakpoint">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MLqDWVwyEeiFtYE3rpVz3w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_FnVQIFwxEeiFtYE3rpVz3w"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MLqDWlwyEeiFtYE3rpVz3w" name="base_Transition" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MLqDXFwyEeiFtYE3rpVz3w" name="base_Vertex" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Vertex"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_u-JnUVwxEeiFtYE3rpVz3w" name="debugging" nsURI="http:///schemas/debugging/_u-JnUFwxEeiFtYE3rpVz3w/1" nsPrefix="debugging">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_u-MqpFwxEeiFtYE3rpVz3w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_u-MqpVwxEeiFtYE3rpVz3w" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_u-MqplwxEeiFtYE3rpVz3w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_u-Mqp1wxEeiFtYE3rpVz3w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_u-MqqFwxEeiFtYE3rpVz3w" key="Date" value="2018-05-20"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_u-MqqVwxEeiFtYE3rpVz3w" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_u-JnUlwxEeiFtYE3rpVz3w" name="Current">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_u-JnU1wxEeiFtYE3rpVz3w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_SPnjIFwtEeiFtYE3rpVz3w"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_u-JnVFwxEeiFtYE3rpVz3w" name="base_Transition" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_u-JnVlwxEeiFtYE3rpVz3w" name="base_Vertex" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Vertex"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_u-JnWFwxEeiFtYE3rpVz3w" name="Breakpoint">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_u-JnWVwxEeiFtYE3rpVz3w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_FnVQIFwxEeiFtYE3rpVz3w"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_u-JnWlwxEeiFtYE3rpVz3w" name="base_Transition" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_u-JnXFwxEeiFtYE3rpVz3w" name="base_Vertex" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Vertex"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_arjNoVwtEeiFtYE3rpVz3w" name="debugging" nsURI="http:///schemas/debugging/_argKUFwtEeiFtYE3rpVz3w/0" nsPrefix="debugging">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_arlC0lwtEeiFtYE3rpVz3w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_arlC01wtEeiFtYE3rpVz3w" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_arlC1FwtEeiFtYE3rpVz3w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_arlC1VwtEeiFtYE3rpVz3w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_arlC1lwtEeiFtYE3rpVz3w" key="Date" value="2018-05-20"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_arlC11wtEeiFtYE3rpVz3w" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_arjNolwtEeiFtYE3rpVz3w" name="Current">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_arjNo1wtEeiFtYE3rpVz3w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_SPnjIFwtEeiFtYE3rpVz3w"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_arjNpFwtEeiFtYE3rpVz3w" name="base_Transition" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_arjNplwtEeiFtYE3rpVz3w" name="base_Vertex" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Vertex"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_V_kmsFwtEeiFtYE3rpVz3w" alias="Vertex">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Vertex"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_V_rUYFwtEeiFtYE3rpVz3w" alias="Transition">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Transition"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_SPnjIFwtEeiFtYE3rpVz3w" name="Current">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_WmFNEFwtEeiFtYE3rpVz3w" name="base_Transition" association="_WmAUkFwtEeiFtYE3rpVz3w">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Transition"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XZ2zYFwtEeiFtYE3rpVz3w" name="base_Vertex" association="_XZxT0FwtEeiFtYE3rpVz3w">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Vertex"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WmAUkFwtEeiFtYE3rpVz3w" name="E_Current_Transition1" memberEnd="_WmDX4FwtEeiFtYE3rpVz3w _WmFNEFwtEeiFtYE3rpVz3w">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WmDX4FwtEeiFtYE3rpVz3w" name="extension_Current" type="_SPnjIFwtEeiFtYE3rpVz3w" aggregation="composite" association="_WmAUkFwtEeiFtYE3rpVz3w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_XZxT0FwtEeiFtYE3rpVz3w" name="E_Current_Vertex1" memberEnd="_XZ0-MFwtEeiFtYE3rpVz3w _XZ2zYFwtEeiFtYE3rpVz3w">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_XZ0-MFwtEeiFtYE3rpVz3w" name="extension_Current" type="_SPnjIFwtEeiFtYE3rpVz3w" aggregation="composite" association="_XZxT0FwtEeiFtYE3rpVz3w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_FnVQIFwxEeiFtYE3rpVz3w" name="Breakpoint">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_G7PvEFwxEeiFtYE3rpVz3w" name="base_Transition" association="_G7N54FwxEeiFtYE3rpVz3w">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Transition"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Hh44UFwxEeiFtYE3rpVz3w" name="base_Vertex" association="_Hh3qMFwxEeiFtYE3rpVz3w">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Vertex"/>
+    </ownedAttribute>
+    <icon xmi:type="uml:Image" xmi:id="_uU7rMFwxEeiFtYE3rpVz3w" format="SVG" location="platform:/plugin/ca.queensu.cs.mdebugger.profile/img/breakpoint.svg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uU7rMVwxEeiFtYE3rpVz3w" source="image_papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uU7rMlwxEeiFtYE3rpVz3w" key="image_name_key" value="breakpoint"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uU7rM1wxEeiFtYE3rpVz3w" key="image_kind_key" value="icon"/>
+      </eAnnotations>
+      <content xsi:nil="true"/>
+    </icon>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_G7N54FwxEeiFtYE3rpVz3w" name="E_Breakpoint_Transition1" memberEnd="_G7PIAFwxEeiFtYE3rpVz3w _G7PvEFwxEeiFtYE3rpVz3w">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_G7PIAFwxEeiFtYE3rpVz3w" name="extension_Breakpoint" type="_FnVQIFwxEeiFtYE3rpVz3w" aggregation="composite" association="_G7N54FwxEeiFtYE3rpVz3w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Hh3qMFwxEeiFtYE3rpVz3w" name="E_Breakpoint_Vertex1" memberEnd="_Hh4RQFwxEeiFtYE3rpVz3w _Hh44UFwxEeiFtYE3rpVz3w">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Hh4RQFwxEeiFtYE3rpVz3w" name="extension_Breakpoint" type="_FnVQIFwxEeiFtYE3rpVz3w" aggregation="composite" association="_Hh3qMFwxEeiFtYE3rpVz3w"/>
+  </packagedElement>
+</uml:Profile>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://MDEBUGGER_PROFILE/"
+            target="platform:/plugin/ca.queensu.cs.mdebugger.profile/profile/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="UML profile for debugging using MDebugger"
+            iconpath="img/breakpoint.png"
+            name="Mdebugger profile"
+            path="pathmap://MDEBUGGER_PROFILE/debugging.profile.uml"
+            provider="School of Computing, Queen's University">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.css.theme">
+      <themeContribution
+            id="org.eclipse.papyrus.css.papyrus_theme">
+         <stylesheet
+               stylesheetPath="css/style.css">
+         </stylesheet>
+      </themeContribution>
+   </extension>
+</plugin>

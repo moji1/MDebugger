@@ -1,0 +1,11 @@
+/* Equivalent: qualified name */
+[appliedStereotypes~="debugging::Current"]{
+    bold:true;
+    fontColor: #009900;
+    lineColor: #009900;
+}
+
+/* The following does not work. Seem to be related with https://bugs.eclipse.org/bugs/show_bug.cgi?id=472932 */
+[appliedStereotypes~="debugging::Current"] > Label[type=StereotypeLabel] {
+	visible: false;
+}
