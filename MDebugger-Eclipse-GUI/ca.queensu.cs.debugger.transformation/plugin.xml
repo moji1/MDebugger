@@ -65,7 +65,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrusrt.codegen.papyrus.codegen">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
             <command
                commandId="ca.queensu.cs.debugger.transformation.GenerateDebuggableCode"
                label="Generate code (debug)">
