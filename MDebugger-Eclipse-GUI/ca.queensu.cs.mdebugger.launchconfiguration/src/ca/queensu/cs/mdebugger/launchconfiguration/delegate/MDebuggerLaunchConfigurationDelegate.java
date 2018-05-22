@@ -40,7 +40,6 @@ public class MDebuggerLaunchConfigurationDelegate extends LaunchConfigurationDel
 	//	String attribute = configuration.getAttribute(MDebuggerConfigurationAttributes.CONSOLE_TEXT, "Simon says \"RUN!\"");
     //    System.out.println(attribute);
 		
-		
         if (ILaunchManager.DEBUG_MODE.equals(mode)) {
         	IDebugTarget target = new MDebuggerDebugTarget(null, launch); // instantiate custom IDebugTarget
 //        	 TCPServerProcess process = new TCPServerProcess(target);

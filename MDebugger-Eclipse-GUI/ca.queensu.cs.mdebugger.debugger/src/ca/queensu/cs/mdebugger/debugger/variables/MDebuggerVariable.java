@@ -16,6 +16,7 @@ import org.eclipse.debug.core.model.IValue;
 import org.eclipse.debug.core.model.IVariable;
 
 import ca.queensu.cs.mdebugger.debugger.model.MDebuggerDebugElement;
+import ca.queensu.cs.mdebugger.debugger.model.MDebuggerDebugTarget;
 import ca.queensu.cs.mdebugger.debugger.stackframes.CapsuleStackFrame;
 
 /**

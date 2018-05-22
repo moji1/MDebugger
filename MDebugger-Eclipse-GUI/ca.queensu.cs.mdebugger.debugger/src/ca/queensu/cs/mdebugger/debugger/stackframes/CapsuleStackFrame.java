@@ -94,7 +94,6 @@ public class CapsuleStackFrame extends MDebuggerStackFrame {
 	
 	@Override
 	public IVariable[] getVariables() throws DebugException {
-		
 		if (this.variables == null)
 			return new IVariable[0];
 		

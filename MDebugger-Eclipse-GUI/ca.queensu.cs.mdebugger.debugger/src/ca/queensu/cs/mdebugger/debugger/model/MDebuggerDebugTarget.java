@@ -8,6 +8,7 @@
  ******************************************************************************/
 package ca.queensu.cs.mdebugger.debugger.model;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.resources.IMarkerDelta;
@@ -27,6 +28,11 @@ import org.eclipse.debug.ui.AbstractDebugView;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -42,7 +48,11 @@ import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.StateMachine;
+import org.eclipse.uml2.uml.Stereotype;
 
 import ca.queensu.cs.mdebugger.debugger.breakpoints.MDebuggerBreakpoint;
 import ca.queensu.cs.mdebugger.debugger.server.MDebuggerTCPServer;
@@ -75,6 +85,7 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
     State currentState;
     
     private PapyrusMultiDiagramEditor editor;
+	private String diPath;
 
     // the IProcess and ILaunch are provided by an IDebugTarget and therefore
     // they should be passed. The getProcess() and getLaunch() method should be
@@ -90,7 +101,7 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
             
             this.tcpServer.start();
             
-    		String diPath = "";
+    		diPath = "";
     		
     		try {
     			diPath = launch.getLaunchConfiguration().getAttribute("ca.queensu.cs.mdebugger.launcher.attributes.diPath", "/PingPong/model.di");
@@ -155,6 +166,8 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 
     @Override
     public void terminate() throws DebugException {
+    	
+
     	for (IThread thread: threads) {
     		thread.terminate();
     	}
@@ -171,9 +184,34 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 			
 			@Override
 			public void run() {
+				/* Remove profile */
+		    	URI uri = URI.createPlatformResourceURI(diPath, true);
+		    	TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) editor.getEditingDomain();
+		    	ResourceSet resourceSet = editingDomain.getResourceSet();
+		    	Resource profileResource = resourceSet.getResource(URI.createURI("platform:/plugin/ca.queensu.cs.mdebugger.profile/profile/debugging.profile.uml"), true);
+		    	Profile debuggingProfile = (Profile) profileResource.getContents().get(0);
+		    	Resource umlResource = resourceSet.getResource(uri, true);
+		    	Model model = (Model) umlResource.getContents().get(0);
+		    	editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+		    		
+		    		@Override
+		    		protected void doExecute() {
+		    			if (model.isProfileApplied(debuggingProfile)) {
+		    				model.unapplyProfile(debuggingProfile);
+		    			/*	try {
+								umlResource.save(null);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} */
+		    			}
+		    		}
+		    	});
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().removeSelectionListener(debugTarget);					
 			}
-		}); 	
+		}); 
+        
+		
     }
     
     public void setWriter(MDebuggerTCPWriter writer) {
@@ -375,6 +413,32 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 				IEditorPart papyrusEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(editorInput, "org.eclipse.papyrus.infra.core.papyrusEditor");
 				this.target.editor = (PapyrusMultiDiagramEditor)papyrusEditor;
 				
+				/* Add profile */
+				TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) this.target.editor.getEditingDomain();
+				ResourceSet resourceSet = editingDomain.getResourceSet();
+				Resource profileResource = resourceSet.getResource(URI.createURI("platform:/plugin/ca.queensu.cs.mdebugger.profile/profile/debugging.profile.uml"), true);
+				Profile debuggingProfile = (Profile) profileResource.getContents().get(0);
+				Resource umlResource = resourceSet.getResource(uri, true);
+				Model model = (Model) umlResource.getContents().get(0);
+				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+					
+					@Override
+					protected void doExecute() {						
+						model.applyProfile(debuggingProfile);
+						/*org.eclipse.uml2.uml.Class counter = (Class) model.getPackagedElement("Counter");
+						StateMachine fsm = (StateMachine) counter.getOwnedBehaviors().get(0);
+						org.eclipse.uml2.uml.State state = (org.eclipse.uml2.uml.State) fsm.getRegions().get(0).getSubvertex("COUNTING");
+						System.out.println(state);
+						state.applyStereotype((Stereotype) debuggingProfile.getPackagedElement("Current"));
+						*//*try {
+							umlResource.save(null);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}*/
+					}
+				});
+				
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -408,6 +472,7 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 				
 			}
 			else if (element instanceof CapsuleStackFrame) {
+				
 				CapsuleThread thread = (CapsuleThread) ((CapsuleStackFrame)element).getThread();
 				View view = revealDiagram(thread);
 			}
@@ -428,6 +493,8 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 					if (eobj instanceof StateMachine) {
 						StateMachine fsm = (StateMachine)eobj;
 						if(fsm.getContext().getName().equalsIgnoreCase(capsuleName)) {
+							
+							// FIXME: update profile diagram
 							if (!pageManager.isOpen(page))
 								pageManager.openPage(page);
 							pageManager.selectPage(page);
