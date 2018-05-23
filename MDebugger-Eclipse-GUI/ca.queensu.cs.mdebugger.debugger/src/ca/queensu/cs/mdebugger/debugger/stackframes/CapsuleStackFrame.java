@@ -39,8 +39,8 @@ public class CapsuleStackFrame extends MDebuggerStackFrame {
 	private IVariable[] variables;
 	private int weirdNumber;
 	
-	private ElementKind currentElementKind;
-	private String currentElementName;
+	public ElementKind currentElementKind;
+	public String currentElementName;
 	private String currentUserFriendlyStateName;
 	private EventPosition currentPosition;
 	private ActionCodeType currentActionCodeType;

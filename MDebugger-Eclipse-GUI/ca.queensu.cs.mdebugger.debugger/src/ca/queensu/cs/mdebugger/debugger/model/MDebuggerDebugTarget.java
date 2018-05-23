@@ -8,7 +8,6 @@
  ******************************************************************************/
 package ca.queensu.cs.mdebugger.debugger.model;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.resources.IMarkerDelta;
@@ -23,21 +22,18 @@ import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IMemoryBlock;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IThread;
-import org.eclipse.debug.internal.ui.views.launch.LaunchView;
 import org.eclipse.debug.ui.AbstractDebugView;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -48,13 +44,15 @@ import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Transition;
 
 import ca.queensu.cs.mdebugger.debugger.breakpoints.MDebuggerBreakpoint;
+import ca.queensu.cs.mdebugger.debugger.model.CapsuleThread.ElementKind;
 import ca.queensu.cs.mdebugger.debugger.server.MDebuggerTCPServer;
 import ca.queensu.cs.mdebugger.debugger.server.MDebuggerTCPSocket;
 import ca.queensu.cs.mdebugger.debugger.server.MDebuggerTCPWriter;
@@ -76,6 +74,9 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
     
     private MDebuggerTCPWriter writer;
     private MDebuggerTCPSocket reader;
+    
+    private Profile debuggingProfile;
+    private TransactionalEditingDomain editingDomain;
     
     // The different states, which this IThread can have
     private enum State {
@@ -414,10 +415,10 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 				this.target.editor = (PapyrusMultiDiagramEditor)papyrusEditor;
 				
 				/* Add profile */
-				TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) this.target.editor.getEditingDomain();
+				editingDomain = (TransactionalEditingDomain) this.target.editor.getEditingDomain();
 				ResourceSet resourceSet = editingDomain.getResourceSet();
 				Resource profileResource = resourceSet.getResource(URI.createURI("platform:/plugin/ca.queensu.cs.mdebugger.profile/profile/debugging.profile.uml"), true);
-				Profile debuggingProfile = (Profile) profileResource.getContents().get(0);
+				debuggingProfile = (Profile) profileResource.getContents().get(0);
 				Resource umlResource = resourceSet.getResource(uri, true);
 				Model model = (Model) umlResource.getContents().get(0);
 				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
@@ -492,9 +493,9 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 					EObject eobj = ((View)page).getElement();
 					if (eobj instanceof StateMachine) {
 						StateMachine fsm = (StateMachine)eobj;
+						displayCurrentState(fsm, thread.currentElementKind, thread.currentElementName);
 						if(fsm.getContext().getName().equalsIgnoreCase(capsuleName)) {
 							
-							// FIXME: update profile diagram
 							if (!pageManager.isOpen(page))
 								pageManager.openPage(page);
 							pageManager.selectPage(page);
@@ -508,6 +509,39 @@ public class MDebuggerDebugTarget extends MDebuggerDebugElement implements IDebu
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	private NamedElement oldElement = null;
+	
+	private void displayCurrentState(StateMachine fsm, ElementKind currentElementKind, String currentState) {
+		final NamedElement element = (currentElementKind.equals(ElementKind.STATE)) ?
+				fsm.getRegions().get(0).getSubvertex(currentState) :
+				fsm.getRegions().get(0).getTransition(currentState)
+		;
+				
+		
+		if (element != null) {
+			
+			if (element == oldElement) {
+				return;
+			}
+			
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+
+				@Override
+				protected void doExecute() {
+					Stereotype current = (Stereotype) debuggingProfile.getPackagedElement("Current");
+					
+					if(oldElement != null && oldElement.isStereotypeApplied(current))
+						oldElement.unapplyStereotype(current);
+						
+					if(!element.isStereotypeApplied(current))
+						element.applyStereotype(current);
+					
+					oldElement = element;
+				}
+			});
+		}
 	}
 
 

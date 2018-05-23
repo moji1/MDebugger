@@ -59,8 +59,8 @@ public class CapsuleThread extends MDebuggerDebugElement implements IThread {
 		ENTRY, EXIT, EFFECT 
 	}
 	
-	private ElementKind currentElementKind;
-	private String currentElementName;
+	ElementKind currentElementKind;
+	public String currentElementName;
 	private String currentUserFriendlyStateName;
 	private EventPosition currentPosition;
 	private ActionCodeType currentActionCodeType;
