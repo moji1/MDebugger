@@ -16,7 +16,7 @@ import "DetailTracing.eol";
 var uniqueId:Integer=0;
 var instrumentPrefix:String="__Debug__";
 
-operation UMLRTModel!Transition applyRule1(ownerCapsule:UMLRTModel!Class)  {
+operation UMLRTModel!Transition applyRule1(ownerCapsule:UMLRTModel!Class)  { //StoS","StoC","CtoC","Ctos
 	//// initialize 
 	var source:UMLRTModel!State=self.source;
 	//self.source.addTrace(traceType);
@@ -141,7 +141,7 @@ operation UMLRTModel!Transition applyRule2(ownerCapsule:UMLRTModel!Class)  { //S
 	self.addTrace(traceType);
 }
 
-operation UMLRTModel!Transition applyRule3(ownerCapsule:UMLRTModel!Class)  {
+operation UMLRTModel!Transition applyRule3(ownerCapsule:UMLRTModel!Class)  { //PtoS","PtoC
 	var source:UMLRTModel!Pseudostate=self.source;
 	var target:UMLRTModel!State=self.target;
 	//self.target.addTrace(traceType);
@@ -158,7 +158,7 @@ operation UMLRTModel!Transition applyRule3(ownerCapsule:UMLRTModel!Class)  {
 	dbgState1.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","0","","","","");
 	var dbgState2=createState(instrumentPrefix.concat("A__Ac__").concat(self.name));
 	dbgState2.addExecControlToDbgState(self.name,"3","TransitionEffectBreakPoint","1",target.name,"4","StateEntryBreakPoint","0");
-	var dbgState3=createState(instrumentPrefix.concat("A__En__").concat(self.name));
+	var dbgState3=createState(instrumentPrefix.concat("A__En__").concat(self.target.name));
 	dbgState3.addExecControlToDbgState(target.name,"4","StateEntryBreakPoint","1","","","","");
 	//var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), initDbgState, dbgState1);
 	var initDbgTrans=createTransition(instrumentPrefix.concat("init__trans__").concat(self.name), debugMainState.connectionPoint.selectOne(e|e.name="en"), dbgState1,"");
@@ -421,7 +421,7 @@ operation UMLRTModel!State addExecControlToDbgState(name1:String,mode1:String,br
 	if (self.target.name.isDefined())
 		tempS=tempS.concat("__").concat(self.target.name);
 	else 
-		tempS=tempS=tempS.concat("__none");
+		tempS=tempS.concat("__none");
 	self.name=tempS.concat("__").concat(uniqueId.asString());
 }
 /// assign name to state that don't have name 

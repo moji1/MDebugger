@@ -25,13 +25,20 @@
       <packagedElement xmi:type="uml:CallEvent" xmi:id="_akzWMExOEeeAapBXl-GW2w" operation="_akmh4ExOEeeAapBXl-GW2w"/>
       <packagedElement xmi:type="uml:CallEvent" xmi:id="_bV-UcExOEeeAapBXl-GW2w" operation="_bVz8YExOEeeAapBXl-GW2w"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_dBdl4ExOEeeAapBXl-GW2w" name="Pinger" classifierBehavior="_7eBO8ExOEeeAapBXl-GW2w" isActive="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_dBdl4ExOEeeAapBXl-GW2w" name="Pinger" visibility="public" classifierBehavior="_7eBO8ExOEeeAapBXl-GW2w" isActive="true">
       <ownedAttribute xmi:type="uml:Port" xmi:id="_e-deEExOEeeAapBXl-GW2w" name="log" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
         <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_6kIb0IeXEeSVyrlWP4nYew"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Port" xmi:id="_gCK90ExOEeeAapBXl-GW2w" name="pinger" type="_YKDyEExOEeeAapBXl-GW2w" isOrdered="true" aggregation="composite" isBehavior="true"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_ww8oQExOEeeAapBXl-GW2w" name="i" visibility="public">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ww8oQExOEeeAapBXl-GW2w" name="pingCount" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-bo3cMihEeecpIDEOn0ZdA" name="varString">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Ez1IkMiiEeecpIDEOn0ZdA" value="testStringVariable"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Inau8MiiEeecpIDEOn0ZdA" name="varBool">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
       <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_7eBO8ExOEeeAapBXl-GW2w" name="PingerStateMachine" isReentrant="false">
         <region xmi:type="uml:Region" xmi:id="_7eS7wExOEeeAapBXl-GW2w" name="Region">
@@ -39,14 +46,16 @@
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_-mSyAExPEeeAapBXl-GW2w" name="Effect" isReentrant="false">
               <language>C++</language>
               <body>log.show(&quot;leaving initial pseudo state of pinger\n&quot;);
-pinger.ping().send();</body>
+pinger.ping().send();
+pingCount=1;</body>
             </effect>
           </transition>
           <transition xmi:type="uml:Transition" xmi:id="_B4BBcExQEeeAapBXl-GW2w" name="onPong" kind="external" source="_7ehlQExOEeeAapBXl-GW2w" target="_7ehlQExOEeeAapBXl-GW2w">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_ImedgExQEeeAapBXl-GW2w" name="Effect" isReentrant="false">
               <language>C++</language>
               <body>log.show(&quot;pong message received.\n&quot;);
-pinger.ping().send();</body>
+pinger.ping().send();
+pingCount=pingCount+1;</body>
             </effect>
             <trigger xmi:type="uml:Trigger" xmi:id="_DrVZMExQEeeAapBXl-GW2w" event="_bV-UcExOEeeAapBXl-GW2w" port="_gCK90ExOEeeAapBXl-GW2w"/>
           </transition>

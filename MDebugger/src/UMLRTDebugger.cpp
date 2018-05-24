@@ -101,55 +101,147 @@ void mdebugger::UMLRTDebugger::addCapsule(mdebugger::CapsuleTracker capsuleTrack
 }
 
 void mdebugger::UMLRTDebugger::listCapsuleConfig(std::string capsuleName) {
+	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			//std::cout<<it->second <<") "<<it->first<<"\n";
-			//std::cout<<std::setw(30)<<std::setfill('-')<<"\n";
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
-			std::cout<<"Running Mode is  \""<<this->capsules[it->second].getExecModeStr()<<"\"\n";
-			std::cout<<"Breakpoints:\n"; //
-			for (int i=0;i<this->capsules[it->second].getBreakPoints().size();i++)
-				std::cout<<i+1<<") "<<this->capsules[it->second].getBreakPoints()[i]<<"\n";
+			cmdLineInterface.prettyPrint("Current Execution State", 30, ' ');
+			cmdLineInterface.prettyPrint("Exec Mode", 10, ' ');
+			std::cout<<std::endl;
+			cmdLineInterface.prettyPrint(this->capsules[it->second].getCrrentStateForPrint(),30,' ');
+			cmdLineInterface.prettyPrint(this->capsules[it->second].getExecModeStr(),10,' ');
+			std::cout<<std::endl;
+			capsuleFound=true;
 			}
+	if (! capsuleFound)
+			std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 
 }
 
 void mdebugger::UMLRTDebugger::listCapsuleBreakPoints(std::string capsuleName) {
+	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
 			//std::cout<<it->second <<"- "<<it->first<<"\n";
-			std::cout<<"Breakpoints:\n"; //
+			//std::cout<<"Breakpoints:\n"; //
+			cmdLineInterface.prettyPrint("Type", 10, ' ');
+			cmdLineInterface.prettyPrint("Place", 10, ' ');
+			cmdLineInterface.prettyPrint("Name", 30, ' ');
+			std::cout<<std::endl;
 			for (int i=0;i<this->capsules[it->second].getBreakPoints().size();i++)
 				std::cout<<i+1<<") "<<this->capsules[it->second].getBreakPoints()[i]<<"\n";
+			capsuleFound=true;
 			}
+
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 }
 
 void mdebugger::UMLRTDebugger::viewCapsuleAttributes(std::string capsuleName) {
-	//std::cout<<"show variables\n";
+	bool capsuleFound=false;
+	cmdLineInterface.prettyPrint("Name", 30, ' ');
+	cmdLineInterface.prettyPrint("Type", 10, ' ');
+	cmdLineInterface.prettyPrint("Value", 30, ' ');
+	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			//std::cout<<it->second <<") "<<it->first<<"\n";
-			//this->capsules[it->second].processLiveEvent();
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
-			std::cout<<"----------- "<<capsuleName<<" Capsule's Variables---------------------------\n"; //
-			std::cout<<this->capsules[it->second].getLastEvent().getVariableData()<<"\n";
-			//std::cout<<this->capsules[it->second].getLastEvent().getEventId()<<"\n";
-			//std::cout<<"-----------------------------------------------------------------------------\n";
+			std::vector<std::string> vars=cmdLineInterface.tokenizeString(capsules[it->second].getLastEvent().getVariableData(), '\n');
+			for (std::vector<std::string>::iterator it=vars.begin();it!=vars.end();it++)
+				cmdLineInterface.prettyPrintVariable(*it);
+			//std::cout<<this->capsules[it->second].getLastEvent().getVariableData()<<"\n";
+			capsuleFound=true;
 			}
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
 
 }
 
 void mdebugger::UMLRTDebugger::viewCapsuleEvents(std::string capsuleName,int count) {
+	bool capsuleFound=false;
+	cmdLineInterface.prettyPrint("Timestamp", 17, ' ');
+	cmdLineInterface.prettyPrint("Cpu Tick", 10, ' ');
+	cmdLineInterface.prettyPrint("Type",13,' ');
+	cmdLineInterface.prettyPrint("Location",20,' ');
+	cmdLineInterface.prettyPrint("Signal",10,' ');
+	cmdLineInterface.prettyPrint("Port",10,' ');
+	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
-			//std::cout<<it->second <<"- "<<it->first<<"\n";
-			//this->capsules[it->second].processLiveEvent();
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
-			//std::cout<<"-----------last  "<<count<<" "<<capsuleName<<" Capsule's Events---------------------------\n"; //
 			std::vector<debugEvents::Event> events=this->capsules[it->second].lastNEvents(count);
-			for (int i=0;i<events.size();i++)
-				std::cout<<i+1<<"- "<<events[i];
+			for (int i=0;i<events.size();i++){
+				cmdLineInterface.prettyPrintTime(events[i].getTimePointSecond(), events[i].getTimePointNano());
+				cmdLineInterface.prettyPrint(cmdLineInterface.tokenizeString(std::to_string(events[i].getCpuTik()),'.')[0],10,' ');
+				cmdLineInterface.prettyPrint(events[i].getEventTypeLabel(),13,' ');
+				std::string tempS=events[i].getSimpleSourceName();
+				if (tempS.find("Debug__")!=std::string::npos)
+					tempS="*"+tempS.substr(7,tempS.length()-7);
+				cmdLineInterface.prettyPrint(tempS,20, ' ');
+				if (events[i].getEventType()==debugEvents::TRANISTIONSTART ||
+						events[i].getEventType()==debugEvents::TRANISTIONEND ||
+						events[i].getEventType()==debugEvents::TRANISTION){
+					cmdLineInterface.prettyPrint(events[i].getPayloadField("Signal"),10,' ');
+					if (events[i].getPayloadField("Port").compare("null")!=0)
+							cmdLineInterface.prettyPrint(events[i].getPayloadField("Port"),10,' ');
+				}
+
+				std::cout<<std::endl;
 			}
+			capsuleFound=true;
+			}
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
+
+}
+
+// added by David
+// Notes:
+// Need to try this on Rock Paper Scissors model to understand interactions between more than 2 capsules
+// Currently has trouble differentiating between capsule instances b/c "SenderCapsule" info for an event does not differentiate between instances.
+// Maybe use a list instead of vector for the events to make removal quicker? I dunno.  Sort would be slower then?
+//
+// The function adds ALL recent transitions to a vector while building a set of capsules that are connected to the focus capsule through
+// transition events.  It then removes events that don't involve capsules that are connected to the focus capsule, sorts those events,
+// generates plantuml code, and displays the generated diagram.
+void mdebugger::UMLRTDebugger::viewSequenceDiagram(std::string capsuleName,int count) {
+	std::string filterString("Debug__Path"); //used to filter out duplicate transitions
+	std::list<debugEvents::Event> events;
+	bool newCapsuleAdded;
+	std::unordered_set<std::string> visitedCapsules = {capsuleName.substr(0,capsuleName.find(":"))};
+	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
+		newCapsuleAdded = false;
+		mdebugger::CapsuleTracker currentCapsule = this->capsules[it->second];
+		// using 10*count for now to just find transitions.  Please find a better way.
+		std::vector<debugEvents::Event> capEvents = currentCapsule.lastNEvents(10*count);
+		int i = 0;
+		while (i < capEvents.size()) {
+			if (capEvents[i].getEventSourceKind() == 3){
+				std::string sender = capEvents[i].getPayloadField("SenderCapsule");
+				std::string owner = capEvents[i].getOwnerName();
+				std::string payloadSource = capEvents[i].getPayloadField("Source");
+				if (payloadSource.compare(0,filterString.length(),filterString) && sender.compare("null")){
+					events.push_back(capEvents[i]);
+					if (visitedCapsules.count(owner.substr(0,owner.find(":"))) == 1 || visitedCapsules.count(sender) == 1)
+						newCapsuleAdded = true;
+				} // end if
+			} // end if
+			i++;
+		} // end while
+		if (newCapsuleAdded) {
+			std::string owner = it->first;
+			visitedCapsules.insert(owner.substr(0,owner.find(":")));
+		} // end if
+	} // end for
+	for(std::list<debugEvents::Event>::const_iterator it = events.begin(); it != events.end(); ++it) {
+		std::string owner = it->getOwnerName();
+		if (visitedCapsules.count(owner.substr(0,owner.find(":"))) != 1){
+			it = events.erase(it);
+			--it;
+		}
+	} // end for
+
+	std::vector<debugEvents::Event> diagramEvents{std::make_move_iterator(std::begin(events)),std::make_move_iterator(std::end(events))};
+	diagram::SequenceDiagram sqDiag(diagramEvents);
+	sqDiag.printPlantUML(std::cout,count);
+	sqDiag.runPlantUML(count);
 
 }
 
@@ -190,8 +282,10 @@ void mdebugger::UMLRTDebugger::setBreakPoint(std::string capsuleName,std::string
 }
 
 void mdebugger::UMLRTDebugger::setExecMode(std::string capsuleName,ExecMode execMode) {
+	bool capsuleFound=false;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it)
 		if (it->first.find(capsuleName) != std::string::npos){
+			std::cout<<"Set Exec Mode for capsule  \""<<capsuleName<<"\" ....."<<std::endl;
 			this->capsules[it->second].setExecMode(execMode);
 			mdebugger::DebugCommand dbgCmd;
 			dbgCmd.setQualifiedName(capsuleName);
@@ -199,7 +293,12 @@ void mdebugger::UMLRTDebugger::setExecMode(std::string capsuleName,ExecMode exec
 			dbgCmd.setCmdParams("ExecMode", Util::intToStr(int(execMode))); // 0 begin 1=end
 			dbgCmd.generateTraceNo();
 			sendCommand(dbgCmd.serialize());
+
+			capsuleFound=true;
 		}
+	if (! capsuleFound)
+		std::cout<<"Capsule name is worng  \""<<capsuleName<<"\""<<std::endl;
+
 
 }
 
@@ -399,11 +498,19 @@ void mdebugger::UMLRTDebugger::intializeTCP() {
 
 void mdebugger::UMLRTDebugger::listCapsules(){
 	std::cout<<"Running Capsule List:\n";
+	cmdLineInterface.prettyPrint("Capsule Id", 30, ' ');
+	cmdLineInterface.prettyPrint("Current Execution State", 30, ' ');
+	cmdLineInterface.prettyPrint("Exec Mode",10, ' ');
+	std::cout<<std::endl;
 	for(std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it){
-			std::cout<<it->second <<"- "<<it->first<<"\n";
+			//std::cout<<it->second <<"- "<<it->first<<"\n";
+		    cmdLineInterface.prettyPrint(it->first, 30, ' ');
+		    cmdLineInterface.prettyPrint(this->capsules[it->second].getCrrentStateForPrint(), 30, ' ');
+		    cmdLineInterface.prettyPrint(this->capsules[it->second].getExecModeStr(),10, ' ');
+		    std::cout<<std::endl;
 			//this->capsules[it->second].processLiveEvent();
 			//std::cout<<std::setw(30)<<std::setfill('-')<<"\n";
-			std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
+			//std::cout<<"Current State is \""<<this->capsules[it->second].getCurrentState()<<"\"\n";
 			//std::cout<<std::setw(40)<<std::setfill('-')<<"\n";
 		}
 }
@@ -458,21 +565,21 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				listCapsules();}
 			break;
-		case mdebugger::mdebuggerCommand::VIEW:
-			if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-v")==1){
+		case mdebugger::mdebuggerCommand::WATCH:
+			if (cmd.commandOptions.count("-c")==1){ //&& cmd.commandOptions.count("-v")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				viewCapsuleAttributes(cmd.commandOptions["-c"]);
 			}
-			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-e")==1){
-				std::unique_lock<std::mutex> lock(this->eventMutex);
-				if (cmd.commandOptions.count("-n")==1){
-					if  (atoi(cmd.commandOptions["-n"].c_str())>0)
-						viewCapsuleEvents(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
-				}
-				else
-					viewCapsuleEvents(cmd.commandOptions["-c"], 5);
-			}
 			break;
+		case mdebugger::mdebuggerCommand::BACKTRACE:
+			 if (cmd.commandOptions.count("-c")==1 )
+					if (cmd.commandOptions.count("-n")==1){
+						if  (atoi(cmd.commandOptions["-n"].c_str())>0)
+							viewCapsuleEvents(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
+					}
+					else
+						viewCapsuleEvents(cmd.commandOptions["-c"], 5);
+			 break;
 		case mdebugger::mdebuggerCommand::NEXT:
 			if (cmd.commandOptions.count("-c")==1 ){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
@@ -506,9 +613,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-b")==1 && cmd.commandOptions.count("-r")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -520,9 +627,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-e")==1 && cmd.commandOptions.count("-r")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -534,9 +641,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-b")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -548,9 +655,9 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			else if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-s")==1 && cmd.commandOptions.count("-e")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				BreakPointType breakPointType;
-				if (cmd.commandOptions.count("-entry")==1)
+				if (cmd.commandOptions.count("-en")==1)
 				     breakPointType=StateEntryBreakPoint;
-				else if (cmd.commandOptions.count("-exit")==1)
+				else if (cmd.commandOptions.count("-ex")==1)
 					 breakPointType=StateExitBreakPoint;
 				else {
 					std::cout<<"Command  is invalid, specify -entry or exit,  use help to see options\n";
@@ -571,7 +678,14 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 			if (cmd.commandOptions.count("-c")==1){
 				std::unique_lock<std::mutex> lock(this->eventMutex);
 				setExecMode(cmd.commandOptions["-c"],ExecMode::Running);
-				stepExec(cmd.commandOptions["-c"]);
+				//stepExec(cmd.commandOptions["-c"]);
+			// This part added by David - allow user to omit "-c" option and run all capsules
+			} else {
+				for (std::map<std::string,int>::const_iterator it = this->capsuleMap.begin(); it != this->capsuleMap.end(); ++it) {
+					std::unique_lock<std::mutex> lock(this->eventMutex);
+					setExecMode(it->first,ExecMode::Running);
+					stepExec(it->first);
+				}
 			}
 			break;
 		case mdebugger::mdebuggerCommand::CONNECT:
@@ -590,6 +704,20 @@ void mdebugger::UMLRTDebugger::processUserCommnad() {
 		case mdebugger::mdebuggerCommand::MODIFY:
 			if (cmd.commandOptions.count("-c")==1 && cmd.commandOptions.count("-n") && cmd.commandOptions.count("-v")){
 				modifyCapsuleAttribute(cmd.commandOptions["-c"],cmd.commandOptions["-n"],cmd.commandOptions["-v"]);
+			}
+			break;
+		/// added by david
+		case mdebugger::mdebuggerCommand::SEQ:
+			if (cmd.commandOptions.count("-n")==1) {
+				if (atoi(cmd.commandOptions["-n"].c_str())>0 && atoi(cmd.commandOptions["-n"].c_str())<21) {
+					std::unique_lock<std::mutex> lock(this->eventMutex);
+					viewSequenceDiagram(cmd.commandOptions["-c"], atoi(cmd.commandOptions["-n"].c_str()));
+				} else {
+					std::cout<<"invalid count - count must be in the range 1-20\n";
+				}
+			} else {
+				std::unique_lock<std::mutex> lock(this->eventMutex);
+				viewSequenceDiagram(cmd.commandOptions["-c"], 5);
 			}
 			break;
 		default:

@@ -20,8 +20,10 @@
 #include <chrono>
 #include "SROManager.h"
 #include "ParsingUtil.h"
+#include "SequenceDiagram.h"
 #include <iostream>
 #include <fstream>
+#include <unordered_set>
 
 
 #include "CmdInterface.h"
@@ -53,6 +55,7 @@ public:
 	std::string serializeCapsuleBreakPoints(std::string capsuleQualifiedName);
 	void viewCapsuleAttributes(std::string capsuleQualifiedName);
 	void viewCapsuleEvents(std::string capsuleQualifiedName,int count);
+	void viewSequenceDiagram(std::string capsuleQualifiedName,int count);
 	std::string serializeCapsuleAttributes(std::string capsuleQualifiedName);
 	std::string serializeCapsuleEvents(std::string capsuleQualifiedName,int count);
 	void stepExec(std::string capsuleQualifiedName);

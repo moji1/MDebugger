@@ -224,7 +224,7 @@ operation Any  getActivePorts() : Set {
 	for (trans in self)
 		for (trig in trans.trigger)
 			for (p in trig.port )
-				if (p.type.name<>"Timing"){
+				if (p.type<> null and p.type.name<>"Timing"){
 					ports.add(p);
 					//p.type.println();
 				}
@@ -356,19 +356,21 @@ operation UMLRTModel!Transition transData() : Set {
 	else if (self.trigger.isDefined())
 			for (t in self.trigger){
 				for (p in t.port){
-					var tempTranData:Sequence;
-					//p.type.name.println();
-					tempTranData.add(self.source.name);
-					tempTranData.add(self.name);
-					tempTranData.add(self.target.name);
-					//t.event.println("event  is ");
-					//t.event.`operation`.name.println("event name is ");
-					if (t.event.name=="*")
-						tempTranData.add("*");
-					else
-						tempTranData.add(t.event.`operation`.name);
-					tempTranData.add(p.type.name);
-					tempTransData.add(tempTranData);
+					if (t.event<>null){
+						var tempTranData:Sequence;
+						//p.type.name.println();
+						tempTranData.add(self.source.name);
+						tempTranData.add(self.name);
+						tempTranData.add(self.target.name);
+						//t.event.println("event  is ");
+						//t.event.`operation`.name.println("event name is ");
+						if (t.event.name=="*")
+							tempTranData.add("*");
+						else
+							tempTranData.add(t.event.`operation`.name);
+						tempTranData.add(p.type.name);
+						tempTransData.add(tempTranData);
+						}
 					}
 				}
 	return tempTransData;

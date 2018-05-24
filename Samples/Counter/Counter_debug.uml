@@ -7,7 +7,7 @@
     <eAnnotations xmi:id="_92uu4E1jEeeFgIitP47fuA" source="UMLRT_Default_top">
       <details xmi:id="_9201gE1jEeeFgIitP47fuA" key="top_name" value="Debug__Top"/>
     </eAnnotations>
-    <packageImport xmi:id="_57Cf8E1kEeeWlJlfuuVkkg">
+    <packageImport xmi:id="_KC0FsFeLEeinwNTOTi6a1Q">
       <importedPackage xmi:type="uml:Model" href="../CommGateWay/model.uml#_MZw7AAdxEeadtKuU2t6fMg"/>
     </packageImport>
     <packagedElement xmi:type="uml:Class" xmi:id="_7rXgAE1iEeeFgIitP47fuA" name="Counter" classifierBehavior="_RUEGwE1jEeeFgIitP47fuA" isActive="true">
@@ -26,26 +26,26 @@
       <ownedAttribute xmi:type="uml:Port" xmi:id="_PDcH8E1jEeeFgIitP47fuA" name="timer" visibility="protected" isOrdered="true" aggregation="composite" isBehavior="true" isService="false">
         <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Port" xmi:id="_598qAE1kEeeWlJlfuuVkkg" name="extComm" visibility="protected" isBehavior="true" isConjugated="true" isService="false">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_KDSm0leLEeinwNTOTi6a1Q" name="extComm" visibility="protected" isBehavior="true" isConjugated="true" isService="false">
         <type xmi:type="uml:Collaboration" href="../CommGateWay/model.uml#_KS0icDCLEeaxYMPe_sHEiw"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5-W5sU1kEeeWlJlfuuVkkg" value="1"/>
-        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_5-ZV8E1kEeeWlJlfuuVkkg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KDYGYVeLEeinwNTOTi6a1Q" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_KDYGYleLEeinwNTOTi6a1Q" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_5_xO8E1kEeeWlJlfuuVkkg" name="Debug__flag">
+      <ownedAttribute xmi:id="_KDmv5FeLEeinwNTOTi6a1Q" name="Debug__flag">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_5_0SQE1kEeeWlJlfuuVkkg" name="Debug__variablesData">
+      <ownedAttribute xmi:id="_KDnW8FeLEeinwNTOTi6a1Q" name="Debug__variablesData">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_5_0SQU1kEeeWlJlfuuVkkg" name="Debug__event">
+      <ownedAttribute xmi:id="_KDnW8VeLEeinwNTOTi6a1Q" name="Debug__event">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_6APJAE1kEeeWlJlfuuVkkg" name="Debug__SRO">
+      <ownedAttribute xmi:id="_KDyWEFeLEeinwNTOTi6a1Q" name="Debug__SRO">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
       <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_RUEGwE1jEeeFgIitP47fuA" name="CounterStateMachine" isReentrant="false">
         <region xmi:id="_RU7CYE1jEeeFgIitP47fuA" name="Region">
-          <transition xmi:id="_cooLQE1jEeeFgIitP47fuA" name="initial" source="_6E7bwE1kEeeWlJlfuuVkkg" target="_RVtFgE1jEeeFgIitP47fuA">
+          <transition xmi:id="_cooLQE1jEeeFgIitP47fuA" name="initial" source="_KG24MFeLEeinwNTOTi6a1Q" target="_RVtFgE1jEeeFgIitP47fuA">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_uIq6kE1jEeeFgIitP47fuA" name="Effect" isReentrant="false">
               <language>C++</language>
               <body>timer.informEvery(UMLRTTimespec(10,0));
@@ -53,21 +53,124 @@ varInt = 0;
 varBool = false;
 varString = &quot;This is a string&quot;;
 log.show(&quot;Start counting.\n&quot;);
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::initial&quot;,(char *)&quot;Debug__Path__initial&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::initial&quot;,(char *)&quot;Debug__Path__initial&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
 </body>
             </effect>
           </transition>
-          <transition xmi:id="_kyQk0E1jEeeFgIitP47fuA" name="count" source="_6JPUAE1kEeeWlJlfuuVkkg" target="_RVtFgE1jEeeFgIitP47fuA">
+          <transition xmi:id="_kyQk0E1jEeeFgIitP47fuA" name="count" source="_KF5O4FeLEeinwNTOTi6a1Q" target="_RVtFgE1jEeeFgIitP47fuA">
             <effect xmi:type="uml:OpaqueBehavior" xmi:id="_53rfYE1jEeeFgIitP47fuA" name="Effect" isReentrant="false">
               <language>C++</language>
               <body>varInt++;
 log.show(&quot;Counting. New value: %d\n&quot;, varInt);
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::count&quot;,(char *)&quot;Debug__Path__count&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::count&quot;,(char *)&quot;Debug__Path__count&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
 </body>
             </effect>
           </transition>
-          <transition xmi:id="_6F66QE1kEeeWlJlfuuVkkg" name="Debug__initial" source="_6MifoE1kEeeWlJlfuuVkkg" target="_6E7bwE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6F_ywE1kEeeWlJlfuuVkkg" name="Debug__initial__3">
+          <transition xmi:id="_KGN_AVeLEeinwNTOTi6a1Q" name="Debug__count" source="_RVtFgE1jEeeFgIitP47fuA" target="_KF5O4FeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGOmEFeLEeinwNTOTi6a1Q" name="Debug__count__3">
+              <language>C++</language>
+              <body>
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__count&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;Debug__Path__count&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
+</body>
+            </effect>
+            <trigger xmi:id="_mlQMcE1jEeeFgIitP47fuA" port="_PDcH8E1jEeeFgIitP47fuA">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_KGPNIFeLEeinwNTOTi6a1Q" name="Debug__count__S" guard="_KGPNIleLEeinwNTOTi6a1Q" source="_KF5O4FeLEeinwNTOTi6a1Q" target="_KGEOAFeLEeinwNTOTi6a1Q">
+            <ownedRule xmi:id="_KGPNIleLEeinwNTOTi6a1Q" name="Debug__Guardcount">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_KGPNIVeLEeinwNTOTi6a1Q" name="Debug__Guardcount">
+                <language>C++</language>
+                <body>return Debug__SRO.checkDebug(&quot;COUNTING&quot;,msg->destPort->role()->protocol,msg->getSignalName(),1,TransitionEffectBreakPoint,0);
+</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGP0MFeLEeinwNTOTi6a1Q" name="Debug__count__S__5">
+              <language>C++</language>
+              <body>
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__count__S&quot;,(char *)&quot;Debug__Path__count&quot;,(char *)&quot;en&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
+</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_KGQbQFeLEeinwNTOTi6a1Q" name="Debug__count__E" source="_KGJGgVeLEeinwNTOTi6a1Q" target="_RVtFgE1jEeeFgIitP47fuA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGQbQVeLEeinwNTOTi6a1Q" name="Debug__count__E__6">
+              <language>C++</language>
+              <body>this->Debug__recallAllMsg();
+
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__count__E&quot;,(char *)&quot;ex&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
+</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_KGRCUFeLEeinwNTOTi6a1Q" name="Debug__count__dbg__varChange" source="_KF-ucVeLEeinwNTOTi6a1Q" target="_KF-ucVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGRpYFeLEeinwNTOTi6a1Q" name="Debug__count__dbg__varChange__8">
+              <language>C++</language>
+              <body>char varName1[256];
+char varValue1[1024];
+sprintf(varName1,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
+sprintf(varValue1,&quot;%s&quot;,(*(const char * *)msg->getParam( 1 )));
+this->Debug__variablesChange(varName1,varValue1);
+</body>
+            </effect>
+            <trigger xmi:id="_KGRCUVeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
+              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_PsaK0LjWEeaJ1dlMn1j7GQ"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_KGRpYVeLEeinwNTOTi6a1Q" name="Debug__count__dbg__setBreakPoint" source="_KF-ucVeLEeinwNTOTi6a1Q" target="_KF-ucVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGRpY1eLEeinwNTOTi6a1Q" name="Debug__count__dbg__setBreakPoint__9">
+              <language>C++</language>
+              <body>char loc[1024];
+sprintf(loc,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
+this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
+std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
+</body>
+            </effect>
+            <trigger xmi:id="_KGRpYleLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
+              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_HctYoECVEeev_-3F68RaHA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_KGSQcFeLEeinwNTOTi6a1Q" name="Debug__count__dbg__remBreakPoint" source="_KF-ucVeLEeinwNTOTi6a1Q" target="_KF-ucVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGSQcleLEeinwNTOTi6a1Q" name="Debug__count__dbg__remBreakPoint__10">
+              <language>C++</language>
+              <body>char loc[1024];
+sprintf(loc,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
+this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
+std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
+</body>
+            </effect>
+            <trigger xmi:id="_KGSQcVeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
+              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_HvALgEAyEeev_-3F68RaHA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_KGSQc1eLEeinwNTOTi6a1Q" name="Debug__count__dbg__viewBreakPoints" source="_KF-ucVeLEeinwNTOTi6a1Q" target="_KF-ucVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGS3gFeLEeinwNTOTi6a1Q" name="Debug__count__dbg__viewBreakPoints__11">
+              <language>C++</language>
+              <body>std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
+</body>
+            </effect>
+            <trigger xmi:id="_KGSQdFeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
+              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_t2NqIECVEeev_-3F68RaHA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_KGS3gVeLEeinwNTOTi6a1Q" name="Debug__count__dbg__dbgSetExecMode" source="_KF-ucVeLEeinwNTOTi6a1Q" target="_KF-ucVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGS3g1eLEeinwNTOTi6a1Q" name="Debug__count__dbg__dbgSetExecMode__12">
+              <language>C++</language>
+              <body>this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));
+</body>
+            </effect>
+            <trigger xmi:id="_KGS3gleLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
+              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_2Nc34EEDEee0eeIrP9Q9KA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_KGS3hFeLEeinwNTOTi6a1Q" name="Debug__count__dbg__dbgDeferMsg" source="_KF-ucVeLEeinwNTOTi6a1Q" target="_KF-ucVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGS3hVeLEeinwNTOTi6a1Q" name="Debug__count__dbg__dbgDeferMsg__13">
+              <language>C++</language>
+              <body>msg->defer();
+std::cout&lt;&lt;&quot;A message defered&quot;&lt;&lt;&quot;\n&quot;;
+</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_KHLoUVeLEeinwNTOTi6a1Q" name="Debug__initial" source="_KIB84FeLEeinwNTOTi6a1Q" target="_KG24MFeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHLoUleLEeinwNTOTi6a1Q" name="Debug__initial__29">
               <language>C++</language>
               <body>if (this->Debug__SRO.getExecMode()==Stepping){
 Debug__SRO.addTransitionsFromState(&quot;COUNTING&quot;,&quot;count&quot;,&quot;COUNTING&quot;,&quot;timeout&quot;,&quot;Timing&quot;);
@@ -76,40 +179,40 @@ std::cout&lt;&lt;this->getName()&lt;&lt;&quot;: Connection with debugger is in p
 char  tempS[256];
 sprintf(tempS,&quot;%s%d&quot;,this->getName(),(int)this->getIndex());
 extComm.registerToControl(tempS).send();
-Debug__sendEvent(debugEvents::DEBUG,debugEvents::REGISTER,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *) &quot;&quot;,(char *) &quot;&quot;,(char *)&quot;&quot;,(char *) &quot;&quot;);
+Debug__sendEvent(debugEvents::DEBUG,debugEvents::REGISTER,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 }
 </body>
             </effect>
-            <trigger xmi:id="_6M1akU1kEeeWlJlfuuVkkg" name="ConnectionEstablished" port="_598qAE1kEeeWlJlfuuVkkg">
+            <trigger xmi:id="_KIOKIleLEeinwNTOTi6a1Q" name="ConnectionEstablished" port="_KDSm0leLEeinwNTOTi6a1Q">
               <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_PQtAwOzeEeSRtqCWFwOf8g"/>
             </trigger>
           </transition>
-          <transition xmi:id="_6GCPAE1kEeeWlJlfuuVkkg" name="Debug__initial__S" guard="_6GJjwE1kEeeWlJlfuuVkkg" source="_6E7bwE1kEeeWlJlfuuVkkg" target="_6FcZIE1kEeeWlJlfuuVkkg">
-            <ownedRule xmi:id="_6GJjwE1kEeeWlJlfuuVkkg" name="Debug__Guardinitial">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_6GI8sE1kEeeWlJlfuuVkkg" name="Debug__Guardinitial">
+          <transition xmi:id="_KHMPYFeLEeinwNTOTi6a1Q" name="Debug__initial__S" guard="_KHM2cVeLEeinwNTOTi6a1Q" source="_KG24MFeLEeinwNTOTi6a1Q" target="_KHBQQVeLEeinwNTOTi6a1Q">
+            <ownedRule xmi:id="_KHM2cVeLEeinwNTOTi6a1Q" name="Debug__Guardinitial">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_KHM2cFeLEeinwNTOTi6a1Q" name="Debug__Guardinitial">
                 <language>C++</language>
                 <body>return Debug__SRO.checkDebug(&quot;Pseudo1&quot;,&quot;&quot;,&quot;&quot;,1,TransitionEffectBreakPoint,0);
 </body>
               </specification>
             </ownedRule>
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GOcQE1kEeeWlJlfuuVkkg" name="Debug__initial__S__5">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHM2cleLEeinwNTOTi6a1Q" name="Debug__initial__S__31">
               <language>C++</language>
               <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__initial__S&quot;,(char *)&quot;Debug__Path__initial&quot;,(char *)&quot;en&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__initial__S&quot;,(char *)&quot;Debug__Path__initial&quot;,(char *)&quot;en&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
 </body>
             </effect>
           </transition>
-          <transition xmi:id="_6GVxAE1kEeeWlJlfuuVkkg" name="Debug__initial__E" source="_6FsQwE1kEeeWlJlfuuVkkg" target="_RVtFgE1jEeeFgIitP47fuA">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GWYEE1kEeeWlJlfuuVkkg" name="Debug__initial__E__6">
+          <transition xmi:id="_KHOEkFeLEeinwNTOTi6a1Q" name="Debug__initial__E" source="_KHGIwVeLEeinwNTOTi6a1Q" target="_RVtFgE1jEeeFgIitP47fuA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHOEkVeLEeinwNTOTi6a1Q" name="Debug__initial__E__32">
               <language>C++</language>
               <body>this->Debug__recallAllMsg();
 
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__initial__E&quot;,(char *)&quot;ex&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__initial__E&quot;,(char *)&quot;ex&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
 </body>
             </effect>
           </transition>
-          <transition xmi:id="_6GfiAE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__varChange" source="_6FKFQE1kEeeWlJlfuuVkkg" target="_6FKFQE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GgJEE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__varChange__8">
+          <transition xmi:id="_KHWAYFeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__varChange" source="_KG7wsVeLEeinwNTOTi6a1Q" target="_KG7wsVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHWAYleLEeinwNTOTi6a1Q" name="Debug__initial__dbg__varChange__34">
               <language>C++</language>
               <body>char varName1[256];
 char varValue1[1024];
@@ -118,12 +221,12 @@ sprintf(varValue1,&quot;%s&quot;,(*(const char * *)msg->getParam( 1 )));
 this->Debug__variablesChange(varName1,varValue1);
 </body>
             </effect>
-            <trigger xmi:id="_6GfiAU1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
+            <trigger xmi:id="_KHWAYVeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
               <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_PsaK0LjWEeaJ1dlMn1j7GQ"/>
             </trigger>
           </transition>
-          <transition xmi:id="_6GhXME1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__setBreakPoint" source="_6FKFQE1kEeeWlJlfuuVkkg" target="_6FKFQE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GjzcE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__setBreakPoint__9">
+          <transition xmi:id="_KHWncFeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__setBreakPoint" source="_KG7wsVeLEeinwNTOTi6a1Q" target="_KG7wsVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHWncleLEeinwNTOTi6a1Q" name="Debug__initial__dbg__setBreakPoint__35">
               <language>C++</language>
               <body>char loc[1024];
 sprintf(loc,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
@@ -131,12 +234,12 @@ this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) 
 std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
 </body>
             </effect>
-            <trigger xmi:id="_6Gh-QE1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
+            <trigger xmi:id="_KHWncVeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
               <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_HctYoECVEeev_-3F68RaHA"/>
             </trigger>
           </transition>
-          <transition xmi:id="_6Gor8E1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__remBreakPoint" source="_6FKFQE1kEeeWlJlfuuVkkg" target="_6FKFQE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GpTAU1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__remBreakPoint__10">
+          <transition xmi:id="_KHXOgFeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__remBreakPoint" source="_KG7wsVeLEeinwNTOTi6a1Q" target="_KG7wsVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHYcoFeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__remBreakPoint__36">
               <language>C++</language>
               <body>char loc[1024];
 sprintf(loc,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
@@ -144,143 +247,40 @@ this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) 
 std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
 </body>
             </effect>
-            <trigger xmi:id="_6GpTAE1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
+            <trigger xmi:id="_KHXOgVeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
               <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_HvALgEAyEeev_-3F68RaHA"/>
             </trigger>
           </transition>
-          <transition xmi:id="_6GrIME1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__viewBreakPoints" source="_6FKFQE1kEeeWlJlfuuVkkg" target="_6FKFQE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GuykE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__viewBreakPoints__11">
+          <transition xmi:id="_KHZDsFeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__viewBreakPoints" source="_KG7wsVeLEeinwNTOTi6a1Q" target="_KG7wsVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHZDsleLEeinwNTOTi6a1Q" name="Debug__initial__dbg__viewBreakPoints__37">
               <language>C++</language>
               <body>std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
 </body>
             </effect>
-            <trigger xmi:id="_6GrIMU1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
+            <trigger xmi:id="_KHZDsVeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
               <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_t2NqIECVEeev_-3F68RaHA"/>
             </trigger>
           </transition>
-          <transition xmi:id="_6GzEAE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__dbgSetExecMode" source="_6FKFQE1kEeeWlJlfuuVkkg" target="_6FKFQE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6GzrEE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__dbgSetExecMode__12">
+          <transition xmi:id="_KHZDs1eLEeinwNTOTi6a1Q" name="Debug__initial__dbg__dbgSetExecMode" source="_KG7wsVeLEeinwNTOTi6a1Q" target="_KG7wsVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHZDtVeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__dbgSetExecMode__38">
               <language>C++</language>
               <body>this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));
 </body>
             </effect>
-            <trigger xmi:id="_6GzEAU1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
+            <trigger xmi:id="_KHZDtFeLEeinwNTOTi6a1Q" name="Debug__MSG" port="_KDSm0leLEeinwNTOTi6a1Q">
               <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_2Nc34EEDEee0eeIrP9Q9KA"/>
             </trigger>
           </transition>
-          <transition xmi:id="_6G0SIE1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__dbgDeferMsg" source="_6FKFQE1kEeeWlJlfuuVkkg" target="_6FKFQE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6G05ME1kEeeWlJlfuuVkkg" name="Debug__initial__dbg__dbgDeferMsg__13">
+          <transition xmi:id="_KHZDtleLEeinwNTOTi6a1Q" name="Debug__initial__dbg__dbgDeferMsg" source="_KG7wsVeLEeinwNTOTi6a1Q" target="_KG7wsVeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHZqwFeLEeinwNTOTi6a1Q" name="Debug__initial__dbg__dbgDeferMsg__39">
               <language>C++</language>
               <body>msg->defer();
 std::cout&lt;&lt;&quot;A message defered&quot;&lt;&lt;&quot;\n&quot;;
 </body>
             </effect>
           </transition>
-          <transition xmi:id="_6KG2sU1kEeeWlJlfuuVkkg" name="Debug__count" source="_RVtFgE1jEeeFgIitP47fuA" target="_6JPUAE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KHdwE1kEeeWlJlfuuVkkg" name="Debug__count__26">
-              <language>C++</language>
-              <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__count&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;Debug__Path__count&quot;,(char *)&quot;&quot;);
-</body>
-            </effect>
-            <trigger xmi:id="_mlQMcE1jEeeFgIitP47fuA" port="_PDcH8E1jEeeFgIitP47fuA">
-              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
-            </trigger>
-          </transition>
-          <transition xmi:id="_6KMWQE1kEeeWlJlfuuVkkg" name="Debug__count__S" guard="_6KM9UU1kEeeWlJlfuuVkkg" source="_6JPUAE1kEeeWlJlfuuVkkg" target="_6Jr_8U1kEeeWlJlfuuVkkg">
-            <ownedRule xmi:id="_6KM9UU1kEeeWlJlfuuVkkg" name="Debug__Guardcount">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_6KM9UE1kEeeWlJlfuuVkkg" name="Debug__Guardcount">
-                <language>C++</language>
-                <body>return Debug__SRO.checkDebug(&quot;COUNTING&quot;,msg->destPort->role()->protocol,msg->getSignalName(),1,TransitionEffectBreakPoint,0);
-</body>
-              </specification>
-            </ownedRule>
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KNkYE1kEeeWlJlfuuVkkg" name="Debug__count__S__28">
-              <language>C++</language>
-              <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__count__S&quot;,(char *)&quot;Debug__Path__count&quot;,(char *)&quot;en&quot;,(char *)&quot;&quot;);
-</body>
-            </effect>
-          </transition>
-          <transition xmi:id="_6KTrAE1kEeeWlJlfuuVkkg" name="Debug__count__E" source="_6J2_EU1kEeeWlJlfuuVkkg" target="_RVtFgE1jEeeFgIitP47fuA">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KUSEE1kEeeWlJlfuuVkkg" name="Debug__count__E__29">
-              <language>C++</language>
-              <body>this->Debug__recallAllMsg();
-
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__count__E&quot;,(char *)&quot;ex&quot;,(char *)&quot;COUNTING&quot;,(char *)&quot;&quot;);
-</body>
-            </effect>
-          </transition>
-          <transition xmi:id="_6Ka_wE1kEeeWlJlfuuVkkg" name="Debug__count__dbg__varChange" source="_6Jd9gU1kEeeWlJlfuuVkkg" target="_6Jd9gU1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6Ka_wk1kEeeWlJlfuuVkkg" name="Debug__count__dbg__varChange__31">
-              <language>C++</language>
-              <body>char varName1[256];
-char varValue1[1024];
-sprintf(varName1,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
-sprintf(varValue1,&quot;%s&quot;,(*(const char * *)msg->getParam( 1 )));
-this->Debug__variablesChange(varName1,varValue1);
-</body>
-            </effect>
-            <trigger xmi:id="_6Ka_wU1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
-              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_PsaK0LjWEeaJ1dlMn1j7GQ"/>
-            </trigger>
-          </transition>
-          <transition xmi:id="_6Kbm0E1kEeeWlJlfuuVkkg" name="Debug__count__dbg__setBreakPoint" source="_6Jd9gU1kEeeWlJlfuuVkkg" target="_6Jd9gU1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KfRME1kEeeWlJlfuuVkkg" name="Debug__count__dbg__setBreakPoint__32">
-              <language>C++</language>
-              <body>char loc[1024];
-sprintf(loc,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
-this->Debug__SRO.addBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
-std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
-</body>
-            </effect>
-            <trigger xmi:id="_6Kc08E1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
-              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_HctYoECVEeev_-3F68RaHA"/>
-            </trigger>
-          </transition>
-          <transition xmi:id="_6Kf4QE1kEeeWlJlfuuVkkg" name="Debug__count__dbg__remBreakPoint" source="_6Jd9gU1kEeeWlJlfuuVkkg" target="_6Jd9gU1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6Kf4Qk1kEeeWlJlfuuVkkg" name="Debug__count__dbg__remBreakPoint__33">
-              <language>C++</language>
-              <body>char loc[1024];
-sprintf(loc,&quot;%s&quot;,(*(const char * *)msg->getParam( 0 )));
-this->Debug__SRO.remBreakPoint(loc,(BreakPointType)( *(int *)msg->getParam( 1 ) ),( *(int *)msg->getParam( 2 ) ));
-std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
-</body>
-            </effect>
-            <trigger xmi:id="_6Kf4QU1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
-              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_HvALgEAyEeev_-3F68RaHA"/>
-            </trigger>
-          </transition>
-          <transition xmi:id="_6KgfUE1kEeeWlJlfuuVkkg" name="Debug__count__dbg__viewBreakPoints" source="_6Jd9gU1kEeeWlJlfuuVkkg" target="_6Jd9gU1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KkwwE1kEeeWlJlfuuVkkg" name="Debug__count__dbg__viewBreakPoints__34">
-              <language>C++</language>
-              <body>std::cout&lt;&lt;this->Debug__SRO.serializeBreakPoint()&lt;&lt;&quot;n&quot;;
-</body>
-            </effect>
-            <trigger xmi:id="_6KkJsE1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
-              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_t2NqIECVEeev_-3F68RaHA"/>
-            </trigger>
-          </transition>
-          <transition xmi:id="_6Kt6sE1kEeeWlJlfuuVkkg" name="Debug__count__dbg__dbgSetExecMode" source="_6Jd9gU1kEeeWlJlfuuVkkg" target="_6Jd9gU1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KuhwU1kEeeWlJlfuuVkkg" name="Debug__count__dbg__dbgSetExecMode__35">
-              <language>C++</language>
-              <body>this->Debug__SRO.setExecMode((ExecMode)( *(int *)msg->getParam( 0 ) ));
-</body>
-            </effect>
-            <trigger xmi:id="_6KuhwE1kEeeWlJlfuuVkkg" name="Debug__MSG" port="_598qAE1kEeeWlJlfuuVkkg">
-              <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_2Nc34EEDEee0eeIrP9Q9KA"/>
-            </trigger>
-          </transition>
-          <transition xmi:id="_6KvI0E1kEeeWlJlfuuVkkg" name="Debug__count__dbg__dbgDeferMsg" source="_6Jd9gU1kEeeWlJlfuuVkkg" target="_6Jd9gU1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6KvI0U1kEeeWlJlfuuVkkg" name="Debug__count__dbg__dbgDeferMsg__36">
-              <language>C++</language>
-              <body>msg->defer();
-std::cout&lt;&lt;&quot;A message defered&quot;&lt;&lt;&quot;\n&quot;;
-</body>
-            </effect>
-          </transition>
-          <transition xmi:id="_6M0zgU1kEeeWlJlfuuVkkg" name="Debug__InitDebug" source="_boT9wE1jEeeFgIitP47fuA" target="_6MifoE1kEeeWlJlfuuVkkg">
-            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6M1akE1kEeeWlJlfuuVkkg" name="DebugCheck">
+          <transition xmi:id="_KIOKIFeLEeinwNTOTi6a1Q" name="Debug__InitDebug" source="_boT9wE1jEeeFgIitP47fuA" target="_KIB84FeLEeinwNTOTi6a1Q">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KIOKIVeLEeinwNTOTi6a1Q" name="DebugCheck">
               <language>C++</language>
               <body>std::cout&lt;&lt;this->getName()&lt;&lt;&quot; : is Starting\n&quot;;
     this->Debug__SRO.setExecMode(Stepping);
@@ -288,252 +288,252 @@ std::cout&lt;&lt;&quot;A message defered&quot;&lt;&lt;&quot;\n&quot;;
             </effect>
           </transition>
           <subvertex xmi:type="uml:State" xmi:id="_RVtFgE1jEeeFgIitP47fuA" name="COUNTING">
-            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6M3PwE1kEeeWlJlfuuVkkg" name="COUNTING__51">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KIPYQFeLEeinwNTOTi6a1Q" name="COUNTING__51">
               <language>C++</language>
               <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
             </entry>
-            <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6M6TEE1kEeeWlJlfuuVkkg" name="COUNTING__52">
+            <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KIPYQVeLEeinwNTOTi6a1Q" name="COUNTING__52">
               <language>C++</language>
               <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
             </exit>
           </subvertex>
           <subvertex xmi:type="uml:Pseudostate" xmi:id="_boT9wE1jEeeFgIitP47fuA" name="Pseudo1"/>
-          <subvertex xmi:type="uml:Pseudostate" xmi:id="_6E7bwE1kEeeWlJlfuuVkkg" name="Debug__Path__initial" kind="choice"/>
-          <subvertex xmi:type="uml:State" xmi:id="_6FKFQE1kEeeWlJlfuuVkkg" name="Debug__C__initial">
-            <connectionPoint xmi:id="_6FcZIE1kEeeWlJlfuuVkkg" name="en" kind="entryPoint"/>
-            <connectionPoint xmi:id="_6FsQwE1kEeeWlJlfuuVkkg" name="ex" kind="exitPoint"/>
-            <region xmi:id="_6FKFQU1kEeeWlJlfuuVkkg" name="Region1">
-              <transition xmi:id="_6HZg8E1kEeeWlJlfuuVkkg" name="Debug__init__trans__initial" source="_6FcZIE1kEeeWlJlfuuVkkg" target="_6HLegE1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6IoQAE1kEeeWlJlfuuVkkg" name="Debug__init__trans__initial__18">
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_KF5O4FeLEeinwNTOTi6a1Q" name="Debug__Path__count" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="_KF-ucVeLEeinwNTOTi6a1Q" name="Debug__C__count">
+            <connectionPoint xmi:id="_KGEOAFeLEeinwNTOTi6a1Q" name="en" kind="entryPoint"/>
+            <connectionPoint xmi:id="_KGJGgVeLEeinwNTOTi6a1Q" name="ex" kind="exitPoint"/>
+            <region xmi:id="_KF-ucleLEeinwNTOTi6a1Q" name="Region1">
+              <transition xmi:id="_KGaMQVeLEeinwNTOTi6a1Q" name="Debug__init__trans__count" source="_KGEOAFeLEeinwNTOTi6a1Q" target="_KGY-IFeLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGymwFeLEeinwNTOTi6a1Q" name="Debug__init__trans__count__19">
                   <language>C++</language>
                   <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__init__trans__initial&quot;,(char *)&quot;en&quot;,(char *)&quot;Debug__B__Ac__initial&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__init__trans__count&quot;,(char *)&quot;en&quot;,(char *)&quot;Debug__B__Ex__COUNTING&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
 </body>
                 </effect>
               </transition>
-              <transition xmi:id="_6HZg8U1kEeeWlJlfuuVkkg" name="Debug__Ac__initial" source="_6HLegE1kEeeWlJlfuuVkkg" target="_6HSMME1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6HckQE1kEeeWlJlfuuVkkg" name="Effect" visibility="public" isReentrant="false">
+              <transition xmi:id="_KGaMQleLEeinwNTOTi6a1Q" name="Debug__Ex__COUNTING" source="_KGY-IFeLEeinwNTOTi6a1Q" target="_KGY-IleLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGzN0FeLEeinwNTOTi6a1Q" name="Debug__Ex__COUNTING__21">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__Ex__COUNTING&quot;,(char *)&quot;Debug__B__Ex__COUNTING&quot;,(char *)&quot;Debug__B__Ac__count&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
+</body>
+                </effect>
+                <trigger xmi:id="_KGaMQ1eLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
+                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
+                </trigger>
+              </transition>
+              <transition xmi:id="_KGazUFeLEeinwNTOTi6a1Q" name="Debug__AC__count" source="_KGY-IleLEeinwNTOTi6a1Q" target="_KGZlMFeLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KGazUleLEeinwNTOTi6a1Q" name="Effect" visibility="public" isReentrant="false">
+                  <language>C++</language>
+                  <body>varInt++;
+log.show(&quot;Counting. New value: %d\n&quot;, varInt);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__AC__count&quot;,(char *)&quot;Debug__B__Ac__count&quot;,(char *)&quot;Debug__A__Ac__count&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
+</body>
+                </effect>
+                <trigger xmi:id="_KGazUVeLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
+                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
+                </trigger>
+              </transition>
+              <transition xmi:id="_KGazU1eLEeinwNTOTi6a1Q" name="Debug__En__COUNTING" source="_KGZlMFeLEeinwNTOTi6a1Q" target="_KGZlMleLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KG0b8FeLEeinwNTOTi6a1Q" name="Debug__En__COUNTING__24">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__En__COUNTING&quot;,(char *)&quot;Debug__A__Ac__count&quot;,(char *)&quot;Debug__A__En__COUNTING&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
+</body>
+                </effect>
+                <trigger xmi:id="_KGazVFeLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
+                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
+                </trigger>
+              </transition>
+              <transition xmi:id="_KGazVVeLEeinwNTOTi6a1Q" name="Debug__end__trans__count" source="_KGZlMleLEeinwNTOTi6a1Q" target="_KGJGgVeLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KG1DAFeLEeinwNTOTi6a1Q" name="Debug__end__trans__count__26">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__end__trans__count&quot;,(char *)&quot;Debug__A__En__COUNTING&quot;,(char *)&quot;ex&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
+</body>
+                </effect>
+                <trigger xmi:id="_KGazVleLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
+                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
+                </trigger>
+              </transition>
+              <subvertex xmi:type="uml:State" xmi:id="_KGY-IFeLEeinwNTOTi6a1Q" name="Debug__B__Ex__COUNTING">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KGY-IVeLEeinwNTOTi6a1Q" name="Debug__B__Ex__COUNTING">
+                  <language>C++</language>
+                  <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,2,StateExitBreakPoint,0))){
+extComm.selfExec().send();}
+
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ex__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </entry>
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KGgS4VeLEeinwNTOTi6a1Q" name="Debug__B__Ex__COUNTING__14">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ex__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </exit>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_KGY-IleLEeinwNTOTi6a1Q" name="Debug__B__Ac__count">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KGY-I1eLEeinwNTOTi6a1Q" name="Debug__B__Ac__count">
+                  <language>C++</language>
+                  <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,2,StateExitBreakPoint,1) or Debug__SRO.checkDebug(&quot;count&quot;,&quot;&quot;,&quot;&quot;,3,TransitionEffectBreakPoint,0))){
+extComm.selfExec().send();}
+
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </entry>
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KGmZgVeLEeinwNTOTi6a1Q" name="Debug__B__Ac__count__15">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </exit>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_KGZlMFeLEeinwNTOTi6a1Q" name="Debug__A__Ac__count">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KGZlMVeLEeinwNTOTi6a1Q" name="Debug__A__Ac__count">
+                  <language>C++</language>
+                  <body>if (not(Debug__SRO.checkDebug(&quot;count&quot;,&quot;&quot;,&quot;&quot;,3,TransitionEffectBreakPoint,1) or Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,4,StateEntryBreakPoint,0))){
+extComm.selfExec().send();}
+
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </entry>
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KGsgIFeLEeinwNTOTi6a1Q" name="Debug__A__Ac__count__16">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </exit>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_KGZlMleLEeinwNTOTi6a1Q" name="Debug__A__En__COUNTING">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KGaMQFeLEeinwNTOTi6a1Q" name="Debug__A__En__COUNTING">
+                  <language>C++</language>
+                  <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,4,StateEntryBreakPoint,1))){
+extComm.selfExec().send();}
+
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </entry>
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KGtHMFeLEeinwNTOTi6a1Q" name="Debug__A__En__COUNTING__17">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+</body>
+                </exit>
+              </subvertex>
+            </region>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_KG24MFeLEeinwNTOTi6a1Q" name="Debug__Path__initial" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="_KG7wsVeLEeinwNTOTi6a1Q" name="Debug__C__initial">
+            <connectionPoint xmi:id="_KHBQQVeLEeinwNTOTi6a1Q" name="en" kind="entryPoint"/>
+            <connectionPoint xmi:id="_KHGIwVeLEeinwNTOTi6a1Q" name="ex" kind="exitPoint"/>
+            <region xmi:id="_KG7wsleLEeinwNTOTi6a1Q" name="Region1">
+              <transition xmi:id="_KHlQ8leLEeinwNTOTi6a1Q" name="Debug__init__trans__initial" source="_KHBQQVeLEeinwNTOTi6a1Q" target="_KHkp4VeLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KH9rcFeLEeinwNTOTi6a1Q" name="Debug__init__trans__initial__44">
+                  <language>C++</language>
+                  <body>
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),(char *)&quot;&quot;,this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__init__trans__initial&quot;,(char *)&quot;en&quot;,(char *)&quot;Debug__B__Ac__initial&quot;,(char *)&quot;null&quot;,(char *)&quot;null&quot;);
+</body>
+                </effect>
+              </transition>
+              <transition xmi:id="_KHlQ81eLEeinwNTOTi6a1Q" name="Debug__Ac__initial" source="_KHkp4VeLEeinwNTOTi6a1Q" target="_KHkp41eLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KHl4AVeLEeinwNTOTi6a1Q" name="Effect" visibility="public" isReentrant="false">
                   <language>C++</language>
                   <body>timer.informEvery(UMLRTTimespec(10,0));
 varInt = 0;
 varBool = false;
 varString = &quot;This is a string&quot;;
 log.show(&quot;Start counting.\n&quot;);
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__Ac__initial&quot;,(char *)&quot;Debug__B__Ac__initial&quot;,(char *)&quot;Debug__A__Ac__initial&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__Ac__initial&quot;,(char *)&quot;Debug__B__Ac__initial&quot;,(char *)&quot;Debug__A__Ac__initial&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
 </body>
                 </effect>
-                <trigger xmi:id="_6HZg8k1kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
+                <trigger xmi:id="_KHl4AFeLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
                   <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
                 </trigger>
               </transition>
-              <transition xmi:id="_6HdLUE1kEeeWlJlfuuVkkg" name="Debug__En__COUNTING" source="_6HSMME1kEeeWlJlfuuVkkg" target="_6HYS0E1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6I5VwE1kEeeWlJlfuuVkkg" name="Debug__En__COUNTING__21">
+              <transition xmi:id="_KHl4AleLEeinwNTOTi6a1Q" name="Debug__En__COUNTING" source="_KHkp41eLEeinwNTOTi6a1Q" target="_KHlQ8FeLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KH-5kFeLEeinwNTOTi6a1Q" name="Debug__En__COUNTING__47">
                   <language>C++</language>
                   <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__En__COUNTING&quot;,(char *)&quot;Debug__A__Ac__initial&quot;,(char *)&quot;Debug__A__En__initial&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__En__COUNTING&quot;,(char *)&quot;Debug__A__Ac__initial&quot;,(char *)&quot;Debug__A__En__COUNTING&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
 </body>
                 </effect>
-                <trigger xmi:id="_6HdLUU1kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
+                <trigger xmi:id="_KHl4A1eLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
                   <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
                 </trigger>
               </transition>
-              <transition xmi:id="_6HdyYE1kEeeWlJlfuuVkkg" name="Debug__end__trans__initial" source="_6HYS0E1kEeeWlJlfuuVkkg" target="_6FsQwE1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6JAqgE1kEeeWlJlfuuVkkg" name="Debug__end__trans__initial__23">
+              <transition xmi:id="_KHl4BFeLEeinwNTOTi6a1Q" name="Debug__end__trans__initial" source="_KHlQ8FeLEeinwNTOTi6a1Q" target="_KHGIwVeLEeinwNTOTi6a1Q">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_KH_goFeLEeinwNTOTi6a1Q" name="Debug__end__trans__initial__49">
                   <language>C++</language>
                   <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__end__trans__initial&quot;,(char *)&quot;Debug__A__En__initial&quot;,(char *)&quot;ex&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__end__trans__initial&quot;,(char *)&quot;Debug__A__En__COUNTING&quot;,(char *)&quot;ex&quot;,msg->signal.getSrcPort()->containerClass->name,msg->signal.getSrcPort()->getName());
 </body>
                 </effect>
-                <trigger xmi:id="_6HdyYU1kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
+                <trigger xmi:id="_KHl4BVeLEeinwNTOTi6a1Q" name="Debug__Exec" port="_KDSm0leLEeinwNTOTi6a1Q">
                   <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
                 </trigger>
               </transition>
-              <subvertex xmi:type="uml:State" xmi:id="_6HLegE1kEeeWlJlfuuVkkg" name="Debug__B__Ac__initial">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6HLegU1kEeeWlJlfuuVkkg" name="Debug__B__Ac__initial">
+              <subvertex xmi:type="uml:State" xmi:id="_KHkp4VeLEeinwNTOTi6a1Q" name="Debug__B__Ac__initial">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KHkp4leLEeinwNTOTi6a1Q" name="Debug__B__Ac__initial">
                   <language>C++</language>
                   <body>if (not(Debug__SRO.checkDebug(&quot;initial&quot;,&quot;&quot;,&quot;&quot;,3,TransitionEffectBreakPoint,0))){
 extComm.selfExec().send();}
 
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__B__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__B__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
                 </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6HuREE1kEeeWlJlfuuVkkg" name="Debug__B__Ac__initial__14">
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KHr-oVeLEeinwNTOTi6a1Q" name="Debug__B__Ac__initial__40">
                   <language>C++</language>
                   <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__B__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__B__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
                 </exit>
               </subvertex>
-              <subvertex xmi:type="uml:State" xmi:id="_6HSMME1kEeeWlJlfuuVkkg" name="Debug__A__Ac__initial">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6HSMMU1kEeeWlJlfuuVkkg" name="Debug__A__Ac__initial">
+              <subvertex xmi:type="uml:State" xmi:id="_KHkp41eLEeinwNTOTi6a1Q" name="Debug__A__Ac__initial">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KHkp5FeLEeinwNTOTi6a1Q" name="Debug__A__Ac__initial">
                   <language>C++</language>
                   <body>if (not(Debug__SRO.checkDebug(&quot;initial&quot;,&quot;&quot;,&quot;&quot;,3,TransitionEffectBreakPoint,1) or Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,4,StateEntryBreakPoint,0))){
 extComm.selfExec().send();}
 
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
                 </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6IHSoE1kEeeWlJlfuuVkkg" name="Debug__A__Ac__initial__15">
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KHyFQVeLEeinwNTOTi6a1Q" name="Debug__A__Ac__initial__41">
                   <language>C++</language>
                   <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__Ac__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
                 </exit>
               </subvertex>
-              <subvertex xmi:type="uml:State" xmi:id="_6HYS0E1kEeeWlJlfuuVkkg" name="Debug__A__En__initial">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6HYS0U1kEeeWlJlfuuVkkg" name="Debug__A__En__initial">
+              <subvertex xmi:type="uml:State" xmi:id="_KHlQ8FeLEeinwNTOTi6a1Q" name="Debug__A__En__COUNTING">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_KHlQ8VeLEeinwNTOTi6a1Q" name="Debug__A__En__COUNTING">
                   <language>C++</language>
                   <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,4,StateEntryBreakPoint,1))){
 extComm.selfExec().send();}
 
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__En__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
                 </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6IiJYE1kEeeWlJlfuuVkkg" name="Debug__A__En__initial__16">
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_KH9EYFeLEeinwNTOTi6a1Q" name="Debug__A__En__COUNTING__42">
                   <language>C++</language>
                   <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__En__initial&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
+Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__initial::Region1::Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
 </body>
                 </exit>
               </subvertex>
             </region>
           </subvertex>
-          <subvertex xmi:type="uml:Pseudostate" xmi:id="_6JPUAE1kEeeWlJlfuuVkkg" name="Debug__Path__count" kind="choice"/>
-          <subvertex xmi:type="uml:State" xmi:id="_6Jd9gU1kEeeWlJlfuuVkkg" name="Debug__C__count">
-            <connectionPoint xmi:id="_6Jr_8U1kEeeWlJlfuuVkkg" name="en" kind="entryPoint"/>
-            <connectionPoint xmi:id="_6J2_EU1kEeeWlJlfuuVkkg" name="ex" kind="exitPoint"/>
-            <region xmi:id="_6Jd9gk1kEeeWlJlfuuVkkg" name="Region1">
-              <transition xmi:id="_6LDR4E1kEeeWlJlfuuVkkg" name="Debug__init__trans__count" source="_6Jr_8U1kEeeWlJlfuuVkkg" target="_6K9LQE1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6MVEQE1kEeeWlJlfuuVkkg" name="Debug__init__trans__count__42">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__init__trans__count&quot;,(char *)&quot;en&quot;,(char *)&quot;Debug__B__Ex__COUNTING&quot;,(char *)&quot;&quot;);
-</body>
-                </effect>
-              </transition>
-              <transition xmi:id="_6LDR4U1kEeeWlJlfuuVkkg" name="Debug__Ex__COUNTING" source="_6K9LQE1kEeeWlJlfuuVkkg" target="_6K9yUE1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6MVrUE1kEeeWlJlfuuVkkg" name="Debug__Ex__COUNTING__44">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__Ex__COUNTING&quot;,(char *)&quot;Debug__B__Ex__COUNTING&quot;,(char *)&quot;Debug__B__Ac__count&quot;,(char *)&quot;&quot;);
-</body>
-                </effect>
-                <trigger xmi:id="_6LDR4k1kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
-                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
-                </trigger>
-              </transition>
-              <transition xmi:id="_6LDR401kEeeWlJlfuuVkkg" name="Debug__AC__count" source="_6K9yUE1kEeeWlJlfuuVkkg" target="_6LCDwE1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6LHjUE1kEeeWlJlfuuVkkg" name="Effect" visibility="public" isReentrant="false">
-                  <language>C++</language>
-                  <body>varInt++;
-log.show(&quot;Counting. New value: %d\n&quot;, varInt);
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__AC__count&quot;,(char *)&quot;Debug__B__Ac__count&quot;,(char *)&quot;Debug__A__Ac__count&quot;,(char *)&quot;&quot;);
-</body>
-                </effect>
-                <trigger xmi:id="_6LGVME1kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
-                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
-                </trigger>
-              </transition>
-              <transition xmi:id="_6LIKYE1kEeeWlJlfuuVkkg" name="Debug__En__COUNTING" source="_6LCDwE1kEeeWlJlfuuVkkg" target="_6LCq0E1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6McZAE1kEeeWlJlfuuVkkg" name="Debug__En__COUNTING__47">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__En__COUNTING&quot;,(char *)&quot;Debug__A__Ac__count&quot;,(char *)&quot;Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;);
-</body>
-                </effect>
-                <trigger xmi:id="_6LIKYU1kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
-                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
-                </trigger>
-              </transition>
-              <transition xmi:id="_6LIKYk1kEeeWlJlfuuVkkg" name="Debug__end__trans__count" source="_6LCq0E1kEeeWlJlfuuVkkg" target="_6J2_EU1kEeeWlJlfuuVkkg">
-                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6MgqcE1kEeeWlJlfuuVkkg" name="Debug__end__trans__count__49">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::TRANISTION,debugEvents::TRANISTIONEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__end__trans__count&quot;,(char *)&quot;Debug__A__En__COUNTING&quot;,(char *)&quot;ex&quot;,(char *)&quot;&quot;);
-</body>
-                </effect>
-                <trigger xmi:id="_6LIKY01kEeeWlJlfuuVkkg" name="Debug__Exec" port="_598qAE1kEeeWlJlfuuVkkg">
-                  <event xmi:type="uml:CallEvent" href="../CommGateWay/model.uml#_B2LakK1AEea2s6SIdFjObg"/>
-                </trigger>
-              </transition>
-              <subvertex xmi:type="uml:State" xmi:id="_6K9LQE1kEeeWlJlfuuVkkg" name="Debug__B__Ex__COUNTING">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6K9LQU1kEeeWlJlfuuVkkg" name="Debug__B__Ex__COUNTING">
-                  <language>C++</language>
-                  <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,2,StateExitBreakPoint,0))){
-extComm.selfExec().send();}
-
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ex__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6LYCAU1kEeeWlJlfuuVkkg" name="Debug__B__Ex__COUNTING__37">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ex__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </exit>
-              </subvertex>
-              <subvertex xmi:type="uml:State" xmi:id="_6K9yUE1kEeeWlJlfuuVkkg" name="Debug__B__Ac__count">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6K9yUU1kEeeWlJlfuuVkkg" name="Debug__B__Ac__count">
-                  <language>C++</language>
-                  <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,2,StateExitBreakPoint,1) or Debug__SRO.checkDebug(&quot;count&quot;,&quot;&quot;,&quot;&quot;,3,TransitionEffectBreakPoint,0))){
-extComm.selfExec().send();}
-
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6Lpu0E1kEeeWlJlfuuVkkg" name="Debug__B__Ac__count__38">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__B__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </exit>
-              </subvertex>
-              <subvertex xmi:type="uml:State" xmi:id="_6LCDwE1kEeeWlJlfuuVkkg" name="Debug__A__Ac__count">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6LCDwU1kEeeWlJlfuuVkkg" name="Debug__A__Ac__count">
-                  <language>C++</language>
-                  <body>if (not(Debug__SRO.checkDebug(&quot;count&quot;,&quot;&quot;,&quot;&quot;,3,TransitionEffectBreakPoint,1) or Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,4,StateEntryBreakPoint,0))){
-extComm.selfExec().send();}
-
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6MBiQE1kEeeWlJlfuuVkkg" name="Debug__A__Ac__count__39">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__Ac__count&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </exit>
-              </subvertex>
-              <subvertex xmi:type="uml:State" xmi:id="_6LCq0E1kEeeWlJlfuuVkkg" name="Debug__A__En__COUNTING">
-                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_6LCq0U1kEeeWlJlfuuVkkg" name="Debug__A__En__COUNTING">
-                  <language>C++</language>
-                  <body>if (not(Debug__SRO.checkDebug(&quot;COUNTING&quot;,&quot;&quot;,&quot;&quot;,4,StateEntryBreakPoint,1))){
-extComm.selfExec().send();}
-
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEENTRYEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </entry>
-                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_6MCwYE1kEeeWlJlfuuVkkg" name="Debug__A__En__COUNTING__40">
-                  <language>C++</language>
-                  <body>
-Debug__sendEvent(debugEvents::STATE,debugEvents::STATEEXITEND,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName(),(char *)&quot;Counter::Counter::CounterStateMachine::Region::Debug__C__count::Region1::Debug__A__En__COUNTING&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;,(char *)&quot;&quot;);
-</body>
-                </exit>
-              </subvertex>
-            </region>
-          </subvertex>
-          <subvertex xmi:type="uml:State" xmi:id="_6MifoE1kEeeWlJlfuuVkkg" name="Debug__InitState"/>
+          <subvertex xmi:type="uml:State" xmi:id="_KIB84FeLEeinwNTOTi6a1Q" name="Debug__InitState"/>
         </region>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_590uME1kEeeWlJlfuuVkkg" name="Debug__recallAllMsg" specification="_590HIE1kEeeWlJlfuuVkkg">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KDSm0VeLEeinwNTOTi6a1Q" name="Debug__recallAllMsg" specification="_KDSm0FeLEeinwNTOTi6a1Q">
         <language>C++</language>
         <body></body>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_5_St0U1kEeeWlJlfuuVkkg" name="Debug__variablesViewMethod" specification="_5_St0E1kEeeWlJlfuuVkkg">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KDk6sVeLEeinwNTOTi6a1Q" name="Debug__variablesViewMethod" specification="_KDk6sFeLEeinwNTOTi6a1Q">
         <language>C++</language>
         <body>std::string tempS=&quot;&quot;;
 tempS.append(&quot;varInt,&quot;);
@@ -574,18 +574,18 @@ else if (strlen(Debug__variablesData)&lt;strlen(tempS.c_str()))
 strcpy(Debug__variablesData,tempS.c_str());
 </body>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_5_wA0E1kEeeWlJlfuuVkkg" name="Debug__variablesChange" specification="_5_jMgE1kEeeWlJlfuuVkkg">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KDmv41eLEeinwNTOTi6a1Q" name="Debug__variablesChange" specification="_KDmI0FeLEeinwNTOTi6a1Q">
         <language>C++</language>
         <body>std::string tempVarName=&quot;&quot;;
 tempVarName.append(varName);
-if (&quot;varBool&quot;==tempVarName){
+if (&quot;varInt&quot;==tempVarName){
+    varInt=atoi(varValue);
+    return true;
+}else if (&quot;varBool&quot;==tempVarName){
     if(strcmp(varValue,&quot;true&quot;)==0)
         varBool=true;
     else 
         varBool=false;
-    return true;
-}else if (&quot;varInt&quot;==tempVarName){
-    varInt=atoi(varValue);
     return true;
 }else if (&quot;varString&quot;==tempVarName){
     if (varString==NULL)
@@ -598,7 +598,7 @@ if (&quot;varBool&quot;==tempVarName){
     return false;
 </body>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_6Ek2cE1kEeeWlJlfuuVkkg" name="Debug__sendEvent" specification="_6ByBIE1kEeeWlJlfuuVkkg">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KF2yoFeLEeinwNTOTi6a1Q" name="Debug__sendEvent" specification="_KEm1cFeLEeinwNTOTi6a1Q">
         <language>C++</language>
         <body>this->Debug__variablesView();
 this->Debug__event.clearEventPayload();
@@ -617,6 +617,8 @@ if (eventSourceKind==debugEvents::TRANISTION){
 this->Debug__event.setPayloadField(&quot;Source&quot;,reserve1);
 this->Debug__event.setPayloadField(&quot;Target&quot;,reserve2);
 this->Debug__event.setPayloadField(&quot;Signal&quot;,signalName);
+this->Debug__event.setPayloadField(&quot;SenderCapsule&quot;,reserve3);
+this->Debug__event.setPayloadField(&quot;Port&quot;,reserve4);
 }
 std::string tempS=this->Debug__event.serialize();
 char eventStr[tempS.length()+1];
@@ -624,61 +626,64 @@ strcpy(eventStr,tempS.c_str());
 extComm.event(eventStr).send();
 </body>
       </ownedBehavior>
-      <ownedOperation xmi:id="_590HIE1kEeeWlJlfuuVkkg" name="Debug__recallAllMsg" visibility="private" method="_590uME1kEeeWlJlfuuVkkg"/>
-      <ownedOperation xmi:id="_5_St0E1kEeeWlJlfuuVkkg" name="Debug__variablesView" visibility="private" method="_5_St0U1kEeeWlJlfuuVkkg"/>
-      <ownedOperation xmi:id="_5_jMgE1kEeeWlJlfuuVkkg" name="Debug__variablesChange" visibility="private" method="_5_wA0E1kEeeWlJlfuuVkkg">
-        <ownedParameter xmi:id="_5_p6ME1kEeeWlJlfuuVkkg" name="methodReturn" direction="return">
+      <ownedOperation xmi:id="_KDSm0FeLEeinwNTOTi6a1Q" name="Debug__recallAllMsg" visibility="private" method="_KDSm0VeLEeinwNTOTi6a1Q"/>
+      <ownedOperation xmi:id="_KDk6sFeLEeinwNTOTi6a1Q" name="Debug__variablesView" visibility="private" method="_KDk6sVeLEeinwNTOTi6a1Q"/>
+      <ownedOperation xmi:id="_KDmI0FeLEeinwNTOTi6a1Q" name="Debug__variablesChange" visibility="private" method="_KDmv41eLEeinwNTOTi6a1Q">
+        <ownedParameter xmi:id="_KDmv4FeLEeinwNTOTi6a1Q" name="methodReturn" direction="return">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_5_qhQE1kEeeWlJlfuuVkkg" name="varName">
+        <ownedParameter xmi:id="_KDmv4VeLEeinwNTOTi6a1Q" name="varName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_5_sWcE1kEeeWlJlfuuVkkg" name="varValue">
+        <ownedParameter xmi:id="_KDmv4leLEeinwNTOTi6a1Q" name="varValue">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
       </ownedOperation>
-      <ownedOperation xmi:id="_6ByBIE1kEeeWlJlfuuVkkg" name="Debug__sendEvent" visibility="private" method="_6Ek2cE1kEeeWlJlfuuVkkg">
-        <ownedParameter xmi:id="_6B7LEE1kEeeWlJlfuuVkkg" name="eventSourceKind">
+      <ownedOperation xmi:id="_KEm1cFeLEeinwNTOTi6a1Q" name="Debug__sendEvent" visibility="private" method="_KF2yoFeLEeinwNTOTi6a1Q">
+        <ownedParameter xmi:id="_KEm1cVeLEeinwNTOTi6a1Q" name="eventSourceKind">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6CsAEE1kEeeWlJlfuuVkkg" name="eventType">
+        <ownedParameter xmi:id="_KE0Q0FeLEeinwNTOTi6a1Q" name="eventType">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6DFBoE1kEeeWlJlfuuVkkg" name="instanceName">
+        <ownedParameter xmi:id="_KFDhYFeLEeinwNTOTi6a1Q" name="instanceName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6DnNIE1kEeeWlJlfuuVkkg" name="capsuleIndex">
+        <ownedParameter xmi:id="_KFN5cFeLEeinwNTOTi6a1Q" name="capsuleIndex">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6Dq3gE1kEeeWlJlfuuVkkg" name="signalName">
+        <ownedParameter xmi:id="_KFN5cVeLEeinwNTOTi6a1Q" name="signalName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6EFuQE1kEeeWlJlfuuVkkg" name="capsuleName">
+        <ownedParameter xmi:id="_KFYRgFeLEeinwNTOTi6a1Q" name="capsuleName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6EeIwE1kEeeWlJlfuuVkkg" name="sourceName">
+        <ownedParameter xmi:id="_KFiCgFeLEeinwNTOTi6a1Q" name="sourceName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6EiaME1kEeeWlJlfuuVkkg" name="reserve1">
+        <ownedParameter xmi:id="_KFiCgVeLEeinwNTOTi6a1Q" name="reserve1">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6EjoUE1kEeeWlJlfuuVkkg" name="reserve2">
+        <ownedParameter xmi:id="_KFiCgleLEeinwNTOTi6a1Q" name="reserve2">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_6EkPYE1kEeeWlJlfuuVkkg" name="reserve3">
+        <ownedParameter xmi:id="_KFiCg1eLEeinwNTOTi6a1Q" name="reserve3">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_KFsakFeLEeinwNTOTi6a1Q" name="reserve4">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_5ykgcE1kEeeWlJlfuuVkkg" name="Debug__Top">
-      <ownedAttribute xmi:id="_57snQE1kEeeWlJlfuuVkkg" name="Debug__Gateway">
+    <packagedElement xmi:type="uml:Class" xmi:id="_KBi6YFeLEeinwNTOTi6a1Q" name="Debug__Top">
+      <ownedAttribute xmi:id="_KC164FeLEeinwNTOTi6a1Q" name="Debug__Gateway">
         <type xmi:type="uml:Class" href="../CommGateWay/model.uml#_XIyCcAdxEeadtKuU2t6fMg"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_58TEME1kEeeWlJlfuuVkkg" value="1"/>
-        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_58TEMU1kEeeWlJlfuuVkkg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KDCvMVeLEeinwNTOTi6a1Q" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_KDCvMleLEeinwNTOTi6a1Q" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_58bAAE1kEeeWlJlfuuVkkg" name="Debug__Counter" type="_7rXgAE1iEeeFgIitP47fuA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_58uiAE1kEeeWlJlfuuVkkg" value="1"/>
-        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_58uiAU1kEeeWlJlfuuVkkg" value="1"/>
+      <ownedAttribute xmi:id="_KDDWQFeLEeinwNTOTi6a1Q" name="Debug__Counter" type="_7rXgAE1iEeeFgIitP47fuA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KDJc4VeLEeinwNTOTi6a1Q" value="1"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_KDJc4leLEeinwNTOTi6a1Q" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <profileApplication xmi:id="_0GZ5w01iEeeFgIitP47fuA">
@@ -707,34 +712,36 @@ extComm.event(eventStr).send();
   <UMLRTStateMachines:RTRegion xmi:id="_RWAAcE1jEeeFgIitP47fuA" base_Region="_RU7CYE1jEeeFgIitP47fuA"/>
   <UMLRTStateMachines:RTStateMachine xmi:id="_RWV-sE1jEeeFgIitP47fuA" base_StateMachine="_RUEGwE1jEeeFgIitP47fuA"/>
   <UMLRTStateMachines:RTPseudostate xmi:id="_boot4E1jEeeFgIitP47fuA" base_Pseudostate="_boT9wE1jEeeFgIitP47fuA"/>
-  <UMLRealTime:Capsule xmi:id="_56peYE1kEeeWlJlfuuVkkg" base_Class="_5ykgcE1kEeeWlJlfuuVkkg"/>
-  <UMLRealTime:CapsulePart xmi:id="_58OLsE1kEeeWlJlfuuVkkg" base_Property="_57snQE1kEeeWlJlfuuVkkg"/>
-  <UMLRealTime:CapsulePart xmi:id="_58resE1kEeeWlJlfuuVkkg" base_Property="_58bAAE1kEeeWlJlfuuVkkg"/>
-  <UMLRealTime:RTPort xmi:id="_5-W5sE1kEeeWlJlfuuVkkg" isNotification="true" isWired="false" base_Port="_598qAE1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:AttributeProperties xmi:id="_6AFYAE1kEeeWlJlfuuVkkg" type="debugEvents::Event" base_Property="_5_0SQU1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:AttributeProperties xmi:id="_6AfnsE1kEeeWlJlfuuVkkg" type="SROManager" base_Property="_6APJAE1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:CapsuleProperties xmi:id="_6BBMIE1kEeeWlJlfuuVkkg" headerPreface="#include &quot;Event.h&quot;&#xA;&#xA;#include &quot;SROManager.h&quot;&#xA;" base_Class="_7rXgAE1iEeeFgIitP47fuA"/>
-  <RTCppProperties:ParameterProperties xmi:id="_6CWB0E1kEeeWlJlfuuVkkg" type="debugEvents::EVENTSOURCEKIND" base_Parameter="_6B7LEE1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:ParameterProperties xmi:id="_6C6CgE1kEeeWlJlfuuVkkg" type="debugEvents::EVENTTYPE" base_Parameter="_6CsAEE1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:ParameterProperties xmi:id="_6DRO4E1kEeeWlJlfuuVkkg" type="const char *" base_Parameter="_6DFBoE1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:ParameterProperties xmi:id="_6D79QE1kEeeWlJlfuuVkkg" type="const char *" base_Parameter="_6Dq3gE1kEeeWlJlfuuVkkg"/>
-  <RTCppProperties:ParameterProperties xmi:id="_6ETJoE1kEeeWlJlfuuVkkg" type="const char *" base_Parameter="_6EFuQE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTPseudostate xmi:id="_6FJeME1kEeeWlJlfuuVkkg" base_Pseudostate="_6E7bwE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6FbyEE1kEeeWlJlfuuVkkg" base_State="_6FKFQE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTPseudostate xmi:id="_6FrpsE1kEeeWlJlfuuVkkg" base_Pseudostate="_6FcZIE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTPseudostate xmi:id="_6F6TME1kEeeWlJlfuuVkkg" base_Pseudostate="_6FsQwE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTRegion xmi:id="_6HKQYE1kEeeWlJlfuuVkkg" base_Region="_6FKFQU1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6HtqAE1kEeeWlJlfuuVkkg" base_State="_6HLegE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6IGrkE1kEeeWlJlfuuVkkg" base_State="_6HSMME1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6IhiUE1kEeeWlJlfuuVkkg" base_State="_6HYS0E1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTPseudostate xmi:id="_6Jd9gE1kEeeWlJlfuuVkkg" base_Pseudostate="_6JPUAE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6Jr_8E1kEeeWlJlfuuVkkg" base_State="_6Jd9gU1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTPseudostate xmi:id="_6J2_EE1kEeeWlJlfuuVkkg" base_Pseudostate="_6Jr_8U1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTPseudostate xmi:id="_6KG2sE1kEeeWlJlfuuVkkg" base_Pseudostate="_6J2_EU1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTRegion xmi:id="_6K8kME1kEeeWlJlfuuVkkg" base_Region="_6Jd9gk1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6LYCAE1kEeeWlJlfuuVkkg" base_State="_6K9LQE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6LmrgE1kEeeWlJlfuuVkkg" base_State="_6K9yUE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6MA7ME1kEeeWlJlfuuVkkg" base_State="_6LCDwE1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6MRZ4E1kEeeWlJlfuuVkkg" base_State="_6LCq0E1kEeeWlJlfuuVkkg"/>
-  <UMLRTStateMachines:RTState xmi:id="_6M0zgE1kEeeWlJlfuuVkkg" base_State="_6MifoE1kEeeWlJlfuuVkkg"/>
+  <UMLRealTime:Capsule xmi:id="_KCxpcFeLEeinwNTOTi6a1Q" base_Class="_KBi6YFeLEeinwNTOTi6a1Q"/>
+  <UMLRealTime:CapsulePart xmi:id="_KDCvMFeLEeinwNTOTi6a1Q" base_Property="_KC164FeLEeinwNTOTi6a1Q"/>
+  <UMLRealTime:CapsulePart xmi:id="_KDJc4FeLEeinwNTOTi6a1Q" base_Property="_KDDWQFeLEeinwNTOTi6a1Q"/>
+  <UMLRealTime:RTPort xmi:id="_KDYGYFeLEeinwNTOTi6a1Q" isNotification="true" isWired="false" base_Port="_KDSm0leLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:AttributeProperties xmi:id="_KDs2gFeLEeinwNTOTi6a1Q" type="debugEvents::Event" base_Property="_KDnW8VeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:AttributeProperties xmi:id="_KD4csFeLEeinwNTOTi6a1Q" type="SROManager" base_Property="_KDyWEFeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_KEOa8FeLEeinwNTOTi6a1Q" headerPreface="#include &quot;Event.h&quot;&#xA;&#xA;#include &quot;SROManager.h&quot;&#xA;" base_Class="_7rXgAE1iEeeFgIitP47fuA"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KEuxQFeLEeinwNTOTi6a1Q" type="debugEvents::EVENTSOURCEKIND" base_Parameter="_KEm1cVeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KE-o4FeLEeinwNTOTi6a1Q" type="debugEvents::EVENTTYPE" base_Parameter="_KE0Q0FeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KFJA8FeLEeinwNTOTi6a1Q" type="const char *" base_Parameter="_KFDhYFeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KFSx8FeLEeinwNTOTi6a1Q" type="const char *" base_Parameter="_KFN5cVeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KFdKAFeLEeinwNTOTi6a1Q" type="const char *" base_Parameter="_KFYRgFeLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KFniEFeLEeinwNTOTi6a1Q" type="const char *" base_Parameter="_KFiCg1eLEeinwNTOTi6a1Q"/>
+  <RTCppProperties:ParameterProperties xmi:id="_KFx6IFeLEeinwNTOTi6a1Q" type="const char *" base_Parameter="_KFsakFeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_KF-ucFeLEeinwNTOTi6a1Q" base_Pseudostate="_KF5O4FeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KGDm8FeLEeinwNTOTi6a1Q" base_State="_KF-ucVeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_KGJGgFeLEeinwNTOTi6a1Q" base_Pseudostate="_KGEOAFeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_KGN_AFeLEeinwNTOTi6a1Q" base_Pseudostate="_KGJGgVeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTRegion xmi:id="_KGYXEFeLEeinwNTOTi6a1Q" base_Region="_KF-ucleLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KGgS4FeLEeinwNTOTi6a1Q" base_State="_KGY-IFeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KGmZgFeLEeinwNTOTi6a1Q" base_State="_KGY-IleLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KGr5EFeLEeinwNTOTi6a1Q" base_State="_KGZlMFeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KGx_sFeLEeinwNTOTi6a1Q" base_State="_KGZlMleLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_KG7wsFeLEeinwNTOTi6a1Q" base_Pseudostate="_KG24MFeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KHBQQFeLEeinwNTOTi6a1Q" base_State="_KG7wsVeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_KHGIwFeLEeinwNTOTi6a1Q" base_Pseudostate="_KHBQQVeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTPseudostate xmi:id="_KHLoUFeLEeinwNTOTi6a1Q" base_Pseudostate="_KHGIwVeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTRegion xmi:id="_KHkp4FeLEeinwNTOTi6a1Q" base_Region="_KG7wsleLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KHr-oFeLEeinwNTOTi6a1Q" base_State="_KHkp4VeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KHyFQFeLEeinwNTOTi6a1Q" base_State="_KHkp41eLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KH8dUFeLEeinwNTOTi6a1Q" base_State="_KHlQ8FeLEeinwNTOTi6a1Q"/>
+  <UMLRTStateMachines:RTState xmi:id="_KINjEFeLEeinwNTOTi6a1Q" base_State="_KIB84FeLEeinwNTOTi6a1Q"/>
 </xmi:XMI>

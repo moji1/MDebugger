@@ -1,0 +1,6 @@
+Top.RTConnector1
+    Top.pinger#pingPort.far[0] <-> Top.ponger#pongPort.far[0]
+Top.RTConnector2
+    Top.referee#startPort.far[0] <-> Top.pinger#startPort.far[0]
+Top.RTConnector3
+    Top.ponger#endPort.far[0] <-> Top.referee#endPort.far[0]

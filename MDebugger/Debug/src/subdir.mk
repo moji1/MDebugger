@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../src/CapsuleTracker.cpp \
 ../src/CmdInterface.cpp \
 ../src/MDebugger.cpp \
+../src/SequenceDiagram.cpp \
 ../src/UMLRTDebugger.cpp 
 
 OBJS += \
@@ -15,6 +16,7 @@ OBJS += \
 ./src/CapsuleTracker.o \
 ./src/CmdInterface.o \
 ./src/MDebugger.o \
+./src/SequenceDiagram.o \
 ./src/UMLRTDebugger.o 
 
 CPP_DEPS += \
@@ -22,6 +24,7 @@ CPP_DEPS += \
 ./src/CapsuleTracker.d \
 ./src/CmdInterface.d \
 ./src/MDebugger.d \
+./src/SequenceDiagram.d \
 ./src/UMLRTDebugger.d 
 
 

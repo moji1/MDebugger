@@ -1,0 +1,11 @@
+# use areaname param, used to specify the shared memory area name, don't set unless there is more than one shared area.
+eventareaname=EventArea
+# qname is the queue name will includes the data. you don't need set it unless there is different queue in one shared area.
+eventqname=EventQ
+eventareasize=99999999
+#### shared mem config for command
+commandareaname=CommandArea
+commandqname=CommandQ
+commandareasize=9999
+### send message method can be instant or periodic; this mode are only can be set for TCP connection,
+Debug=true

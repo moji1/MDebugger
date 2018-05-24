@@ -180,17 +180,31 @@ void CapsuleTracker::setCapsuleHistoryEvents(const std::deque<debugEvents::Event
 	this->capsuleLiveEvents = capsuleHistoryEvents;
 }
 
-const std::string& CapsuleTracker::getLastState() const {
+/*const std::string& CapsuleTracker::getLastState() const {
 	return lastState;
-}
+}*/
 
-void CapsuleTracker::setLastState(const std::string& lastState) {
+/*void CapsuleTracker::setLastState(const std::string& lastState) {
 	this->lastState = lastState;
+}*/
+
+std::string CapsuleTracker::getCrrentStateForPrint() {
+	std::string fullCurrentState=this->getCurrentState();
+	int i=fullCurrentState.find_last_of("::");
+	std::string currentState=fullCurrentState.substr(i+1);
+	i=currentState.find_first_of("__");
+	std::string tempS=currentState.substr(0, i);
+	if (tempS.compare("Debug")==0)
+		currentState=currentState.substr(i+2);
+	return currentState;
+
 }
 
 } /* namespace mdebugger */
 
 std::string mdebugger::CapsuleTracker::getExecModeStr() {
-	std::vector<std::string>  execModeStr={"STEPIN","STEPOVER","CONTINUE","RUN"};
+	std::vector<std::string>  execModeStr={"Suspended","Continue","Run"};
 	return execModeStr[this->getExecMode()];
 }
+
+

@@ -471,7 +471,7 @@
   <notation:Diagram xmi:id="_7exc4ExOEeeAapBXl-GW2w" type="PapyrusUMLStateMachineDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_7exc4UxOEeeAapBXl-GW2w" type="StateMachine_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_7exc4kxOEeeAapBXl-GW2w" type="StateMachine_NameLabel">
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7exc40xOEeeAapBXl-GW2w" width="700" height="23"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7exc40xOEeeAapBXl-GW2w" width="700" height="19"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_7exc5ExOEeeAapBXl-GW2w" type="StateMachine_RegionCompartment">
         <children xmi:type="notation:Shape" xmi:id="_7exc5UxOEeeAapBXl-GW2w" type="Region_Shape">
@@ -572,7 +572,7 @@
           <element xsi:nil="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Xf0s0kxPEeeAapBXl-GW2w" x="200"/>
         </children>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7exc60xOEeeAapBXl-GW2w" y="23" width="700" height="277"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7exc60xOEeeAapBXl-GW2w" y="19" width="700" height="281"/>
       </children>
       <element xmi:type="uml:StateMachine" href="PingPong.uml#_7eBO8ExOEeeAapBXl-GW2w"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7exc7ExOEeeAapBXl-GW2w" x="30" y="30" width="700" height="300"/>
@@ -676,7 +676,7 @@
   <notation:Diagram xmi:id="_P9u-8ExQEeeAapBXl-GW2w" type="PapyrusUMLStateMachineDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_P9u-8UxQEeeAapBXl-GW2w" type="StateMachine_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_P9u-8kxQEeeAapBXl-GW2w" type="StateMachine_NameLabel">
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P9u-80xQEeeAapBXl-GW2w" width="700" height="23"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P9u-80xQEeeAapBXl-GW2w" width="700" height="19"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_P9u-9ExQEeeAapBXl-GW2w" type="StateMachine_RegionCompartment">
         <children xmi:type="notation:Shape" xmi:id="_P9u-9UxQEeeAapBXl-GW2w" type="Region_Shape">
@@ -777,7 +777,7 @@
           <element xsi:nil="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SZpnwkxQEeeAapBXl-GW2w" x="200"/>
         </children>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P9u--0xQEeeAapBXl-GW2w" y="23" width="700" height="277"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P9u--0xQEeeAapBXl-GW2w" y="19" width="700" height="281"/>
       </children>
       <element xmi:type="uml:StateMachine" href="PingPong.uml#_P8x8sExQEeeAapBXl-GW2w"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P9u-_ExQEeeAapBXl-GW2w" x="30" y="30" width="700" height="300"/>

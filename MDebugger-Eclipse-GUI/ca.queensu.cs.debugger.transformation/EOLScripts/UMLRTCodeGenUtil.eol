@@ -23,7 +23,9 @@ operation  generateConnDebugger() : String{
     result=result.concat("sprintf(tempS,\"%s%d\",this->getName(),(int)this->getIndex());").concat(endLine);
     result=result.concat("extComm.registerToControl(tempS).send();").concat(endLine);
     result=result.concat(instrumentPrefix).concat("sendEvent(debugEvents::DEBUG,debugEvents::REGISTER,this->getName(),this->getIndex(),msg->getSignalName(),this->getTypeName()");
-	result=result.concat(currentCapsuleName).concat(",(char *) \"\",(char *) \"\",(char *)\"\",(char *) \"\");").concat(endLine);
+	//result=result.concat("(char *) \"\",(char *) \"\",(char *)\"\",(char *) \"\");").concat(endLine);
+	result=result.concat(currentCapsuleName).concat(",(char *)\"\"").concat(",(char *)\"\",(char *)\"\",(char *)\"\",(char *)\"\");").concat(endLine);
+	//result=result.concat(currentCapsuleName).concat(",(char *)\"\"").concat(",(char *)\"\"").concat("\",(char *)\"\",(char *)\"\",(char *)\"\",(char *)\"\");").concat(endLine);
 	return result;
 }
 ///////

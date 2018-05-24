@@ -1,0 +1,945 @@
+
+#include "Debug__TopControllers.hh"
+
+#include "Debug__Top.hh"
+#include "GateWay.hh"
+#include "Pinger.hh"
+#include "Ponger.hh"
+#include "Referee.hh"
+#include "Top.hh"
+#include "umlrtcapsuleclass.hh"
+#include "umlrtcapsulepart.hh"
+#include "umlrtcommsport.hh"
+#include "umlrtcommsportfarend.hh"
+#include "umlrtcontroller.hh"
+#include "umlrtslot.hh"
+#include <cstddef>
+
+
+static UMLRTController DefaultController_( "DefaultController" );
+
+UMLRTController * DefaultController = &DefaultController_;
+
+static Capsule_Debug__Top debug__Top( &Debug__Top, &Debug__Top_slots[InstId_Debug__Top], NULL, NULL, true );
+
+static UMLRTSlot * slots_Debug__Top[] = 
+{
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top]
+};
+
+static UMLRTCapsulePart parts_Debug__Top[] = 
+{
+    {
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Gateway,
+        1,
+        &slots_Debug__Top[0]
+    },
+    {
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Top,
+        1,
+        &slots_Debug__Top[1]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_commandTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        1,
+        borderfarEndList_Debug__Top_Debug__Gateway,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &GateWay,
+        Capsule_GateWay::borderport_configTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Gateway[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Gateway_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Gateway[0],
+    &borderports_Debug__Top_Debug__Gateway[1]
+};
+
+static UMLRTCommsPortFarEnd internalfarEndList_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort internalports_Debug__Top_Debug__Gateway[] = 
+{
+    {
+        &GateWay,
+        Capsule_GateWay::internalport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway],
+        50,
+        internalfarEndList_Debug__Top_Debug__Gateway,
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * internalports_Debug__Top_Debug__Gateway_ptrs[] = 
+{
+    &internalports_Debug__Top_Debug__Gateway[0]
+};
+
+static Capsule_GateWay debug__Top_Debug__Gateway( &GateWay, &Debug__Top_slots[InstId_Debug__Top_Debug__Gateway], borderports_Debug__Top_Debug__Gateway_ptrs, internalports_Debug__Top_Debug__Gateway_ptrs, true );
+
+static Capsule_Top debug__Top_Debug__Top( &Top, &Debug__Top_slots[InstId_Debug__Top_Debug__Top], NULL, NULL, true );
+
+static UMLRTSlot * slots_Debug__Top_Debug__Top[] = 
+{
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger],
+    &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee]
+};
+
+static UMLRTCapsulePart parts_Debug__Top_Debug__Top[] = 
+{
+    {
+        &Top,
+        Capsule_Top::part_pinger,
+        1,
+        &slots_Debug__Top_Debug__Top[0]
+    },
+    {
+        &Top,
+        Capsule_Top::part_ponger,
+        1,
+        &slots_Debug__Top_Debug__Top[1]
+    },
+    {
+        &Top,
+        Capsule_Top::part_referee,
+        1,
+        &slots_Debug__Top_Debug__Top[2]
+    }
+};
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_pinger[] = 
+{
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_ponger[Capsule_Ponger::borderport_pongPort]
+    },
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_referee[Capsule_Referee::borderport_startPort]
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_pinger[] = 
+{
+    {
+        &Pinger,
+        Capsule_Pinger::borderport_pingPort,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_pinger,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Pinger,
+        Capsule_Pinger::borderport_startPort,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_pinger[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_pinger_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_pinger[0],
+    &borderports_Debug__Top_Debug__Top_pinger[1]
+};
+
+static UMLRTCommsPortFarEnd internalfarEndList_Debug__Top_Debug__Top_pinger[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort internalports_Debug__Top_Debug__Top_pinger[] = 
+{
+    {
+        &Pinger,
+        Capsule_Pinger::internalport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger],
+        1,
+        internalfarEndList_Debug__Top_Debug__Top_pinger,
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Pinger,
+        Capsule_Pinger::internalport_pingerTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger],
+        1,
+        &internalfarEndList_Debug__Top_Debug__Top_pinger[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Pinger,
+        Capsule_Pinger::internalport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger],
+        1,
+        &internalfarEndList_Debug__Top_Debug__Top_pinger[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * internalports_Debug__Top_Debug__Top_pinger_ptrs[] = 
+{
+    &internalports_Debug__Top_Debug__Top_pinger[0],
+    &internalports_Debug__Top_Debug__Top_pinger[1],
+    &internalports_Debug__Top_Debug__Top_pinger[2]
+};
+
+static Capsule_Pinger debug__Top_Debug__Top_pinger( &Pinger, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_pinger], borderports_Debug__Top_Debug__Top_pinger_ptrs, internalports_Debug__Top_Debug__Top_pinger_ptrs, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_ponger[] = 
+{
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_referee[Capsule_Referee::borderport_endPort]
+    },
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_pinger[Capsule_Pinger::borderport_pingPort]
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_ponger[] = 
+{
+    {
+        &Ponger,
+        Capsule_Ponger::borderport_endPort,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_ponger,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Ponger,
+        Capsule_Ponger::borderport_pongPort,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_ponger[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_ponger_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_ponger[0],
+    &borderports_Debug__Top_Debug__Top_ponger[1]
+};
+
+static UMLRTCommsPortFarEnd internalfarEndList_Debug__Top_Debug__Top_ponger[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort internalports_Debug__Top_Debug__Top_ponger[] = 
+{
+    {
+        &Ponger,
+        Capsule_Ponger::internalport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger],
+        1,
+        internalfarEndList_Debug__Top_Debug__Top_ponger,
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Ponger,
+        Capsule_Ponger::internalport_pongerTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger],
+        1,
+        &internalfarEndList_Debug__Top_Debug__Top_ponger[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Ponger,
+        Capsule_Ponger::internalport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger],
+        1,
+        &internalfarEndList_Debug__Top_Debug__Top_ponger[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * internalports_Debug__Top_Debug__Top_ponger_ptrs[] = 
+{
+    &internalports_Debug__Top_Debug__Top_ponger[0],
+    &internalports_Debug__Top_Debug__Top_ponger[1],
+    &internalports_Debug__Top_Debug__Top_ponger[2]
+};
+
+static Capsule_Ponger debug__Top_Debug__Top_ponger( &Ponger, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_ponger], borderports_Debug__Top_Debug__Top_ponger_ptrs, internalports_Debug__Top_Debug__Top_ponger_ptrs, true );
+
+static UMLRTCommsPortFarEnd borderfarEndList_Debug__Top_Debug__Top_referee[] = 
+{
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_ponger[Capsule_Ponger::borderport_endPort]
+    },
+    {
+        0,
+        &borderports_Debug__Top_Debug__Top_pinger[Capsule_Pinger::borderport_startPort]
+    }
+};
+
+UMLRTCommsPort borderports_Debug__Top_Debug__Top_referee[] = 
+{
+    {
+        &Referee,
+        Capsule_Referee::borderport_endPort,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee],
+        1,
+        borderfarEndList_Debug__Top_Debug__Top_referee,
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    },
+    {
+        &Referee,
+        Capsule_Referee::borderport_startPort,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee],
+        1,
+        &borderfarEndList_Debug__Top_Debug__Top_referee[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+    }
+};
+
+static const UMLRTCommsPort * borderports_Debug__Top_Debug__Top_referee_ptrs[] = 
+{
+    &borderports_Debug__Top_Debug__Top_referee[0],
+    &borderports_Debug__Top_Debug__Top_referee[1]
+};
+
+static UMLRTCommsPortFarEnd internalfarEndList_Debug__Top_Debug__Top_referee[] = 
+{
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    },
+    {
+        0,
+        NULL
+    }
+};
+
+UMLRTCommsPort internalports_Debug__Top_Debug__Top_referee[] = 
+{
+    {
+        &Referee,
+        Capsule_Referee::internalport_extComm,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee],
+        1,
+        internalfarEndList_Debug__Top_Debug__Top_referee,
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Referee,
+        Capsule_Referee::internalport_refereeTimer,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee],
+        1,
+        &internalfarEndList_Debug__Top_Debug__Top_referee[2],
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    },
+    {
+        &Referee,
+        Capsule_Referee::internalport_log,
+        &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee],
+        1,
+        &internalfarEndList_Debug__Top_Debug__Top_referee[1],
+        NULL,
+        NULL,
+        "",
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+    }
+};
+
+static const UMLRTCommsPort * internalports_Debug__Top_Debug__Top_referee_ptrs[] = 
+{
+    &internalports_Debug__Top_Debug__Top_referee[0],
+    &internalports_Debug__Top_Debug__Top_referee[1],
+    &internalports_Debug__Top_Debug__Top_referee[2]
+};
+
+static Capsule_Referee debug__Top_Debug__Top_referee( &Referee, &Debug__Top_slots[InstId_Debug__Top_Debug__Top_referee], borderports_Debug__Top_Debug__Top_referee_ptrs, internalports_Debug__Top_Debug__Top_referee_ptrs, true );
+
+UMLRTSlot Debug__Top_slots[] = 
+{
+    {
+        "Debug__Top",
+        0,
+        &Debug__Top,
+        NULL,
+        0,
+        &debug__Top,
+        &DefaultController_,
+        2,
+        parts_Debug__Top,
+        0,
+        NULL,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Gateway",
+        0,
+        &GateWay,
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Gateway,
+        &debug__Top_Debug__Gateway,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Debug__Top_Debug__Gateway,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top",
+        0,
+        &Top,
+        &Debug__Top,
+        Capsule_Debug__Top::part_Debug__Top,
+        &debug__Top_Debug__Top,
+        &DefaultController_,
+        3,
+        parts_Debug__Top_Debug__Top,
+        0,
+        NULL,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.pinger",
+        0,
+        &Pinger,
+        &Top,
+        Capsule_Top::part_pinger,
+        &debug__Top_Debug__Top_pinger,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Debug__Top_Debug__Top_pinger,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.ponger",
+        0,
+        &Ponger,
+        &Top,
+        Capsule_Top::part_ponger,
+        &debug__Top_Debug__Top_ponger,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Debug__Top_Debug__Top_ponger,
+        NULL,
+        true,
+        false
+    },
+    {
+        "Debug__Top.Debug__Top.referee",
+        0,
+        &Referee,
+        &Top,
+        Capsule_Top::part_referee,
+        &debug__Top_Debug__Top_referee,
+        &DefaultController_,
+        0,
+        NULL,
+        2,
+        borderports_Debug__Top_Debug__Top_referee,
+        NULL,
+        true,
+        false
+    }
+};
+

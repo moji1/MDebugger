@@ -114,7 +114,7 @@
     mdebugger::DebugCommand cmd;
     cmd.deserialize(tempStr);
     std::cout&lt;&lt;&quot;The capsule id is:&quot;&lt;&lt;cmd.getCapsuleId()&lt;&lt;&quot;\n&quot;;
-    for (std::map&lt;std::string,int>::const_iterator it1=registeredCapsules.begin() ;  it1!=registeredCapsules.end();it1++)
+   // for (std::map&lt;std::string,int>::const_iterator it1=registeredCapsules.begin() ;  it1!=registeredCapsules.end();it1++)
     //std::cout&lt;&lt;&quot;Registerd capsule:&quot;&lt;&lt;it1->first&lt;&lt;&quot;\n&quot;;
     if (registeredCapsules.count(cmd.getCapsuleId()))
     switch (cmd.getCmdId()){
@@ -149,7 +149,8 @@
     case mdebugger::dbgCmd::SETEXECMODE:
     //std::cout&lt;&lt;&quot;Set exec  mode for capsule &quot; &lt;&lt; cmd.getCapsuleId()&lt;&lt;std::endl;
     extComm.dbgSetExecMode(atoi(cmd.getCmdParam(&quot;ExecMode&quot;).c_str())).sendAt(registeredCapsules[cmd.getCapsuleId()]);;
-    //case mdebugger::VIEWBREAKPOINTS:
+    break;  
+  //case mdebugger::VIEWBREAKPOINTS:
     //case mdebugger::REMBREAKPOINT:
     //case mdebugger::REMALLBREAKPOINTS:
     }
