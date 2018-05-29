@@ -36,6 +36,7 @@ public:
 	void showHelp();
 	void getCommand();
 	bool parseCommand();
+	bool parseExtCommand();
 	const std::string& getCommandStr() const;
 	void setCommandStr(const std::string& commandStr);
 	mdebugger::mdebuggerCommand stringToUserCommad(std::string);
@@ -52,7 +53,7 @@ public:
 	//void prettyPrintEventWithDetail(std::string);
 private:
 	const static std::vector<mdebugger::CMDDesc> cmdDescList;
-	const static std::vector<mdebugger::CMDDesc> extCmdList;
+	const static std::vector<mdebugger::CMDDesc> extCmdDescList;
 	std::string commandStr;
 	std::vector<std::string> cmdTokens;
 	ParsedCMD parsedCMD;

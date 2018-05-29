@@ -357,7 +357,7 @@ void mdebugger::UMLRTDebugger::handelExtTCPSrvConn(){//(std::string host, int po
 						free(buffer);
 						extCmd.setCommandStr(tempS);
 						extCmd.tokenizeCommand();
-						extCmd.parseCommand();
+						extCmd.parseExtCommand();
 						std::string cmdTraceId="";
 						if (extCmd.getParsedCmd().commandOptions.count("-i")==1){ // echo the command id
 							mdebugger::ParsedCMD tempParsedCmd=extCmd.getParsedCmd();

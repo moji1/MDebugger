@@ -62,7 +62,7 @@ const std::vector<CMDDesc> CmdInterface::cmdDescList =
 
 	};
 ////////
-const std::vector<CMDDesc> CmdInterface::extCmdList =
+const std::vector<CMDDesc> CmdInterface::extCmdDescList =
 	{
 			{"help","h",{},"Show the commands and their options"},
 			{"breakpoint","b",{{"-c","capsuleName","M"},{"-t","Transition's name","M"},{"-b","","O"},{"-i","traceNo","O"}},"Set breakpoint at beginning of a transition"},
@@ -232,6 +232,53 @@ bool CmdInterface::parseCommand() {
 
 	return true;
 }
+
+
+bool CmdInterface::parseExtCommand() {
+	if (cmdTokens.size()<=0)
+		return false;
+	mdebugger::mdebuggerCommand cmdID;
+	parsedCMD.cmdID=UNKOWNCOMMAND;
+	parsedCMD.commandOptions.clear();
+	cmdID=this->stringToUserCommad(cmdTokens[0]);
+	int cmdIndex=-1;
+	for (int i=0;i<extCmdDescList.size();i++)
+		if (extCmdDescList[i].commandL==cmdTokens[0] || extCmdDescList[i].commandName==cmdTokens[0]){
+			cmdIndex=i;
+			break;
+	}
+	if (cmdIndex==-1)
+		return false;
+	this->parsedCMD.cmdID=cmdID;
+	bool parsError=false;
+	for (int i=1;i<cmdTokens.size();i++)
+		if (cmdTokens[i][0]=='-'){
+			parsError=true;
+			for (int z=0;z<extCmdDescList.size();z++){
+				if (extCmdDescList[z].commandL==cmdTokens[0] || extCmdDescList[z].commandName==cmdTokens[0])
+					for (int j=0;j<extCmdDescList[z].commandOptions.size();j++)
+						if (extCmdDescList[z].commandOptions[j][0]==cmdTokens[i] ||
+								extCmdDescList[z].commandOptions[j][0].find(cmdTokens[i]+"|")!=std::string::npos||
+								extCmdDescList[z].commandOptions[j][0].find("|"+cmdTokens[i])!=std::string::npos){ /// check multiple command options here too
+							parsError=false;
+							if (extCmdDescList[z].commandOptions[j][1].length()>=1 && i+1<cmdTokens.size())
+								this->parsedCMD.commandOptions[cmdTokens[i]]=cmdTokens[i+1];
+							else
+								this->parsedCMD.commandOptions[cmdTokens[i]]="SET";
+							break;
+
+						}
+				if (parsError==false)
+					break;
+			}
+			if (parsError)
+				return false;
+	}
+
+	return true;
+}
+
+
 
 void CmdInterface::prettyPrint(std::string text, int length, char fillChar) {
 	std::cout<<std::left<<std::setw(length)<<std::setfill(fillChar);
