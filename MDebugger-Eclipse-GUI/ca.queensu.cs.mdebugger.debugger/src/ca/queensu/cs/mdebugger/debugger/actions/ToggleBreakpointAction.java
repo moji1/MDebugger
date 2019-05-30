@@ -83,7 +83,7 @@ public abstract class ToggleBreakpointAction implements IActionDelegate {
 		Object obj = ((IStructuredSelection)selection).getFirstElement();
 		if (!(obj instanceof GraphicalEditPart))
 			return;
-		
+				
 		GraphicalEditPart editPart = (GraphicalEditPart)obj;
 		EObject element = ((View) editPart.getModel()).getElement();
 		
@@ -91,6 +91,12 @@ public abstract class ToggleBreakpointAction implements IActionDelegate {
 			actionCode = (OpaqueBehavior)element;
 		else if (element instanceof Transition)
 			actionCode = (OpaqueBehavior) ((Transition)element).getEffect();
+		
+		if (getBreakpoint(actionCode, position) == null) {
+			action.setEnabled(ActionKind.ADD.equals(actionKind));
+		}else {
+			action.setEnabled(ActionKind.REMOVE.equals(actionKind));
+		}
 	}
 	
 }
