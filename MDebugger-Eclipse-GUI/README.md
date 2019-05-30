@@ -95,7 +95,6 @@ Deleting a breakpoint can be done either in the **Editing area** or in the **bre
 Further improvements can be done to the Eclipse implementation to improve the user experience. They include:
 - Displaying user-friendly label in the **Breakpoints** view (currently, only the affected resource name is used);
 - Graphically displaying breakpoints directly on the diagrams;
-- Hiding the *Disable breakpoint ...* options when no breakpoint exists, and reciprocally, hiding the *Insert breakpoint ...* options when a breakpoint has already been inserted;
 - Right now, a breakpoint can be added or removed. However, disabled or re-enabling a breakpoint using the checkbox on the left side of the breakpoint has no effect.
 
 ### Stepping over the execution
