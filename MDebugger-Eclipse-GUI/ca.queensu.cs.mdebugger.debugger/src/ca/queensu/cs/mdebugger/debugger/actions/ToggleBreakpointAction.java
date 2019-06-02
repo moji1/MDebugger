@@ -92,10 +92,12 @@ public abstract class ToggleBreakpointAction implements IActionDelegate {
 		else if (element instanceof Transition)
 			actionCode = (OpaqueBehavior) ((Transition)element).getEffect();
 		
-		if (getBreakpoint(actionCode, position) == null) {
-			action.setEnabled(ActionKind.ADD.equals(actionKind));
-		}else {
-			action.setEnabled(ActionKind.REMOVE.equals(actionKind));
+		if(actionCode != null) {
+			if (getBreakpoint(actionCode, position) == null) {
+				action.setEnabled(ActionKind.ADD.equals(actionKind));
+			}else {
+				action.setEnabled(ActionKind.REMOVE.equals(actionKind));
+			}
 		}
 	}
 	

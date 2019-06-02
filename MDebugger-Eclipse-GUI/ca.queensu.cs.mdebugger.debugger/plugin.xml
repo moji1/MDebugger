@@ -181,4 +181,11 @@
 	<command categoryId="ca.queensu.cs.mdebugger.debugger.category.MDebugger" description="Toggle breakpoints" id="ca.queensu.cs.mdebugger.debugger.toggleBreakpoints" name="Toggle Breakpoints">
 	</command>
    </extension>
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+                <debugModelPresentation 
+           class = "ca.queensu.cs.mdebugger.debugger.model.MDebuggerDebugModelPresentation"
+           id = "ca.queensu.cs.mdebugger.debugger">
+       </debugModelPresentation> 
+   </extension>
 </plugin>
